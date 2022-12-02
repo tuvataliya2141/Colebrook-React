@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 
@@ -27,11 +28,12 @@ function Home() {
                                 <h1 className='banner_title_set'>Find Your Favorite <br/>
                                       Clothing</h1><br/>
                                     <p className='banner_text_set'>our collection will help your fashion looks better and <br/>
-                                      we will provide the best product for you.</p><br/>                                  
-                                    <button className='banner_button_set'>
-                                      <img style={{width:"26%",margin: "-1px 0px 0px -30px"}} src="assets/imgs/banner/Group.png" alt="/"/>
-                                      <span className='banner_button_title'>SHOP NOW!</span>
-                                    </button>
+                                      we will provide the best product for you.</p><br/>  
+
+                                    <Link to='/'>
+                                      <img src="assets/imgs/banner/Group.png" alt="/"/>
+                                    </Link>                                
+                                    
                                 </div>
                                 </div>
                                 <div className="carousel-item active">
@@ -40,8 +42,12 @@ function Home() {
                                 <h1>Find Your Favorite <br/>
                                       Clothing</h1><br/>
                                     <p>our collection will help your fashion looks better and <br/>
-                                      we will provide the best product for you.</p><br/>                                  
-                                    <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button>
+                                      we will provide the best product for you.</p><br/>  
+                                    <Link to='/'>
+                                      <img src="assets/imgs/banner/Group.png" alt="/"/>
+                                    </Link>                                
+                                                                    
+                                    {/* <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button> */}
                                 </div>
                                 </div>
                                 <div className="carousel-item">
@@ -50,8 +56,12 @@ function Home() {
                                     <h1>Find Your Favorite <br/>
                                       Clothing</h1><br/>
                                     <p>our collection will help your fashion looks better and <br/>
-                                      we will provide the best product for you.</p><br/>                                  
-                                    <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button>
+                                      we will provide the best product for you.</p><br/>   
+                                    <Link to='/'>
+                                      <img src="assets/imgs/banner/Group.png" alt="/"/>
+                                    </Link>                                
+                                                                   
+                                    {/* <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button> */}
                                 </div>
                                 </div>
                             </div>
@@ -212,7 +222,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -254,7 +264,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -296,7 +306,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -338,7 +348,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -380,7 +390,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -422,7 +432,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -464,7 +474,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -506,7 +516,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -548,7 +558,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -590,7 +600,7 @@ function Home() {
                     </div>
                     <div className="product-action-1">
                       <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                       <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
@@ -630,7 +640,7 @@ function Home() {
     </section>
 
 
-
+{/* old */}
    <section className="section-padding pb-5">
   <div className="container">
     <div className="section-title wow animate__animated animate__fadeIn">
@@ -676,7 +686,7 @@ function Home() {
                     <div className="product-action-1">
                       <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
                       <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
                       <span className="hot">Save 15%</span>
@@ -714,7 +724,7 @@ function Home() {
                     <div className="product-action-1">
                       <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
                       <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
                       <span className="new">Save 35%</span>
@@ -752,7 +762,7 @@ function Home() {
                     <div className="product-action-1">
                       <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
                       <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
                       <span className="sale">Sale</span>
@@ -790,7 +800,7 @@ function Home() {
                     <div className="product-action-1">
                       <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
                       <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                      <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                      <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
                     </div>
                     <div className="product-badges product-badges-position product-badges-mrg">
                       <span className="best">Best sale</span>
@@ -817,7 +827,6 @@ function Home() {
                     <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
                   </div>
                 </div>
-             
               </div>
             </div>
           </div>
@@ -826,6 +835,7 @@ function Home() {
     </div>
   </div>
 </section><br/>
+
 
 <section className="newsletter mb-15 wow animate__animated animate__fadeIn">
             <div className="container">
@@ -837,7 +847,7 @@ function Home() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

@@ -1038,9 +1038,7 @@ h5.widget-title {
   border: 1px solid #f7f8f9;
 }
 
-.btn-shadow-brand:hover {
-  border: 1px solid #222325;
-}
+
 
 .btn-brand {
   background-color: #222325;
@@ -1100,14 +1098,13 @@ button.submit:hover, button[type='submit']:hover {
 
 .btn, .button {
   display: inline-block;
-  border: 1px solid transparent;
   font-size: 14px;
   font-weight: 700;
   padding: 12px 30px;
   border-radius: 50px;
-  color: black;
+  color: #fff;
   border: 1px solid transparent;
-  background-color: #bbb5b5;
+  background-color: #222325  ;
   cursor: pointer;
   -webkit-transition: all 300ms linear 0s;
   transition: all 300ms linear 0s;
@@ -1115,7 +1112,8 @@ button.submit:hover, button[type='submit']:hover {
 }
 
 .btn:hover, .button:hover {
-  background-color:#222325;
+  background-color:#bbb5b5 ;
+  color: #000;
 }
 
 .btn.btn-sm, .button.btn-sm {
@@ -1231,7 +1229,7 @@ textarea:-ms-input-placeholder {
 
 input {
   border: 1px solid #ececec;
-  border-radius: 10px;
+  border-radius: 50px;
   height: 64px;
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -1684,9 +1682,9 @@ label {
 }
 
 .form-control {
-  border: 1px solid #f0e9ff;
-  border-radius: 10px;
-  height: 48px;
+  border: 1px solid #ececec;
+  border-radius: 50px;
+  height: 64px;
   padding-left: 18px;
   font-size: 16px;
   background: transparent;
@@ -5096,7 +5094,7 @@ table .product-thumbnail img {
   font-weight: 700;
   color: #222325;
   border-radius: 220px;
-  padding: 11px 20px 11px 30px;
+  /* padding: 11px 20px 11px 30px; */
   max-width: 90px;
 }
 
@@ -11484,7 +11482,7 @@ footer .hotline img {
     font-size: 30px;
   }
   .detail-info .detail-extralink .detail-qty {
-    padding: 11px 20px 11px 10px;
+    /* padding: 11px 20px 11px 10px; */
     max-width: 60px;
   }
   .detail-info .product-extra-link2 .button.button-add-to-cart {

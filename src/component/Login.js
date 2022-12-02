@@ -148,17 +148,7 @@ function Login() {
                             <div className="form-group">
                             <input required type="password" name="password" placeholder="Your password *" value={Password} onChange={(e) => { SetPassword(e.target.value)}} />
                             </div>
-                            <div className="login_footer form-group">
-                            <div className="chek-form">
-                                <input type="text" required name="email" placeholder="Security code *" value={Code} onChange={(e) => { SetCode(e.target.value)}} />
-                            </div>
-                            <span className="security-code">
-                                <b className="text-new">8</b>
-                                <b className="text-hot">6</b>
-                                <b className="text-sale">7</b>
-                                <b className="text-best">5</b>
-                            </span>
-                            </div>
+                           
                             <div className="login_footer form-group mb-50">
                             <div className="chek-form">
                                 <div className="custome-checkbox">
@@ -193,7 +183,7 @@ function Login() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

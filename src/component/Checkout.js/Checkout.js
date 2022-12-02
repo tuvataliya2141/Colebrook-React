@@ -63,7 +63,7 @@ function Checkout() {
                 <div className="col-lg-6">
                     <form method="post" className="apply-coupon">
                     <input type="text" placeholder="Enter Coupon Code..." />
-                    <button className="btn  btn-md" name="login">Apply Coupon</button>
+                    <button className="btn btn-md" name="login">Apply Coupon</button>
                     </form>
                 </div>
                 </div>
@@ -203,7 +203,7 @@ function Checkout() {
                     <h4>Your Order</h4>
                     <h6 className="text-muted">Subtotal</h6>
                 </div>
-                <div className="divider-2 mb-30" />
+                <div className="divider-2 mb-30"/>
                 <div className="table-responsive order_table checkout">
                     <table className="table no-border">
                     <tbody>
@@ -309,7 +309,7 @@ function Checkout() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

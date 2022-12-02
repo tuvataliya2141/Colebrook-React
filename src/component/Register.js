@@ -153,7 +153,7 @@ function Register() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

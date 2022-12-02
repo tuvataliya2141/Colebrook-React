@@ -118,17 +118,14 @@ function Product() {
                           {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
                         </div>
                       </div>
-                      <hr style={{margin: "0px",color:"rgb(69 96 147)"}}/>
+                      <hr style={{margin: "10px",color:"rgb(69 96 147)"}}/>
                       <div className="font-xs">
                         <ul className="mr-50 float-start">
-                          <li className="mb-5">Type: <span className="text-brand">Organic</span></li>
-                          <li className="mb-5">MFG:<span className="text-brand"> Jun 4.2021</span></li>
-                          <li>LIFE: <span className="text-brand">70 days</span></li>
-                        </ul>
-                        <ul className="float-start">
-                          <li className="mb-5">SKU: <a href="#">FWM15VKT</a></li>
-                          <li className="mb-5">Tags: <a href="#" rel="tag">Snack</a>, <a href="#" rel="tag">Organic</a>, <a href="#" rel="tag">Brown</a></li>
-                          <li>Stock:<span className="in-stock text-brand ml-5">8 Items In Stock</span></li>
+                          <h6>DELIVERY OPTIONS</h6><br/>
+                          <li className="mb-5"><img src='assets/imgs/theme/delivery.png' width="20px" />&nbsp;   Get it by Mon, Oct 17</li>
+                          <li className="mb-5"><img src='assets/imgs/theme/paydelivery.png' width="20px" />&nbsp;   Pay on delivery available</li>
+                          <li className="mb-5"><img src='assets/imgs/theme/return.png' width="20px" />&nbsp;  Easy 30 days return & exchange available</li>
+                          100% Original Products
                         </ul>
                       </div>
                     </div>
@@ -471,7 +468,7 @@ function Product() {
                             <h6 className="text-muted">Subtotal</h6>
                         </td>
                         <td className="cart_total_amount">
-                            <h4 className="text-brand text-end">$12.31</h4>
+                            <h4 className="text-brand text-end">$38.00</h4>
                         </td>
                         </tr>
                         <tr>
@@ -481,15 +478,15 @@ function Product() {
                         </tr>
                         <tr>
                         <td className="cart_total_label">
-                            <h6 className="text-muted">Shipping</h6>
+                            <h6 className="text-muted">Offer Price</h6>
                         </td>
                         <td className="cart_total_amount">
-                            <h5 className="text-heading text-end">Free </h5></td></tr> <tr>
+                            <h5 className="text-heading text-end">$-20</h5></td></tr> <tr>
                         <td className="cart_total_label">
-                            <h6 className="text-muted">Estimate for</h6>
+                            <h6 className="text-muted">Delivery Charge</h6>
                         </td>
                         <td className="cart_total_amount">
-                            <h5 className="text-heading text-end">United Kingdom </h5></td></tr> <tr>
+                            <h5 className="text-heading text-end">$02</h5></td></tr> <tr>
                         <td scope="col" colSpan={2}>
                             <div className="divider-2 mt-10 mb-10" />
                         </td>
@@ -499,7 +496,7 @@ function Product() {
                             <h6 className="text-muted">Total</h6>
                         </td>
                         <td className="cart_total_amount">
-                            <h4 className="text-brand text-end">$12.31</h4>
+                            <h4 className="text-brand text-end">$20.00</h4>
                         </td>
                         </tr>
 
@@ -738,7 +735,7 @@ function Product() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

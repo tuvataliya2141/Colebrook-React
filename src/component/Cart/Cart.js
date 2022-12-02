@@ -146,8 +146,8 @@ function Cart() {
                     </tr>
                     <tr>
                         <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox3" />
+                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox4" defaultValue />
+                        <label className="form-check-label" htmlFor="exampleCheckbox4" />
                         </td>
                         <td className="image product-thumbnail"><img src="assets/imgs/shop/product-1-1.jpg" alt="#" /></td>
                         <td className="product-des product-name">
@@ -179,8 +179,8 @@ function Cart() {
                     </tr>
                     <tr>
                         <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox3" />
+                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox5" defaultValue />
+                        <label className="form-check-label" htmlFor="examexampleCheckbox5pleCheckbox3" />
                         </td>
                         <td className="image product-thumbnail"><img src="assets/imgs/shop/product-2-2.jpg" alt="#" /></td>
                         <td className="product-des product-name">
@@ -212,8 +212,8 @@ function Cart() {
                     </tr>
                     <tr>
                         <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox3" />
+                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox6" defaultValue />
+                        <label className="form-check-label" htmlFor="exampleCheckbox6" />
                         </td>
                         <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
                         <td className="product-des product-name">
@@ -245,8 +245,8 @@ function Cart() {
                     </tr>
                     <tr>
                         <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox3" />
+                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox7" defaultValue />
+                        <label className="form-check-label" htmlFor="exampleCheckbox7" />
                         </td>
                         <td className="image product-thumbnail"><img src="assets/imgs/shop/product-4-2.jpg" alt="#" /></td>
                         <td className="product-des product-name">
@@ -420,7 +420,7 @@ function Cart() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>

@@ -34,10 +34,11 @@ function ShopProduct() {
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
                                 {/* <NavLink to={`/Product/${id}`}> */}
-                                <NavLink to={`/Product`}>
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
-                                </NavLink>
+                                </a>
+                                {/* </NavLink> */}
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
@@ -52,7 +53,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoe</a></h2>
+                            <h2><a href="/Product">Seeds of Change Organic Quinoe</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -79,7 +80,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-2.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop2.jpg" alt="/"/>
                                 </a>
@@ -97,7 +98,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a></h2>
+                            <h2><a href="/Product">All Natural Italian-Style Chicken Meatballs</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '80%'}} />
@@ -124,7 +125,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 </a>
@@ -142,7 +143,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
+                            <h2><a href="/Product">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '85%'}} />
@@ -169,7 +170,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 </a>
@@ -184,7 +185,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Vegetables</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic</a></h2>
+                            <h2><a href="/Product">Foster Farms Takeout Crispy Classic</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -211,7 +212,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 </a>
@@ -229,7 +230,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Pet Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Blue Diamond Almonds Lightly</a></h2>
+                            <h2><a href="/Product">Blue Diamond Almonds Lightly</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -256,7 +257,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 </a>
@@ -274,7 +275,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoe</a></h2>
+                            <h2><a href="/Product">Seeds of Change Organic Quinoe</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -301,7 +302,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-2.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop2.jpg" alt="/"/>
                                 </a>
@@ -319,7 +320,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a></h2>
+                            <h2><a href="/Product">All Natural Italian-Style Chicken Meatballs</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '80%'}} />
@@ -346,7 +347,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 </a>
@@ -364,7 +365,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
+                            <h2><a href="/Product">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '85%'}} />
@@ -391,7 +392,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 </a>
@@ -406,7 +407,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Vegetables</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic</a></h2>
+                            <h2><a href="/Product">Foster Farms Takeout Crispy Classic</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -433,7 +434,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 </a>
@@ -451,7 +452,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Pet Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Blue Diamond Almonds Lightly</a></h2>
+                            <h2><a href="/Product">Blue Diamond Almonds Lightly</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -478,7 +479,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 </a>
@@ -496,7 +497,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoe</a></h2>
+                            <h2><a href="/Product">Seeds of Change Organic Quinoe</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -523,7 +524,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-2.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop2.jpg" alt="/"/>
                                 </a>
@@ -541,7 +542,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a></h2>
+                            <h2><a href="/Product">All Natural Italian-Style Chicken Meatballs</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '80%'}} />
@@ -568,7 +569,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 </a>
@@ -586,7 +587,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
+                            <h2><a href="/Product">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '85%'}} />
@@ -613,7 +614,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 </a>
@@ -628,7 +629,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Vegetables</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic</a></h2>
+                            <h2><a href="/Product">Foster Farms Takeout Crispy Classic</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -655,7 +656,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 </a>
@@ -673,7 +674,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Pet Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Blue Diamond Almonds Lightly</a></h2>
+                            <h2><a href="/Product">Blue Diamond Almonds Lightly</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -700,7 +701,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-1.jpg" alt="/"/>
                                 </a>
@@ -718,7 +719,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Seeds of Change Organic Quinoe</a></h2>
+                            <h2><a href="/Product">Seeds of Change Organic Quinoe</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -745,7 +746,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-2.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop2.jpg" alt="/"/>
                                 </a>
@@ -763,7 +764,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">All Natural Italian-Style Chicken Meatballs</a></h2>
+                            <h2><a href="/Product">All Natural Italian-Style Chicken Meatballs</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '80%'}} />
@@ -790,7 +791,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-3.jpg" alt="/"/>
                                 </a>
@@ -808,7 +809,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Snack</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
+                            <h2><a href="/Product">Angie’s Boomchickapop Sweet &amp; Salty</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '85%'}} />
@@ -835,7 +836,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-4.jpg" alt="/"/>
                                 </a>
@@ -850,7 +851,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Vegetables</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Foster Farms Takeout Crispy Classic</a></h2>
+                            <h2><a href="/Product">Foster Farms Takeout Crispy Classic</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -877,7 +878,7 @@ function ShopProduct() {
                         <div className="product-cart-wrap mb-30">
                             <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="/Product">
                                 <img className="default-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 <img className="hover-img" src="assets/imgs/shop/shop-5.jpg" alt="/"/>
                                 </a>
@@ -895,7 +896,7 @@ function ShopProduct() {
                             <div className="product-category">
                                 <a href="shop-grid-right.html">Pet Foods</a>
                             </div>
-                            <h2><a href="shop-product-right.html">Blue Diamond Almonds Lightly</a></h2>
+                            <h2><a href="/Product">Blue Diamond Almonds Lightly</a></h2>
                             <div className="product-rate-cover">
                                 <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{width: '90%'}} />
@@ -1035,7 +1036,7 @@ function ShopProduct() {
                         <div className="col-md-6 col-sm-12 col-xs-12">
                             <div className="detail-info pr-30 pl-30">
                             <span className="stock-status out-stock"> Sale Off </span>
-                            <h3 className="title-detail"><a href="shop-product-right.html" className="text-heading">Seeds of Change Organic Quinoa, Brown</a></h3>
+                            <h3 className="title-detail"><a href="/Product" className="text-heading">Seeds of Change Organic Quinoa, Brown</a></h3>
                             <div className="product-detail-rating">
                                 <div className="product-rate-cover text-end">
                                 <div className="product-rate d-inline-block">

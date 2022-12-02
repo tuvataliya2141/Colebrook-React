@@ -7,7 +7,7 @@ import Loding from "./component/Loding";
 function App() {
   return (
     <div>
-      {/* <Loding/> */}
+      <Loding/>
       <BrowserRouter>
         <Routes>
           {router.map((item, k) => {

@@ -90,7 +90,7 @@ function Footer() {
                 <div className="footer-bottom" />
             </div>
             <div className="col-xl-4 col-lg-6 col-md-6">
-                <p className="font-sm mb-0">© 2021, <strong className="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                <p className="font-sm mb-0">© 2022, <strong className="text-brand"> Colebrook</strong> - Ecommerce website </p>
             </div>
             <div className="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                 <div className="hotline d-lg-inline-flex mr-30">

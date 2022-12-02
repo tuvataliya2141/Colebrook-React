@@ -25,8 +25,7 @@ function Contact() {
                 <div className="row">
                     <div className="col-xl-8">
                         <div className="contact-from-area padding-20-row-col">
-                        <h5 className="text-brand mb-10">Contact form</h5>
-                        <h2 className="mb-10">Drop Us a Line</h2>
+                        <h2 className="mb-10">Contact Us </h2>
                         <p className="text-muted mb-30 font-sm">Your email address will not be published. Required fields are marked *</p>
                         <form className="contact-form-style mt-30" id="contact-form" action="#" method="post">
                             <div className="row">
@@ -117,7 +116,7 @@ function Contact() {
                         Stay home &amp; get your daily <br />
                         needs from our shop
                     </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand">Nest Mart</span></p>
+                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
                     <form className="form-subcriber d-flex">
                         <input type="email" placeholder="Your emaill address" />
                         <button className="btn" type="submit">Subscribe</button>
