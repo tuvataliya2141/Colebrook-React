@@ -4,47 +4,52 @@ import Footer from './Footer'
 import Header from './Header'
 import CommonService from "../services/commonService";
 import urlConstant from "../constants/urlConstant";
-import { ToasterSuccess, ToasterError } from "../common/toaster";
+import { ToasterSuccess, ToasterError , ToasterWarning } from "../common/toaster";
 import { ToastContainer } from "react-toastify";
 
 function Register() {
   let common = new CommonService();
     
   const [name, SetName] = useState("");
-  const [Email, SetEmail] = useState("");
   const [email_or_phone, SetEmail_or_phone] = useState("");
   const [password, SetPassword] = useState("");
-  const [register_by, SetRegister_by] = useState("");
+//   const [register_by, SetRegister_by] = useState("");
 
   function SubmitData(e){
     e.preventDefault();
     
-    debugger
+    
+    if(!name || !email_or_phone || !password)
+    {
+        ToasterWarning('Please Enter Details')
+        return
+    }
+
     const UserData = {
       name: name,
-      Email:Email,
       email_or_phone: email_or_phone,
       password: password,
-      register_by: register_by,
     };
-    try {
-      const UserRagister = `${urlConstant.User.UserRegister}`;
-      common.httpPost(UserRagister, UserData).then(()=>{
-        SetEmail_or_phone("");
-        SetName("");
-        SetPassword("");
-        SetRegister_by("");
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  
+    
+    const UserRagister = `${urlConstant.User.UserRegister}`;
+    common.httpPost(UserRagister, UserData).then(()=>{
+      ToasterSuccess("Register Successfully");
+      SetEmail_or_phone("");
+      SetName("");
+      SetPassword("");
+    })  
+    .catch((error) => {
+        console.log(error);
+        ToasterError("Not Valid Details");
+    });
   }
 
 
   return (
     <div>
+        
         <Header/>
+        <ToastContainer />
 
         <main className="main pages">
         <div className="page-header breadcrumb-wrap">
@@ -69,19 +74,19 @@ function Register() {
                         </div>
                         <form method="post">
                             <div className="form-group">
-                            <input type="text" required name="username" placeholder="Username" value={name} onChange={(e) => {SetName(e.target.value)}} />
+                            <input type="text" required name="Name" placeholder="Name" value={name} onChange={(e) => {SetName(e.target.value)}}/>
                             </div>
                             <div className="form-group">
-                            <input type="text" required name="email" placeholder="Email" value={Email} onChange={(e) => {SetEmail(e.target.value)}} />
+                            <input type="text" required name="email" placeholder="Email" value={email_or_phone} onChange={(e) => {SetEmail_or_phone(e.target.value)}} />
                             </div>
                             <div className="form-group">
-                            <input required type="password" name="password" placeholder="Password" />
+                            <input required type="password" name="password" placeholder="Password" value={password} onChange={(e) => {SetPassword(e.target.value)}} />
                             </div>
-                            <div className="form-group">
-                            <input required type="password" name="password" placeholder="Confirm password" />
+                            <div className="form-group">    
+                            <input required type="password" name="password" placeholder="Confirm password"  value={password} onChange={(e) => {SetPassword(e.target.value)}}  />
                             </div>
                             <div className="login_footer form-group">
-                            <div className="chek-form">
+                            {/* <div className="chek-form">
                                 <input type="text" required name="email" placeholder="Security code *" />
                             </div>
                             <span className="security-code">
@@ -89,7 +94,7 @@ function Register() {
                                 <b className="text-hot">6</b>
                                 <b className="text-sale">7</b>
                                 <b className="text-best">5</b>
-                            </span>
+                            </span> */}
                             </div>
                             <div className="payment_option mb-50">
                             <div className="custome-radio">

@@ -9,14 +9,13 @@ class CommonService {
 
     httpGet = async (requestURL, authorizationRequired) => new Promise((resolve, reject) => {
         // const userresponse = JSON.parse(localStorage.getItem('user'))
-        // const userresponse = "";// JSON.parse(AsyncStorage.getItem('user'))
+        //  const userresponse = "";// JSON.parse(AsyncStorage.getItem('user'))
 
         const options = {
             method: 'get', 
             headers: {
                     'content-type': 'application/json; charset=UTF-8',
-                    "Access-Control-Allow-Origin": "*",
-                    // "Authorization" : `Bearer ${localStorage.getItem('token')}`
+                     "Authorization" : `Bearer ${localStorage.getItem('access_token')}`
             }
         }
         axiosInstance.get(requestURL,options)

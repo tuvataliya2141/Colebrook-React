@@ -42,7 +42,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -87,7 +87,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -132,7 +132,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -177,7 +177,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             </div>
@@ -219,7 +219,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -264,7 +264,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -309,7 +309,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -354,7 +354,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -399,7 +399,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             </div>
@@ -441,7 +441,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -486,7 +486,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -531,7 +531,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -576,7 +576,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -621,7 +621,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             </div>
@@ -663,7 +663,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -708,7 +708,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -753,7 +753,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -798,7 +798,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">
@@ -843,7 +843,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                             </div>
                             </div>
@@ -885,7 +885,7 @@ function ShopProduct() {
                             </div>
                             <div className="product-action-1">
                                 <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
-                                <a aria-label="Compare" className="action-btn" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
+                                <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                 <Link aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></Link>
                             </div>
                             <div className="product-badges product-badges-position product-badges-mrg">

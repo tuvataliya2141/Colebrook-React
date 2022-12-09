@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 
+
 function Home() {
+  
   return (
     <div>
       <Header/>
-
         <main className="main">
        <section className="home-slider position-relative mb-30">
             <div className="container">
@@ -215,7 +216,7 @@ function Home() {
                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-1-1.png" style={{width:"212px", marginLeft:"40px"}} alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-1-1.png" style={{width:"212px", marginLeft:"40px"}} alt="/"/>
                       </a>
@@ -233,7 +234,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Snack</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -257,7 +258,7 @@ function Home() {
                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".2s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-2-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-2-1.png" alt="/"/>
                       </a>
@@ -275,7 +276,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '80%'}} />
@@ -299,7 +300,7 @@ function Home() {
                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".3s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-3-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-3-1.png" alt="/"/>
                       </a>
@@ -317,7 +318,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Snack</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '85%'}} />
@@ -341,7 +342,7 @@ function Home() {
                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-4-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-4-1.png" alt="/"/>
                       </a>
@@ -359,7 +360,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Vegetables</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -383,7 +384,7 @@ function Home() {
                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".5s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-5-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-5-1.png" alt="/"/>
                       </a>
@@ -401,7 +402,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Pet Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -425,7 +426,7 @@ function Home() {
                 <div className="product-cart-wrap wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-1-1.png" style={{width:"212px", marginLeft:"40px"}} alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-1-1.png" style={{width:"212px", marginLeft:"40px"}} alt="/"/>
                       </a>
@@ -443,7 +444,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -467,7 +468,7 @@ function Home() {
                 <div className="product-cart-wrap wow animate__animated animate__fadeIn" data-wow-delay=".2s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-2-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-2-1.png" alt="/"/>
                       </a>
@@ -485,7 +486,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Meats</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -509,7 +510,7 @@ function Home() {
                 <div className="product-cart-wrap wow animate__animated animate__fadeIn" data-wow-delay=".3s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-3-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-3-1.png" alt="/"/>
                       </a>
@@ -527,7 +528,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Snack</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -551,7 +552,7 @@ function Home() {
                 <div className="product-cart-wrap wow animate__animated animate__fadeIn" data-wow-delay=".4s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-4-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-4-1.png" alt="/"/>
                       </a>
@@ -569,7 +570,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Coffes</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Blue</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '90%'}} />
@@ -593,7 +594,7 @@ function Home() {
                 <div className="product-cart-wrap wow animate__animated animate__fadeIn" data-wow-delay=".5s">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-5-1.png" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-5-1.png" alt="/"/>
                       </a>
@@ -611,7 +612,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Cream</a>
                     </div>
-                    <h2><a href="ShopProduct">Solid Men Round Neck Blue T-ShirtNeck Bluep</a></h2>
+                    <h2><a href="Product">Solid Men Round Neck Blue T-ShirtNeck Bluep</a></h2>
                     <div className="product-rate-cover">
                       <div className="product-rate d-inline-block">
                         <div className="product-rating" style={{width: '50%'}} />
@@ -678,7 +679,7 @@ function Home() {
                 <div className="product-cart-wrap">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-1-1.jpg" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-1-1.jpg" alt="/"/>
                       </a>
@@ -696,7 +697,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Seeds of Change Organic Quinoa, Brown</a></h2>
+                    <h2><a href="Product">Seeds of Change Organic Quinoa, Brown</a></h2>
                     <div className="product-rate d-inline-block">
                       <div className="product-rating" style={{width: '80%'}} />
                     </div>
@@ -716,7 +717,7 @@ function Home() {
                 <div className="product-cart-wrap">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                    <a href="ShopProduct">
+                    <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-2-2.jpg" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="/"/>
                       </a>
@@ -734,7 +735,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">All Natural Italian-Style Chicken Meatballs</a></h2>
+                    <h2><a href="Product">All Natural Italian-Style Chicken Meatballs</a></h2>
                     <div className="product-rate d-inline-block">
                       <div className="product-rating" style={{width: '80%'}} />
                     </div>
@@ -754,7 +755,7 @@ function Home() {
                 <div className="product-cart-wrap">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-3-2.jpg" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="/"/>
                       </a>
@@ -772,7 +773,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Angie’s Boomchickapop Sweet and womnies</a></h2>
+                    <h2><a href="Product">Angie’s Boomchickapop Sweet and womnies</a></h2>
                     <div className="product-rate d-inline-block">
                       <div className="product-rating" style={{width: '80%'}} />
                     </div>
@@ -792,7 +793,7 @@ function Home() {
                 <div className="product-cart-wrap">
                   <div className="product-img-action-wrap">
                     <div className="product-img product-img-zoom">
-                      <a href="ShopProduct">
+                      <a href="Product">
                         <img className="default-img" src="assets/imgs/shop/product-4-2.jpg" alt="/"/>
                         <img className="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="/"/>
                       </a>
@@ -810,7 +811,7 @@ function Home() {
                     <div className="product-category">
                       <a href="shop-grid-right.html">Hodo Foods</a>
                     </div>
-                    <h2><a href="ShopProduct">Foster Farms Takeout Crispy Classic </a></h2>
+                    <h2><a href="Product">Foster Farms Takeout Crispy Classic </a></h2>
                     <div className="product-rate d-inline-block">
                       <div className="product-rating" style={{width: '80%'}} />
                     </div>
