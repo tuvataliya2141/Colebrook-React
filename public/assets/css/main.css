@@ -1491,7 +1491,7 @@ label {
   margin: 0px 8px 0 0;
   display: inline-block;
   vertical-align: middle;
-  border-radius: 2px;
+  border-radius: 10px;
 }
 
 .custome-checkbox .form-check-label span {
@@ -12414,5 +12414,70 @@ footer .hotline img {
   letter-spacing: -0.0004em;
   color: #FFFFFF;
 }
+
+.check-size-input{
+  display: none;
+}
+
+.check-size-input:checked+.check-size-label{
+    transition: all 0.5s ease-in-out;
+    border: solid 2px #222325;
+    color: white;
+    background-color: #222325;
+    Offset: 8px, 9px rgba(169, 199, 255, 0.59)
+}
+
+.check-size-label{
+    display: flex;
+    border: solid 2px #E2E2E2;
+    border-radius: 125px;
+    width: 72px;
+    height: 31px;
+    margin: 3px;
+    color: #B6B6B6;
+    background-color: white;
+    text-align: center;
+    line-height: 80px;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.check-size-label:hover {
+    cursor: pointer;
+}
+
+.star-set { font-size: 30px;margin-bottom: 10px; }
+
+.star-in-set {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+.star-in-set:before {
+  content: '★★★★★';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gray;
+}
+
+.star-in-set:after {
+  content: '★★★★★';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow: hidden;
+}
+
+.star-0:after { width: 0%; }
+.star-1:after { width: 20%; }
+.star-2:after { width: 40%; }
+.star-3:after { width: 60%; }
+.star-4:after { width: 80%; }
+.star-5:after { width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

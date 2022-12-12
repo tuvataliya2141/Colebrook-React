@@ -955,32 +955,190 @@ function ShopProduct() {
                         </div>
                         </div>
                         <div className="list-group">
-                        <div className="list-group-item mb-10 mt-10">
-                            <label className="fw-900">Color</label>
-                            <div className="custome-checkbox">
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox1"><span>Red (56)</span></label>
-                            <br />
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox2"><span>Green (78)</span></label>
-                            <br />
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox3"><span>Blue (54)</span></label>
-                            </div>
-                            <label className="fw-900 mt-15">Item Condition</label>
-                            <div className="custome-checkbox">
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox11"><span>New (1506)</span></label>
-                            <br />
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox21" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox21"><span>Refurbished (27)</span></label>
-                            <br />
-                            <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox31" defaultValue />
-                            <label className="form-check-label" htmlFor="exampleCheckbox31"><span>Used (45)</span></label>
+                            <div className="list-group-item mb-10 mt-10">
+                                <label className="fw-900">Category</label>
+                                <div className="custome-checkbox">
+                                    <input className="form-check-input" type="checkbox" name="checkbox" checked id="categoryCheckbox1" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox1"><span>T-Shirts & Polos</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox2" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox2"><span>Shirts</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox3" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox3"><span>Eat fresh</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox4" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox4"><span>Jeans</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox5" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox5"><span>Suits & Blazers</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox6" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox6"><span>Sunglasses & Spectacle</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox7" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox7"><span>Frames</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox8" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox8"><span>Shorts</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox9" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox9"><span>Sportswear</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox10" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox10"><span>Innerwear</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox11" defaultValue />
+                                    <label className="form-check-label" htmlFor="categoryCheckbox11"><span>Rainwear</span></label>
+                                </div>
+                                <label className="fw-900">Brand</label>
+                                <div className="custome-checkbox">
+                                    <input className="form-check-input" type="checkbox" name="checkbox" checked id="brandCheckbox1" defaultValue />
+                                    <label className="form-check-label" htmlFor="brandCheckbox1"><span>Cobblestone</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox2" defaultValue />
+                                    <label className="form-check-label" htmlFor="brandCheckbox2"><span>McVitie's</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox3" defaultValue />
+                                    <label className="form-check-label" htmlFor="brandCheckbox3"><span>Tastykake</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox4" defaultValue />
+                                    <label className="form-check-label" htmlFor="brandCheckbox4"><span>Warburtons</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox5" defaultValue />
+                                    <label className="form-check-label" htmlFor="brandCheckbox5"><span>Wonder Bread</span></label>
+                                </div>
+                                <label className="fw-900">Size</label>
+                                <div className="custome-checkbox">
+                                    <input id="4XS" className="check-size-input" type="checkbox" name="4XS" value="4XS"/>
+                                    <label className="check-size-label" for="4XS">4XS</label>
+                                    <input id="3XS" className="check-size-input" type="checkbox" name="3XS" value="3XS"/>
+                                    <label className="check-size-label" for="3XS">3XS</label>
+                                    <input id="2XS" className="check-size-input" type="checkbox" name="2XS" value="2XS"/>
+                                    <label className="check-size-label" for="2XS">2XS</label>
+                                    <input id="XS" className="check-size-input" type="checkbox" name="XS" value="XS"/>
+                                    <label className="check-size-label" for="XS">XS</label>
+                                    <input id="S" className="check-size-input" type="checkbox" name="S" value="S"/>
+                                    <label className="check-size-label" for="S">S</label>
+                                    <input id="M" className="check-size-input" type="checkbox" name="M" value="M"/>
+                                    <label className="check-size-label" for="M">M</label>
+                                    <input id="L" className="check-size-input" type="checkbox" name="L" value="L"/>
+                                    <label className="check-size-label" for="L">L</label>
+                                    <input id="XL" className="check-size-input" type="checkbox" name="XL" value="XL"/>
+                                    <label className="check-size-label" for="XL">XL</label>
+                                    <input id="2XL" className="check-size-input" type="checkbox" name="2XL" value="2XL"/>
+                                    <label className="check-size-label" for="2XL">2XL</label>
+                                    <input id="3XL" className="check-size-input" type="checkbox" name="3XL" value="3XL"/>
+                                    <label className="check-size-label" for="3XL">3XL</label>
+                                    <input id="4XL" className="check-size-input" type="checkbox" name="4XL" value="4XL"/>
+                                    <label className="check-size-label" for="4XL">4XL</label>
+                                    <input id="5XL" className="check-size-input" type="checkbox" name="5XL" value="5XL"/>
+                                    <label className="check-size-label" for="5XL">5XL</label>
+                                    <input id="6XL" className="check-size-input" type="checkbox" name="6XL" value="6XL"/>
+                                    <label className="check-size-label" for="6XL">6XL</label>
+                                    <input id="7XL" className="check-size-input" type="checkbox" name="7XL" value="7XL"/>
+                                    <label className="check-size-label" for="7XL">7XL</label>
+                                    <input id="8XL" className="check-size-input" type="checkbox" name="8XL" value="8XL"/>
+                                    <label className="check-size-label" for="8XL">8XL</label>
+                                </div>
+                                <br />
+                                {/* <span style={{width:"100%"}}></span> */}
+                                <label className="fw-900">Colour</label>
+                                <div className="custome-checkbox">
+                                    <input id="#FF0000" className="check-size-input" type="checkbox" name="#FF0000" value="#FF0000"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#FF0000"}} for="#FF0000"></label>
+                                    <input id="#FFB800" className="check-size-input" type="checkbox" name="#FFB800" value="#FFB800"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#FFB800"}} for="#FFB800"></label>
+                                    <input id="#9EFF00" className="check-size-input" type="checkbox" name="#9EFF00" value="#9EFF00"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#9EFF00"}} for="#9EFF00"></label>
+                                    <input id="#00FFC2" className="check-size-input" type="checkbox" name="#00FFC2" value="#00FFC2"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#00FFC2"}} for="#00FFC2"></label>
+                                    <input id="#00D1FF" className="check-size-input" type="checkbox" name="#00D1FF" value="#00D1FF"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#00D1FF"}} for="#00D1FF"></label>
+                                    <input id="#0075FF" className="check-size-input" type="checkbox" name="#0075FF" value="#0075FF"/>
+                                    <label className="check-size-label" style={{backgroundColor:"#0075FF"}} for="#0075FF"></label>
+                                </div>
+                                <label className="fw-900 mt-15">Pattern</label>
+                                <div className="custome-checkbox">
+                                    <input className="form-check-input" type="checkbox" checked name="checkbox" id="patternCheckbox1" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox1"><span>Animal print</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox2" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox2"><span>Argyle</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox3" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox3"><span>Camouflage</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox4" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox4"><span>Cartoon</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox5" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox5"><span>Chevron</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox6" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox6"><span>Floral</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox7" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox7"><span>Fruits</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox8" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox8"><span>Geometric</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox9" defaultValue />
+                                    <label className="form-check-label" htmlFor="patternCheckbox9"><span>Herringbone</span></label>
+                                </div>
+                                <label className="fw-900 mt-15">Avg.Customer Review</label>
+                                <div className="custome-checkbox">
+                                    <p className="star-set">
+                                        <span className="star-in-set star-4">★★★★★ <span style={{color: "#95A1A9",fontSize: "15px"}}>& Up</span></span>
+                                    </p>
+                                    <p className="star-set">
+                                        <span className="star-in-set star-3">★★★★★ <span style={{color: "#95A1A9",fontSize: "15px"}}>& Up</span></span>
+                                    </p>
+                                    <p className="star-set">
+                                        <span className="star-in-set star-2">★★★★★ <span style={{color: "#95A1A9",fontSize: "15px"}}>& Up</span></span>
+                                    </p>
+                                    <p className="star-set">
+                                        <span className="star-in-set star-1">★★★★★ <span style={{color: "#95A1A9",fontSize: "15px"}}>& Up</span></span>
+                                    </p>
+                                </div>
+                                <label className="fw-900 mt-15">Price</label>
+                                <div className="custome-checkbox">
+                                    <input className="form-check-input" type="checkbox" name="checkbox" checked id="priceCheckbox1" defaultValue />
+                                    <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
+                                    <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
+                                    <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
+                                    <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
+                                    <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
+                                </div>
+                                <label className="fw-900 mt-15">Offer</label>
+                                <div className="custome-checkbox">
+                                    <input className="form-check-input" type="checkbox" name="checkbox" checked id="offerCheckbox1" defaultValue />
+                                    <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
+                                    <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
+                                    <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
+                                    <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                    <br />
+                                    <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
+                                    <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        <a href="shop-grid-right.html" className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a>
+                        {/* <a href="shop-grid-right.html" className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                     </div>
                     {/* Product sidebar Widget */}
                     </div>
