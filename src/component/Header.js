@@ -7,6 +7,7 @@ function Header() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
     localStorage.removeItem("type");
+    localStorage.removeItem("user_id");
   }
 
   const UserName = localStorage.getItem('user')

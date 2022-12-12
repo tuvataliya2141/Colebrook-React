@@ -5,6 +5,10 @@ import Loding from "./component/Loding";
 
 
 function App() {
+
+  const Data = localStorage.getItem('token');
+   
+
   return (
     <div>
       <Loding/>

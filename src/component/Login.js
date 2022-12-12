@@ -34,6 +34,7 @@ function Login() {
                 localStorage.setItem('access_token', res.data.access_token)
                 localStorage.setItem('user', res.data.user.name)
                 localStorage.setItem('type', res.data.user.type)
+                localStorage.setItem('user_id', res.data.user.id)
 
             } else {
                 ToasterError("Not Valid Details");

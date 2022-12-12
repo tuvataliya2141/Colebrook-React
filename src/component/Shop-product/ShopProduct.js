@@ -31,7 +31,7 @@ function ShopProduct() {
     }, []);
     return (
         <div>
-            <ToastContainer />
+        <ToastContainer />
            <Header />
           
             <main className="main">
@@ -87,7 +87,7 @@ function ShopProduct() {
                                         </div>
                                         <div className="product-content-wrap">
                                         <div className="product-category">
-                                            <a href="shop-grid-right.html">Snack</a>
+                                            <a href="shop-grid-right.html">{item.category}</a>
                                         </div>
                                         <h2><a href="/Product">{item.name}</a></h2>
                                         <div className="product-rate-cover">
