@@ -130,7 +130,7 @@ function Checkout() {
                         <label className="form-check-label label_info" data-bs-toggle="collapse" href="#collapsePassword" data-target="#collapsePassword" aria-controls="collapsePassword" htmlFor="createaccount"><span>Create an account?</span></label>
                         </div>
                     </div>
-                    </div>
+                    </div>  
                     <div id="collapsePassword" className="form-group create-account collapse in">
                     <div className="row">
                         <div className="col-lg-6">
