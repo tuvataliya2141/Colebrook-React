@@ -32,7 +32,7 @@ function Register() {
     };
     
     const UserRagister = `${urlConstant.User.UserRegister}`;
-    common.httpPost(UserRagister, UserData).then(()=>{
+    common.httpPost(UserRagister, UserData).then((res)=>{
       ToasterSuccess("Register Successfully");
       SetEmail_or_phone("");
       SetName("");
