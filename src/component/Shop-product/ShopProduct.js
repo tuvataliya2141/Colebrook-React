@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { Link, NavLink ,useParams} from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
+import CommonService from "../../services/commonService";
+import urlConstant from "../../constants/urlConstant";
+import { ToasterSuccess, ToasterError } from "../../common/toaster";
+import { ToastContainer } from "react-toastify";
 
 function ShopProduct() {
     const id = useParams();
+    let common = new CommonService();
 
+    const [List, setList] = useState([]);
+
+
+    function GetProducts() {
+        const GetAllProducts = `${urlConstant.Products.GetProducts}`;
+        common.httpGet(GetAllProducts).then(function (res) {
+            setList(res.data.data);
+            
+        })
+            .catch(function (error) {
+                ToasterError("Error");
+            });
+    }
+    console.log(List);
+
+    useEffect(() => {
+        GetProducts();
+    }, []);
     return (
         <div>
+            <ToastContainer />
            <Header />
           
             <main className="main">
@@ -27,6 +51,73 @@ function ShopProduct() {
                         <p>We found <strong className="text-brand">29</strong> items for you!</p>
                         </div>
                     </div>
+
+                    <div className="row product-grid">
+                    {   
+                        List.map((item,i)=>{
+                            
+                           
+
+                           const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
+
+                            return(
+                               
+                                    <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                                    <div className="product-cart-wrap mb-30">
+                                        <div className="product-img-action-wrap">
+                                        <div className="product-img product-img-zoom">
+                                            <NavLink to={`/Product/${item.id}`}>
+                                            {/* <a href="/Product"> */}
+                                        
+                                            <img className="default-img" src={image} alt="/"/>
+                                            <img className="hover-img" src={image} alt="/"/>
+                                        
+                                    
+                                            {/* </a> */}
+                                            </NavLink>
+                                        </div>
+                                        <div className="product-action-1">
+                                            <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
+                                            <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
+                                            <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
+                                        </div>
+                                        <div className="product-badges product-badges-position product-badges-mrg">
+                                            <span className="hot">Hot</span>
+                                        </div>
+                                        </div>
+                                        <div className="product-content-wrap">
+                                        <div className="product-category">
+                                            <a href="shop-grid-right.html">Snack</a>
+                                        </div>
+                                        <h2><a href="/Product">{item.name}</a></h2>
+                                        <div className="product-rate-cover">
+                                            <div className="product-rate d-inline-block">
+                                            <div className="product-rating" style={{width: '90%'}} />
+                                            </div>
+                                            <span className="font-small ml-5 text-muted"> ({item.rating})</span>
+                                        </div>
+                                        <div>
+                                            <span className="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                                        </div>
+                                        <div className="product-card-bottom">
+                                            <div className="product-price">
+                                            <span>${item.base_price}</span>
+                                            <span className="old-price">${item.base_discounted_price}</span>
+                                            </div>
+                                            <div className="add-cart">
+                                            <a className="add" href="shop-cart.html"><i className="fi-rs-shopping-cart mr-5" />Add </a>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                               
+
+                            )
+                        })
+                    }
+                    </div>
+                    
 
                     <div className="row product-grid">
                         <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">

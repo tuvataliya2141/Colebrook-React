@@ -119,7 +119,7 @@ function Header() {
                         <Link to="/">Home</Link>
                       </li>
                       <li>
-                        <Link to="/ShopProduct" >Shop <i className="fi-rs-angle-down" /></Link>
+                        <a href="/ShopProduct" >Shop <i className="fi-rs-angle-down" /></a>
                         <ul className="sub-menu">
                           <li><Link to="/Checkout">Shop – Checkout</Link></li>
                         </ul>
