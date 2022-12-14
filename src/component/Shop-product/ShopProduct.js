@@ -7,6 +7,8 @@ import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import Pagination from "react-custom-pagination";
+import axios from 'axios'
+import {useAppContext} from '../../context/index'
 
 function ShopProduct() {
     const id = useParams();
@@ -14,7 +16,9 @@ function ShopProduct() {
 
     const [List, setList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(12);
+    const [Wishlist, setWishlist] = useState(0);
+    const [postsPerPage] = useState(8);
+    const { user_id } = useAppContext();
     const Getlength = List.length;
 
     const indexOfLastPost = currentPage * postsPerPage;
@@ -29,11 +33,39 @@ function ShopProduct() {
         const GetAllProducts = `${urlConstant.Products.GetProducts}`;
         common.httpGet(GetAllProducts).then(function (res) {
             setList(res.data.data);
-            
         })
-            .catch(function (error) {
-                ToasterError("Error");
-            });
+        .catch(function (error) {
+            ToasterError("Error");
+        });
+    }
+
+
+    function wishlistPost(P_Id) {
+        
+        // try {
+        //     const Data = {user_id : 148, product_id : 285}
+        //     const wishlistData = `${urlConstant.Wishlist.PostWishlist}`;
+        //     common.httpPost(wishlistData, Data).then((res)=>{
+        //     ToasterSuccess("Success...!!"); })
+        //   } catch (error) {
+        //     ToasterError("Error");
+        //   } 
+       
+        try {
+            const Data = {user_id : user_id, product_id : P_Id}
+            const wishlistData = `${urlConstant.Wishlist.PostWishlist}`;
+            axios.post(wishlistData, Data ,{
+              headers: {"Authorization" : `Bearer ${localStorage.getItem('access_token')}`}
+            })
+            ToasterSuccess("Success...!!");
+          } 
+          catch (error) 
+          {
+            ToasterError("Error")
+          }
+
+  
+        
     }
 
     useEffect(() => {
@@ -66,7 +98,6 @@ function ShopProduct() {
                     {   
                         Lists.map((item,i)=>{
                             
-                           
 
                            const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
 
@@ -87,7 +118,7 @@ function ShopProduct() {
                                             </NavLink>
                                         </div>
                                         <div className="product-action-1">
-                                            <a aria-label="Add To Wishlist" className="action-btn" href="wishlist"><i className="fi-rs-heart" /></a>
+                                            <a aria-label="Add To Wishlist" className="action-btn" onClick={()=>{wishlistPost(item.id)}}><i className="fi-rs-heart" /></a>
                                             <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                             <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
                                         </div>

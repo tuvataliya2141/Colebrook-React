@@ -78,7 +78,9 @@ function Footer() {
                 </div>
                 <p className="mb-20">Secured Payment Gateways</p>
                 <img className src="assets/imgs/theme/payment-method.png" alt="/"/>
-                <img className src="assets/imgs/theme/whatsapp.png" width="40px"  alt="/"/>
+                <a href='https://api.whatsapp.com/send?phone=+919988774455'>
+                    <img className src="assets/imgs/theme/whatsapp.png" width="40px"  alt="/"/>
+                </a>    
                 </div>
             </div>
             </div>

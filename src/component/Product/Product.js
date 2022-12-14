@@ -6,6 +6,7 @@ import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
+import axios from "axios";
 
 function Product() {
 
@@ -13,22 +14,25 @@ function Product() {
   let common = new CommonService();
 
   const [List, setList] = useState([]);
-  debugger
-  function GetProducts() {
-    const GetAllProducts = `${urlConstant.Products.GetProducts}?id=${id}`;
-    console.log(GetAllProducts);
-    common.httpGet(GetAllProducts).then(function (res) {
-      setList(res.data.data);
 
+  function GetSingelProducts() {
+    const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
+    const Data = { product_id:id }
+    axios.post(GetAllProducts ,Data ,{
+      headers: {"Authorization" : `Bearer ${localStorage.getItem('access_token')}`}
+    }).then(function (res) {
+      setList(res.data.data);
+      ToasterSuccess("Success");
     })
       .catch(function (error) {
         ToasterError("Error");
       });
   }
-  console.log(List);
+
+  
 
   useEffect(() => {
-    GetProducts();
+    GetSingelProducts();  
   }, []);
 
   return (
@@ -57,10 +61,10 @@ function Product() {
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-2.jpg" alt="product image" />
+                              <img src={List.thumbnail_img} alt={List.thumbnail_img} width="100%" />
                             </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-1.jpg" alt="product image" />
+                            {/* <figure className="border-radius-10">
+                              <img src="assets/imgs/shop/product-16-2.jpg" alt="product image" />
                             </figure>
                             <figure className="border-radius-10">
                               <img src="assets/imgs/shop/product-16-3.jpg" alt="product image" />
@@ -76,7 +80,7 @@ function Product() {
                             </figure>
                             <figure className="border-radius-10">
                               <img src="assets/imgs/shop/product-16-7.jpg" alt="product image" />
-                            </figure>
+                            </figure> */}
                           </div>
                           {/* THUMBNAILS */}
                           <div className="slider-nav-thumbnails">
@@ -94,11 +98,11 @@ function Product() {
                       <div className="col-md-6 col-sm-12 col-xs-12">
                         <div className="detail-info pr-30 pl-30">
                           <span className="stock-status out-stock"> In Stock </span>
-                          <h5 className="title-detail">Seeds of Change Organic Quinoa, Brown</h5>
+                          <h5 className="title-detail">{List.name}</h5>
                           <div className="product-detail-rating">
                             <div className="product-rate-cover text-end">
                               <div className="product-rate d-inline-block">
-                                <div className="product-rating" style={{ width: '90%' }} />
+                                <div className="product-rating" style={{ width: '90%' }} /> {List.rating}
                               </div>
                               <span className="font-small ml-5 text-muted"> (32 reviews)</span>
                             </div>

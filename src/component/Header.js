@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {useAppContext} from '../context/index'
 
-function Header() {
+function Header({Wishlist}) {
+
 
   const SignOut = () => {
     localStorage.removeItem("access_token");
@@ -10,7 +12,7 @@ function Header() {
     localStorage.removeItem("user_id");
   }
 
-  const UserName = localStorage.getItem('user')
+  const {UserName } = useAppContext();
 
   return (
     <div>
@@ -51,7 +53,11 @@ function Header() {
                     <div className="header-action-icon-2">
                       <Link to="/wishlist">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
-                        <span className="pro-count blue">4</span>
+                        {
+                          Wishlist == null ? '' : <span className="pro-count blue">{Wishlist}</span>
+                        }
+
+                       
                       </Link>
                     </div>
 
@@ -123,7 +129,7 @@ function Header() {
                         <Link to="/ShopProduct" >Shop </Link>
                       </li>
                       <li>
-                        <a href="/Product">Product</a>
+                        <a href="/Product/123">Product</a>
                       </li>
                       <li>
                         <Link to="/">Offer</Link>

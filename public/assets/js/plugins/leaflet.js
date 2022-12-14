@@ -158,7 +158,7 @@
                         from + (to ? '&ndash;' + to : '+'));
                 }
 
-                div.innerHTML = labels.join('<br>');
+                div.innerHTML = labels.join('<br/>');
                 return div;
             };
 

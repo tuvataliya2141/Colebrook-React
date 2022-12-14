@@ -3,10 +3,11 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
 
-    const name ="hello"
-    const name1 ="hello"
+  const UserName = localStorage.getItem('user')
+  const user_id = localStorage.getItem('user_id')
+  
   return (
-    <AppContext.Provider value={{ name , name1 }}>
+    <AppContext.Provider value={{ user_id , UserName }}>
       {children}
     </AppContext.Provider>
   );

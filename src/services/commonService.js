@@ -29,14 +29,22 @@ class CommonService {
     });
 
     httpDelete = async (requestURL, authorizationRequired) => new Promise((resolve, reject) => {
+
+        const options = {
+            method: 'Delete', 
+            headers: {
+                    'content-type': 'application/json; charset=UTF-8',
+                     "Authorization" : `Bearer ${localStorage.getItem('access_token')}`
+            }
+        }
         swal({
-            title: 'Are you sure Delete Your Data?',
+            title: 'Are You Sure Delete Data?',
             icon: 'warning',
             buttons: true,
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                axiosInstance.delete(requestURL)
+                axiosInstance.delete(requestURL ,options )
                     .then((response) => {
                         resolve(response);
                         ToasterSuccess("Success...!!");
@@ -70,6 +78,7 @@ class CommonService {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Accept': 'application/json, text/plain, */*',
                 "Access-Control-Allow-Origin": "*",
+                "Authorization" : `Bearer ${localStorage.getItem('access_token')}`
             },
             body: JSON.stringify(requestBody)
         }
