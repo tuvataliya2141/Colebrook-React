@@ -4,38 +4,63 @@ import Footer from '../Footer'
 import Header from '../Header'
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
-import { ToasterSuccess, ToasterError } from "../../common/toaster";
+import { ToasterSuccess,ToasterWarning, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
-import {useAppContext} from '../../context/index'
+import {useAppContext} from '../../context/index';
+import swal from 'sweetalert'
+
 
 function Wishlist() {
     let common = new CommonService();
-    const { user_id } = useAppContext();
+    const { user_id ,Loding } = useAppContext();
 
     const [List, setList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     function GetWishlist() {
+        setIsLoading(true)
         const GetAllWishlist = `${urlConstant.Wishlist.GetAllWishlist}/${user_id}`;
         common.httpGet(GetAllWishlist).then(function (res) {
             setList(res.data.data);
+            setIsLoading(false)
         })
         .catch(function (error) {
             ToasterError("Error");
+            setIsLoading(false)
         });
     }
 
 
     const deletehandler = async (id) => {
-        const deleteWishlist = `${urlConstant.Wishlist.DeleteWishlist}/${id}`;
-        common.httpDelete(deleteWishlist).then((res) => {
-            GetWishlist();
-        });
+
+        swal({
+            title: 'Are You Sure Delete Data?',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                setIsLoading(true)
+                const deleteWishlist = `${urlConstant.Wishlist.DeleteWishlist}?product_id=${id}&user_id=${user_id}`;
+                common.httpGet(deleteWishlist).then((res) => {
+                    GetWishlist();
+                    setIsLoading(false);
+                });
+            }
+            else {
+                ToasterWarning("Your Data Safe...!!");
+                setIsLoading(false);
+            }
+        })
+       
     };
-   
+    
     useEffect(() => {
         GetWishlist();
     }, []);
   return (
     <div>
+        {isLoading ? <Loding /> : Wishlist}
         <Header Wishlist={List.length}/>
         <main className="main">
         <div className="page-header breadcrumb-wrap">
@@ -70,10 +95,13 @@ function Wishlist() {
                     </thead>
                     <tbody>
 
+
                     {
+
+                        List == '' ? <h1 style={{ textAlign:"center" }}>Oops, no product in your list</h1>:
                         List.map((item,i)=>{
-                            debugger
-                            const {name,thumbnail_image,base_price,rating,id} = item.product;
+                            
+                            const {name,thumbnail_image,base_price,rating,id,InStock} = item.product;
 
                             const iamge = thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : thumbnail_image;
 
@@ -83,9 +111,9 @@ function Wishlist() {
                                     {/* <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
                                     <label className="form-check-label" htmlFor="exampleCheckbox1" /> */}
                                     </td>
-                                    <td className="image product-thumbnail pt-40"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU" alt={iamge} /></td>
+                                    <td className="image product-thumbnail pt-40"><img src={iamge} alt={iamge} /></td>
                                     <td className="product-des product-name">
-                                    <h6><a className="product-name mb-10" href="shop-product-right.html">{name}</a></h6>
+                                    <h6>{name}</h6>
                                     <div className="product-rate-cover">
                                         <div className="product-rate d-inline-block">
                                         <div className="product-rating" style={{width: '90%'}} />
@@ -97,13 +125,13 @@ function Wishlist() {
                                     <h3 className="text-brand">{base_price}</h3>
                                     </td>
                                     <td className="text-center detail-info" data-title="Stock">
-                                    <span className="stock-status in-stock mb-0"> In Stock </span>
+                                    <span className="stock-status in-stock mb-0"> In Stock - {InStock} </span>
                                     </td>
                                     <td className="text-right" data-title="Cart">
                                     <button className="btn btn-sm">Add to cart</button>
                                     </td>
                                     <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>
-                                    <a href="#" className="text-body"><i className="fi-rs-trash" /></a>
+                                    <a className="text-body"><i className="fi-rs-trash" /></a>
                                     </td>
                                 </tr>
                             )

@@ -36,6 +36,7 @@ function Login() {
                 localStorage.setItem('type', res.data.user.type)
                 localStorage.setItem('user_id', res.data.user.id)
 
+                window.location.href = window.location.href
             } else {
                 ToasterError("Not Valid Details");
             }
@@ -52,9 +53,6 @@ function Login() {
         <div>
             <ToastContainer />
             <Header />
-
-
-
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">

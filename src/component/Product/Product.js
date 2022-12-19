@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink ,useParams} from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
@@ -7,44 +7,75 @@ import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
+import { useAppContext } from "../../context";
 
 function Product() {
 
   const id = useParams();
   let common = new CommonService();
+  const { user_id ,wishlistPost ,Loding } = useAppContext();
+
 
   const [List, setList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   function GetSingelProducts() {
+    setIsLoading(true)
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
-    const Data = { product_id:id }
-    axios.post(GetAllProducts ,Data ,{
-      headers: {"Authorization" : `Bearer ${localStorage.getItem('access_token')}`}
+    const Data = { product_id: id }
+    axios.post(GetAllProducts, Data, {
+      headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
     }).then(function (res) {
+      setIsLoading(false);
       setList(res.data.data);
-      ToasterSuccess("Success");
+      // ToasterSuccess("Success");
     })
       .catch(function (error) {
+        setIsLoading(false);
         ToasterError("Error");
       });
   }
 
-  
+  function CartPost() {
+    try {
+      setIsLoading(true)
+        const Data = { id: id.id, quantity: 1 }
+        const CartData = `${urlConstant.Cart.PostCrat}`;
+        axios.post(CartData, Data, {
+            headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+        }).then(()=>{
+           ToasterSuccess("Success...!!");
+            setIsLoading(false)
+        })
+    }
+    catch (error) {
+        ToasterError("Error")
+    }
+  }
 
-  useEffect(() => {
-    GetSingelProducts();  
+    
+
+  const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
+  const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
+  
+  
+ 
+
+  useEffect(() => { 
+    GetSingelProducts();
   }, []);
 
   return (
     <div>
+       {isLoading ? <Loding /> : Product}
       <ToastContainer />
       <Header />
       <main className="main">
         <div className="page-header breadcrumb-wrap">
           <div className="container">
             <div className="breadcrumb">
-              <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-              <span /> <a href="shop-grid-right.html">Vegetables &amp; tubers</a> <span /> Seeds of Change Organic
+              <Link to="/" rel="nofollow"><i className="fi-rs-home mr-5" />Home</Link>
+              <span /> <Link to="/">Product</Link> 
             </div>
           </div>
         </div>
@@ -61,59 +92,59 @@ function Product() {
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10">
-                              <img src={List.thumbnail_img} alt={List.thumbnail_img} width="100%" />
+                              <img src={image} alt={image} width="100%" />
                             </figure>
-                            {/* <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-2.jpg" alt="product image" />
-                            </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-3.jpg" alt="product image" />
-                            </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-4.jpg" alt="product image" />
-                            </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-5.jpg" alt="product image" />
-                            </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-6.jpg" alt="product image" />
-                            </figure>
-                            <figure className="border-radius-10">
-                              <img src="assets/imgs/shop/product-16-7.jpg" alt="product image" />
-                            </figure> */}
                           </div>
                           {/* THUMBNAILS */}
                           <div className="slider-nav-thumbnails">
-                            <div><img src="assets/imgs/shop/thumbnail-3.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-4.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-5.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-6.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-7.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-8.jpg" alt="product image" /></div>
-                            <div><img src="assets/imgs/shop/thumbnail-9.jpg" alt="product image" /></div>
+
+                            {/* {
+                              Img.map((item,i)=>{
+                                return(
+                                  <>
+                                     <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i}/></div>
+                                  </>
+                                )
+                              })
+                            }  */}
+
+                            {
+                              List.multipleimage.map((item,i)=>{
+                                return(
+                                  <>  
+                                     <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
+                                  </>
+                                )
+                              })
+
+                            }
+
+                            {/* <div><img src={Img[0]} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div> */}
+                           
+                            
                           </div>
                         </div>
                         {/* End Gallery */}
                       </div>
                       <div className="col-md-6 col-sm-12 col-xs-12">
                         <div className="detail-info pr-30 pl-30">
-                          <span className="stock-status out-stock"> In Stock </span>
+                          <span className="stock-status out-stock"> In Stock - {List.InStock} </span>
                           <h5 className="title-detail">{List.name}</h5>
                           <div className="product-detail-rating">
                             <div className="product-rate-cover text-end">
                               <div className="product-rate d-inline-block">
-                                <div className="product-rating" style={{ width: '90%' }} /> {List.rating}
+                                <div className="product-rating" style={{ width: '90%' }} /> 
                               </div>
-                              <span className="font-small ml-5 text-muted"> (32 reviews)</span>
+                              <span className="font-small ml-5 text-muted">{List.rating} (32 reviews)</span>
                             </div>
                           </div>
                           <hr style={{ margin: "0px", color: "rgb(69 96 147)" }} />
                           <div className="clearfix product-price-cover">
                             <div className="product-price primary-color float-left">
-                              <span className="current-price text-brand">$38</span>
+                              <span className="current-price text-brand">{List.price}</span>
                               <span>
-                                <span className="save-price font-md color3 ml-15">26% Off</span>
-                                <span className="old-price font-md ml-15">$52</span>
+                                <span className="save-price font-md color3 ml-15">{List.offer ? List.offer : 0} % Off</span>
+                                <span className="old-price font-md ml-15">{List.oldPrice + 200}</span>
                               </span>
                             </div>
                           </div>
@@ -121,7 +152,7 @@ function Product() {
                             <p className="font-lg">Incluslve of all taxes</p>
                           </div>
                           <div className="attr-detail attr-size mb-20">
-                            <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}><b>SIZE CHART {">"}</b></span> </strong>
+                            <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
                             {/* <ul className="list-filter size-filter font-small">
                           <li><a href="#">50g</a></li>
                           <li className="active"><a href="#">60g</a></li>
@@ -132,6 +163,15 @@ function Product() {
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <ul className="list-filter size-filter font-small">
+                              {/* {
+                                  size.map((item,i)=>{
+                                  return(
+                                    <>
+                                      <li><a href="#">{item}</a></li>
+                                    </>
+                                  )
+                                })
+                              } */}
                               <li><a href="#">S</a></li>
                               <li className="active"><a href="#">M</a></li>
                               <li><a href="#">L</a></li>
@@ -146,8 +186,8 @@ function Product() {
                               <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
                             </div>
                             <div className="product-extra-link2">
-                              <button type="submit" className="button button-add-to-cart"><i className="fi-rs-shopping-cart" />Add to cart</button>
-                              <a aria-label="Add To Wishlist" className="action-btn hover-up" href="shop-wishlist.html"><i className="fi-rs-heart" /></a>
+                              <button type="submit" className="button button-add-to-cart" onClick={()=>{CartPost()}} ><i className="fi-rs-shopping-cart"  />Add to cart</button>
+                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={()=>{wishlistPost(id.id)}}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
                             </div>
                           </div>

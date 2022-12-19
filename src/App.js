@@ -5,13 +5,9 @@ import Loding from "./component/Loding";
 
 
 function App() {
-
-  const Data = localStorage.getItem('token');
-   
-
   return (
-    <div>
-      <Loding/>
+    <div className="App">
+      {/* <Loding/> */}
       <BrowserRouter>
         <Routes>
           {router.map((item, k) => {

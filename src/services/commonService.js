@@ -53,19 +53,12 @@ class CommonService {
                     .catch((error) => {
                         reject(error);
 
-
                     });
-
             }
             else {
                 ToasterWarning("Your Data Safe...!!");
             }
-
-
-
         })
-
-
     });
 
     httpPost = async (requestURL, requestBody, authorizationRequired) => new Promise((resolve, reject) => {
