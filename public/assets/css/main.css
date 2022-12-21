@@ -2169,6 +2169,8 @@ label {
   overflow: hidden;
   margin: 0 -12px;
   display: flex;
+  justify-content: space-between;
+  padding: 10px 0px 25px 0px;
 }
 
 
@@ -3435,7 +3437,7 @@ table .product-thumbnail img {
   z-index: 2;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  padding: 0 50px;
+  padding: 0 30px;
 }
 
 .banner-img .banner-text span {
@@ -3473,7 +3475,7 @@ table .product-thumbnail img {
   background: url(../imgs/banner/banner-4.png) no-repeat center bottom;
   background-size: cover;
   width: 100%;
-  height: 590px;
+  height: 636px;
 }
 
 .banner-img.style-2 .banner-text {
@@ -4130,7 +4132,7 @@ table .product-thumbnail img {
 }
 
 .product-cart-wrap .product-content-wrap {
-  padding: 0 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .product-cart-wrap .product-content-wrap .product-category {
@@ -4149,7 +4151,8 @@ table .product-thumbnail img {
 .product-cart-wrap .product-content-wrap h2 {
   font-size: 16px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .product-cart-wrap .product-content-wrap h2 a {
@@ -4161,7 +4164,7 @@ table .product-thumbnail img {
 }
 
 .product-cart-wrap .product-content-wrap .product-price {
-  padding-top: 5px;
+  padding-top: 10px;
 }
 
 .product-cart-wrap .product-content-wrap .product-price span {
@@ -10600,6 +10603,10 @@ footer .hotline img {
   margin-top: 15px !important;
 }
 
+.mt-18 {
+  margin-top: 18px !important;
+}
+
 .mt-20 {
   margin-top: 20px !important;
 }
@@ -12479,5 +12486,47 @@ footer .hotline img {
 .star-3:after { width: 60%; }
 .star-4:after { width: 80%; }
 .star-5:after { width: 100%; }
+
+/* .cat-list-home{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 196px;
+  height: 100%;
+  min-height: 132px;
+  border-radius: 125px; 
+  padding: 42px 75px 42px 75px;
+  border: 1px solid #E2E2E2;
+} */
+
+#carausel-10-columns .card-2:hover{
+  box-shadow: 8px 9px 21px rgba(191, 191, 191, 0.59);
+  border: 1px solid #0f0000;
+  background-color: #222325;
+}
+
+.cat-list-home img{
+  /* width: 70px;
+  height: 50px; */
+}
+
+#carausel-10-columns .card-2:hover svg path{
+  fill: white;
+}
+
+
+#carausel-10-columns .card-2{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 196px;
+  height: 100%;
+  min-height: 132px;
+  border-radius: 125px; 
+  border: 1px solid #E2E2E2;
+  align-items: center;
+}
+
+
 
 /*# sourceMappingURL=main.css.map */
