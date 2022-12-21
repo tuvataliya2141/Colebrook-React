@@ -1,12 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import Footer from '../Footer'
 import Header from '../Header'
+import CommonService from "../../services/commonService";
+import urlConstant from "../../constants/urlConstant";
+import { ToasterSuccess,ToasterWarning, ToasterError } from "../../common/toaster";
+import { ToastContainer } from "react-toastify";
+import {useAppContext} from '../../context/index';
+import swal from 'sweetalert'
 
 function Cart() {
+
+    let common = new CommonService();
+    const { user_id ,Loding  } = useAppContext();
+
+    const [List, setList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [increment, SetIncrement ] = useState(0);
+   
+
+    function GetCrat() {
+        setIsLoading(true)
+        const GetAllCart = `${urlConstant.Cart.GetCrat}/${user_id}`;
+        common.httpGet(GetAllCart).then(function (res) {
+            setList(res.data);
+            setIsLoading(false)
+        })
+        .catch(function (error) {
+            ToasterError("Error");
+            setIsLoading(false)
+        });
+    }
+
+    useEffect(() => {
+        GetCrat();
+    }, []);
+
   return (
     <div>
         <Header/>
-
+        {isLoading ? <Loding /> : Cart}
         <main className="main">
         <div className="page-header breadcrumb-wrap">
             <div className="container">
@@ -45,237 +77,62 @@ function Cart() {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr className="pt-30">
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox1" />
-                        </td>
-                        <td className="image product-thumbnail pt-40"><img src="assets/imgs/shop/product-1-1.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Field Roast Chao Cheese Creamy Original</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.51 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.51 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox2" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox2" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Blue Diamond Almonds Lightly Salted</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$3.2 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$3.2 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox3" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox3" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-4-2.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.43 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.43 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox4" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox4" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-1-1.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.43 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.43 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox5" defaultValue />
-                        <label className="form-check-label" htmlFor="examexampleCheckbox5pleCheckbox3" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-2-2.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.43 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.43 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox6" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox6" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.43 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.43 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
-                    <tr>
-                        <td className="custome-checkbox pl-30">
-                        <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox7" defaultValue />
-                        <label className="form-check-label" htmlFor="exampleCheckbox7" />
-                        </td>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-4-2.jpg" alt="#" /></td>
-                        <td className="product-des product-name">
-                        <h6 className="mb-5"><a className="product-name mb-10 text-heading" href="shop-product-right.html">Fresh Organic Mustard Leaves Bell Pepper</a></h6>
-                        <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                            <div className="product-rating" style={{width: '90%'}}>
-                            </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-body">$2.43 </h4>
-                        </td>
-                        <td className="text-center detail-info" data-title="Stock">
-                        <div className="detail-extralink mr-15">
-                            <div className="detail-qty border radius">
-                            <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                            <span className="qty-val">1</span>
-                            <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
-                            </div>
-                        </div>
-                        </td>
-                        <td className="price" data-title="Price">
-                        <h4 className="text-brand">$2.43 </h4>
-                        </td>
-                        <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
-                    </tr>
+
+                    {
+                         List == '' ? <h1 style={{ textAlign:"center" }}>Oops, no product in your list</h1>:
+                         List.map((item,i)=>{
+                            return(
+                                <>
+                                {
+                                    item.cart_items.map((item,i)=>{
+
+                                       
+                                        const image = item.product_thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.product_thumbnail_image
+                                        
+                                        return(
+                                            <>
+                                                  <tr className="pt-30" key={i}>
+                                                    <td className="custome-checkbox pl-30">
+                                                    <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
+                                                    <label className="form-check-label" htmlFor="exampleCheckbox1" />
+                                                    </td>
+                                                    <td className="image product-thumbnail pt-40"><img src={image} alt={image} /></td>
+                                                    <td className="product-des product-name">
+                                                    <h6 className="mb-5">{item.product_name}</h6>
+                                                    <div className="product-rate-cover">
+                                                        <div className="product-rate d-inline-block">
+                                                        <div className="product-rating" style={{width: '90%'}}>
+                                                        </div>
+                                                        </div>
+                                                        <span className="font-small ml-5 text-muted"> (4.0)</span>
+                                                    </div>
+                                                    </td>
+                                                    <td className="price" data-title="Price">
+                                                    <h4 className="text-body">{item.price}</h4>
+                                                    </td>
+                                                    <td className="text-center detail-info" data-title="Stock">
+                                                    <div className="detail-extralink mr-15">
+                                                        <div className="detail-qty border radius">
+                                                        <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={()=>{SetIncrement(increment - 1)}} /></a>
+                                                        <span className="qty-val">{item.quantity},{increment}</span>
+                                                        <a className="qty-up" ><i className="fi-rs-angle-small-up"  onClick={()=>{SetIncrement(increment + 1)}}/></a>
+                                                        </div>
+                                                    </div>
+                                                    </td>
+                                                    <td className="price" data-title="Price">
+                                                    <h4 className="text-brand">$111</h4>
+                                                    </td>
+                                                    <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })
+                                }
+                                </>
+                            )
+                         })
+                       
+                    }
                     </tbody>
                 </table>
                 </div>

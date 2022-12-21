@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {useAppContext} from '../context/index'
+import { useAppContext } from '../context/index'
 
-function Header({Wishlist}) {
+function Header({ Wishlist }) {
 
 
   const SignOut = () => {
@@ -12,7 +12,7 @@ function Header({Wishlist}) {
     localStorage.removeItem("user_id");
   }
 
-  const {UserName } = useAppContext();
+  const { UserName } = useAppContext();
 
   return (
     <div>
@@ -43,48 +43,48 @@ function Header({Wishlist}) {
                   </form>
                 </div>
                 <div className="header-action-right">
-                  <div className="header-action-2">
 
-                    <div className="header-action-icon-2">
-                      <Link to="/">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/recycle.svg" />
-                      </Link>
-                    </div>
-                    <div className="header-action-icon-2">
-                      <Link to="/wishlist">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
-                        {
-                          Wishlist == null ? '' : <span className="pro-count blue">{Wishlist}</span>
-                        }
+                  {
+                    UserName ?
+                      <div className="header-action-2">
+                        <div className="header-action-icon-2">
+                          <Link to="/wishlist">
+                            <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
+                            {
+                              Wishlist == null ? " " : <span className="pro-count blue">{Wishlist}</span>
+                            }
+                          </Link>
+                        </div>
+                        <div className="header-action-icon-2">
+                          <Link to="/Cart">
+                            <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
+                            <span className="pro-count blue">7</span>
+                          </Link>
+                        </div>
+                        <div className="header-action-icon-2">
+                          <Link to="/">
+                            <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
+                          </Link>
+                          <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
 
-                       
-                      </Link>
-                    </div>
-
-                    <div className="header-action-icon-2">
-                      <Link to="/Cart">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
-                        <span className="pro-count blue">7</span>
-                      </Link>
-                    </div>
-                    <div className="header-action-icon-2">
-                      <Link to="/">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
-                      </Link>
-                      <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
-
-
-                        {
-                          UserName ?
                             <ul>
                               <li>
                                 <Link to="/"><i className="fi fi-rs-user mr-10" />{UserName.toUpperCase()}</Link>
                               </li>
                               <li onClick={SignOut}>
                                 <a href="/"><i className="fi fi-rs-sign-out mr-10" />Sign out</a>
-                              </li> 
-                            </ul> : 
+                              </li>
+                            </ul>
 
+                          </div>
+                        </div>
+                      </div> :
+                      <div className="header-action-2">
+                        <div className="header-action-icon-2">
+                          <Link to="/">
+                            <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
+                          </Link>
+                          <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                             <ul>
                               <li>
                                 <Link to="/Register"><i className="fi fi-rs-user mr-10" />Register</Link>
@@ -93,14 +93,10 @@ function Header({Wishlist}) {
                                 <Link to="/Login"><i className="fi fi-rs-settings-sliders mr-10" />Login</Link>
                               </li>
                             </ul>
-                        }
-
-
-
-
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                  }
                 </div>
               </div>
             </div>
@@ -129,7 +125,7 @@ function Header({Wishlist}) {
                         <Link to="/ShopProduct" >Shop </Link>
                       </li>
                       <li>
-                        <a href="/Product/123">Product</a>
+                        <Link to="/Product/123">Product</Link>
                       </li>
                       <li>
                         <Link to="/">Offer</Link>
@@ -151,7 +147,7 @@ function Header({Wishlist}) {
                           <li><Link to="/ShopProduct">Shop Product</Link></li>
                           <li><Link to="/wishlist">wishlist</Link></li>
                           <li><Link to="/Cart">Cart</Link></li>
-                          <li><a href="/Product">Product</a></li>
+                          <li><Link to="/Product">Product</Link></li>
                           <li><Link to="/">Home</Link></li>
                           <li><Link to="/Terms-Service">Terms Service</Link></li>
                           <li><Link to="/Checkout">Checkout</Link></li>
