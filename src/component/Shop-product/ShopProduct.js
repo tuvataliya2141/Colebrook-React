@@ -258,24 +258,28 @@ function ShopProduct() {
                                             <input id="8XL" className="check-size-input" type="checkbox" name="8XL" value="8XL" />
                                             <label className="check-size-label" for="8XL">8XL</label>
                                         </div>
-                                        <br />
+                                        <div></div>
                                         {/* <span style={{width:"100%"}}></span> */}
-                                        <label className="fw-900">Colour</label>
+                                        <label className="fw-900" style={{width:"100%"}}>Colour</label>
                                         <div className="custome-checkbox">
-                                            <input id="#FF0000" className="check-size-input" type="checkbox" name="#FF0000" value="#FF0000" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#FF0000" }} for="#FF0000"></label>
-                                            <input id="#FFB800" className="check-size-input" type="checkbox" name="#FFB800" value="#FFB800" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#FFB800" }} for="#FFB800"></label>
-                                            <input id="#9EFF00" className="check-size-input" type="checkbox" name="#9EFF00" value="#9EFF00" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#9EFF00" }} for="#9EFF00"></label>
-                                            <input id="#00FFC2" className="check-size-input" type="checkbox" name="#00FFC2" value="#00FFC2" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#00FFC2" }} for="#00FFC2"></label>
-                                            <input id="#00D1FF" className="check-size-input" type="checkbox" name="#00D1FF" value="#00D1FF" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#00D1FF" }} for="#00D1FF"></label>
-                                            <input id="#0075FF" className="check-size-input" type="checkbox" name="#0075FF" value="#0075FF" />
-                                            <label className="check-size-label" style={{ backgroundColor: "#0075FF" }} for="#0075FF"></label>
+                                            <input id="#003049" className="check-size-input" type="checkbox" name="#003049" value="#003049" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#003049" }} for="#003049"></label>
+                                            <input id="#252F9C" className="check-size-input" type="checkbox" name="#252F9C" value="#252F9C" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#252F9C" }} for="#252F9C"></label>
+                                            <input id="#7C1034" className="check-size-input" type="checkbox" name="#7C1034" value="#7C1034" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#7C1034" }} for="#7C1034"></label>
+                                            <input id="#FAAB99" className="check-size-input" type="checkbox" name="#FAAB99" value="#FAAB99" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#FAAB99" }} for="#FAAB99"></label>
+                                            <input id="#BE8ECC" className="check-size-input" type="checkbox" name="#BE8ECC" value="#BE8ECC" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#BE8ECC" }} for="#BE8ECC"></label>
+                                            <input id="#CFE5FF" className="check-size-input" type="checkbox" name="#CFE5FF" value="#CFE5FF" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#CFE5FF" }} for="#CFE5FF"></label>
+                                            <input id="#EAE2B7" className="check-size-input" type="checkbox" name="#EAE2B7" value="#EAE2B7" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#EAE2B7" }} for="#EAE2B7"></label>
+                                            <input id="#F77F00" className="check-size-input" type="checkbox" name="#F77F00" value="#F77F00" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#F77F00" }} for="#F77F00"></label>
                                         </div>
-                                        <label className="fw-900 mt-15">Pattern</label>
+                                        <label className="fw-900 mt-15" style={{width:"100%"}}>Pattern</label>
                                         <div className="custome-checkbox">
                                             <input className="form-check-input" type="checkbox" checked name="checkbox" id="patternCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="patternCheckbox1"><span>Animal print</span></label>
