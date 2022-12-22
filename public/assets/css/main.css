@@ -2197,7 +2197,7 @@ label {
 
 .carausel-4-columns-cover .product-cart-wrap:hover {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 4px 60px #ccc;
 }
 
 .bg-grey-10 {
@@ -3910,7 +3910,7 @@ table .product-thumbnail img {
 
 .product-cart-wrap:hover {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 0px 15px 5px rgb(0 0 0 / 52%);
+          box-shadow: 0px 4px 60px #ccc;
   border: 1px solid #0f0000;
   transition: .2s;
   -moz-transition: .2s;
