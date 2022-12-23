@@ -18,9 +18,9 @@ function Cart() {
     const [increment, SetIncrement ] = useState(0);
    
 
-    function GetCrat() {
+    function GetCart() {
         setIsLoading(true)
-        const GetAllCart = `${urlConstant.Cart.GetCrat}/${user_id}`;
+        const GetAllCart = `${urlConstant.Cart.GetCart}/${user_id}`;
         common.httpGet(GetAllCart).then(function (res) {
             setList(res.data);
             setIsLoading(false)
@@ -31,8 +31,32 @@ function Cart() {
         });
     }
 
+    const deletehandler = async (id) => {
+
+        swal({
+            title: 'Are You Sure Delete Data?',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                setIsLoading(true)
+                const deleteWishlist = `${urlConstant.Cart.DeleteCart}/${id}`;
+                common.httpGet(deleteWishlist).then((res) => {
+                    GetCart();
+                    setIsLoading(false);
+                });
+            }
+            else {
+                ToasterWarning("Your Data Safe...!!");
+                setIsLoading(false);
+            }
+        })
+       
+    };
+
     useEffect(() => {
-        GetCrat();
+        GetCart();
     }, []);
 
   return (
@@ -54,7 +78,9 @@ function Cart() {
             <div className="col-lg-8 mb-40">
                 <h1 className="heading-2 mb-10">Your Cart</h1>
                 <div className="d-flex justify-content-between">
-                <h6 className="text-body">There are <span className="text-brand">3</span> products in your cart</h6>
+                <h6 className="text-body">There are <span className="text-brand">
+                    {/* {List.cart_items.length} */}
+                </span> products in your cart</h6>
                 <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
                 </div>
             </div>
@@ -122,7 +148,7 @@ function Cart() {
                                                     <td className="price" data-title="Price">
                                                     <h4 className="text-brand">$111</h4>
                                                     </td>
-                                                    <td className="action text-center" data-title="Remove"><a href="#" className="text-body"><i className="fi-rs-trash" /></a></td>
+                                                    <td className="action text-center" data-title="Remove"><a href="#" className="text-body" onClick={() => deletehandler(item.id)}><i className="fi-rs-trash" /></a></td>
                                                 </tr>
                                             </>
                                         )

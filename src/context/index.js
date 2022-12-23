@@ -1,4 +1,4 @@
-import { createContext, useContext,useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 import urlConstant from "../constants/urlConstant";
 import { ToasterSuccess, ToasterError } from "../common/toaster";
@@ -15,25 +15,40 @@ const AppProvider = ({ children }) => {
 
   function wishlistPost(P_Id) {
     try {
-        setIsLoading(true)
-        const Data = { user_id: user_id, product_id: P_Id }
-        const wishlistData = `${urlConstant.Wishlist.PostWishlist}`;
-        axios.post(wishlistData, Data, {
-            headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-        })
-        ToasterSuccess("Success...!!");
-        setIsLoading(false)
+      setIsLoading(true)
+      const Data = { user_id: user_id, product_id: P_Id }
+      const wishlistData = `${urlConstant.Wishlist.PostWishlist}`;
+      axios.post(wishlistData, Data, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+      })
+      ToasterSuccess("Success...!!");
+      setIsLoading(false)
     }
     catch (error) {
-        ToasterError("Error")
-        setIsLoading(false)
+      ToasterError("Error")
+      setIsLoading(false)
     }
   }
 
- 
-  
+  function CartPost(id) {
+    try {
+      setIsLoading(true)
+      const Data = { id, quantity: 1 }
+      const CartData = `${urlConstant.Cart.PostCart}`;
+      axios.post(CartData, Data, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+      }).then(() => {
+        ToasterSuccess("Success...!!");
+        setIsLoading(false)
+      })
+    }
+    catch (error) {
+      ToasterError("Error")
+    }
+  }
+
   return (
-    <AppContext.Provider value={{ user_id , UserName , wishlistPost ,Loding  }}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost }}>
       {children}
     </AppContext.Provider>
   );

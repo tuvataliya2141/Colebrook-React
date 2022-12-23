@@ -17,8 +17,9 @@ const urlConstant = {
     DeleteWishlist: `${apiURL}wishlists-remove-product`
   },
   Cart: {
-    PostCrat: `${apiURL}carts/add`,
-    GetCrat: `${apiURL}carts`
+    PostCart: `${apiURL}carts/add`,
+    GetCart: `${apiURL}carts`,
+    DeleteCart : `${apiURL}cart/delete`
   }
 
 };

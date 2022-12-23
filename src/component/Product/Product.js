@@ -13,7 +13,7 @@ function Product() {
 
   const id = useParams();
   let common = new CommonService();
-  const { user_id ,wishlistPost ,Loding } = useAppContext();
+  const { user_id ,wishlistPost ,Loding ,CartPost } = useAppContext();
 
 
   const [List, setList] = useState([]);
@@ -36,30 +36,29 @@ function Product() {
       });
   }
 
-  function CartPost() {
-    try {
-      setIsLoading(true)
-        const Data = { id: id.id, quantity: 1 }
-        const CartData = `${urlConstant.Cart.PostCrat}`;
-        axios.post(CartData, Data, {
-            headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-        }).then(()=>{
-           ToasterSuccess("Success...!!");
-            setIsLoading(false)
-        })
-    }
-    catch (error) {
-        ToasterError("Error")
-    }
-  }
+  // function CartPost() {
+  //   try {
+  //     setIsLoading(true)
+  //       const Data = { id: id.id, quantity: 1 }
+  //       const CartData = `${urlConstant.Cart.PostCart}`;
+  //       axios.post(CartData, Data, {
+  //           headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+  //       }).then(()=>{
+  //          ToasterSuccess("Success...!!");
+  //           setIsLoading(false)
+  //       })
+  //   }
+  //   catch (error) {
+  //       ToasterError("Error")
+  //   }
+  // }
 
     
 
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
-  
-  
- 
+  const image1 = List.multipleimage == '' ? defaultImg : List.multipleimage;
+
 
   useEffect(() => { 
     GetSingelProducts();
@@ -96,30 +95,22 @@ function Product() {
                             </figure>
                           </div>
                           {/* THUMBNAILS */}
-                          <div className="slider-nav-thumbnails">
+                          <div className="slider-nav-thumbnails" style={{ display:"flex" }}>
 
                             {/* {
-                              Img.map((item,i)=>{
+                              List.multipleimage.map((item,i)=>{
+                                  const items  = item[i].split(" ")
                                 return(
                                   <>
-                                     <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i}/></div>
+                                     <div><img src={items} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
                                   </>
                                 )
                               })
                             }  */}
 
-                            {
-                              List.multipleimage.map((item,i)=>{
-                                return(
-                                  <>  
-                                     <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
-                                  </>
-                                )
-                              })
-
-                            }
-
-                            {/* <div><img src={Img[0]} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div> */}
+                            
+                            <div><img src={List.multipleimage} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
+                        
                            
                             
                           </div>
@@ -128,7 +119,10 @@ function Product() {
                       </div>
                       <div className="col-md-6 col-sm-12 col-xs-12">
                         <div className="detail-info pr-30 pl-30">
-                          <span className="stock-status out-stock"> In Stock - {List.InStock} </span>
+                          {
+                            List.InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
+                            <span className="stock-status in-stock mb-0">In Stock</span>
+                          }
                           <h5 className="title-detail">{List.name}</h5>
                           <div className="product-detail-rating">
                             <div className="product-rate-cover text-end">
@@ -186,7 +180,7 @@ function Product() {
                               <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
                             </div>
                             <div className="product-extra-link2">
-                              <button type="submit" className="button button-add-to-cart" onClick={()=>{CartPost()}} ><i className="fi-rs-shopping-cart"  />Add to cart</button>
+                              <button type="submit" className="button button-add-to-cart" onClick={()=>{CartPost(id.id)}} ><i className="fi-rs-shopping-cart"  />Add to cart</button>
                               <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={()=>{wishlistPost(id.id)}}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
                             </div>

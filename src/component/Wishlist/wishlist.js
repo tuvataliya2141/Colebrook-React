@@ -125,7 +125,10 @@ function Wishlist() {
                                     <h3 className="text-brand">{base_price}</h3>
                                     </td>
                                     <td className="text-center detail-info" data-title="Stock">
-                                    <span className="stock-status in-stock mb-0"> In Stock - {InStock} </span>
+                                        {
+                                            InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
+                                            <span className="stock-status in-stock mb-0"> In Stock</span>
+                                        }
                                     </td>
                                     <td className="text-right" data-title="Cart">
                                     <button className="btn btn-sm">Add to cart</button>

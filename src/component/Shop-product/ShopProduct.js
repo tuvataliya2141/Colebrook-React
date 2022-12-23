@@ -12,7 +12,7 @@ import { useAppContext } from '../../context/index'
 
 function ShopProduct() {
     const id = useParams();
-    const { user_id, wishlistPost,Loding } = useAppContext();
+    const { user_id, wishlistPost,Loding,CartPost } = useAppContext();
     let common = new CommonService();
 
     const [List, setList] = useState([]);
@@ -37,6 +37,23 @@ function ShopProduct() {
                 console.log(error);
             });
     }
+
+    // function CartPost(id) {
+    //     try {
+    //       setIsLoading(true)
+    //         const Data = { id, quantity: 1 }
+    //         const CartData = `${urlConstant.Cart.PostCart}`;
+    //         axios.post(CartData, Data, {
+    //             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+    //         }).then(()=>{
+    //            ToasterSuccess("Success...!!");
+    //             setIsLoading(false)
+    //         })
+    //     }
+    //     catch (error) {
+    //         ToasterError("Error")
+    //     }
+    //   }
 
     useEffect(() => {
         GetProducts();
@@ -77,7 +94,7 @@ function ShopProduct() {
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
-                                                            <NavLink to={`/Product/${item.id}`}>
+                                                            <Link to={`/Product/${item.id}`}>
                                                                 {/* <a href="/Product"> */}
 
                                                                 <img className="default-img" src={image} alt="/" />
@@ -85,12 +102,12 @@ function ShopProduct() {
 
 
                                                                 {/* </a> */}
-                                                            </NavLink>
+                                                            </Link>
                                                         </div>
                                                         <div className="product-action-1">
                                                             <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                                             <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
-                                                            <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a>
+                                                            {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                                         </div>
                                                         <div className="product-badges product-badges-position product-badges-mrg">
                                                             <span className="hot">Hot</span>
@@ -116,7 +133,7 @@ function ShopProduct() {
                                                                 <span className="old-price">${item.base_discounted_price + 200}</span>
                                                             </div>
                                                             <div className="add-cart">
-                                                                <a className="add" href="shop-cart.html"><i className="fi-rs-shopping-cart mr-5" />Add </a>
+                                                                <a className="add" onClick={()=>{CartPost(item.id)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -128,27 +145,6 @@ function ShopProduct() {
                                     })
                                 }
                             </div>
-
-
-
-                            {/*product grid*/}
-                            {/* <div className="pagination-area mt-20 mb-20">
-                        <nav aria-label="Page navigation example">
-                        <ul className="pagination justify-content-start">
-                            <li className="page-item">
-                            <a className="page-link" href="#"><i className="fi-rs-arrow-small-left" /></a>
-                            </li>
-                            <li className="page-item"><a className="page-link" href="#">1</a></li>
-                            <li className="page-item active"><a className="page-link" href="#">2</a></li>
-                            <li className="page-item"><a className="page-link" href="#">3</a></li>
-                            <li className="page-item"><a className="page-link dot" href="#">...</a></li>
-                            <li className="page-item"><a className="page-link" href="#">6</a></li>
-                            <li className="page-item">
-                            <a className="page-link" href="#"><i className="fi-rs-arrow-small-right" /></a>
-                            </li>
-                        </ul>
-                        </nav>
-                    </div> */}
 
                             <Pagination
                                 totalPosts={List.length}
@@ -210,7 +206,7 @@ function ShopProduct() {
                                         </div>
                                         <label className="fw-900">Brand</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" checked id="brandCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="brandCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="brandCheckbox1"><span>Cobblestone</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox2" defaultValue />
@@ -264,24 +260,31 @@ function ShopProduct() {
                                         <div className="custome-checkbox">
                                             <input id="#003049" className="check-size-input" type="checkbox" name="#003049" value="#003049" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#003049" }} for="#003049"></label>
+                                            
                                             <input id="#252F9C" className="check-size-input" type="checkbox" name="#252F9C" value="#252F9C" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#252F9C" }} for="#252F9C"></label>
+                                            
                                             <input id="#7C1034" className="check-size-input" type="checkbox" name="#7C1034" value="#7C1034" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#7C1034" }} for="#7C1034"></label>
+                                            
                                             <input id="#FAAB99" className="check-size-input" type="checkbox" name="#FAAB99" value="#FAAB99" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#FAAB99" }} for="#FAAB99"></label>
+                                            
                                             <input id="#BE8ECC" className="check-size-input" type="checkbox" name="#BE8ECC" value="#BE8ECC" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#BE8ECC" }} for="#BE8ECC"></label>
-                                            <input id="#CFE5FF" className="check-size-input" type="checkbox" name="#CFE5FF" value="#CFE5FF" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#CFE5FF" }} for="#CFE5FF"></label>
-                                            <input id="#EAE2B7" className="check-size-input" type="checkbox" name="#EAE2B7" value="#EAE2B7" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#EAE2B7" }} for="#EAE2B7"></label>
+                            
                                             <input id="#F77F00" className="check-size-input" type="checkbox" name="#F77F00" value="#F77F00" />
                                             <label className="color-check-size-label" style={{ backgroundColor: "#F77F00" }} for="#F77F00"></label>
+
+                                            <input id="#ccc" className="check-size-input" type="checkbox" name="#ccc" value="#ccc" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#ccc" }} for="#ccc"></label>
+
+                                            <input id="#FC9FA2" className="check-size-input" type="checkbox" name="#FC9FA2" value="#FC9FA2" />
+                                            <label className="color-check-size-label" style={{ backgroundColor: "#FC9FA2" }} for="#FC9FA2"></label>
                                         </div>
                                         <label className="fw-900 mt-15" style={{width:"100%"}}>Pattern</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" checked name="checkbox" id="patternCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox"  name="checkbox" id="patternCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="patternCheckbox1"><span>Animal print</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox2" defaultValue />
@@ -325,7 +328,7 @@ function ShopProduct() {
                                         </div>
                                         <label className="fw-900 mt-15">Price</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" checked id="priceCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="priceCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
@@ -342,7 +345,7 @@ function ShopProduct() {
                                         </div>
                                         <label className="fw-900 mt-15">Offer</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" checked id="offerCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="offerCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />

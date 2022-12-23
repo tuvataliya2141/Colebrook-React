@@ -125,9 +125,6 @@ function Header({ Wishlist }) {
                         <Link to="/ShopProduct" >Shop </Link>
                       </li>
                       <li>
-                        <Link to="/Product/123">Product</Link>
-                      </li>
-                      <li>
                         <Link to="/">Offer</Link>
                       </li>
                       <li>
@@ -147,7 +144,7 @@ function Header({ Wishlist }) {
                           <li><Link to="/ShopProduct">Shop Product</Link></li>
                           <li><Link to="/wishlist">wishlist</Link></li>
                           <li><Link to="/Cart">Cart</Link></li>
-                          <li><Link to="/Product">Product</Link></li>
+                          <li><Link to="/Product/123">Product</Link></li>
                           <li><Link to="/">Home</Link></li>
                           <li><Link to="/Terms-Service">Terms Service</Link></li>
                           <li><Link to="/Checkout">Checkout</Link></li>
