@@ -57,8 +57,8 @@ function Login() {
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
                         <div className="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-                            <span /> Pages <span /> My Account
+                            <a href="#" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                            <span /> Login <span />
                         </div>
                     </div>
                 </div>
@@ -96,6 +96,10 @@ function Login() {
                                                     </div>
                                                     <div className="form-group">
                                                         <button type="submit" className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
+                                                        <span style={{float: "right"}}>
+                                                        <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{backgroundColor: "#1877f2"}}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/"/></a>
+                                                        <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{backgroundColor: "#fff"}}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/"/></a>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>

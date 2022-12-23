@@ -1882,7 +1882,7 @@ label {
 
 .hero-slider-1 img {
   max-height: 538px;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .hero-slider-1 .slider-content {
@@ -11239,6 +11239,92 @@ footer .hotline img {
   margin-right: 200px !important;
 }
 
+@media only screen and (min-width: 320px) and (max-width: 390px) {
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 40px;
+    height: 100%;
+    min-height: 55px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+    padding: 0px;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
+  #carausel-10-columns .card-2 .cat-list-home{
+    text-align: center;
+  }
+  #carausel-10-columns .card-2 .cat-list-home svg{
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 390px) and (max-width: 480px) {
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 50px;
+    height: 100%;
+    min-height: 65px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+    padding: 0px;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
+  #carausel-10-columns .card-2 .cat-list-home{
+    text-align: center;
+  }
+  #carausel-10-columns .card-2 .cat-list-home svg{
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .home-slider .hero-slider-1{
+    height: 130px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 575px) {
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 60px;
+    height: 100%;
+    min-height: 75px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+    padding: 0px;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
+  #carausel-10-columns .card-2 .cat-list-home{
+    text-align: center;
+  }
+  #carausel-10-columns .card-2 .cat-list-home svg{
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .home-slider .hero-slider-1{
+    height: 130px;
+  }
+
+  
+}
+
 @media only screen and (max-width: 768px) {
   .totall-product h2 {
     font-size: 28px;
@@ -11389,9 +11475,9 @@ footer .hotline img {
   .home-slider .slider-arrow {
     display: none;
   }
-  .home-slider .hero-slider-1 {
-    height: 350px;
-  }
+  /* .home-slider .hero-slider-1 {
+    height: 110px;
+  } */
   .home-slider .hero-slider-1.style-2 {
     height: 400px;
   }
@@ -11570,6 +11656,29 @@ footer .hotline img {
   .header-style-5 .search-style-2 {
     display: none;
   }
+  .home-slider .hero-slider-1{
+    height: 130px;
+  }
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 70px;
+    height: 100%;
+    min-height: 75px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
+  #carausel-10-columns .card-2 .cat-list-home{
+    text-align: center;
+  }
+  #carausel-10-columns .card-2 .cat-list-home svg{
+    width: 60%;
+  }
 }
 
 /*Tablet*/
@@ -11613,6 +11722,26 @@ footer .hotline img {
   }
   .loop-grid.pr-30 {
     padding-right: 0 !important;
+  }
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 90px;
+    height: 100%;
+    min-height: 75px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
+  #carausel-10-columns .card-2 .cat-list-home{
+    text-align: center;
+  }
+  #carausel-10-columns .card-2 .cat-list-home svg{
+    width: 70%;
   }
 }
 
@@ -11712,6 +11841,21 @@ footer .hotline img {
   .hero-slider-1 .single-slider-img-1 {
     height: 350px;
   }
+
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 120px;
+    height: 100%;
+    min-height: 70px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -11736,6 +11880,21 @@ footer .hotline img {
 @media only screen and (min-width: 1600px) {
   .header-action-right .search-location {
     display: block;
+  }
+
+  #carausel-10-columns .card-2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 196px;
+    height: 100%;
+    min-height: 132px;
+    border-radius: 125px; 
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns{
+    padding: 10px 10px 25px 10px;
   }
 }
 
@@ -11771,11 +11930,43 @@ footer .hotline img {
     -ms-flex-align: center;
     align-items: center;
   }
+  
+}
+
+@media only screen and (min-width: 1366px) and (max-width: 1600px) {
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 180px;
+    height: 100%;
+    min-height: 110px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .main-menu.main-menu-padding-1 > nav > ul > li {
     padding: 0 14px;
+  }
+  #carausel-10-columns .card-2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 165px;
+    height: 100%;
+    min-height: 100px;
+    border-radius: 125px;
+    border: 1px solid #E2E2E2;
+    align-items: center;
+  }
+  .carausel-10-columns-cover .carausel-10-columns {
+    padding: 10px 10px 25px 10px;
   }
 }
 
@@ -12317,6 +12508,7 @@ footer .hotline img {
   .archive-header-3 .archive-header-3-inner {
     display: block;
   }
+  
 }
 
 /*phone landscape*/
@@ -12542,18 +12734,23 @@ footer .hotline img {
   fill: white;
 }
 
-
-#carausel-10-columns .card-2{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 196px;
-  height: 100%;
-  min-height: 132px;
-  border-radius: 125px; 
-  border: 1px solid #E2E2E2;
-  align-items: center;
+.fb-btn{
+  padding: 10px 12px;
+  margin-right: 5px;
 }
+.fb-btn:hover{
+  transform: translateY(-3px);
+}
+.google-btn{
+  padding: 10px 12px;
+  box-shadow: 5px 5px 15px rgba(24, 24, 24, 0.05);
+  margin-left: 5px;
+}
+.google-btn:hover{
+  transform: translateY(-3px);
+}
+
+
 
 
 
