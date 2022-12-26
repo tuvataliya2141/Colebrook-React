@@ -12545,6 +12545,10 @@ footer .hotline img {
   .modal-open .modal {
     padding-right: 0 !important;
   }
+  button.submit, button[type='submit']{
+    padding: 15px 12px;
+  }
+
 }
 
 @media only screen and (min-width: 375px) and (max-width: 667px) {
