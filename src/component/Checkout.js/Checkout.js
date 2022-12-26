@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 
@@ -32,9 +33,9 @@ function Checkout() {
                 <div className="row mb-50">
                 <div className="col-lg-6 mb-sm-15 mb-lg-0 mb-md-3">
                     <div className="toggle_info">
-                    <span><i className="fi-rs-user mr-10" /><span className="text-muted font-lg">Already have an account?</span> <a href="#loginform" data-bs-toggle="collapse" className="collapsed font-lg" aria-expanded="false">Click here to login</a></span>
+                    <span><i className="fi-rs-user mr-10" /><span className="text-muted font-lg">Already have an account?</span> <Link to="/Login"  className="collapsed font-lg" >Click here to login</Link></span>
                     </div>
-                    <div className="panel-collapse collapse login_form" id="loginform">
+                    {/* <div className="panel-collapse collapse login_form" id="loginform">
                     <div className="panel-body">
                         <p className="mb-30 font-sm">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
                         <form method="post">
@@ -58,7 +59,7 @@ function Checkout() {
                         </div>
                         </form>
                     </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="col-lg-6">
                     <form method="post" className="apply-coupon">
@@ -80,10 +81,10 @@ function Checkout() {
                     </div>
                     <div className="row">
                     <div className="form-group col-lg-6">
-                        <input type="text" name="billing_address" required placeholder="Address *" />
+                        <input type="text" name="billing_address" required placeholder="Address 1 *" />
                     </div>
                     <div className="form-group col-lg-6">
-                        <input type="text" name="billing_address2" required placeholder="Address line2" />
+                        <input type="text" name="billing_address2" required placeholder="Address line 2 *" />
                     </div>
                     </div>
                     <div className="row shipping_calculator">
@@ -131,13 +132,13 @@ function Checkout() {
                         </div>
                     </div>
                     </div>  
-                    <div id="collapsePassword" className="form-group create-account collapse in">
+                    {/* <div id="collapsePassword" className="form-group create-account collapse in">
                     <div className="row">
                         <div className="col-lg-6">
                         <input required type="password" placeholder="Password" name="password" />
                         </div>
                     </div>
-                    </div>
+                    </div> */}
                     <div className="ship_detail">
                     <div className="form-group">
                         <div className="chek-form">
@@ -147,7 +148,7 @@ function Checkout() {
                         </div>
                         </div>
                     </div>
-                    <div id="collapseAddress" className="different_address collapse in">
+                    {/* <div id="collapseAddress" className="different_address collapse in">
                         <div className="row">
                         <div className="form-group col-lg-6">
                             <input type="text" required name="fname" placeholder="First name *" />
@@ -192,7 +193,7 @@ function Checkout() {
                             <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" />
                         </div>
                         </div>
-                    </div>
+                    </div> */}
                     </div>
                 </form>
                 </div>

@@ -123,7 +123,7 @@ function Product() {
                             List.InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
                             <span className="stock-status in-stock mb-0">In Stock</span>
                           }
-                          <h5 className="title-detail">{List.name}</h5>
+                          <h5 className="title-detail" style={{ marginTop:"10px" }}>{List.name}</h5>
                           <div className="product-detail-rating">
                             <div className="product-rate-cover text-end">
                               <div className="product-rate d-inline-block">
@@ -147,13 +147,6 @@ function Product() {
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
-                            {/* <ul className="list-filter size-filter font-small">
-                          <li><a href="#">50g</a></li>
-                          <li className="active"><a href="#">60g</a></li>
-                          <li><a href="#">80g</a></li>
-                          <li><a href="#">100g</a></li>
-                          <li><a href="#">150g</a></li>
-                        </ul> */}
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <ul className="list-filter size-filter font-small">
@@ -166,11 +159,11 @@ function Product() {
                                   )
                                 })
                               } */}
-                              <li><a href="#">S</a></li>
-                              <li className="active"><a href="#">M</a></li>
-                              <li><a href="#">L</a></li>
-                              <li><a href="#">XL</a></li>
-                              <li><a href="#">XXL</a></li>
+                              <li><a>S</a></li>
+                              <li className="active"><a >M</a></li>
+                              <li><a>L</a></li>
+                              <li><a>XL</a></li>
+                              <li><a>XXL</a></li>
                             </ul>
                           </div>
                           <div className="detail-extralink mb-20">

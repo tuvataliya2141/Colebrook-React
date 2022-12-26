@@ -4,7 +4,6 @@ import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
-import { ToasterSuccess, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import Pagination from "../Pagination";
 import axios from 'axios'
@@ -87,10 +86,10 @@ function ShopProduct() {
 
 
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
-
+                                        const Name = item.name.substring(0, 15);
                                         return (
 
-                                            <div className="col-lg-1-5 col-md-4 col-12 col-sm-6" key={i}>
+                                            <div className="col-lg-1-5 col-md-4 col-12 col-sm-6" key={item.id}>
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
@@ -117,7 +116,9 @@ function ShopProduct() {
                                                         <div className="product-category">
                                                             <a href="shop-grid-right.html">{item.category}</a>
                                                         </div>
-                                                        <h2><a href="/Product">{item.name}</a></h2>
+                                                        <h2><a href="/Product"> {Name.length > 13
+                                                                                    ? `${Name}...`
+                                                                                    : Name}</a></h2>
                                                         <div className="product-rate-cover">
                                                             <div className="product-rate d-inline-block">
                                                                 <div className="product-rating" style={{ width: '90%' }} />
