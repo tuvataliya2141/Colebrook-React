@@ -7,6 +7,8 @@ import urlConstant from "../constants/urlConstant";
 import { ToasterSuccess, ToasterError , ToasterWarning } from "../common/toaster";
 import { ToastContainer } from "react-toastify";
 
+
+
 function Register() {
   let common = new CommonService();
     
@@ -60,7 +62,7 @@ function Register() {
             </div>
             </div>
         </div>
-        <div className="page-content pt-150 pb-150">
+        <div className="page-content pt-15 pb-150">
             <div className="container">
             <div className="row">
                 <div className="heading_s1">
@@ -94,7 +96,7 @@ function Register() {
                     <div className="row">
                         <div className="col-lg-6 col-md-8">
                             <div className="login_wrap widget-taber-content background-white">
-                                <div className="payment_option mb-50">
+                                {/* <div className="payment_option mb-50">
                                     <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios3" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">I am a customer</label>
@@ -103,7 +105,7 @@ function Register() {
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios4" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">I am a vendor</label>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="login_footer form-group mb-50">
                                     <div className="chek-form">
                                         <div className="custome-checkbox">
@@ -117,12 +119,14 @@ function Register() {
                             </div>
                         </div>
                         <div className="col-lg-6 col-md-8 mt-20">
-                            <div className="form-group mb-30">
-                                <span>
+                            <div className="form-group mb-30" style={{display: "flex",justifyContent:"space-between"}}>
+                                <div style={{display: "flex"}}>
                                     <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{backgroundColor: "#1877f2"}}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/"/></a>
                                     <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{backgroundColor: "#fff"}}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/"/></a>
-                                </span>
-                                <button type="submit" style={{borderRadius: "30px",float: "right"}} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Submit &amp; Register</button>
+                                </div>
+                                <div>
+                                <button type="submit" style={{borderRadius: "30px",float: "right"}} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Register</button>
+                                </div>
                             </div>
                         </div>
                     </div>

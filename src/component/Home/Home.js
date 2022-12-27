@@ -6,6 +6,8 @@ import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Home() {
   let common = new CommonService();
@@ -92,14 +94,14 @@ function Home() {
                         </div>
                       </div>
                     </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                    {/* <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                       <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span className="visually-hidden">Previous</span>
                     </button>
                     <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                       <span className="carousel-control-next-icon" aria-hidden="true"></span>
                       <span className="visually-hidden">Next</span>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
@@ -131,9 +133,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              
-
-              
               <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
             {/* </div> */}
             <div className="carausel-10-columns-cover position-relative">
@@ -230,28 +229,28 @@ function Home() {
                       Everyday Fresh &amp; <br />Clean with Our<br />
                       Products
                     </h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#A5A5A5"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6">
                 <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                  <img src="assets/imgs/banner/banner-2.png" alt="/" />
+                  <img src="assets/imgs/banner/banner-2.svg" alt="/" />
                   <div className="banner-text">
                     <h4>
                       Make your Breakfast<br />
                       Healthy and Easy
                     </h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#3D8440"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 d-md-none d-lg-flex">
                 <div className="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                  <img src="assets/imgs/banner/banner-3.png" alt="/" />
+                  <img src="assets/imgs/banner/banner-3.svg" alt="/" />
                   <div className="banner-text">
                     <h4>The best Organic <br />Products Online</h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#84633D"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
@@ -378,7 +377,7 @@ function Home() {
                 <div className="banner-img style-2">
                   <div className="banner-text">
                     <h2 className="mb-45" style={{ color: "white" }}>Bring nature into your home</h2>
-                    <a href="shop-grid-right.html" style={{ fontSize: "20px", width: "130px" }} className="btn btn-xs" >Shop Now
+                    <a href="shop-grid-right.html" style={{ fontSize: "20px", width: "130px", backgroundColor: "#837c7c"}} className="btn btn-xs" >Shop Now
                       {/* <i className="fi-rs-arrow-small-right" /> */}
                     </a>
                   </div>
@@ -458,7 +457,7 @@ function Home() {
                               <span>$238.85 </span>
                               <span className="old-price">$245.8</span>
                             </div>
-                            <div className="sold mt-18 mb-15">
+                            <div className="sold mt-18 mb-25">
                               <div className="progress mb-5">
                                 <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
                               </div>

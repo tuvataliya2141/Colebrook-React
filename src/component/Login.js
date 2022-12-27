@@ -96,7 +96,7 @@ function Login() {
                                                     </div>
                                                     <div className="form-group">
                                                         <button type="submit" className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
-                                                        <span style={{float: "right"}}>
+                                                        <span style={{float: "right",display: "flex"}}>
                                                         <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{backgroundColor: "#1877f2"}}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/"/></a>
                                                         <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{backgroundColor: "#fff"}}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/"/></a>
                                                         </span>

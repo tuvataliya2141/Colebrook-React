@@ -12545,9 +12545,9 @@ footer .hotline img {
   .modal-open .modal {
     padding-right: 0 !important;
   }
-  button.submit, button[type='submit']{
+  /* button.submit, button[type='submit']{
     padding: 15px 12px;
-  }
+  } */
 
 }
 
@@ -12739,14 +12739,24 @@ footer .hotline img {
 }
 
 .fb-btn{
-  padding: 10px 12px;
+  padding: 0;
   margin-right: 5px;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .fb-btn:hover{
   transform: translateY(-3px);
 }
 .google-btn{
-  padding: 10px 12px;
+  padding: 0;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 5px 5px 15px rgba(24, 24, 24, 0.05);
   margin-left: 5px;
 }
@@ -12761,6 +12771,15 @@ footer .hotline img {
   border-bottom: 1px solid #ccc;
   margin-top: 20%;
   border-radius: 0px 10px 10px 0px;
+}
+
+
+.carousel-indicators .active{
+  background-color: #000 !important;
+}
+
+.carousel-indicators [data-bs-target]{
+  background-color: #ccc;
 }
 
 
