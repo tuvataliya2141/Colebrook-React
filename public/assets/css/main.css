@@ -1420,8 +1420,8 @@ textarea:focus {
   padding: 20px 40px;
   color: #ffffff;
   border: none;
-  background-color: #253D4E;
-  border-radius: 10px;
+  background-color: #000;
+  border-radius: 30px;
   font-family: "Quicksand", sans-serif;
 }
 
@@ -5565,7 +5565,7 @@ table.no-border td, table.no-border th, table.no-border thead {
 .toggle_info {
   padding: 12px 20px;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 30px;
   border: 1px solid #ececec;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
@@ -5642,7 +5642,7 @@ table.no-border td, table.no-border th, table.no-border thead {
 
 .apply-coupon input {
   height: 51px;
-  border-radius: 10px 0 0 10px;
+  border-radius: 30px 0 0 30px;
   background-image: url("../imgs/theme/icons/coupon.png");
   background-position: 20px center;
   background-repeat: no-repeat;
@@ -5652,8 +5652,8 @@ table.no-border td, table.no-border th, table.no-border thead {
 .apply-coupon button {
   min-width: 150px;
   height: 51px;
-  border-radius: 0 10px 10px 0;
-  background-color: #253D4E;
+  border-radius: 0 30px 30px 0;
+  background-color: #000;
   color: #fff;
 }
 
@@ -12754,6 +12754,14 @@ footer .hotline img {
   transform: translateY(-3px);
 }
 
+.contact-div{
+  padding: 40px;
+  border-top:    1px solid #ccc;
+  border-right:  1px solid #ccc; 
+  border-bottom: 1px solid #ccc;
+  margin-top: 20%;
+  border-radius: 0px 10px 10px 0px;
+}
 
 
 

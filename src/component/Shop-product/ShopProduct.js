@@ -153,6 +153,11 @@ function ShopProduct() {
                                 setCurrentPage={setCurrentPage}
                                 currentPage={currentPage}
                             />
+                            <div className="row">
+                                <div className="col-lg-12 mb-40" style={{textAlign: "center"}}>
+                                    <a href="#" className="btn btn-fill-out btn-block mt-30">View More Products</a>
+                                </div>
+                            </div>
 
                         </div>
                         <div className="col-lg-1-5 primary-sidebar sticky-sidebar">

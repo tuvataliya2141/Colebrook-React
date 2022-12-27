@@ -112,19 +112,30 @@ function Home() {
 
         <section className="popular-categories section-padding">
           <div className="container wow animate__animated animate__fadeIn">
-            <div className="section-title">
-              <div className="title">
-                <h3>Featured Categories</h3>
-                <ul className="list-inline nav nav-tabs links">
-                  <li className="list-inline-item nav-item"><a className="nav-link" href="/">All </a></li>
-                  <li className="list-inline-item nav-item"><a className="nav-link" href="/">Sale</a></li>
-                  <li className="list-inline-item nav-item"><a className="nav-link active" href="/">Women</a></li>
-                  <li className="list-inline-item nav-item"><a className="nav-link" href="/">Men</a></li>
-                  <li className="list-inline-item nav-item"><a className="nav-link" href="/">New</a></li>
-                </ul>
+            {/* <div className="section-title"> */}
+              <div className="row">
+                <div className="col-md-5">
+                  <div className="title">
+                      <h3>Featured Categories</h3>
+                  </div>
+                </div>
+                <div className="col-md-7" style={{alignItems: "center",display: "flex"}}>
+                  <div className="title">
+                      <ul className="list-inline nav nav-tabs links">
+                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">All </a></li>
+                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">Sale</a></li>
+                        <li className="list-inline-item nav-item"><a className="nav-link active" href="/">Women</a></li>
+                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">Men</a></li>
+                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">New</a></li>
+                      </ul>
+                  </div>
+                </div>
               </div>
+              
+
+              
               <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
-            </div>
+            {/* </div> */}
             <div className="carausel-10-columns-cover position-relative">
               <div className="carausel-10-columns" id="carausel-10-columns">
 

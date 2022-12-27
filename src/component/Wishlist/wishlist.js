@@ -79,12 +79,19 @@ function Wishlist() {
                         </div>
                     </div>
                 </div>
+                
                 <div className="mb-30 mt-50">
+                    <div className="container">
                     <div className="row">
-                        <div className="col-xl-10 col-lg-12 m-auto">
+                        <div className="col-xl-12 col-lg-12 m-auto">
                             <div className="mb-50">
                                 <h1 className="heading-2 mb-10">Your Wishlist</h1>
                                 <h6 className="text-body">There are <span className="text-brand">{List.length}</span> products in this list</h6>
+                            </div>
+                            <div className="row">
+                                <div className="col-lg-12 mb-40" style={{textAlign: "end"}}>
+                                    <a href="#" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                                </div>
                             </div>
                             <div className="table-responsive shopping-summery">
                                 <table className="table table-wishlist">
@@ -145,7 +152,7 @@ function Wishlist() {
                                                                 }
                                                             </td>
                                                             <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>
-                                                                <a className="text-body"><i className="fi-rs-trash" /></a>
+                                                                <a className="text-body"><i style={{fontSize: "20px"}} className="fi-rs-cross-circle" /></a>
                                                             </td>
                                                         </tr>
                                                     )
@@ -164,6 +171,7 @@ function Wishlist() {
                                 />
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </main>

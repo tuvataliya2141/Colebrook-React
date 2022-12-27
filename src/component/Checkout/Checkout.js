@@ -21,12 +21,15 @@ function Checkout() {
         </div>
         <div className="container mb-80 mt-50">
             <div className="row">
-            <div className="col-lg-8 mb-40">
-                <h1 className="heading-2 mb-10">Checkout</h1>
-                <div className="d-flex justify-content-between">
-                <h6 className="text-body">There are <span className="text-brand">3</span> products in your cart</h6>
+                <div className="col-lg-10 mb-40">
+                    <h1 className="heading-2 mb-10">Checkout</h1>
+                    <div className="d-flex justify-content-between">
+                    <h6 className="text-body">There are <span className="text-brand">3</span> products in your cart</h6>
+                    </div>
                 </div>
-            </div>
+                <div className="col-lg-2 mb-40" style={{textAlign: "end"}}>
+                    <a href="#" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                </div>
             </div>
             <div className="row">
             <div className="col-lg-7">
