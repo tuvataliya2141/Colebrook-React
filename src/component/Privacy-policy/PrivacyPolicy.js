@@ -10,10 +10,10 @@ function PrivacyPolicy() {
         <main className="main pages">
         <div className="page-header breadcrumb-wrap">
             <div className="container">
-            <div className="breadcrumb">
-                <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-                <span /> Pages <span /> Privacy Policy
-            </div>
+                <div className="breadcrumb">
+                    <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                    <span /> Privacy Policy <span /> 
+                </div>
             </div>
         </div>
         <div className="page-content pt-50">

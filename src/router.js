@@ -1,6 +1,6 @@
 import Error from "./component/404error";
 import Cart from "./component/Cart/Cart";
-import Checkout from "./component/Checkout.js/Checkout";
+import Checkout from "./component/Checkout/Checkout";
 import Contact from "./component/Contact/Contact";
 import Home from "./component/Home/Home";
 import Login from "./component/Login";

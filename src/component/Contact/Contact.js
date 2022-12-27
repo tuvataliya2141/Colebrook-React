@@ -66,10 +66,21 @@ function Contact() {
                     </div><br /><br />
 
                     <section className="container mb-50 d-none d-md-block">
-                    <div className="border-radius-15 overflow-hidden">
-                        {/* <div id="map-panes" className="leaflet-map" /> */}
-                        <iframe className="leaflet-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d59507.233368723566!2d72.8498176!3d21.2238336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1669055784304!5m2!1sen!2sin"  style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                        <div className="row mb-60">
+                            <div className="col-md-8"  style={{paddingRight: "0px"}}>
+                                <div className="border-radius-15 overflow-hidden">
+                                    {/* <div id="map-panes" className="leaflet-map" /> */}
+                                    <iframe className="leaflet-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d59507.233368723566!2d72.8498176!3d21.2238336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1669055784304!5m2!1sen!2sin"  style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </div>
+                            <div className="col-md-4"  style={{paddingLeft: "0px"}}>
+                                <div className="contact-div">
+                                    <div><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/"/><span>   (123) 456-7890</span></div><br />
+                                    <div><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/"/><span>   contact@Evara.com</span></div><br />
+                                    <div><img src="assets/imgs/theme/icons/icon-location.svg" alt="/"/><span>  205 North Michigan Avenue, Suite 810</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <div className="row mb-60">
