@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
@@ -11,16 +11,27 @@ import { useAppContext } from "../../context";
 
 function Product() {
 
+
+
   const id = useParams();
+  const navigate = useNavigate()
   let common = new CommonService();
-  const { user_id ,wishlistPost ,Loding ,CartPost } = useAppContext();
+  const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
 
 
   const [List, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+
+  window.addEventListener("beforeunload", (event) => {
+  
+    navigate('/ShopProduct')
+    return true;
+  });
+
   function GetSingelProducts() {
     setIsLoading(true)
+
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
     const Data = { product_id: id }
     axios.post(GetAllProducts, Data, {
@@ -53,20 +64,20 @@ function Product() {
   //   }
   // }
 
-    
+
 
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
   const image1 = List.multipleimage == '' ? defaultImg : List.multipleimage;
 
 
-  useEffect(() => { 
+  useEffect(() => {
     GetSingelProducts();
   }, []);
 
   return (
     <div>
-       {isLoading ? <Loding /> : Product}
+      {isLoading ? <Loding /> : Product}
       <ToastContainer />
       <Header />
       <main className="main">
@@ -74,7 +85,7 @@ function Product() {
           <div className="container">
             <div className="breadcrumb">
               <Link to="/" rel="nofollow"><i className="fi-rs-home mr-5" />Home</Link>
-              <span /> <Link to="/">Product</Link> 
+              <span /> <Link to="/">Product</Link>
             </div>
           </div>
         </div>
@@ -95,7 +106,7 @@ function Product() {
                             </figure>
                           </div>
                           {/* THUMBNAILS */}
-                          <div className="slider-nav-thumbnails" style={{ display:"flex" }}>
+                          <div className="slider-nav-thumbnails" style={{ display: "flex" }}>
 
                             {/* {
                               List.multipleimage.map((item,i)=>{
@@ -108,11 +119,11 @@ function Product() {
                               })
                             }  */}
 
-                            
+
                             <div><img src={List.multipleimage} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
-                        
-                           
-                            
+
+
+
                           </div>
                         </div>
                         {/* End Gallery */}
@@ -121,13 +132,13 @@ function Product() {
                         <div className="detail-info pr-30 pl-30">
                           {
                             List.InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
-                            <span className="stock-status in-stock mb-0">In Stock</span>
+                              <span className="stock-status in-stock mb-0">In Stock</span>
                           }
-                          <h5 className="title-detail" style={{ marginTop:"10px" }}>{List.name}</h5>
+                          <h5 className="title-detail" style={{ marginTop: "10px" }}>{List.name}</h5>
                           <div className="product-detail-rating">
                             <div className="product-rate-cover text-end">
                               <div className="product-rate d-inline-block">
-                                <div className="product-rating" style={{ width: '90%' }} /> 
+                                <div className="product-rating" style={{ width: '90%' }} />
                               </div>
                               <span className="font-small ml-5 text-muted">{List.rating} (32 reviews)</span>
                             </div>
@@ -173,8 +184,8 @@ function Product() {
                               <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
                             </div>
                             <div className="product-extra-link2">
-                              <button type="submit" className="button button-add-to-cart" onClick={()=>{CartPost(id.id)}} ><i className="fi-rs-shopping-cart"  />Add to cart</button>
-                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={()=>{wishlistPost(id.id)}}><i className="fi-rs-heart" /></a>
+                              <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
                             </div>
                           </div>

@@ -69,6 +69,7 @@ function Wishlist() {
     return (
         <div>
             {isLoading ? <Loding /> : Wishlist}
+            <ToastContainer/>
             <Header Wishlist={List.length} />
             <main className="main">
                 <div className="page-header breadcrumb-wrap">

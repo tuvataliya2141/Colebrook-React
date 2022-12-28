@@ -229,34 +229,36 @@ function Home() {
                       Everyday Fresh &amp; <br />Clean with Our<br />
                       Products
                     </h4>
-                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#A5A5A5"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6">
                 <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                  <img src="assets/imgs/banner/banner-2.svg" alt="/" />
+                  <img src="assets/imgs/banner/banner-2.png" alt="/" />
                   <div className="banner-text">
                     <h4>
                       Make your Breakfast<br />
                       Healthy and Easy
                     </h4>
-                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#3D8440"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 d-md-none d-lg-flex">
                 <div className="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                  <img src="assets/imgs/banner/banner-3.svg" alt="/" />
+                  <img src="assets/imgs/banner/banner-3.png" alt="/" />
                   <div className="banner-text">
                     <h4>The best Organic <br />Products Online</h4>
-                    <a href="#" className="btn btn-xs" style={{backgroundColor: "#84633D"}}>Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+
 
 
         <section className="product-tabs section-padding position-relative">
@@ -293,13 +295,19 @@ function Home() {
                 <div className="row product-grid-4">
 
                   {
-                    List.slice(0, 10).map((item, i) => {
+                    List.map((item, i) => {
 
+
+
+                     
 
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                       const Name = item.name.substring(0, 15);
                       return (
                         <>
+                          {
+                           item.category == "" ? "" : 
+                       
                           <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                               <div className="product-img-action-wrap">
@@ -341,6 +349,7 @@ function Home() {
                               </div>
                             </div>
                           </div>
+                         }
                         </>
                       )
                     })

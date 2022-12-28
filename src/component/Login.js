@@ -79,10 +79,10 @@ function Login() {
                                                 </div>
                                                 <form>
                                                     <div className="form-group">
-                                                        <input type="text" required name="email" placeholder="Username or Email *" value={email} onChange={(e) => { SetEmail(e.target.value) }} />
+                                                        <input type="text" required name="email" placeholder="Username or Email *" value={email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
                                                     </div>
                                                     <div className="form-group">
-                                                        <input required type="password" name="password" placeholder="Your password *" value={password} onChange={(e) => { SetPassword(e.target.value) }} />
+                                                        <input required type="password" name="password" placeholder="Your password *" value={password || ""} onChange={(e) => { SetPassword(e.target.value) }} />
                                                     </div>
 
                                                     <div className="login_footer form-group mb-50">
