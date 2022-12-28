@@ -250,22 +250,62 @@ function Checkout() {
                         </td>
                         </tr>
                         <tr>
-                        <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
-                        <td>
-                            <h6 className="w-160 mb-5"><a href="shop-product-full.html" className="text-heading">Angie’s Boomchickapop Sweet </a></h6>
-                            <div className="product-rate-cover">
-                            <div className="product-rate d-inline-block">
-                                <div className="product-rating" style={{width: '90%'}}>
+                            <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
+                            <td>
+                                <h6 className="w-160 mb-5"><a href="shop-product-full.html" className="text-heading">Angie’s Boomchickapop Sweet </a></h6>
+                                <div className="product-rate-cover">
+                                <div className="product-rate d-inline-block">
+                                    <div className="product-rating" style={{width: '90%'}}>
+                                    </div>
                                 </div>
-                            </div>
-                            <span className="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
+                                <span className="font-small ml-5 text-muted"> (4.0)</span>
+                                </div>
+                            </td>
+                            <td>
+                                <h6 className="text-muted pl-20 pr-20">x 1</h6>
+                            </td>
+                            <td>
+                                <h4 className="text-brand">$17.2</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    <table className="table no-border">
+                    <tbody>
+                        <tr>
+                        <td className="cart_total_label">
+                            <h6 className="text-muted">Subtotal</h6>
                         </td>
-                        <td>
-                            <h6 className="text-muted pl-20 pr-20">x 1</h6>
+                        <td className="cart_total_amount">
+                            <h4 className="text-brand text-end">$45.5</h4>
                         </td>
-                        <td>
-                            <h4 className="text-brand">$17.2</h4>
+                        </tr>
+                        <tr>
+                        <td scope="col" colSpan={2}>
+                            <div className="divider-2 mt-10 mb-10" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className="cart_total_label">
+                            <h6 className="text-muted">Shipping</h6>
+                        </td>
+                        <td className="cart_total_amount">
+                            <h5 className="text-heading text-end">Free </h5></td></tr> <tr>
+                        <td className="cart_total_label">
+                            <h6 className="text-muted">Estimate for</h6>
+                        </td>
+                        <td className="cart_total_amount">
+                            <h5 className="text-heading text-end">United Kingdom </h5></td></tr> <tr>
+                        <td scope="col" colSpan={2}>
+                            <div className="divider-2 mt-10 mb-10" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td className="cart_total_label">
+                            <h6 className="text-muted">Total</h6>
+                        </td>
+                        <td className="cart_total_amount">
+                            <h4 className="text-brand text-end">$45.5</h4>
                         </td>
                         </tr>
                     </tbody>
