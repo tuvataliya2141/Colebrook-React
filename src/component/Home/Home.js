@@ -72,11 +72,12 @@ function Home() {
                             Clothing</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
-                          <Link to='/'>
+                          {/* <Link to='/'>
                             <img src="assets/imgs/banner/Group.png" alt="/" />
-                          </Link>
-
-                          {/* <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button> */}
+                          </Link> */}
+                          <div className="slider-main-button-div">
+                          <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}><img src="assets/imgs/banner/slider-btn.svg" alt="/" /> SHOP NOW!</button>
+                          </div>
                         </div>
                       </div>
                       <div className="carousel-item">

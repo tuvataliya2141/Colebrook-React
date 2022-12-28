@@ -12782,6 +12782,53 @@ footer .hotline img {
   background-color: #ccc;
 }
 
+.slider-main-button{
+  background: #222325;
+  border: 2px solid #FFFFFF;
+  box-shadow: 8px 9px 21px rgba(169, 199, 255, 0.59);
+  border-radius: 106px;
+  width: 193px;
+  height: 52px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 0;
+}
+.slider-main-button-div{
+  display: flex;
+  justify-content: center;
+}
+
+/* .slider-main-button-div:hover {
+  -webkit-transform: translate(110px, 0);
+  -moz-transform: translate(110px, 0);
+  -ms-transform: translate(110px, 0);
+  -o-transform: translate(110px, 0);
+  transform: translate(110px, 0);
+  background: rgba(255, 255, 255, 0.4);
+} */
+
+.slider-main-button img:hover {
+  /* color: #fff; */
+  /* background: red; */
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  /* left: 32%;
+	 transform: scale(1); */
+}
+
 
 
 
