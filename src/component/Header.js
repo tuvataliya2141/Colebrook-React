@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../context/index'
 
-function Header({ Wishlist }) {
+function Header({ Wishlist ,Crat }) {
 
 
   const SignOut = () => {
@@ -47,18 +47,18 @@ function Header({ Wishlist }) {
                     <div className="header-action-icon-2">
                       <Link to="/wishlist">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
-                        {
+                        {/* {
                           Wishlist == null ? " " : <span className="pro-count blue">{Wishlist}</span>
-                        }
+                        } */}
                       </Link>
                     </div>
 
                     <div className="header-action-icon-2">
                       <Link to="/Cart">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
-                        {
-                          Wishlist == null ? " " : <span className="pro-count blue">{Wishlist}</span>
-                        }
+                        {/* {
+                          Crat == null ? " " : <span className="pro-count blue">{Crat}</span>
+                        } */}
                       </Link>
                     </div>
                     <div className="header-action-icon-2">
@@ -142,7 +142,7 @@ function Header({ Wishlist }) {
                           <li><Link to="/ShopProduct">Shop Product</Link></li>
                           <li><Link to="/wishlist">wishlist</Link></li>
                           <li><Link to="/Cart">Cart</Link></li>
-                          <li><Link to="/Product/1">Product</Link></li>
+                          <li><Link to="/1">Product</Link></li>
                           <li><Link to="/">Home</Link></li>
                           <li><Link to="/Terms-Service">Terms Service</Link></li>
                           <li><Link to="/Checkout">Checkout</Link></li>

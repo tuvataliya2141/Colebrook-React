@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
@@ -14,7 +14,6 @@ function Product() {
 
 
   const id = useParams();
-  const navigate = useNavigate()
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
 
@@ -25,7 +24,6 @@ function Product() {
 
   window.addEventListener("beforeunload", (event) => {
   
-    navigate('/ShopProduct')
     return true;
   });
 

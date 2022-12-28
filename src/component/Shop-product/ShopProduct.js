@@ -93,7 +93,7 @@ function ShopProduct() {
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
-                                                            <Link  to={`/Product/${item.id}`}>
+                                                            <Link  to={`/${item.id}`}>
                                                                 {/* <a href="/Product"> */}
 
                                                                 <img className="default-img" src={image} alt="/" />

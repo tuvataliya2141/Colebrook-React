@@ -24,7 +24,7 @@ export default [
     exact:true,
   },
   {
-    path:'/Product/:id',
+    path:'/:id',
     element:() => <Product/>,
     exact:true,
   },
