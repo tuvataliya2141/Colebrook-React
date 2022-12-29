@@ -12814,7 +12814,7 @@ footer .hotline img {
   justify-content: space-around;
 }
 
-.slider-main-button .img-span:hover {
+.slider-main-button:hover .img-span {
   /* transform: rotate(360deg); */
   -webkit-transform: translateX(133px);
   -moz-transform: translateX(133px);
@@ -12827,29 +12827,11 @@ footer .hotline img {
   transition: all 1s;
   transform: translateX(133px);
 }
-.slider-main-button .text-span:hover {
+.slider-main-button:hover .text-span {
   transform: translateX(-55px);
 }
 
-/* .slider-main-button img:hover {
-  color: #fff;
-  background: red;
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg); 
-   transform: rotate(360deg);
-  -webkit-transition: all 1s;
-  -moz-transition: all 1s;
-  -ms-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s;
-  transform: translateX(133px);
-   left: 32%;
-	 transform: scale(1); 
-} */
-
-.slider-main-button img:hover{
+.slider-main-button:hover img{
   -webkit-transform: rotate(360deg);
   -moz-transform: rotate(360deg);
   -ms-transform: rotate(360deg);
@@ -12861,6 +12843,55 @@ footer .hotline img {
   transition: all 1s;
   transform: rotate(360deg);
 }
+
+.small-slider-button{
+  display: flex !important;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 0;
+}
+
+.small-slider-button .img-span{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.small-slider-button .text-span{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.small-slider-button:hover .img-span {
+  /* transform: rotate(360deg); */
+  -webkit-transform: translateX(133px);
+  -moz-transform: translateX(133px);
+  -ms-transform: translateX(133px);
+  -o-transform: translateX(133px);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  transform: translateX(133px);
+}
+.small-slider-button:hover .text-span {
+  transform: translateX(-55px);
+}
+
+.small-slider-button:hover img{
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  transform: rotate(360deg);
+}
+
 
 
 

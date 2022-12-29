@@ -58,34 +58,15 @@ function Home() {
                             Clothing</h1><br />
                           <p className='banner_text_set'>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
-
-                          {/* <Link to='/'>
-                            <img src="assets/imgs/banner/Group.png" alt="/" />
-                          </Link> */}
                           <div className="slider-main-button-div">
                             <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
                               <span className="img-span">
-                                <img style={{marginRight: "10px",marginLeft: "5px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
+                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
                               <span className="text-span">
                                 SHOP NOW!
                               </span>
                               </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="carousel-item ">
-                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
-                        <div className="carousel-caption d-none d-md-block">
-                          <h1>Find Your Favorite <br />
-                            Clothing</h1><br />
-                          <p>our collection will help your fashion looks better and <br />
-                            we will provide the best product for you.</p><br />
-                          {/* <Link to='/'>
-                            <img src="assets/imgs/banner/Group.png" alt="/" />
-                          </Link> */}
-                          <div className="slider-main-button-div">
-                          <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}><img src="assets/imgs/banner/slider-btn.svg" alt="/" /> SHOP NOW!</button>
                           </div>
                         </div>
                       </div>
@@ -96,11 +77,35 @@ function Home() {
                             Clothing</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
-                          <Link to='/'>
-                            <img src="assets/imgs/banner/Group.png" alt="/" />
-                          </Link>
-
-                          {/* <button style={{backgroundColor:"black",borderRadius: "50px",width:"130px",height:"40px",color:"white",letterSpacing: "1px",fontSize: "larger"}}>SHOP NOW!</button> */}
+                            <div className="slider-main-button-div">
+                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                              <span className="img-span">
+                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
+                              </span>
+                              <span className="text-span">
+                                SHOP NOW!
+                              </span>
+                              </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="carousel-item">
+                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
+                        <div className="carousel-caption d-none d-md-block">
+                          <h1>Find Your Favorite <br />
+                            Clothing</h1><br />
+                          <p>our collection will help your fashion looks better and <br />
+                            we will provide the best product for you.</p><br />
+                            <div className="slider-main-button-div">
+                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                              <span className="img-span">
+                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
+                              </span>
+                              <span className="text-span">
+                                SHOP NOW!
+                              </span>
+                              </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -251,7 +256,7 @@ function Home() {
                       Make your Breakfast<br />
                       Healthy and Easy
                     </h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
@@ -260,7 +265,7 @@ function Home() {
                   <img src="assets/imgs/banner/banner-3.png" alt="/" />
                   <div className="banner-text">
                     <h4>The best Organic <br />Products Online</h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
                   </div>
                 </div>
               </div>
