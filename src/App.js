@@ -1,13 +1,11 @@
 import React from "react";
 import router from "./router";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loding from "./component/Loding";
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Loding/> */}
       <BrowserRouter>
         <Routes>
           {router.map((item, k) => {

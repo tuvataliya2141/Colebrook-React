@@ -6,13 +6,15 @@ import Loding from "../component/Loding";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-
+  const random =  Math.floor(Math.random() * 100);
+  
   const UserName = localStorage.getItem('user');
-  const user_id = localStorage.getItem('user_id');
+  const user_id = localStorage.getItem('user_id') || random;
   const [isLoading, setIsLoading] = useState(false);
 
 
 
+  
   function wishlistPost(P_Id) {
     try {
       setIsLoading(true)
@@ -47,8 +49,26 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  function ApplyCoupon(CouponCode) {
+    try {
+      setIsLoading(true)
+      const Data = { code :CouponCode , user_id:parseInt(user_id) }
+      const CouponData = `${urlConstant.ApplyCoupon.PostApplyCoupon}`;
+      axios.post(CouponData, Data, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+      }).then(() => {
+        ToasterSuccess("Success...!!");
+        setIsLoading(false)
+      })
+    }
+    catch (error) {
+      ToasterError("Error")
+    }
+  }
+ 
+  
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost }}>
+    <AppContext.Provider value={{ user_id , UserName, wishlistPost, Loding, CartPost,ApplyCoupon }}>
       {children}
     </AppContext.Provider>
   );

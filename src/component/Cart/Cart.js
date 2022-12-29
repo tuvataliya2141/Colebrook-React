@@ -8,15 +8,18 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
 import Pagination from "../Pagination";
+import { Link } from "react-router-dom";
 
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding } = useAppContext();
+    const { user_id, Loding ,ApplyCoupon } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [increment, SetIncrement] = useState(1);
+    const [CouponCode, SetCouponCode] = useState('');
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(5);
@@ -28,8 +31,8 @@ function Cart() {
 
     function GetCart() {
         setIsLoading(true)
-        const GetAllCart = `${urlConstant.Cart.GetCart}/${user_id}`;
-        common.httpPost(GetAllCart).then(function (res) {
+        const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
+        common.httpGet(GetAllCart).then(function (res) {
             setList(res.data.data[0].cart_items);
             setIsLoading(false)
         })
@@ -51,8 +54,8 @@ function Cart() {
                 setIsLoading(true)
                 const deleteCart = `${urlConstant.Cart.DeleteCart}/${id}`;
                 common.httpGet(deleteCart).then((res) => {
-                    GetCart();
                     setIsLoading(false);
+                    GetCart();
                 });
             }
             else {
@@ -232,12 +235,12 @@ function Cart() {
 
                                         </tbody>
                                     </table>
-                                    <form action="#">
+                                    
                                         <div className="d-flex justify-content-between">
-                                            <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" />
-                                            <button className="btn"><i className="fi-rs-label mr-10" />Apply</button>
+                                            <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
+                                            <button className="btn" onClick={()=>{ApplyCoupon(CouponCode)}}><i className="fi-rs-label mr-10" />Apply</button>
                                         </div>
-                                    </form>
+                                   
                                 </div>
                             </div><br />
 
@@ -284,15 +287,7 @@ function Cart() {
                                             <input required="required" placeholder="PostCode / ZIP" name="name" type="text" />
                                         </div>
                                     </div>
-
-
-
-
-
-
-
-
-                                    <a href="#" className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></a>
+                                    <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>
                                 </div>
                             </div>
 
