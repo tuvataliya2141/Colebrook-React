@@ -51,7 +51,7 @@ function Home() {
                     </div>
                     <div className="carousel-inner">
 
-                      <div className="carousel-item ">
+                      <div className="carousel-item active">
                         <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
                         <div className="carousel-caption d-none d-md-block">
                           <h1 className='banner_title_set'>Find Your Favorite <br />
@@ -59,13 +59,22 @@ function Home() {
                           <p className='banner_text_set'>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
 
-                          <Link to='/'>
+                          {/* <Link to='/'>
                             <img src="assets/imgs/banner/Group.png" alt="/" />
-                          </Link>
-
+                          </Link> */}
+                          <div className="slider-main-button-div">
+                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                              <span className="img-span">
+                                <img style={{marginRight: "10px",marginLeft: "5px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
+                              </span>
+                              <span className="text-span">
+                                SHOP NOW!
+                              </span>
+                              </button>
+                          </div>
                         </div>
                       </div>
-                      <div className="carousel-item active">
+                      <div className="carousel-item ">
                         <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
                         <div className="carousel-caption d-none d-md-block">
                           <h1>Find Your Favorite <br />

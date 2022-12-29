@@ -12803,30 +12803,63 @@ footer .hotline img {
   justify-content: center;
 }
 
-/* .slider-main-button-div:hover {
-  -webkit-transform: translate(110px, 0);
-  -moz-transform: translate(110px, 0);
-  -ms-transform: translate(110px, 0);
-  -o-transform: translate(110px, 0);
-  transform: translate(110px, 0);
-  background: rgba(255, 255, 255, 0.4);
-} */
+.slider-main-button .img-span{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.slider-main-button .text-span{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 
-.slider-main-button img:hover {
-  /* color: #fff; */
-  /* background: red; */
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  transform: rotate(360deg);
+.slider-main-button .img-span:hover {
+  /* transform: rotate(360deg); */
+  -webkit-transform: translateX(133px);
+  -moz-transform: translateX(133px);
+  -ms-transform: translateX(133px);
+  -o-transform: translateX(133px);
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   -ms-transition: all 1s;
   -o-transition: all 1s;
   transition: all 1s;
-  /* left: 32%;
-	 transform: scale(1); */
+  transform: translateX(133px);
+}
+.slider-main-button .text-span:hover {
+  transform: translateX(-55px);
+}
+
+/* .slider-main-button img:hover {
+  color: #fff;
+  background: red;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg); 
+   transform: rotate(360deg);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  transform: translateX(133px);
+   left: 32%;
+	 transform: scale(1); 
+} */
+
+.slider-main-button img:hover{
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  transform: rotate(360deg);
 }
 
 
