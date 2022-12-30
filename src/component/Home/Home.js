@@ -59,7 +59,7 @@ function Home() {
                           <p className='banner_text_set'>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                           <div className="slider-main-button-div">
-                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                            <button className="slider-main-button">
                               <span className="img-span">
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
@@ -78,7 +78,7 @@ function Home() {
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                             <div className="slider-main-button-div">
-                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                            <button className="slider-main-button">
                               <span className="img-span">
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
@@ -97,7 +97,7 @@ function Home() {
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                             <div className="slider-main-button-div">
-                            <button className="slider-main-button" style={{ fontFamily: "Quicksand",fontWeight: "500"}}>
+                            <button className="slider-main-button">
                               <span className="img-span">
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
@@ -222,33 +222,86 @@ function Home() {
                     </svg>
                   </div>
                 </div>
-
-
-
               </div>
             </div>
           </div>
         </section>
-
-
-
-
         <section className="banners mb-25">
           <div className="container">
             <div className="row">
-              <div className="col-lg-4 col-md-6">
-                <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay={0}>
-                  <img src="assets/imgs/banner/banner-1.png" alt="/" />
-                  <div className="banner-text">
-                    <h4>
-                      Everyday Fresh &amp; <br />Clean with Our<br />
-                      Products
-                    </h4>
-                    <a href="shop-grid-right.html" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+              <div className="col-md-4">
+                  <div className="row banner-row" style={{backgroundColor:"#E4E4E4",borderRadius: "10px"}}>
+                    <div className="col-md-7 banner-text-set">
+                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
+                        <h4 className="banner-in-text">
+                          Everyday Fresh &amp; <br />Clean with Our<br />
+                          Products
+                        </h4>
+                        <a href="#" className="btn btn-xs small-slider-button">
+                          <span className="text-span">
+                            Shop Now
+                          </span>
+                          <span className="img-span">
+                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
+                          </span>
+                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
+                      <img src="assets/imgs/banner/banner-1.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                    </div>
                   </div>
-                </div>
               </div>
-              <div className="col-lg-4 col-md-6">
+              <div className="col-md-4">
+                  <div className="row banner-row" style={{backgroundColor:"#DEFFB4",borderRadius: "10px"}}>
+                    <div className="col-md-7 banner-text-set">
+                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
+                        <h4 className="banner-in-text">
+                          Everyday Fresh &amp; <br />Clean with Our<br />
+                          Products
+                        </h4>
+                        <a href="#" className="btn btn-xs small-slider-button">
+                          <span className="text-span">
+                            Shop Now
+                          </span>
+                          <span className="img-span">
+                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
+                          </span>
+                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
+                      <img src="assets/imgs/banner/banner-2.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                    </div>
+                  </div>
+              </div>
+              <div className="col-md-4">
+                  <div className="row banner-row" style={{backgroundColor:"#FFE1B4",borderRadius: "10px"}}>
+                    <div className="col-md-7 banner-text-set">
+                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
+                        <h4 className="banner-in-text">
+                          Everyday Fresh &amp; <br />Clean with Our<br />
+                          Products
+                        </h4>
+                        <a href="#" className="btn btn-xs small-slider-button">
+                          <span className="text-span">
+                            Shop Now
+                          </span>
+                          <span className="img-span">
+                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
+                          </span>
+                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
+                      <img src="assets/imgs/banner/banner-3.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                    </div>
+                  </div>
+              </div>
+              {/* <div className="col-lg-4 col-md-6">
                 <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                   <img src="assets/imgs/banner/banner-2.png" alt="/" />
                   <div className="banner-text">
@@ -256,7 +309,14 @@ function Home() {
                       Make your Breakfast<br />
                       Healthy and Easy
                     </h4>
-                    <a href="" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="#" className="btn btn-xs small-slider-button">
+                      <span className="text-span">
+                        Shop Now
+                      </span>
+                      <span className="img-span">
+                          <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
+                      </span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -265,10 +325,17 @@ function Home() {
                   <img src="assets/imgs/banner/banner-3.png" alt="/" />
                   <div className="banner-text">
                     <h4>The best Organic <br />Products Online</h4>
-                    <a href="" className="btn btn-xs">Shop Now <i className="fi-rs-arrow-small-right" /></a>
+                    <a href="#" className="btn btn-xs small-slider-button">
+                      <span className="text-span">
+                        Shop Now
+                      </span>
+                      <span className="img-span">
+                          <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
+                      </span>
+                    </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>
