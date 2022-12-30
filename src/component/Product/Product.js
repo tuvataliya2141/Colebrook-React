@@ -15,17 +15,13 @@ function Product() {
 
   const id = useParams();
   let common = new CommonService();
-  const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
+  const { user_id, wishlistPost, Loding, CartPost,ApplyCoupon } = useAppContext();
 
 
   const [List, setList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-
-  window.addEventListener("beforeunload", (event) => {
-  
-    return true;
-  });
+  const [increment, SetIncrement] = useState(1);
+  const [CouponCode, SetCouponCode] = useState('');
 
   function GetSingelProducts() {
     setIsLoading(true)
@@ -108,19 +104,15 @@ function Product() {
 
                             {/* {
                               List.multipleimage.map((item,i)=>{
-                                  const items  = item[i].split(" ")
                                 return(
                                   <>
-                                     <div><img src={items} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
+                                     <div><img src={item[i]} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
                                   </>
                                 )
                               })
                             }  */}
-
-
+                            
                             <div><img src={List.multipleimage} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
-
-
 
                           </div>
                         </div>
@@ -177,9 +169,9 @@ function Product() {
                           </div>
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
-                              <a href="#" className="qty-down"><i className="fi-rs-angle-small-down" /></a>
-                              <span className="qty-val">1</span>
-                              <a href="#" className="qty-up"><i className="fi-rs-angle-small-up" /></a>
+                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment - 1) }} /></a>
+                               <span className="qty-val">{increment}</span>
+                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment + 1) }} /></a>
                             </div>
                             <div className="product-extra-link2">
                               <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
@@ -210,9 +202,9 @@ function Product() {
                           <li className="nav-item">
                             <a className="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
                           </li>
-                          <li className="nav-item">
+                          {/* <li className="nav-item">
                             <a className="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
-                          </li>
+                          </li> */}
                           <li className="nav-item">
                             <a className="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews (3)</a>
                           </li>
@@ -342,7 +334,7 @@ function Product() {
                               </tbody>
                             </table>
                           </div>
-                          <div className="tab-pane fade" id="Vendor-info">
+                          {/* <div className="tab-pane fade" id="Vendor-info">
                             <div className="vendor-logo d-flex mb-30">
                               <img src="assets/imgs/vendor/vendor-18.svg" alt />
                               <div className="vendor-name ml-15">
@@ -378,7 +370,7 @@ function Product() {
                             <p>
                               Noodles &amp; Company is an American fast-casual restaurant that offers international and American noodle dishes and pasta in addition to soups and salads. Noodles &amp; Company was founded in 1995 by Aaron Kennedy and is headquartered in Broomfield, Colorado. The company went public in 2013 and recorded a $457 million revenue in 2017.In late 2018, there were 460 Noodles &amp; Company locations across 29 states and Washington, D.C.
                             </p>
-                          </div>
+                          </div> */}
                           <div className="tab-pane fade" id="Reviews">
                             {/*Comments*/}
                             <div className="comments-area">
@@ -537,7 +529,7 @@ function Product() {
                               <h6 className="text-muted">Subtotal</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">$38.00</h4>
+                              <h4 className="text-brand text-end">{List.price * increment}</h4>
                             </td>
                           </tr>
                           <tr>
@@ -550,12 +542,12 @@ function Product() {
                               <h6 className="text-muted">Offer Price</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h5 className="text-heading text-end">$-20</h5></td></tr> <tr>
+                              <h5 className="text-heading text-end">- {List.offer ? List.offer : 0 } %</h5></td></tr> <tr>
                             <td className="cart_total_label">
                               <h6 className="text-muted">Delivery Charge</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h5 className="text-heading text-end">$02</h5></td></tr> <tr>
+                              <h5 className="text-heading text-end"> + 200</h5></td></tr> <tr>
                             <td scope="col" colSpan={2}>
                               <div className="divider-2 mt-10 mb-10" />
                             </td>
@@ -565,7 +557,7 @@ function Product() {
                               <h6 className="text-muted">Total</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">$20.00</h4>
+                              <h4 className="text-brand text-end">{List.price * increment + 200}</h4>
                             </td>
                           </tr>
 
@@ -582,12 +574,10 @@ function Product() {
 
                         </tbody>
                       </table>
-                      <form action="#">
                         <div className="d-flex justify-content-between">
-                          <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" />
-                          <button className="btn"><i className="fi-rs-label mr-10" />Apply</button>
+                          <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
+                          <button className="btn" onClick={()=>{ApplyCoupon(CouponCode)}}><i className="fi-rs-label mr-10" />Apply</button>
                         </div>
-                      </form>
                     </div>
                   </div>
 

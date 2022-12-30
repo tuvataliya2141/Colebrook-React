@@ -94,19 +94,13 @@ function ShopProduct() {
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
                                                             <Link  to={`/${item.id}`}>
-                                                                {/* <a href="/Product"> */}
-
                                                                 <img className="default-img" src={image} alt="/" />
                                                                 <img className="hover-img" src={image} alt="/" />
-
-
-                                                                {/* </a> */}
                                                             </Link>
                                                         </div>
                                                         <div className="product-action-1">
                                                             <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                                             <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
-                                                            {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                                         </div>
                                                         <div className="product-badges product-badges-position product-badges-mrg">
                                                             <span className="hot">Hot</span>
@@ -126,12 +120,12 @@ function ShopProduct() {
                                                             <span className="font-small ml-5 text-muted"> ({item.rating})</span>
                                                         </div>
                                                         <div>
-                                                            <span className="font-small text-muted">By <a href="vendor-details-1.html">NestFood</a></span>
+                                                            <span className="font-small text-muted">By NestFood</span>
                                                         </div>
                                                         <div className="product-card-bottom">
                                                             <div className="product-price">
-                                                                <span>${item.base_price}</span>
-                                                                <span className="old-price">${item.base_discounted_price + 200}</span>
+                                                                <span>${item.base_discounted_price}</span>
+                                                                <span className="old-price">${item.base_price}</span>
                                                             </div>
                                                             <div className="add-cart">
                                                                 <a className="add" onClick={()=>{CartPost(item.id)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>

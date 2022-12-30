@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -12,9 +12,10 @@ import { useAppContext } from '../../context/index';
 
 function Checkout() {
     let common = new CommonService();
-    const { Loding } = useAppContext();
+    const { Loding, user_id, ApplyCoupon } = useAppContext();
 
-    const [ApplyCouon, SetApplyCouon] = useState();
+
+    const [CouponCode, SetCouponCode] = useState('');
     const [FirstName, SetFirstName] = useState("");
     const [LastName, SetLastName] = useState("");
     const [Address1, SetAddress1] = useState("");
@@ -27,6 +28,7 @@ function Checkout() {
     const [company, Setcompany] = useState("");
     const [AdditionalInfomation, SetAdditionalInfomation] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [ListCart, setListCart] = useState([]);
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -37,7 +39,7 @@ function Checkout() {
         }
 
         try {
-            const data = { ApplyCouon, FirstName, LastName, Address1, Address2, state, city, PostCode, PhoneNumber, Email, company, AdditionalInfomation };
+            const data = { CouponCode, FirstName, LastName, Address1, Address2, state, city, PostCode, PhoneNumber, Email, company, AdditionalInfomation };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             await common.httpPost(ContactData, data).then(() => {
                 ToasterSuccess("Success...!!");
@@ -50,6 +52,24 @@ function Checkout() {
         }
 
     }
+
+    function GetCart() {
+        debugger
+        setIsLoading(true)
+        const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
+        common.httpGet(GetAllCart).then(function (res) {
+            setListCart(res.data.data[0].cart_items);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
+
+    useEffect(() => {
+        GetCart();
+    }, [])
 
     return (
         <div>
@@ -86,11 +106,9 @@ function Checkout() {
                                         <span><i className="fi-rs-user mr-10" /><span className="text-muted font-lg">Already have an account?</span> <Link to="/Login" className="collapsed font-lg" >Click here to login</Link></span>
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
-                                    <form method="post" className="apply-coupon">
-                                        <input type="text" placeholder="Enter Coupon Code..." />
-                                        <button className="btn btn-md" name="login" value={ApplyCouon || ""} onChange={(e) => { SetApplyCouon(e.target.value) }}>Apply Coupon</button>
-                                    </form>
+                                <div className="col-lg-6 apply-coupon">
+                                    <input type="text" placeholder="Enter Coupon Code..." value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
+                                    <button className="btn btn-md" onClick={()=>{ApplyCoupon(CouponCode)}}>Apply Coupon</button>
                                 </div>
                             </div>
                             <div className="row">
@@ -180,63 +198,34 @@ function Checkout() {
                                 <div className="table-responsive order_table checkout">
                                     <table className="table no-border">
                                         <tbody>
-                                            <tr>
-                                                <td className="image product-thumbnail"><img src="assets/imgs/shop/product-1-1.jpg" alt="#" /></td>
-                                                <td>
-                                                    <h6 className="w-160 mb-5"><a href="shop-product-full.html" className="text-heading">Yidarton Women Summer Blue</a></h6>
-                                                    <div className="product-rate-cover">
-                                                        <div className="product-rate d-inline-block">
-                                                            <div className="product-rating" style={{ width: '90%' }}>
-                                                            </div>
-                                                        </div>
-                                                        <span className="font-small ml-5 text-muted"> (4.0)</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 className="text-muted pl-20 pr-20">x 1</h6>
-                                                </td>
-                                                <td>
-                                                    <h4 className="text-brand">$13.3</h4>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="image product-thumbnail"><img src="assets/imgs/shop/product-2-2.jpg" alt="#" /></td>
-                                                <td>
-                                                    <h6 className="w-160 mb-5"><a href="shop-product-full.html" className="text-heading">Seeds of Change Organic Quinoa</a></h6>
-                                                    <div className="product-rate-cover">
-                                                        <div className="product-rate d-inline-block">
-                                                            <div className="product-rating" style={{ width: '90%' }}>
-                                                            </div>
-                                                        </div>
-                                                        <span className="font-small ml-5 text-muted"> (4.0)</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 className="text-muted pl-20 pr-20">x 1</h6>
-                                                </td>
-                                                <td>
-                                                    <h4 className="text-brand">$15.0</h4>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className="image product-thumbnail"><img src="assets/imgs/shop/product-3-2.jpg" alt="#" /></td>
-                                                <td>
-                                                    <h6 className="w-160 mb-5"><a href="shop-product-full.html" className="text-heading">Angie’s Boomchickapop Sweet </a></h6>
-                                                    <div className="product-rate-cover">
-                                                        <div className="product-rate d-inline-block">
-                                                            <div className="product-rating" style={{ width: '90%' }}>
-                                                            </div>
-                                                        </div>
-                                                        <span className="font-small ml-5 text-muted"> (4.0)</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h6 className="text-muted pl-20 pr-20">x 1</h6>
-                                                </td>
-                                                <td>
-                                                    <h4 className="text-brand">$17.2</h4>
-                                                </td>
-                                            </tr>
+                                            {
+                                                ListCart.map((item, i) => {
+                                                    const { product_thumbnail_image, price, variation, product_name, currency_symbol, quantity } = item;
+                                                    return (
+                                                        <>
+                                                            <tr>
+                                                                <td className="image product-thumbnail"><img src={product_thumbnail_image} alt={product_thumbnail_image} /></td>
+                                                                <td>
+                                                                    <h6 className="w-160 mb-5"><a className="text-heading">{product_name}</a></h6>
+                                                                    <div className="product-rate-cover">
+                                                                        <div className="product-rate d-inline-block">
+                                                                            <div className="product-rating" style={{ width: '90%' }}>
+                                                                            </div>
+                                                                        </div>
+                                                                        <span className="font-small ml-5 text-muted"> (4.0)</span>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <h6 className="text-muted pl-20 pr-20">x {quantity}</h6>
+                                                                </td>
+                                                                <td>
+                                                                    <h4 className="text-brand">{currency_symbol + price * quantity}</h4>
+                                                                </td>
+                                                            </tr>
+                                                        </>
+                                                    )
+                                                })
+                                            }
                                         </tbody>
                                     </table>
                                     <table className="table no-border">
@@ -284,10 +273,10 @@ function Checkout() {
                             <div className="payment ml-30">
                                 <h4 className="mb-30">Payment</h4>
                                 <div className="payment_option">
-                                    <div className="custome-radio">
+                                    {/* <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios3" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
-                                    </div>
+                                    </div> */}
                                     <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios4" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>

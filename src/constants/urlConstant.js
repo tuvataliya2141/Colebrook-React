@@ -17,8 +17,8 @@ const urlConstant = {
     DeleteWishlist: `${apiURL}wishlists-remove-product`
   },
   Cart: {
-    PostCart: `${apiURL}carts/add`,
-    GetCart: `${apiURL}carts`,
+    PostCart: `${apiURL}cart/add`,
+    GetCart: `${apiURL}carts/list`,
     DeleteCart: `${apiURL}cart/delete`
   },
   Contact: {
@@ -26,6 +26,9 @@ const urlConstant = {
   },
   Checkout:{
     PostCheckout: `${apiURL}Checkout`
+  },
+  ApplyCoupon:{
+    PostApplyCoupon : `${apiURL}coupon/apply`
   }
 
 };
