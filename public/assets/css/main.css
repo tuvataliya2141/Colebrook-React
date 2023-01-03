@@ -12797,6 +12797,7 @@ footer .hotline img {
   align-items: center;
   justify-content: space-around;
   padding-left: 0;
+  font-family: Quicksand;
 }
 .slider-main-button-div{
   display: flex;
@@ -12849,17 +12850,24 @@ footer .hotline img {
   align-items: center;
   justify-content: space-around;
   padding-left: 0;
+  width: 120px;
+  height: 31px;
 }
-
+.small-slider-button:hover{
+  background-color: #000;
+}
 .small-slider-button .img-span{
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: white !important;
+  max-width: 13px;
 }
 .small-slider-button .text-span{
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: white !important;
 }
 
 .small-slider-button:hover .img-span {
@@ -12873,10 +12881,10 @@ footer .hotline img {
   -ms-transition: all 1s;
   -o-transition: all 1s;
   transition: all 1s;
-  transform: translateX(133px);
+  transform: translateX(-80px);
 }
 .small-slider-button:hover .text-span {
-  transform: translateX(-55px);
+  transform: translateX(22px);
 }
 
 .small-slider-button:hover img{
@@ -12892,8 +12900,20 @@ footer .hotline img {
   transform: rotate(360deg);
 }
 
+.banner-text-set{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.banner-row{
+  margin-right: 5px;
+    margin-left: 5px;
+}
 
+.banner-in-text{
+  margin-bottom: 23px;
+}
 
 
 /*# sourceMappingURL=main.css.map */
