@@ -65,7 +65,7 @@ function Cart() {
         })
 
     };
-
+    
     useEffect(() => {
         GetCart();
     }, []);

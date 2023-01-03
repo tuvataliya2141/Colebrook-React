@@ -14,7 +14,7 @@ import Pagination from "../Pagination";
 
 function Wishlist() {
     let common = new CommonService();
-    const { user_id, Loding ,CartPost } = useAppContext();
+    const { user_id, Loding, CartPost } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,6 @@ function Wishlist() {
             setIsLoading(false)
         })
             .catch(function (error) {
-                ToasterError("Error");
                 setIsLoading(false)
             });
     }
@@ -63,14 +62,15 @@ function Wishlist() {
 
     };
 
+    const WishlistLength = List.length
     useEffect(() => {
         GetWishlist();
     }, []);
     return (
         <div>
             {isLoading ? <Loding /> : Wishlist}
-            <ToastContainer/>
-            <Header Wishlist={List.length} />
+            <ToastContainer />
+            <Header />
             <main className="main">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -80,99 +80,99 @@ function Wishlist() {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="mb-30 mt-50">
                     <div className="container">
-                    <div className="row">
-                        <div className="col-xl-12 col-lg-12 m-auto">
-                            <div className="mb-50">
-                                <h1 className="heading-2 mb-10">Your Wishlist</h1>
-                                <h6 className="text-body">There are <span className="text-brand">{List.length}</span> products in this list</h6>
-                            </div>
-                            <div className="row">
-                                <div className="col-lg-12 mb-40" style={{textAlign: "end"}}>
-                                    <a href="#" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                        <div className="row">
+                            <div className="col-xl-12 col-lg-12 m-auto">
+                                <div className="mb-50">
+                                    <h1 className="heading-2 mb-10">Your Wishlist</h1>
+                                    <h6 className="text-body">There are <span className="text-brand">{List.length}</span> products in this list</h6>
                                 </div>
-                            </div>
-                            <div className="table-responsive shopping-summery">
-                                <table className="table table-wishlist">
-                                    <thead>
-                                        <tr className="main-heading">
-                                            <th className="custome-checkbox start pl-30">
-                                                {/* <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" defaultValue />
+                                <div className="row">
+                                    <div className="col-lg-12 mb-40" style={{ textAlign: "end" }}>
+                                        <a href="/" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                                    </div>
+                                </div>
+                                <div className="table-responsive shopping-summery">
+                                    <table className="table table-wishlist">
+                                        <thead>
+                                            <tr className="main-heading">
+                                                <th className="custome-checkbox start pl-30">
+                                                    {/* <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" defaultValue />
                         <label className="form-check-label" htmlFor="exampleCheckbox11" /> */}
-                                            </th>
-                                            <th scope="col" colSpan={2}>Product</th>
-                                            <th scope="col">Price</th>
-                                            <th scope="col">Stock Status</th>
-                                            <th scope="col">Action</th>
-                                            <th scope="col" className="end">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                                </th>
+                                                <th scope="col" colSpan={2}>Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Stock Status</th>
+                                                <th scope="col">Action</th>
+                                                <th scope="col" className="end">Remove</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
-                                        {
+                                            {
 
                                                 List == '' ? <h1 style={{ textAlign: "center" }}>Oops, no product in your list</h1> :
-                                                currentPosts.map((item, i) => {
+                                                    currentPosts.map((item, i) => {
 
-                                                    const { name, thumbnail_image, base_price, rating, id, InStock } = item.product;
+                                                        const { name, thumbnail_image, base_price, rating, id, InStock,variant } = item.product;
 
-                                                    const iamge = thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : thumbnail_image;
+                                                        const iamge = thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : thumbnail_image;
 
-                                                    return (
-                                                        <tr className="pt-30">
-                                                            <td className="custome-checkbox pl-30">
-                                                                {/* <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
+                                                        return (
+                                                            <tr className="pt-30">
+                                                                <td className="custome-checkbox pl-30">
+                                                                    {/* <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
                                     <label className="form-check-label" htmlFor="exampleCheckbox1" /> */}
-                                                            </td>
-                                                            <td className="image product-thumbnail pt-40"><img src={iamge} alt={iamge} /></td>
-                                                            <td className="product-des product-name">
-                                                                <h6>{name}</h6>
-                                                                <div className="product-rate-cover">
-                                                                    <div className="product-rate d-inline-block">
-                                                                        <div className="product-rating" style={{ width: '90%' }} />
+                                                                </td>
+                                                                <td className="image product-thumbnail pt-40"><img src={iamge} alt={iamge} /></td>
+                                                                <td className="product-des product-name">
+                                                                    <h6>{name}</h6>
+                                                                    <div className="product-rate-cover">
+                                                                        <div className="product-rate d-inline-block">
+                                                                            <div className="product-rating" style={{ width: '90%' }} />
+                                                                        </div>
+                                                                        <span className="font-small ml-5 text-muted">{(rating)}</span>
                                                                     </div>
-                                                                    <span className="font-small ml-5 text-muted">{(rating)}</span>
-                                                                </div>
-                                                            </td>
-                                                            <td className="price" data-title="Price">
-                                                                <h3 className="text-brand">{base_price}</h3>
-                                                            </td>
-                                                            <td className="text-center detail-info" data-title="Stock">
-                                                                {
-                                                                    InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
-                                                                        <span className="stock-status in-stock mb-0"> In Stock</span>
-                                                                }
-                                                            </td>
-                                                            <td className="text-right" data-title="Cart">
-                                                                {
-                                                                    InStock == 0 ?<button className="btn btn-sm" disabled >Add to cart</button> : 
-                                                                    <button className="btn btn-sm" onClick={()=>{CartPost(id)}} >Add to cart</button>
-                                                                }
-                                                            </td>
-                                                            <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>
-                                                                <a className="text-body"><i style={{fontSize: "20px"}} className="fi-rs-cross-circle" /></a>
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                        }
+                                                                </td>
+                                                                <td className="price" data-title="Price">
+                                                                    <h3 className="text-brand">{base_price}</h3>
+                                                                </td>
+                                                                <td className="text-center detail-info" data-title="Stock">
+                                                                    {
+                                                                        InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
+                                                                            <span className="stock-status in-stock mb-0"> In Stock</span>
+                                                                    }
+                                                                </td>
+                                                                <td className="text-right" data-title="Cart">
+                                                                    {
+                                                                        InStock == 0 ? <button className="btn btn-sm" disabled >Add to cart</button> :
+                                                                            <button className="btn btn-sm" onClick={() => { CartPost(id,variant) }} >Add to cart</button>
+                                                                    }
+                                                                </td>
+                                                                <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>
+                                                                    <a className="text-body"><i style={{ fontSize: "20px" }} className="fi-rs-cross-circle" /></a>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                            }
 
 
 
-                                    </tbody>
-                                </table>
-                                <Pagination
-                                    totalPosts={List.length}
-                                    postsPerPage={postsPerPage}
-                                    setCurrentPage={setCurrentPage}
-                                    currentPage={currentPage}
-                                />
+                                        </tbody>
+                                    </table>
+                                    <Pagination
+                                        totalPosts={List.length}
+                                        postsPerPage={postsPerPage}
+                                        setCurrentPage={setCurrentPage}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </main>

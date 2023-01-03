@@ -29,6 +29,7 @@ function Checkout() {
     const [AdditionalInfomation, SetAdditionalInfomation] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [ListCart, setListCart] = useState([]);
+    const [PaymentTypes, setPaymentTypes] = useState([]);
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -47,14 +48,13 @@ function Checkout() {
             })
         }
         catch (error) {
-            ToasterError("Error")
+            //ToasterError("Error")
             setIsLoading(false)
         }
 
     }
 
     function GetCart() {
-        debugger
         setIsLoading(true)
         const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
         common.httpGet(GetAllCart).then(function (res) {
@@ -62,13 +62,28 @@ function Checkout() {
             setIsLoading(false)
         })
             .catch(function (error) {
-                ToasterError("Error");
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
+    debugger
+    function GetPaymentTypes() {
+        setIsLoading(true)
+        const PaymentTypes = `${urlConstant.Checkout.GetPaymentTypes}`;
+        common.httpGet(PaymentTypes).then(function (res) {
+            setPaymentTypes(res.data);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
                 setIsLoading(false)
             });
     }
 
+
     useEffect(() => {
         GetCart();
+        GetPaymentTypes();
     }, [])
 
     return (
@@ -108,7 +123,7 @@ function Checkout() {
                                 </div>
                                 <div className="col-lg-6 apply-coupon">
                                     <input type="text" placeholder="Enter Coupon Code..." value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
-                                    <button className="btn btn-md" onClick={()=>{ApplyCoupon(CouponCode)}}>Apply Coupon</button>
+                                    <button className="btn btn-md" onClick={() => { ApplyCoupon(CouponCode) }}>Apply Coupon</button>
                                 </div>
                             </div>
                             <div className="row">
@@ -278,19 +293,26 @@ function Checkout() {
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
                                     </div> */}
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios4" defaultChecked />
-                                        <label className="form-check-label" htmlFor="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod"  />
+                                        <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                                     </div>
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios5" defaultChecked />
-                                        <label className="form-check-label" htmlFor="exampleRadios5" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="online"  />
+                                        <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>
                                     </div>
                                 </div>
                                 <div className="payment-logo d-flex">
-                                    <img className="mr-15" src="assets/imgs/theme/icons/payment-paypal.svg" alt="/" />
-                                    <img className="mr-15" src="assets/imgs/theme/icons/payment-visa.svg" alt="/" />
-                                    <img className="mr-15" src="assets/imgs/theme/icons/payment-master.svg" alt="/" />
-                                    <img src="assets/imgs/theme/icons/payment-zapper.svg" alt="/" />
+                                    {PaymentTypes.map((item, i) => {
+                                        return (
+                                            <>
+                                                <div style={{ padding: "0px" }}>
+                                                    <a>
+                                                        <img className="mr-15" src={item.image} alt="/" width="70px" />
+                                                    </a>
+                                                </div>
+                                            </>
+                                        )
+                                    })}
                                 </div>
                                 <a className="btn btn-fill-out btn-block mt-30" onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                             </div>

@@ -15,7 +15,7 @@ function Product() {
 
   const id = useParams();
   let common = new CommonService();
-  const { user_id, wishlistPost, Loding, CartPost,ApplyCoupon } = useAppContext();
+  const { user_id, wishlistPost, Loding, CartPost, ApplyCoupon } = useAppContext();
 
 
   const [List, setList] = useState([]);
@@ -27,7 +27,7 @@ function Product() {
     setIsLoading(true)
 
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
-    const Data = { product_id: id }
+    const Data = { product_id: id.id, user_id }
     axios.post(GetAllProducts, Data, {
       headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
     }).then(function (res) {
@@ -111,7 +111,7 @@ function Product() {
                                 )
                               })
                             }  */}
-                            
+
                             <div><img src={List.multipleimage} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
 
                           </div>
@@ -139,7 +139,7 @@ function Product() {
                               <span className="current-price text-brand">{List.price}</span>
                               <span>
                                 <span className="save-price font-md color3 ml-15">{List.offer ? List.offer : 0} % Off</span>
-                                <span className="old-price font-md ml-15">{List.oldPrice + 200}</span>
+                                <span className="old-price font-md ml-15">{List.oldPrice}</span>
                               </span>
                             </div>
                           </div>
@@ -170,11 +170,14 @@ function Product() {
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
                               <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment - 1) }} /></a>
-                               <span className="qty-val">{increment}</span>
+                              <span className="qty-val">{increment}</span>
                               <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment + 1) }} /></a>
                             </div>
                             <div className="product-extra-link2">
-                              <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                              {
+                                List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id,List.variant) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                              }
                               <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
                             </div>
@@ -542,12 +545,12 @@ function Product() {
                               <h6 className="text-muted">Offer Price</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h5 className="text-heading text-end">- {List.offer ? List.offer : 0 } %</h5></td></tr> <tr>
+                              <h5 className="text-heading text-end">- {List.offer ? List.offer : 0} %</h5></td></tr> <tr>
                             <td className="cart_total_label">
                               <h6 className="text-muted">Delivery Charge</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h5 className="text-heading text-end"> + 200</h5></td></tr> <tr>
+                              <h5 className="text-heading text-end">+ {List.DeliveryCharge ? List.DeliveryCharge : 0}</h5></td></tr> <tr>
                             <td scope="col" colSpan={2}>
                               <div className="divider-2 mt-10 mb-10" />
                             </td>
@@ -557,7 +560,7 @@ function Product() {
                               <h6 className="text-muted">Total</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">{List.price * increment + 200}</h4>
+                              <h4 className="text-brand text-end">{List.price * increment }</h4>
                             </td>
                           </tr>
 
@@ -574,10 +577,10 @@ function Product() {
 
                         </tbody>
                       </table>
-                        <div className="d-flex justify-content-between">
-                          <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
-                          <button className="btn" onClick={()=>{ApplyCoupon(CouponCode)}}><i className="fi-rs-label mr-10" />Apply</button>
-                        </div>
+                      <div className="d-flex justify-content-between">
+                        <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
+                        <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
+                      </div>
                     </div>
                   </div>
 

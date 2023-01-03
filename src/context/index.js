@@ -32,10 +32,10 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  function CartPost(id) {
+  function CartPost(id,variant) {
     try {
       setIsLoading(true)
-      const Data = { id, quantity: 1 ,variant:'AntiqueWhite-500gm',user_id:parseInt(user_id) }
+      const Data = { id, quantity: 1 ,variant:variant,user_id:parseInt(user_id) }
       const CartData = `${urlConstant.Cart.PostCart}`;
       axios.post(CartData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }

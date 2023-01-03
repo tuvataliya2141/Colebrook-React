@@ -12,7 +12,7 @@ const urlConstant = {
     PostSingelProducts: `${apiURL}products/details`,
   },
   Wishlist: {
-    PostWishlist: `${apiURL}wishlists`,
+    PostWishlist: `${apiURL}wishlists-add-product`,
     GetAllWishlist: `${apiURL}wishlists`,
     DeleteWishlist: `${apiURL}wishlists-remove-product`
   },
@@ -21,15 +21,12 @@ const urlConstant = {
     GetCart: `${apiURL}carts/list`,
     DeleteCart: `${apiURL}cart/delete`
   },
-  Contact: {
-    PostContact: `${apiURL}contact`
+  Checkout: { 
+    PostCheckout: `${apiURL}Checkout`,
+    GetPaymentTypes: `${apiURL}payment-types` 
   },
-  Checkout:{
-    PostCheckout: `${apiURL}Checkout`
-  },
-  ApplyCoupon:{
-    PostApplyCoupon : `${apiURL}coupon/apply`
-  }
+  Contact: { PostContact: `${apiURL}contact` },
+  ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon/apply` },
 
 };
 

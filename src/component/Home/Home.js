@@ -64,7 +64,7 @@ function Home() {
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
                               <span className="text-span">
-                                SHOP NOW!
+                                SHOP NOW !
                               </span>
                               </button>
                           </div>
@@ -83,7 +83,7 @@ function Home() {
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
                               <span className="text-span">
-                                SHOP NOW!
+                                SHOP NOW !
                               </span>
                               </button>
                           </div>
@@ -102,7 +102,7 @@ function Home() {
                                 <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
                               </span>
                               <span className="text-span">
-                                SHOP NOW!
+                                SHOP NOW !
                               </span>
                               </button>
                           </div>
@@ -327,7 +327,7 @@ function Home() {
                             <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                               <div className="product-img-action-wrap">
                                 <div className="product-img product-img-zoom">
-                                  <Link to={`/Product/${item.id}`}>
+                                  <Link to={`/${item.id}`}>
                                     <img className="default-img" src={image} width="100%" alt="/" />
                                     <img className="hover-img" src={image} width="100%" alt="/" />
                                   </Link>
@@ -345,7 +345,7 @@ function Home() {
                                 <div className="product-category">
                                   <a href="shop-grid-right.html">{item.category}</a>
                                 </div>
-                                <h2><a href="Product">{Name}</a></h2>
+                                <h2><Link to={'1'}>{Name}</Link></h2>
                                 <div className="product-rate-cover">
                                   <div className="product-rate d-inline-block">
                                     <div className="product-rating" style={{ width: '90%' }} />
@@ -417,10 +417,10 @@ function Home() {
                         <div className="product-cart-wrap">
                           <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                              <a href="Product">
+                              <Link to={'1'}>
                                 <img className="default-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
                                 <img className="hover-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
-                              </a>
+                              </Link>
                             </div>
                             <div className="product-action-1">
                               <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
@@ -435,7 +435,7 @@ function Home() {
                             <div className="product-category">
                               <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="Product">Seeds of Change Organic Quinoa, Brown</a></h2>
+                            <h2><Link to={'1'}>Seeds of Change Organic Quinoa, Brown</Link></h2>
                             <div className="product-rate d-inline-block">
                               <div className="product-rating" style={{ width: '80%' }} />
                             </div>
@@ -449,16 +449,16 @@ function Home() {
                               </div>
                               <span className="font-xs text-heading"> Sold: 90/120</span>
                             </div>
-                            <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
+                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
                           </div>
                         </div>
                         <div className="product-cart-wrap">
                           <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                              <a href="Product">
+                              <Link to={'1'}>
                                 <img className="default-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
                                 <img className="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
-                              </a>
+                              </Link>
                             </div>
                             <div className="product-action-1">
                               <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
@@ -473,7 +473,7 @@ function Home() {
                             <div className="product-category">
                               <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="Product">All Natural Italian-Style Chicken Meatballs</a></h2>
+                            <h2><Link to={'1'}>All Natural Italian-Style Chicken Meatballs</Link></h2>
                             <div className="product-rate d-inline-block">
                               <div className="product-rating" style={{ width: '80%' }} />
                             </div>
@@ -487,16 +487,16 @@ function Home() {
                               </div>
                               <span className="font-xs text-heading"> Sold: 90/120</span>
                             </div>
-                            <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
+                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
                           </div>
                         </div>
                         <div className="product-cart-wrap">
                           <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                              <a href="Product">
+                              <Link to={'1'}>
                                 <img className="default-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
                                 <img className="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
-                              </a>
+                              </Link>
                             </div>
                             <div className="product-action-1">
                               <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
@@ -511,7 +511,7 @@ function Home() {
                             <div className="product-category">
                               <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="Product">Angie’s Boomchickapop Sweet and womnies</a></h2>
+                            <h2><Link to={'1'}>Angie’s Boomchickapop Sweet and womnies</Link></h2>
                             <div className="product-rate d-inline-block">
                               <div className="product-rating" style={{ width: '80%' }} />
                             </div>
@@ -525,16 +525,16 @@ function Home() {
                               </div>
                               <span className="font-xs text-heading"> Sold: 90/120</span>
                             </div>
-                            <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
+                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
                           </div>
                         </div>
                         <div className="product-cart-wrap">
                           <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
-                              <a href="Product">
+                              <Link to={'1'}>
                                 <img className="default-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
                                 <img className="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
-                              </a>
+                              </Link>
                             </div>
                             <div className="product-action-1">
                               <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
@@ -549,7 +549,7 @@ function Home() {
                             <div className="product-category">
                               <a href="shop-grid-right.html">Hodo Foods</a>
                             </div>
-                            <h2><a href="Product">Foster Farms Takeout Crispy Classic </a></h2>
+                            <h2><Link to={'1'}>Foster Farms Takeout Crispy Classic </Link></h2>
                             <div className="product-rate d-inline-block">
                               <div className="product-rating" style={{ width: '80%' }} />
                             </div>
@@ -563,7 +563,7 @@ function Home() {
                               </div>
                               <span className="font-xs text-heading"> Sold: 90/120</span>
                             </div>
-                            <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
+                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
                           </div>
                         </div>
                       </div>
