@@ -128,7 +128,7 @@ function ShopProduct() {
                                                                 <span className="old-price">${item.base_price}</span>
                                                             </div>
                                                             <div className="add-cart">
-                                                                <a className="add" onClick={()=>{CartPost(item.id)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
+                                                                <a className="add" onClick={()=>{CartPost(item.id,item.variants.variant)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
                                                             </div>
                                                         </div>
                                                     </div>

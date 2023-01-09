@@ -91,7 +91,7 @@ function Wishlist() {
                                 </div>
                                 <div className="row">
                                     <div className="col-lg-12 mb-40" style={{ textAlign: "end" }}>
-                                        <a href="/" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                                        <a href="/" className="btn btn-fill-out btn-block mt-30"><i className="fi-rs-arrow-left mr-10" />  Continue Shopping</a>
                                     </div>
                                 </div>
                                 <div className="table-responsive shopping-summery">

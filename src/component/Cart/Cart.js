@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding ,ApplyCoupon } = useAppContext();
+    const { user_id, Loding, ApplyCoupon } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +27,7 @@ function Cart() {
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
 
+    
 
 
     function GetCart() {
@@ -65,13 +66,34 @@ function Cart() {
         })
 
     };
-    
+
+
+    const Increment = (id, item) => {
+        List.map((current)=>{
+            if (current.id = id) {
+                const data1 = item + 1;
+                alert(data1)
+                SetIncrement(data1)
+            }else{
+                alert('error')
+            }
+        })    
+    }
+
+    const Decrement = (id, item) => {
+        const data = increment - 1;
+        alert(data)
+        SetIncrement(data)
+    }
+    const Sub_Total_price = List.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
+
     useEffect(() => {
         GetCart();
     }, []);
 
     return (
         <div>
+            <ToastContainer />
             <Header Crat={List.length} />
             {isLoading ? <Loding /> : Cart}
             <main className="main">
@@ -86,13 +108,18 @@ function Cart() {
                 </div>
                 <div className="container mb-80 mt-50">
                     <div className="row">
-                        <div className="col-lg-8 mb-40">
+                        <div className="col-lg-12 mb-40">
                             <h1 className="heading-2 mb-10">Your Cart</h1>
                             <div className="d-flex justify-content-between">
                                 <h6 className="text-body">There are <span className="text-brand">
                                     {List.length}
                                 </span> products in your cart</h6>
-                                <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
+
+
+                                {/* <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6> */}
+                            </div>
+                            <div className="col-lg-12 mb-40" style={{ textAlign: "end" }}>
+                                <a className="btn " ><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
                             </div>
                         </div>
                     </div>
@@ -117,17 +144,17 @@ function Cart() {
 
                                         {
                                             List == '' ? <h1 style={{ textAlign: "center" }}>Oops, no product in your list</h1> :
-                                            currentPosts.map((item, i) => {
+                                                currentPosts.map((item, i) => {
 
                                                     const image = item.product_thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.product_thumbnail_image
 
-                                                    const total_price = item.price * increment;
+                                                    const total = item.price * item.quantity;
                                                     return (
                                                         <>
                                                             <tr className="pt-30" key={i}>
                                                                 <td className="custome-checkbox pl-30">
-                                                                    <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" defaultValue />
-                                                                    <label className="form-check-label" htmlFor="exampleCheckbox1" />
+                                                                    <input className="form-check-input" type="checkbox" name="checkbox" id={i} defaultValue />
+                                                                    <label className="form-check-label" htmlFor={i} />
                                                                 </td>
                                                                 <td className="image product-thumbnail pt-40"><img src={image} alt={image} /></td>
                                                                 <td className="product-des product-name">
@@ -141,19 +168,21 @@ function Cart() {
                                                                     </div>
                                                                 </td>
                                                                 <td className="price" data-title="Price">
-                                                                    <h4 className="text-body">{item.price}</h4>
+                                                                    <h4 className="text-body">₹ {item.price}</h4>
                                                                 </td>
                                                                 <td className="text-center detail-info" data-title="Stock">
                                                                     <div className="detail-extralink mr-15">
                                                                         <div className="detail-qty border radius">
-                                                                            <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment - 1) }} /></a>
-                                                                            <span className="qty-val">{increment}</span>
-                                                                            <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment + 1) }} /></a>
+                                                                            <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { Decrement(item.id, item.quantity) }} /></a>
+                                                                            {/* <span className="qty-val">{increment}</span> */}
+                                                                            <span className="qty-val">{item.quantity}</span>
+                                                                            <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { Increment(item.id, item.quantity) }} /></a>
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                                 <td className="price" data-title="Price">
-                                                                    <h4 className="text-brand">{total_price}</h4>
+                                                                    <h4 className="text-brand">₹ {total}</h4>
+                                                                    {/* <h4 className="text-brand">₹10</h4> */}
                                                                 </td>
                                                                 <td className="action text-center" data-title="Remove" onClick={() => deletehandler(item.id)}>
                                                                     <a className="text-body" ><i style={{ fontSize: "20px" }} className="fi-rs-cross-circle" /></a>
@@ -167,17 +196,20 @@ function Cart() {
                                         }
 
                                     </tbody>
-                                    <Pagination
-                                        totalPosts={List.length}
-                                        postsPerPage={postsPerPage}
-                                        setCurrentPage={setCurrentPage}
-                                    />
+
+
                                 </table>
                             </div>
                             <div className="divider-2 mb-30" />
                             <div className="cart-action d-flex justify-content-between">
-                                <a className="btn "><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
-                                <a className="btn  mr-10 mb-sm-15"><i className="fi-rs-refresh mr-10" />Update Cart</a>
+                                <Pagination
+                                    totalPosts={List.length}
+                                    postsPerPage={postsPerPage}
+                                    setCurrentPage={setCurrentPage}
+                                />
+                                {/* <a className="btn  mr-10 mb-sm-15" ><i className="fi-rs-trash mr-5" />Clear Cart</a> */}
+                                <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
+
                             </div>
                         </div>
                         <div className="col-lg-4">
@@ -190,7 +222,7 @@ function Cart() {
                                                     <h6 className="text-muted">Subtotal</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">$12.31</h4>
+                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -218,7 +250,7 @@ function Cart() {
                                                     <h6 className="text-muted">Total</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">$12.31</h4>
+                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
 
@@ -235,12 +267,12 @@ function Cart() {
 
                                         </tbody>
                                     </table>
-                                    
-                                        <div className="d-flex justify-content-between">
-                                            <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
-                                            <button className="btn" onClick={()=>{ApplyCoupon(CouponCode)}}><i className="fi-rs-label mr-10" />Apply</button>
-                                        </div>
-                                   
+
+                                    <div className="d-flex justify-content-between">
+                                        <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
+                                        <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
+                                    </div>
+
                                 </div>
                             </div><br />
 

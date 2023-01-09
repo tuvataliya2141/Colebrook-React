@@ -4,10 +4,11 @@ import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
-import { ToasterSuccess, ToasterError } from "../../common/toaster";
+import { ToasterWarning, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useAppContext } from "../../context";
+import BestSellers from "../BestSellers/BestSellers";
 
 function Product() {
 
@@ -22,6 +23,8 @@ function Product() {
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
+
+  
 
   function GetSingelProducts() {
     setIsLoading(true)
@@ -41,24 +44,6 @@ function Product() {
       });
   }
 
-  // function CartPost() {
-  //   try {
-  //     setIsLoading(true)
-  //       const Data = { id: id.id, quantity: 1 }
-  //       const CartData = `${urlConstant.Cart.PostCart}`;
-  //       axios.post(CartData, Data, {
-  //           headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-  //       }).then(()=>{
-  //          ToasterSuccess("Success...!!");
-  //           setIsLoading(false)
-  //       })
-  //   }
-  //   catch (error) {
-  //       ToasterError("Error")
-  //   }
-  // }
-
-
 
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
@@ -66,6 +51,10 @@ function Product() {
 
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     GetSingelProducts();
   }, []);
 
@@ -96,7 +85,7 @@ function Product() {
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10">
-                              <img src={image} alt={image} width="100%" />
+                              <img src={image} alt={image} style={{ width: "100%" }} />
                             </figure>
                           </div>
                           {/* THUMBNAILS */}
@@ -106,7 +95,7 @@ function Product() {
                               List.multipleimage.map((item,i)=>{
                                 return(
                                   <>
-                                     <div><img src={item[i]} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
+                                     <div><img src={item[i]} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i} /></div>
                                   </>
                                 )
                               })
@@ -130,7 +119,7 @@ function Product() {
                               <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{ width: '90%' }} />
                               </div>
-                              <span className="font-small ml-5 text-muted">{List.rating} (32 reviews)</span>
+                              <span className="font-small ml-5 text-muted">{List.rating} (0 reviews)</span>
                             </div>
                           </div>
                           <hr style={{ margin: "0px", color: "rgb(69 96 147)" }} />
@@ -173,10 +162,11 @@ function Product() {
                               <span className="qty-val">{increment}</span>
                               <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment + 1) }} /></a>
                             </div>
+
                             <div className="product-extra-link2">
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id,List.variant) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant,increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
                               }
                               <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
@@ -186,7 +176,7 @@ function Product() {
                           <div className="font-xs">
                             <ul className="mr-50 float-start">
                               <h6>DELIVERY OPTIONS</h6><br />
-                              <li className="mb-5"><img src='assets/imgs/theme/delivery.png' width="20px" />&nbsp;   Get it by Mon, Oct 17</li>
+                              <li className="mb-5"><img src='assets/imgs/theme/delivery.png' width="20px" />&nbsp;   Get it by 7 days</li>
                               <li className="mb-5"><img src='assets/imgs/theme/paydelivery.png' width="20px" />&nbsp;   Pay on delivery available</li>
                               <li className="mb-5"><img src='assets/imgs/theme/return.png' width="20px" />&nbsp;  Easy 30 days return & exchange available</li>
                               100% Original Products
@@ -215,8 +205,8 @@ function Product() {
                         <div className="tab-content shop_info_tab entry-main-content">
                           <div className="tab-pane fade show active" id="Description">
                             <div className>
-                              <p>Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear furiously this apart.</p>
-                              <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.</p>
+                              <p>{List.description}</p>
+                              {/* <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.</p> */}
                               <ul className="product-more-infor mt-30">
                                 <li><span>Type Of Packing</span> Bottle</li>
                                 <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
@@ -560,7 +550,7 @@ function Product() {
                               <h6 className="text-muted">Total</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">{List.price * increment }</h4>
+                              <h4 className="text-brand text-end">{List.price * increment}</h4>
                             </td>
                           </tr>
 
@@ -574,7 +564,6 @@ function Product() {
                               <h4 className="font-lg text-muted">Using A Promo Code?</h4>
                             </td>
                           </tr>
-
                         </tbody>
                       </table>
                       <div className="d-flex justify-content-between">
@@ -583,206 +572,10 @@ function Product() {
                       </div>
                     </div>
                   </div>
-
-
                 </div>
               </div>
-              <section className="section-padding pb-5">
-                <div className="container">
-                  <div className="section-title wow animate__animated animate__fadeIn">
-                    <h3 className>Daily Best Sells</h3>
-                    <ul className="nav nav-tabs links" id="myTab-2" role="tablist">
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link active" id="nav-tab-one-1" data-bs-toggle="tab" data-bs-target="#tab-one-1" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Featured</button>
-                      </li>
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="nav-tab-two-1" data-bs-toggle="tab" data-bs-target="#tab-two-1" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Popular</button>
-                      </li>
-                      <li className="nav-item" role="presentation">
-                        <button className="nav-link" id="nav-tab-three-1" data-bs-toggle="tab" data-bs-target="#tab-three-1" type="button" role="tab" aria-controls="tab-three" aria-selected="false">New added</button>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
-                      <div className="banner-img style-2">
-                        <div className="banner-text">
-                          <h2 className="mb-100">Bring nature into your home</h2>
-                          <a href="shop-grid-right.html" style={{ fontSize: "20px", width: "130px" }} className="btn btn-xs" >Shop Now
-                            {/* <i className="fi-rs-arrow-small-right" /> */}
-                          </a>
-                        </div>
-
-                      </div>
-                    </div>
-                    <div className="col-lg-9 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
-                      <div className="tab-content" id="myTabContent-1">
-                        <div className="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
-                          <div className="carausel-4-columns-cover arrow-center position-relative">
-                            <div className="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-arrows" />
-                            <div className="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
-                              <div className="product-cart-wrap">
-                                <div className="product-img-action-wrap">
-                                  <div className="product-img product-img-zoom">
-                                    <a href="ShopProduct">
-                                      <img className="default-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
-                                      <img className="hover-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
-                                    </a>
-                                  </div>
-                                  <div className="product-action-1">
-                                    <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                                    <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                                    <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
-                                  </div>
-                                  <div className="product-badges product-badges-position product-badges-mrg">
-                                    <span className="hot">Save 15%</span>
-                                  </div>
-                                </div>
-                                <div className="product-content-wrap">
-                                  <div className="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
-                                  </div>
-                                  <h2><a href="ShopProduct">Seeds of Change Organic Quinoa, Brown</a></h2>
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: '80%' }} />
-                                  </div>
-                                  <div className="product-price mt-10">
-                                    <span>$238.85 </span>
-                                    <span className="old-price">$245.8</span>
-                                  </div>
-                                  <div className="sold mt-15 mb-15">
-                                    <div className="progress mb-5">
-                                      <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                                    </div>
-                                    <span className="font-xs text-heading"> Sold: 90/120</span>
-                                  </div>
-                                  <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                                </div>
-                              </div>
-                              <div className="product-cart-wrap">
-                                <div className="product-img-action-wrap">
-                                  <div className="product-img product-img-zoom">
-                                    <a href="ShopProduct">
-                                      <img className="default-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
-                                      <img className="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
-                                    </a>
-                                  </div>
-                                  <div className="product-action-1">
-                                    <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                                    <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                                    <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
-                                  </div>
-                                  <div className="product-badges product-badges-position product-badges-mrg">
-                                    <span className="new">Save 35%</span>
-                                  </div>
-                                </div>
-                                <div className="product-content-wrap">
-                                  <div className="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
-                                  </div>
-                                  <h2><a href="ShopProduct">All Natural Italian-Style Chicken Meatballs</a></h2>
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: '80%' }} />
-                                  </div>
-                                  <div className="product-price mt-10">
-                                    <span>$238.85 </span>
-                                    <span className="old-price">$245.8</span>
-                                  </div>
-                                  <div className="sold mt-15 mb-15">
-                                    <div className="progress mb-5">
-                                      <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                                    </div>
-                                    <span className="font-xs text-heading"> Sold: 90/120</span>
-                                  </div>
-                                  <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                                </div>
-                              </div>
-                              <div className="product-cart-wrap">
-                                <div className="product-img-action-wrap">
-                                  <div className="product-img product-img-zoom">
-                                    <a href="ShopProduct">
-                                      <img className="default-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
-                                      <img className="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
-                                    </a>
-                                  </div>
-                                  <div className="product-action-1">
-                                    <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                                    <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                                    <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
-                                  </div>
-                                  <div className="product-badges product-badges-position product-badges-mrg">
-                                    <span className="sale">Sale</span>
-                                  </div>
-                                </div>
-                                <div className="product-content-wrap">
-                                  <div className="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
-                                  </div>
-                                  <h2><a href="ShopProduct">Angie’s Boomchickapop Sweet and womnies</a></h2>
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: '80%' }} />
-                                  </div>
-                                  <div className="product-price mt-10">
-                                    <span>$238.85 </span>
-                                    <span className="old-price">$245.8</span>
-                                  </div>
-                                  <div className="sold mt-15 mb-15">
-                                    <div className="progress mb-5">
-                                      <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                                    </div>
-                                    <span className="font-xs text-heading"> Sold: 90/120</span>
-                                  </div>
-                                  <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                                </div>
-                              </div>
-                              <div className="product-cart-wrap">
-                                <div className="product-img-action-wrap">
-                                  <div className="product-img product-img-zoom">
-                                    <a href="ShopProduct">
-                                      <img className="default-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
-                                      <img className="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
-                                    </a>
-                                  </div>
-                                  <div className="product-action-1">
-                                    <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                                    <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                                    <a aria-label="Compare" className="action-btn small hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a>
-                                  </div>
-                                  <div className="product-badges product-badges-position product-badges-mrg">
-                                    <span className="best">Best sale</span>
-                                  </div>
-                                </div>
-                                <div className="product-content-wrap">
-                                  <div className="product-category">
-                                    <a href="shop-grid-right.html">Hodo Foods</a>
-                                  </div>
-                                  <h2><a href="ShopProduct">Foster Farms Takeout Crispy Classic </a></h2>
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: '80%' }} />
-                                  </div>
-                                  <div className="product-price mt-10">
-                                    <span>$238.85 </span>
-                                    <span className="old-price">$245.8</span>
-                                  </div>
-                                  <div className="sold mt-15 mb-15">
-                                    <div className="progress mb-5">
-                                      <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                                    </div>
-                                    <span className="font-xs text-heading"> Sold: 90/120</span>
-                                  </div>
-                                  <a href="shop-cart.html" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                                </div>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section><br />
             </div>
+            <BestSellers />
           </div>
         </div>
       </main>

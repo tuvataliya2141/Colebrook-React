@@ -56,9 +56,9 @@ function Header({ Wishlist ,Crat }) {
                     <div className="header-action-icon-2">
                       <Link to="/Cart">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
-                        {/* {
-                          Crat == null ? " " : <span className="pro-count blue">{Crat}</span>
-                        } */}
+                        {
+                          // Crat == null ? " " : <span className="pro-count blue">{Crat}</span>
+                        }
                       </Link>
                     </div>
                     <div className="header-action-icon-2">
@@ -132,7 +132,7 @@ function Header({ Wishlist ,Crat }) {
                         <Link to="/">Women's Wear </Link>
                       </li>
                       <li>
-                        <Link to="/Terms-Service">Terms Service</Link>
+                        <Link to="/Privacy-Policy">Privacy Policy</Link>
                       </li>
                       <li>
                         <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>

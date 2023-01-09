@@ -23,7 +23,10 @@ const urlConstant = {
   },
   Checkout: { 
     PostCheckout: `${apiURL}Checkout`,
-    GetPaymentTypes: `${apiURL}payment-types` 
+    GetPaymentTypes: `${apiURL}payment-types` ,
+    Countries : `${apiURL}countries`,
+    States : `${apiURL}states-by-country`,
+    city : `${apiURL}cities-by-state`
   },
   Contact: { PostContact: `${apiURL}contact` },
   ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon/apply` },

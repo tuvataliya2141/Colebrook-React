@@ -20,8 +20,9 @@ function Checkout() {
     const [LastName, SetLastName] = useState("");
     const [Address1, SetAddress1] = useState("");
     const [Address2, SetAddress2] = useState("");
-    const [state, Setstate] = useState("");
+    const [state, Setstate] = useState(null);
     const [city, Setcity] = useState("");
+    const [Country, SetCountry] = useState("");
     const [PostCode, SetPostCode] = useState("");
     const [PhoneNumber, SetPhoneNumber] = useState("");
     const [Email, SetEmail] = useState("");
@@ -29,6 +30,9 @@ function Checkout() {
     const [AdditionalInfomation, SetAdditionalInfomation] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [ListCart, setListCart] = useState([]);
+    const [ListStates, setListStates] = useState([]);
+    const [ListCountries, setListCountries] = useState([]);
+    const [ListCity, setListCity] = useState([]);
     const [PaymentTypes, setPaymentTypes] = useState([]);
 
     const SubmitHandler = async (e) => {
@@ -66,7 +70,7 @@ function Checkout() {
                 setIsLoading(false)
             });
     }
-    debugger
+
     function GetPaymentTypes() {
         setIsLoading(true)
         const PaymentTypes = `${urlConstant.Checkout.GetPaymentTypes}`;
@@ -80,11 +84,55 @@ function Checkout() {
             });
     }
 
+    function CountriesGet() {
+        setIsLoading(true)
+        const GetCountries = `${urlConstant.Checkout.Countries}`;
+        common.httpGet(GetCountries).then(function (res) {
+            setListCountries(res.data.data);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
 
+    function CityGet() {
+        setIsLoading(true)
+        debugger
+        const Getcity = `${urlConstant.Checkout.city}/${state}`;
+        common.httpGet(Getcity).then(function (res) {
+            setListCity(res.data.data);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
+
+    function StatesGet() {
+        debugger
+        setIsLoading(true)
+        const StatesData = `${urlConstant.Checkout.States}/${Country}`;
+        common.httpGet(StatesData).then(function (res) {
+            setListStates(res.data.data);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
+
+    const Sub_Total_price = ListCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
     useEffect(() => {
         GetCart();
         GetPaymentTypes();
-    }, [])
+        CountriesGet();
+        StatesGet();
+        CityGet();
+    }, [Country,state])
 
     return (
         <div>
@@ -148,32 +196,64 @@ function Checkout() {
                                     <div className="row shipping_calculator">
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
-                                                <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }}>
-                                                    <option value>Select an option...</option>
-                                                    <option value="AX">Aland Islands</option>
-                                                    <option value="EH">Western Sahara</option>
-                                                    <option value="WS">Western Samoa</option>
-                                                    <option value="YE">Yemen</option>
-                                                    <option value="ZM">Zambia</option>
-                                                    <option value="ZW">Zimbabwe</option>
+                                                <select className="form-control select-active" value={Country || ""} onChange={(e) => { SetCountry(e.target.value) }}>
+                                                    <option value="null">Select an Country...</option>
+                                                    {
+                                                        ListCountries.map((item, i) => {
+                                                            return (
+                                                                <>
+                                                                    <option key={i} value={item.id}>{item.name}</option>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
                                         <div className="form-group col-lg-6">
-                                            <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} />
+                                            {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
+
+                                            <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }} disabled={Country == null || ListStates.length == 0}>
+                                                    <option value="null">Select an State...</option>
+                                                    {
+                                                        ListStates.map((item, i) => {
+                                                            return (
+                                                                <>
+                                                                    <option key={i} value={item.id}>{item.name}</option>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
                                         </div>
                                     </div>
                                     <div className="row">
+                                    <div className="form-group col-lg-6">
+                                            {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
+
+                                            <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} disabled={state == null || ListCity.length == 0}>
+                                                    <option value="null">Select an city...</option>
+                                                    {
+                                                        ListCity.map((item, i) => {
+                                                            return (
+                                                                <>
+                                                                    <option key={i} value={item.id}>{item.name}</option>
+                                                                </>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                        </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
                                         </div>
-                                        <div className="form-group col-lg-6">
-                                            <input required type="text" name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value) }} />
-                                        </div>
                                     </div>
                                     <div className="row">
-                                        <div className="form-group col-lg-6">
+                                        {/* <div className="form-group col-lg-6">
                                             <input required type="text" name="cname" placeholder="Company Name" value={company || ""} onChange={(e) => { Setcompany(e.target.value) }} />
+                                        </div> */}
+                                         <div className="form-group col-lg-6">
+                                            <input required type="text" name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value) }} />
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
@@ -250,7 +330,7 @@ function Checkout() {
                                                     <h6 className="text-muted">Subtotal</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">$45.5</h4>
+                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -278,7 +358,7 @@ function Checkout() {
                                                     <h6 className="text-muted">Total</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">$45.5</h4>
+                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -293,11 +373,11 @@ function Checkout() {
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
                                     </div> */}
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod"  />
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod" />
                                         <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                                     </div>
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="online"  />
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="online" />
                                         <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>
                                     </div>
                                 </div>

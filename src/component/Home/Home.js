@@ -8,6 +8,7 @@ import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import BestSellers from '../BestSellers/BestSellers';
 
 function Home() {
   let common = new CommonService();
@@ -352,22 +353,25 @@ function Home() {
                   <button className="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Milks &amp; Dairies</button>
+                  <button className="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Shirt</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Coffes &amp; Teas</button>
+                  <button className="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">T-shirt</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-four" data-bs-toggle="tab" data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four" aria-selected="false">Pet Foods</button>
+                  <button className="nav-link" id="nav-tab-four" data-bs-toggle="tab" data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four" aria-selected="false">Shot</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-five" data-bs-toggle="tab" data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five" aria-selected="false">Meats</button>
+                  <button className="nav-link" id="nav-tab-five" data-bs-toggle="tab" data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five" aria-selected="false">Topwear</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-six" data-bs-toggle="tab" data-bs-target="#tab-six" type="button" role="tab" aria-controls="tab-six" aria-selected="false">Vegetables</button>
+                  <button className="nav-link" id="nav-tab-six" data-bs-toggle="tab" data-bs-target="#tab-six" type="button" role="tab" aria-controls="tab-six" aria-selected="false">Dress</button>
                 </li>
                 <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-seven" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">Fruits</button>
+                  <button className="nav-link" id="nav-tab-seven" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">Underwear</button>
+                </li>
+                <li className="nav-item" role="presentation">
+                  <button className="nav-link" id="nav-tab-eigth" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">High Brand</button>
                 </li>
               </ul>
             </div>
@@ -405,7 +409,7 @@ function Home() {
                                   {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                 </div>
                                 <div className="product-badges product-badges-position product-badges-mrg">
-                                  <span className="hot">-17%</span>
+                                  {/* <span className="hot">-17%</span> */}
                                 </div>
                               </div>
                               <div className="product-content-wrap">
@@ -425,7 +429,8 @@ function Home() {
                                     <span className="old-price">${item.base_discounted_price + 200}</span>
                                   </div>
                                   <div className="add-cart">
-                                    <a className="add" onClick={() => { CartPost(item.id) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a>
+                                    {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
+                                    <Link to={`/${item.id}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
                                   </div>
                                 </div>
                               </div>
@@ -447,200 +452,7 @@ function Home() {
 
 
         {/* old */}
-        <section className="section-padding pb-5">
-          <div className="container">
-            <div className="section-title wow animate__animated animate__fadeIn">
-              <h3 className>Daily Best Sells</h3>
-              <ul className="nav nav-tabs links" id="myTab-2" role="tablist">
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link active" id="nav-tab-one-1" data-bs-toggle="tab" data-bs-target="#tab-one-1" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Featured</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-two-1" data-bs-toggle="tab" data-bs-target="#tab-two-1" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Popular</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-three-1" data-bs-toggle="tab" data-bs-target="#tab-three-1" type="button" role="tab" aria-controls="tab-three" aria-selected="false">New added</button>
-                </li>
-              </ul>
-            </div>
-            <div className="row">
-              <div className="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
-                <div className="banner-img style-2">
-                  <div className="banner-text">
-                    <h2 className="mb-45" style={{ color: "white" }}>Bring nature into your home</h2>
-                    <a href="shop-grid-right.html" style={{ fontSize: "20px", width: "130px", backgroundColor: "#837c7c"}} className="btn btn-xs" >Shop Now
-                      {/* <i className="fi-rs-arrow-small-right" /> */}
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-              <div className="col-lg-9 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
-                <div className="tab-content" id="myTabContent-1">
-                  <div className="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
-                    <div className="carausel-4-columns-cover arrow-center position-relative">
-                      <div className="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-arrows" />
-                      <div className="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
-                        <div className="product-cart-wrap">
-                          <div className="product-img-action-wrap">
-                            <div className="product-img product-img-zoom">
-                              <Link to={'1'}>
-                                <img className="default-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
-                                <img className="hover-img" src="assets/imgs/shop/product-1-1.jpg" alt="/" />
-                              </Link>
-                            </div>
-                            <div className="product-action-1">
-                              <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                              <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                              <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
-                            </div>
-                            <div className="product-badges product-badges-position product-badges-mrg">
-                              <span className="hot">Save 15%</span>
-                            </div>
-                          </div>
-                          <div className="product-content-wrap">
-                            <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><Link to={'1'}>Seeds of Change Organic Quinoa, Brown</Link></h2>
-                            <div className="product-rate d-inline-block">
-                              <div className="product-rating" style={{ width: '80%' }} />
-                            </div>
-                            <div className="product-price mt-10">
-                              <span>$238.85 </span>
-                              <span className="old-price">$245.8</span>
-                            </div>
-                            <div className="sold mt-18 mb-25">
-                              <div className="progress mb-5">
-                                <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                              </div>
-                              <span className="font-xs text-heading"> Sold: 90/120</span>
-                            </div>
-                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                          </div>
-                        </div>
-                        <div className="product-cart-wrap">
-                          <div className="product-img-action-wrap">
-                            <div className="product-img product-img-zoom">
-                              <Link to={'1'}>
-                                <img className="default-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
-                                <img className="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="/" />
-                              </Link>
-                            </div>
-                            <div className="product-action-1">
-                              <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                              <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                              <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
-                            </div>
-                            <div className="product-badges product-badges-position product-badges-mrg">
-                              <span className="new">Save 35%</span>
-                            </div>
-                          </div>
-                          <div className="product-content-wrap">
-                            <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><Link to={'1'}>All Natural Italian-Style Chicken Meatballs</Link></h2>
-                            <div className="product-rate d-inline-block">
-                              <div className="product-rating" style={{ width: '80%' }} />
-                            </div>
-                            <div className="product-price mt-10">
-                              <span>$238.85 </span>
-                              <span className="old-price">$245.8</span>
-                            </div>
-                            <div className="sold mt-18 mb-25">
-                              <div className="progress mb-5">
-                                <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                              </div>
-                              <span className="font-xs text-heading"> Sold: 90/120</span>
-                            </div>
-                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                          </div>
-                        </div>
-                        <div className="product-cart-wrap">
-                          <div className="product-img-action-wrap">
-                            <div className="product-img product-img-zoom">
-                              <Link to={'1'}>
-                                <img className="default-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
-                                <img className="hover-img" src="assets/imgs/shop/product-3-2.jpg" alt="/" />
-                              </Link>
-                            </div>
-                            <div className="product-action-1">
-                              <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                              <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                              <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
-                            </div>
-                            <div className="product-badges product-badges-position product-badges-mrg">
-                              <span className="sale">Sale</span>
-                            </div>
-                          </div>
-                          <div className="product-content-wrap">
-                            <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><Link to={'1'}>Angie’s Boomchickapop Sweet and womnies</Link></h2>
-                            <div className="product-rate d-inline-block">
-                              <div className="product-rating" style={{ width: '80%' }} />
-                            </div>
-                            <div className="product-price mt-10">
-                              <span>$238.85 </span>
-                              <span className="old-price">$245.8</span>
-                            </div>
-                            <div className="sold mt-18 mb-25">
-                              <div className="progress mb-5">
-                                <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                              </div>
-                              <span className="font-xs text-heading"> Sold: 90/120</span>
-                            </div>
-                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                          </div>
-                        </div>
-                        <div className="product-cart-wrap">
-                          <div className="product-img-action-wrap">
-                            <div className="product-img product-img-zoom">
-                              <Link to={'1'}>
-                                <img className="default-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
-                                <img className="hover-img" src="assets/imgs/shop/product-4-2.jpg" alt="/" />
-                              </Link>
-                            </div>
-                            <div className="product-action-1">
-                              <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a>
-                              <a aria-label="Add To Wishlist" className="action-btn small hover-up" href="wishlist"><i className="fi-rs-heart" /></a>
-                              <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
-                            </div>
-                            <div className="product-badges product-badges-position product-badges-mrg">
-                              <span className="best">Best sale</span>
-                            </div>
-                          </div>
-                          <div className="product-content-wrap">
-                            <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
-                            </div>
-                            <h2><Link to={'1'}>Foster Farms Takeout Crispy Classic </Link></h2>
-                            <div className="product-rate d-inline-block">
-                              <div className="product-rating" style={{ width: '80%' }} />
-                            </div>
-                            <div className="product-price mt-10">
-                              <span>$238.85 </span>
-                              <span className="old-price">$245.8</span>
-                            </div>
-                            <div className="sold mt-18 mb-25">
-                              <div className="progress mb-5">
-                                <div className="progress-bar" role="progressbar" style={{ width: '50%' }} aria-valuemin={0} aria-valuemax={100} />
-                              </div>
-                              <span className="font-xs text-heading"> Sold: 90/120</span>
-                            </div>
-                            <a href="/" className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section><br />
+        <BestSellers/>
 
 
         <section className="newsletter mb-15 wow animate__animated animate__fadeIn">
