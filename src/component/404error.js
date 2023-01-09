@@ -17,7 +17,7 @@ function Error() {
                 <h1 className="display-2 mb-30">Page Not Found</h1>
                 <p className="font-lg text-grey-700 mb-30">
                   The link you clicked may be broken or the page may have been removed.<br />
-                  visit the <a href="index.html"> <span> Homepage</span></a> or <a href="page-contact.html"><span>Contact us</span></a> about the problem
+                  visit the <a> <span> Homepage</span></a> or <a ><span>Contact us</span></a> about the problem
                 </p>
                 <div className="search-form">
                   <form action="#">

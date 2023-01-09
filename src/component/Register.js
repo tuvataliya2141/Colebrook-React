@@ -57,7 +57,7 @@ function Register() {
         <div className="page-header breadcrumb-wrap">
             <div className="container">
             <div className="breadcrumb">
-                <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                <a  rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                 <span /> Create an Account <span />
             </div>
             </div>

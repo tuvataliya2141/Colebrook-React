@@ -132,6 +132,9 @@ function Header({ Wishlist ,Crat }) {
                         <Link to="/">Women's Wear </Link>
                       </li>
                       <li>
+                        <Link to="/Contact">Contact</Link>
+                      </li>
+                      <li>
                         <Link to="/Privacy-Policy">Privacy Policy</Link>
                       </li>
                       <li>
@@ -169,7 +172,7 @@ function Header({ Wishlist ,Crat }) {
               <div className="header-action-right d-block d-lg-none">
                 <div className="header-action-2">
                   <div className="header-action-icon-2">
-                    <a href="shop-wishlist.html">
+                    <a >
                       <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
                       <span className="pro-count white">4</span>
                     </a>
@@ -195,7 +198,7 @@ function Header({ Wishlist ,Crat }) {
         <div className="mobile-header-wrapper-inner">
           <div className="mobile-header-top">
             <div className="mobile-header-logo">
-              <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+              <a ><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
             </div>
             <div className="mobile-menu-close close-style-wrap close-style-position-inherit">
               <button className="close-style search-close">
@@ -215,10 +218,10 @@ function Header({ Wishlist ,Crat }) {
               <nav>
                 <ul className="mobile-menu font-heading">
                   <li className="menu-item-has-children">
-                    <a href="index.html">Home</a>
+                    <a >Home</a>
                     <ul className="dropdown">
-                      <li><a href="index.html">Home 1</a></li>
-                      <li><a href="index-2.html">Home 2</a></li>
+                      <li><a >Home 1</a></li>
+                      <li><a >Home 2</a></li>
                       <li><a href="index-3.html">Home 3</a></li>
                       <li><a href="index-4.html">Home 4</a></li>
                       <li><a href="index-5.html">Home 5</a></li>
@@ -243,7 +246,7 @@ function Header({ Wishlist ,Crat }) {
                         </ul>
                       </li>
                       <li><a href="shop-filter.html">Shop – Filter</a></li>
-                      <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
+                      <li><a >Shop – Wishlist</a></li>
                       <li><a href="shop-cart.html">Shop – Cart</a></li>
                       <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                       <li><a href="shop-compare.html">Shop – Compare</a></li>

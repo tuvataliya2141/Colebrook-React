@@ -20,15 +20,16 @@ function Product() {
 
 
   const [List, setList] = useState([]);
+  const [size, setsize] = useState([]);
+  const [multipleimage, setmultipleimage] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
 
-  
+
 
   function GetSingelProducts() {
     setIsLoading(true)
-
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
     const Data = { product_id: id.id, user_id }
     axios.post(GetAllProducts, Data, {
@@ -36,6 +37,8 @@ function Product() {
     }).then(function (res) {
       setIsLoading(false);
       setList(res.data.data);
+      setsize(res.data.data.multipleSize);
+      setmultipleimage(res.data.data.multipleimage);
       // ToasterSuccess("Success");
     })
       .catch(function (error) {
@@ -47,7 +50,6 @@ function Product() {
 
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
-  const image1 = List.multipleimage == '' ? defaultImg : List.multipleimage;
 
 
   useEffect(() => {
@@ -90,19 +92,15 @@ function Product() {
                           </div>
                           {/* THUMBNAILS */}
                           <div className="slider-nav-thumbnails" style={{ display: "flex" }}>
-
-                            {/* {
-                              List.multipleimage.map((item,i)=>{
-                                return(
+                            {
+                              multipleimage.map((item, i) => {
+                                return (
                                   <>
-                                     <div><img src={item[i]} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i} /></div>
+                                    <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i} /></div>
                                   </>
                                 )
                               })
-                            }  */}
-
-                            <div><img src={List.multipleimage} alt="product image" width="150px" style={{ borderRadius: "10px" }} /></div>
-
+                            }
                           </div>
                         </div>
                         {/* End Gallery */}
@@ -140,33 +138,29 @@ function Product() {
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <ul className="list-filter size-filter font-small">
-                              {/* {
-                                  size.map((item,i)=>{
-                                  return(
+                              {
+                                size.map((item, i) => {
+
+                                  return (
                                     <>
-                                      <li><a href="#">{item}</a></li>
+                                      <li><a>{item}</a></li>
                                     </>
                                   )
                                 })
-                              } */}
-                              <li><a>S</a></li>
-                              <li className="active"><a >M</a></li>
-                              <li><a>L</a></li>
-                              <li><a>XL</a></li>
-                              <li><a>XXL</a></li>
+                              }
                             </ul>
                           </div>
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
-                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment - 1) }} /></a>
+                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment == 1 ?  1 : increment -1) }} /></a>
                               <span className="qty-val">{increment}</span>
-                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment + 1) }} /></a>
+                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment == List.InStock ? increment + 1 : increment ) }} /></a>
                             </div>
 
                             <div className="product-extra-link2">
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant,increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant, increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
                               }
                               <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
@@ -522,7 +516,7 @@ function Product() {
                               <h6 className="text-muted">Subtotal</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">{List.price * increment}</h4>
+                              <h4 className="text-brand text-end">₹{List.price * increment}</h4>
                             </td>
                           </tr>
                           <tr>
@@ -550,7 +544,7 @@ function Product() {
                               <h6 className="text-muted">Total</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">{List.price * increment}</h4>
+                              <h4 className="text-brand text-end">₹{List.price * increment}</h4>
                             </td>
                           </tr>
 

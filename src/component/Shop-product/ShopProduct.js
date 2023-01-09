@@ -108,7 +108,7 @@ function ShopProduct() {
                                                     </div>
                                                     <div className="product-content-wrap">
                                                         <div className="product-category">
-                                                            <a href="shop-grid-right.html">{item.category}</a>
+                                                            <a>{item.category}</a>
                                                         </div>
                                                         <h2><a href="/Product"> {Name.length > 13
                                                                                     ? `${Name}...`
@@ -362,7 +362,7 @@ function ShopProduct() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <a href="shop-grid-right.html" className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
+                                {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                             </div>
                             {/* Product sidebar Widget */}
                         </div>

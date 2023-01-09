@@ -17,7 +17,6 @@ function Cart() {
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [increment, SetIncrement] = useState(1);
     const [CouponCode, SetCouponCode] = useState('');
 
 
@@ -27,7 +26,7 @@ function Cart() {
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
 
-    
+
 
 
     function GetCart() {
@@ -38,7 +37,7 @@ function Cart() {
             setIsLoading(false)
         })
             .catch(function (error) {
-                ToasterError("Error");
+                // ToasterError("Error");
                 setIsLoading(false)
             });
     }
@@ -69,21 +68,21 @@ function Cart() {
 
 
     const Increment = (id, item) => {
-        List.map((current)=>{
-            if (current.id = id) {
-                const data1 = item + 1;
-                alert(data1)
-                SetIncrement(data1)
-            }else{
-                alert('error')
-            }
-        })    
+        const Data = { cart_ids: id, cart_quantities: item + 1 }
+        const updateProjectRecourcedata = `${urlConstant.Cart.UpdateCart}`
+        common.httpPost(updateProjectRecourcedata, Data)
+            .then((result) => {
+                GetCart();
+            })
     }
 
     const Decrement = (id, item) => {
-        const data = increment - 1;
-        alert(data)
-        SetIncrement(data)
+        const Data = { cart_ids: id, cart_quantities: item - 1 }
+        const updateProjectRecourcedata = `${urlConstant.Cart.UpdateCart}`
+        common.httpPost(updateProjectRecourcedata, Data)
+            .then((result) => {
+                GetCart();
+            })
     }
     const Sub_Total_price = List.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
 
@@ -100,7 +99,7 @@ function Cart() {
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
                         <div className="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                            <a  rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                             <span /> Shop
                             <span /> Cart
                         </div>

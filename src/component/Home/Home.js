@@ -414,7 +414,7 @@ function Home() {
                               </div>
                               <div className="product-content-wrap">
                                 <div className="product-category">
-                                  <a href="shop-grid-right.html">{item.category}</a>
+                                  <a >{item.category}</a>
                                 </div>
                                 <h2><Link to={'1'}>{Name}</Link></h2>
                                 <div className="product-rate-cover">

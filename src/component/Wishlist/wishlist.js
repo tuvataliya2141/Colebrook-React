@@ -75,7 +75,7 @@ function Wishlist() {
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
                         <div className="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                            <a rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                             <span /> wishlist
                         </div>
                     </div>
@@ -117,7 +117,7 @@ function Wishlist() {
                                                 List == '' ? <h1 style={{ textAlign: "center" }}>Oops, no product in your list</h1> :
                                                     currentPosts.map((item, i) => {
 
-                                                        const { name, thumbnail_image, base_price, rating, id, InStock,variant } = item.product;
+                                                        const { name, thumbnail_image, base_price, rating, id, InStock, variant } = item.product;
 
                                                         const iamge = thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : thumbnail_image;
 
@@ -149,7 +149,7 @@ function Wishlist() {
                                                                 <td className="text-right" data-title="Cart">
                                                                     {
                                                                         InStock == 0 ? <button className="btn btn-sm" disabled >Add to cart</button> :
-                                                                            <button className="btn btn-sm" onClick={() => { CartPost(id,variant) }} >Add to cart</button>
+                                                                            <button className="btn btn-sm" onClick={() => { CartPost(id, variant) }} >Add to cart</button>
                                                                     }
                                                                 </td>
                                                                 <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>

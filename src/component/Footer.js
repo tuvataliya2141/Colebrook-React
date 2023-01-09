@@ -10,7 +10,7 @@ function Footer() {
                 <div className="col">
                 <div className="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay={0}>
                     <div className="logo mb-30">
-                    <a href="index.html" className="mb-15"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                    <a  className="mb-15"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
                     <p className="font-lg text-heading">Awesome grocery store website template</p>
                     </div>
                     <ul className="contact-infor">

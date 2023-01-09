@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
-
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterWarning, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 
-
 function Checkout() {
     let common = new CommonService();
     const { Loding, user_id, ApplyCoupon } = useAppContext();
-
 
     const [CouponCode, SetCouponCode] = useState('');
     const [FirstName, SetFirstName] = useState("");
@@ -44,7 +41,7 @@ function Checkout() {
         }
 
         try {
-            const data = { CouponCode, FirstName, LastName, Address1, Address2, state, city, PostCode, PhoneNumber, Email, company, AdditionalInfomation };
+            const data = { CouponCode, FirstName, LastName, Address1, Address2, state, Country, city, PostCode, PhoneNumber, Email, company, AdditionalInfomation };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             await common.httpPost(ContactData, data).then(() => {
                 ToasterSuccess("Success...!!");
@@ -99,7 +96,7 @@ function Checkout() {
 
     function CityGet() {
         setIsLoading(true)
-        debugger
+
         const Getcity = `${urlConstant.Checkout.city}/${state}`;
         common.httpGet(Getcity).then(function (res) {
             setListCity(res.data.data);
@@ -112,7 +109,7 @@ function Checkout() {
     }
 
     function StatesGet() {
-        debugger
+
         setIsLoading(true)
         const StatesData = `${urlConstant.Checkout.States}/${Country}`;
         common.httpGet(StatesData).then(function (res) {
@@ -126,13 +123,14 @@ function Checkout() {
     }
 
     const Sub_Total_price = ListCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
+
     useEffect(() => {
         GetCart();
         GetPaymentTypes();
         CountriesGet();
         StatesGet();
         CityGet();
-    }, [Country,state])
+    }, [Country, state])
 
     return (
         <div>
@@ -143,7 +141,7 @@ function Checkout() {
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
                         <div className="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                            <a rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                             <span /> Shop
                             <span /> Checkout
                         </div>
@@ -211,38 +209,36 @@ function Checkout() {
                                             </div>
                                         </div>
                                         <div className="form-group col-lg-6">
-                                            {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-
                                             <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }} disabled={Country == null || ListStates.length == 0}>
-                                                    <option value="null">Select an State...</option>
-                                                    {
-                                                        ListStates.map((item, i) => {
-                                                            return (
-                                                                <>
-                                                                    <option key={i} value={item.id}>{item.name}</option>
-                                                                </>
-                                                            )
-                                                        })
-                                                    }
-                                                </select>
+                                                <option value="null">Select an State...</option>
+                                                {
+                                                    ListStates.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <option key={i} value={item.id}>{item.name}</option>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="row">
-                                    <div className="form-group col-lg-6">
+                                        <div className="form-group col-lg-6">
                                             {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
 
                                             <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} disabled={state == null || ListCity.length == 0}>
-                                                    <option value="null">Select an city...</option>
-                                                    {
-                                                        ListCity.map((item, i) => {
-                                                            return (
-                                                                <>
-                                                                    <option key={i} value={item.id}>{item.name}</option>
-                                                                </>
-                                                            )
-                                                        })
-                                                    }
-                                                </select>
+                                                <option value="null">Select an city...</option>
+                                                {
+                                                    ListCity.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <option key={i} value={item.id}>{item.name}</option>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
@@ -252,7 +248,7 @@ function Checkout() {
                                         {/* <div className="form-group col-lg-6">
                                             <input required type="text" name="cname" placeholder="Company Name" value={company || ""} onChange={(e) => { Setcompany(e.target.value) }} />
                                         </div> */}
-                                         <div className="form-group col-lg-6">
+                                        <div className="form-group col-lg-6">
                                             <input required type="text" name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value) }} />
                                         </div>
                                         <div className="form-group col-lg-6">
@@ -326,16 +322,16 @@ function Checkout() {
                                     <table className="table no-border">
                                         <tbody>
                                             <tr>
+                                                <td scope="col" colSpan={2}>
+                                                    <div className="divider-2 mt-10 mb-10" />
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td className="cart_total_label">
                                                     <h6 className="text-muted">Subtotal</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
                                                     <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td scope="col" colSpan={2}>
-                                                    <div className="divider-2 mt-10 mb-10" />
                                                 </td>
                                             </tr>
                                             <tr>

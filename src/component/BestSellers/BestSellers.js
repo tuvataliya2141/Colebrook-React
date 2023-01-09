@@ -25,7 +25,7 @@ function BestSellers() {
                 <div className="banner-img style-2">
                   <div className="banner-text">
                     <h2 className="mb-45" style={{ color: "white" }}>Bring nature into your home</h2>
-                    <a href="shop-grid-right.html" style={{ fontSize: "20px", width: "130px", backgroundColor: "#837c7c"}} className="btn btn-xs" >Shop Now
+                    <a  style={{ fontSize: "20px", width: "130px", backgroundColor: "#837c7c"}} className="btn btn-xs" >Shop Now
                       {/* <i className="fi-rs-arrow-small-right" /> */}
                     </a>
                   </div>
@@ -57,7 +57,7 @@ function BestSellers() {
                           </div>
                           <div className="product-content-wrap">
                             <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
+                              <a >Hodo Foods</a>
                             </div>
                             <h2><Link to={'1'}>Seeds of Change Organic Quinoa, Brown</Link></h2>
                             <div className="product-rate d-inline-block">
@@ -95,7 +95,7 @@ function BestSellers() {
                           </div>
                           <div className="product-content-wrap">
                             <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
+                              <a >Hodo Foods</a>
                             </div>
                             <h2><Link to={'1'}>All Natural Italian-Style Chicken Meatballs</Link></h2>
                             <div className="product-rate d-inline-block">
@@ -133,7 +133,7 @@ function BestSellers() {
                           </div>
                           <div className="product-content-wrap">
                             <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
+                              <a >Hodo Foods</a>
                             </div>
                             <h2><Link to={'1'}>Angie’s Boomchickapop Sweet and womnies</Link></h2>
                             <div className="product-rate d-inline-block">
@@ -171,7 +171,7 @@ function BestSellers() {
                           </div>
                           <div className="product-content-wrap">
                             <div className="product-category">
-                              <a href="shop-grid-right.html">Hodo Foods</a>
+                              <a >Hodo Foods</a>
                             </div>
                             <h2><Link to={'1'}>Foster Farms Takeout Crispy Classic </Link></h2>
                             <div className="product-rate d-inline-block">
