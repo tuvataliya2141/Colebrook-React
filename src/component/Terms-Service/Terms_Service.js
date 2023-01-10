@@ -11,7 +11,7 @@ function Terms_Service() {
         <div className="page-header breadcrumb-wrap">
             <div className="container">
             <div className="breadcrumb">
-                <a  rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                <a href='#' rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                 <span /> Pages <span /> Terms of Service
             </div>
             </div>

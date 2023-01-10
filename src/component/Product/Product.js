@@ -160,7 +160,7 @@ function Product() {
                             <div className="product-extra-link2">
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant, increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant[0].variant, increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
                               }
                               <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
                               {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}

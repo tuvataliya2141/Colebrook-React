@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
 import Footer from '../Footer'
 import Header from '../Header'
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
-import { ToasterSuccess, ToasterWarning, ToasterError } from "../../common/toaster";
+import { ToasterWarning } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
