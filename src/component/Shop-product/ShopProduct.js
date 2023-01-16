@@ -15,6 +15,9 @@ function ShopProduct() {
     let common = new CommonService();
 
     const [List, setList] = useState([]);
+    const [price, setPrice ] = useState(40);
+
+
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage, setPostsPerPage] = useState(20);
@@ -23,11 +26,20 @@ function ShopProduct() {
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
     const Getlength = List.length;
 
+    const handleInput = (e)=>{
+        setPrice( e.target.value );
+      }
+
+      const hotels = [
+        { name: "A", price: 40  },
+        { name: "B", price: 50  },
+        { name: "C", price: 60  }
+      ];
 
     function GetProducts() {
         setIsLoading(true)
         const GetAllProducts = `${urlConstant.Products.GetProducts}`;
-        common.httpGet(GetAllProducts).then(function (res) {
+        axios.get(GetAllProducts).then(function (res) {
             setIsLoading(false);
             setList(res.data.data);
         })
@@ -83,10 +95,9 @@ function ShopProduct() {
                             <div className="row product-grid">
                                 {
                                     currentPosts.map((item, i) => {
-
-
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                                         const Name = item.name.substring(0,20);
+                                       
                                         return (
 
                                             <div className="col-lg-1-5 col-md-4 col-12 col-sm-6" key={item.id}>
@@ -124,8 +135,8 @@ function ShopProduct() {
                                                         </div>
                                                         <div className="product-card-bottom">
                                                             <div className="product-price">
-                                                                <span>${item.base_discounted_price}</span>
-                                                                <span className="old-price">${item.base_price}</span>
+                                                                <span>₹{item.base_discounted_price}</span>
+                                                                <span className="old-price">₹{item.base_price}</span>
                                                             </div>
                                                             <div className="add-cart">
                                                                 <a className="add" onClick={()=>{CartPost(item.id,item.variants.variant)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
@@ -160,11 +171,16 @@ function ShopProduct() {
                                 <h5 className="section-title style-1 mb-30">Fill by price</h5>
                                 <div className="price-filter">
                                     <div className="price-filter-inner">
-                                        <div id="slider-range" className="mb-20" />
+                                        {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
-                                            <div className="caption">From: <strong id="slider-range-value1" className="text-brand" /></div>
-                                            <div className="caption">To: <strong id="slider-range-value2" className="text-brand" /></div>
-                                        </div>
+                                            <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
+                                            <div className="caption"><h6>₹100 - ₹50000 </h6> <strong id="slider-range-value2" className="text-brand" /></div>
+                                        </div> 
+                                         <input type="range" name="price" onInput={ handleInput } />
+                                         <h1>Price: { price }</h1>
+                                         { hotels.filter( hotel => { return hotel.price > parseInt(price, 10) }).map( hotel => {
+                                                return <p key={hotel.name}>{ hotel.name } | { hotel.price } &euro; </p>
+                                            })} 
                                     </div>
                                 </div>
                                 <div className="list-group">

@@ -34,7 +34,6 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  debugger
   function CartPost(id, variant, increment) {
     try {
       setIsLoading(true)

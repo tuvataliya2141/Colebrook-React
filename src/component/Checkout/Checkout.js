@@ -7,6 +7,7 @@ import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterWarning, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
+import axios from 'axios';
 
 function Checkout() {
     let common = new CommonService();
@@ -31,6 +32,9 @@ function Checkout() {
     const [ListCountries, setListCountries] = useState([]);
     const [ListCity, setListCity] = useState([]);
     const [PaymentTypes, setPaymentTypes] = useState([]);
+    const [payment_method, setpayment_method] = useState('cod');
+
+
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -40,17 +44,20 @@ function Checkout() {
             return
         }
 
+
         try {
-            const data = { CouponCode, FirstName, LastName, Address1, Address2, state, Country, city, PostCode, PhoneNumber, Email, company, AdditionalInfomation };
+            setIsLoading(true)
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, company, AdditionalInfomation, user_id, login_type: 1, payment_method: 1, total_amount: Sub_Total_price };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
-            await common.httpPost(ContactData, data).then(() => {
+            axios.post(ContactData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then(() => {
                 ToasterSuccess("Success...!!");
                 setIsLoading(false)
             })
         }
         catch (error) {
-            //ToasterError("Error")
-            setIsLoading(false)
+            ToasterError("Error")
         }
 
     }
@@ -294,7 +301,7 @@ function Checkout() {
                                                     const { product_thumbnail_image, price, variation, product_name, currency_symbol, quantity } = item;
                                                     return (
                                                         <>
-                                                            <tr>
+                                                            <tr key={i}>
                                                                 <td className="image product-thumbnail"><img src={product_thumbnail_image} alt={product_thumbnail_image} /></td>
                                                                 <td>
                                                                     <h6 className="w-160 mb-5"><a className="text-heading">{product_name}</a></h6>
@@ -369,27 +376,30 @@ function Checkout() {
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
                                     </div> */}
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod" />
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod" value="cod" checked={payment_method === 'cod'} onChange={(e) => { setpayment_method(e.target.value) }} />
                                         <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                                     </div>
                                     <div className="custome-radio">
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="online" />
+                                        <input className="form-check-input" required type="radio" name="payment_option" id="online" value="online" checked={payment_method === 'online'} onChange={(e) => { setpayment_method(e.target.value) }} />
                                         <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>
                                     </div>
                                 </div>
-                                <div className="payment-logo d-flex">
-                                    {PaymentTypes.map((item, i) => {
-                                        return (
-                                            <>
-                                                <div style={{ padding: "0px" }}>
-                                                    <a>
-                                                        <img className="mr-15" src={item.image} alt="/" width="70px" />
-                                                    </a>
-                                                </div>
-                                            </>
-                                        )
-                                    })}
-                                </div>
+                                {
+                                    payment_method == "online" ? <div className="payment-logo d-flex">
+                                        {PaymentTypes.map((item, i) => {
+                                            return (
+                                                <>
+                                                    <div style={{ padding: "0px" }} key={i}>
+                                                        <a>
+                                                            <img className="mr-15" src={item.image} alt="/" width="70px" />
+                                                        </a>
+                                                    </div>
+                                                </>
+                                            )
+                                        })}
+                                    </div> : " "
+                                }
+
                                 <a className="btn btn-fill-out btn-block mt-30" onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                             </div>
                         </div>

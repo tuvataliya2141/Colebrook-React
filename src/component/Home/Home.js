@@ -60,14 +60,16 @@ function Home() {
                           <p className='banner_text_set'>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                           <div className="slider-main-button-div">
-                            <button className="slider-main-button">
-                              <span className="img-span">
-                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
-                              </span>
-                              <span className="text-span">
-                                SHOP NOW !
-                              </span>
+                            <Link to="/ShopProduct">
+                              <button className="slider-main-button">
+                                <span className="img-span">
+                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                </span>
+                                <span className="text-span">
+                                  SHOP NOW !
+                                </span>
                               </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -78,15 +80,17 @@ function Home() {
                             Clothing</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
-                            <div className="slider-main-button-div">
-                            <button className="slider-main-button">
-                              <span className="img-span">
-                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
-                              </span>
-                              <span className="text-span">
-                                SHOP NOW !
-                              </span>
+                          <div className="slider-main-button-div">
+                            <Link to="/ShopProduct">
+                              <button className="slider-main-button">
+                                <span className="img-span">
+                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                </span>
+                                <span className="text-span">
+                                  SHOP NOW !
+                                </span>
                               </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -97,15 +101,17 @@ function Home() {
                             Clothing</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
-                            <div className="slider-main-button-div">
-                            <button className="slider-main-button">
-                              <span className="img-span">
-                                <img style={{marginRight: "10px"}} src="assets/imgs/banner/slider-btn.svg" alt="/" /> 
-                              </span>
-                              <span className="text-span">
-                                SHOP NOW !
-                              </span>
+                          <div className="slider-main-button-div">
+                            <Link to="/ShopProduct">
+                              <button className="slider-main-button">
+                                <span className="img-span">
+                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                </span>
+                                <span className="text-span">
+                                  SHOP NOW !
+                                </span>
                               </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -131,25 +137,25 @@ function Home() {
         <section className="popular-categories section-padding">
           <div className="container wow animate__animated animate__fadeIn">
             {/* <div className="section-title"> */}
-              <div className="row">
-                <div className="col-md-5">
-                  <div className="title">
-                      <h3>Featured Categories</h3>
-                  </div>
-                </div>
-                <div className="col-md-7" style={{alignItems: "center",display: "flex"}}>
-                  <div className="title">
-                      <ul className="list-inline nav nav-tabs links">
-                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">All </a></li>
-                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">Sale</a></li>
-                        <li className="list-inline-item nav-item"><a className="nav-link active" href="/">Women</a></li>
-                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">Men</a></li>
-                        <li className="list-inline-item nav-item"><a className="nav-link" href="/">New</a></li>
-                      </ul>
-                  </div>
+            <div className="row">
+              <div className="col-md-5">
+                <div className="title">
+                  <h3>Featured Categories</h3>
                 </div>
               </div>
-              <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
+              <div className="col-md-7" style={{ alignItems: "center", display: "flex" }}>
+                <div className="title">
+                  <ul className="list-inline nav nav-tabs links">
+                    <li className="list-inline-item nav-item"><a className="nav-link" >All </a></li>
+                    <li className="list-inline-item nav-item"><a className="nav-link" >Sale</a></li>
+                    <li className="list-inline-item nav-item"><a className="nav-link active" >Women</a></li>
+                    <li className="list-inline-item nav-item"><a className="nav-link" >Men</a></li>
+                    <li className="list-inline-item nav-item"><a className="nav-link" >New</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
             {/* </div> */}
             <div className="carausel-10-columns-cover position-relative">
               <div className="carausel-10-columns" id="carausel-10-columns">
@@ -231,76 +237,76 @@ function Home() {
           <div className="container">
             <div className="row">
               <div className="col-md-4">
-                  <div className="row banner-row" style={{backgroundColor:"#E4E4E4",borderRadius: "10px"}}>
-                    <div className="col-md-7 banner-text-set">
-                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
-                        <h4 className="banner-in-text">
-                          Everyday Fresh &amp; <br />Clean with Our<br />
-                          Products
-                        </h4>
-                        <a href="#" className="btn btn-xs small-slider-button">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                          <span className="img-span">
-                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
-                          </span>
-                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
-                      <img src="assets/imgs/banner/banner-1.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                <div className="row banner-row" style={{ backgroundColor: "#E4E4E4", borderRadius: "10px" }}>
+                  <div className="col-md-7 banner-text-set">
+                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
+                      <h4 className="banner-in-text">
+                        Everyday Fresh &amp; <br />Clean with Our<br />
+                        Products
+                      </h4>
+                      <a href="#" className="btn btn-xs small-slider-button">
+                        <span className="text-span">
+                          Shop Now
+                        </span>
+                        <span className="img-span">
+                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        </span>
+                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                      </a>
                     </div>
                   </div>
+                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
+                    <img src="assets/imgs/banner/banner-1.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                  </div>
+                </div>
               </div>
               <div className="col-md-4">
-                  <div className="row banner-row" style={{backgroundColor:"#DEFFB4",borderRadius: "10px"}}>
-                    <div className="col-md-7 banner-text-set">
-                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
-                        <h4 className="banner-in-text">
-                          Everyday Fresh &amp; <br />Clean with Our<br />
-                          Products
-                        </h4>
-                        <a href="#" className="btn btn-xs small-slider-button">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                          <span className="img-span">
-                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
-                          </span>
-                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
-                      <img src="assets/imgs/banner/banner-2.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                <div className="row banner-row" style={{ backgroundColor: "#DEFFB4", borderRadius: "10px" }}>
+                  <div className="col-md-7 banner-text-set">
+                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
+                      <h4 className="banner-in-text">
+                        Everyday Fresh &amp; <br />Clean with Our<br />
+                        Products
+                      </h4>
+                      <a href="#" className="btn btn-xs small-slider-button">
+                        <span className="text-span">
+                          Shop Now
+                        </span>
+                        <span className="img-span">
+                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        </span>
+                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                      </a>
                     </div>
                   </div>
+                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
+                    <img src="assets/imgs/banner/banner-2.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                  </div>
+                </div>
               </div>
               <div className="col-md-4">
-                  <div className="row banner-row" style={{backgroundColor:"#FFE1B4",borderRadius: "10px"}}>
-                    <div className="col-md-7 banner-text-set">
-                      <div className="banner-text" style={{margin: "19px 0px 20px 0px"}}>
-                        <h4 className="banner-in-text">
-                          Everyday Fresh &amp; <br />Clean with Our<br />
-                          Products
-                        </h4>
-                        <a href="#" className="btn btn-xs small-slider-button">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                          <span className="img-span">
-                              <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
-                          </span>
-                          {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-md-5 p-0" style={{maxHeight: "271px"}}>
-                      <img src="assets/imgs/banner/banner-3.png" className="img-fluid" alt="/" style={{width:"100%",borderRadius: "0px 10px 10px 0px"}} />
+                <div className="row banner-row" style={{ backgroundColor: "#FFE1B4", borderRadius: "10px" }}>
+                  <div className="col-md-7 banner-text-set">
+                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
+                      <h4 className="banner-in-text">
+                        Everyday Fresh &amp; <br />Clean with Our<br />
+                        Products
+                      </h4>
+                      <a href="#" className="btn btn-xs small-slider-button">
+                        <span className="text-span">
+                          Shop Now
+                        </span>
+                        <span className="img-span">
+                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        </span>
+                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                      </a>
                     </div>
                   </div>
+                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
+                    <img src="assets/imgs/banner/banner-3.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                  </div>
+                </div>
               </div>
               {/* <div className="col-lg-4 col-md-6">
                 <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
@@ -385,58 +391,58 @@ function Home() {
 
 
 
-                     
+
 
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                       const Name = item.name.substring(0, 15);
                       return (
                         <>
                           {
-                           item.category == "" ? "" : 
-                       
-                          <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                              <div className="product-img-action-wrap">
-                                <div className="product-img product-img-zoom">
-                                  <Link to={`/${item.id}`}>
-                                    <img className="default-img" src={image} width="100%" alt="/" />
-                                    <img className="hover-img" src={image} width="100%" alt="/" />
-                                  </Link>
-                                </div>
-                                <div className="product-action-1">
-                                  <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
-                                  <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
-                                  {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
-                                </div>
-                                <div className="product-badges product-badges-position product-badges-mrg">
-                                  {/* <span className="hot">-17%</span> */}
+                            item.category == "" ? "" :
+
+                              <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                                <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                  <div className="product-img-action-wrap">
+                                    <div className="product-img product-img-zoom">
+                                      <Link to={`/${item.id}`}>
+                                        <img className="default-img" src={image} width="100%" alt="/" />
+                                        <img className="hover-img" src={image} width="100%" alt="/" />
+                                      </Link>
+                                    </div>
+                                    <div className="product-action-1">
+                                      <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
+                                      {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
+                                    </div>
+                                    <div className="product-badges product-badges-position product-badges-mrg">
+                                      {/* <span className="hot">-17%</span> */}
+                                    </div>
+                                  </div>
+                                  <div className="product-content-wrap">
+                                    <div className="product-category">
+                                      <a >{item.category}</a>
+                                    </div>
+                                    <h2><Link to={'1'}>{Name}</Link></h2>
+                                    <div className="product-rate-cover">
+                                      <div className="product-rate d-inline-block">
+                                        <div className="product-rating" style={{ width: '90%' }} />
+                                      </div>
+                                      <span className="font-small ml-5 text-muted">({item.rating})</span>
+                                    </div>
+                                    <div className="product-card-bottom">
+                                      <div className="product-price">
+                                        <span>${item.base_price}</span>
+                                        <span className="old-price">${item.base_discounted_price + 200}</span>
+                                      </div>
+                                      <div className="add-cart">
+                                        {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
+                                        <Link to={`/${item.id}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="product-content-wrap">
-                                <div className="product-category">
-                                  <a >{item.category}</a>
-                                </div>
-                                <h2><Link to={'1'}>{Name}</Link></h2>
-                                <div className="product-rate-cover">
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: '90%' }} />
-                                  </div>
-                                  <span className="font-small ml-5 text-muted">({item.rating})</span>
-                                </div>
-                                <div className="product-card-bottom">
-                                  <div className="product-price">
-                                    <span>${item.base_price}</span>
-                                    <span className="old-price">${item.base_discounted_price + 200}</span>
-                                  </div>
-                                  <div className="add-cart">
-                                    {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
-                                    <Link to={`/${item.id}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                         }
+                          }
                         </>
                       )
                     })
@@ -452,7 +458,7 @@ function Home() {
 
 
         {/* old */}
-        <BestSellers/>
+        <BestSellers />
 
 
         <section className="newsletter mb-15 wow animate__animated animate__fadeIn">

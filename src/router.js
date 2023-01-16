@@ -12,7 +12,7 @@ import Terms_Service from "./component/Terms-Service/Terms_Service";
 import Wishlist from "./component/Wishlist/wishlist";
 
 
-export default [
+export default  [
   {
     path:'/',
     element:() => <Home />,

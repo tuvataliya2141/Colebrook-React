@@ -23,7 +23,7 @@ const urlConstant = {
     UpdateCart: `${apiURL}cart/update`
   },
   Checkout: { 
-    PostCheckout: `${apiURL}Checkout`,
+    PostCheckout: `${apiURL}checkout`,
     GetPaymentTypes: `${apiURL}payment-types` ,
     Countries : `${apiURL}countries`,
     States : `${apiURL}states-by-country`,

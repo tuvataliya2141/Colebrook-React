@@ -51,7 +51,7 @@ function Product() {
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
 
-
+   
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -150,11 +150,13 @@ function Product() {
                               }
                             </ul>
                           </div>
+
+                         
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
-                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment == 1 ?  1 : increment -1) }} /></a>
+                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement( increment == 1 ? 1 : increment - 1) }} /></a>
                               <span className="qty-val">{increment}</span>
-                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment == List.InStock ? increment + 1 : increment ) }} /></a>
+                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment < List.InStock ? increment + 1 : increment ) }} /></a>
                             </div>
 
                             <div className="product-extra-link2">

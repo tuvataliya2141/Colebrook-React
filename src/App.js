@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {router.map((item, k) => {
-            return (<Route key={k}  element={<item.element />}  path={item.path}  exact={item.exact}/> );
+            return (<Route key={k} element={<item.element />} path={item.path} exact={item.exact} />);
           })}
         </Routes>
       </BrowserRouter>
