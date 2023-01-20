@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAppContext } from '../context/index'
 
 function Header({ Wishlist ,Crat }) {
-
+  const { UserName,AllCategory,Logo } = useAppContext();
 
   const SignOut = () => {
     localStorage.removeItem("access_token");
@@ -12,8 +12,7 @@ function Header({ Wishlist ,Crat }) {
     localStorage.removeItem("user_id");
   }
 
-  const { UserName } = useAppContext();
-
+  console.log(AllCategory);
   return (
     <div>
       <header className="header-area header-style-1 header-height-2">
@@ -21,23 +20,23 @@ function Header({ Wishlist ,Crat }) {
           <div className="container">
             <div className="header-wrap">
               <div className="logo logo-width-1">
-                <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link>
+                {/* <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link> */}
+                <Link to="/"><img src={Logo} alt="logo" /></Link>
               </div>
               <div className="header-right">
                 <div className="search-style-2">
                   <form action="#">
                     <select className="select-active">
                       <option>All Categories ▼ </option>
-                      <option>Milks and Dairies</option>
-                      <option>Wines &amp; Alcohol</option>
-                      <option>Clothing &amp; Beauty</option>
-                      <option>Pet Foods &amp; Toy</option>
-                      <option>Fast food</option>
-                      <option>Baking material</option>
-                      <option>Vegetables</option>
-                      <option>Fresh Seafood</option>
-                      <option>Noodles &amp; Rice</option>
-                      <option>Ice cream</option>
+                      {
+                        AllCategory.map((item,i)=>{
+                          return(
+                            <>
+                              <option>{item.name.toUpperCase()}</option>
+                            </>
+                          )
+                        })
+                      }
                     </select>
                     <input type="text" placeholder="Search for items..." />
                   </form>
@@ -117,7 +116,7 @@ function Header({ Wishlist ,Crat }) {
                   <nav>
                     <ul>
                       <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" >Home</Link>
                       </li>
                       <li>
                         <Link to="/ShopProduct" >Shop </Link>

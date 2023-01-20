@@ -49,17 +49,39 @@ function ShopProduct() {
 
 
     const handleInput = (e) => {
+        setPrice(e.target.value);
         
-        debugger
-        if (e.target.value == "All") {
-            return List
+        if (e.target.checked === false) {
+            setcategory("");
+            setcompany("");
+            setcolor("");
+            setBrand("");
+            setSize("");
         } else {
             setPrice(e.target.value);
-            setcategory(e.target.value);
-            setcompany(e.target.value);
+            // setcategory(e.target.value);
+            // setcompany(e.target.value);
             setcolor(e.target.value);
             setBrand(e.target.value);
             setSize(e.target.value);
+        }
+    }
+
+
+
+    const handlecategory = (e) => {
+        if (e.target.checked === false) {
+            setcategory("");
+        } else {
+            setcategory(e.target.value);
+        }
+    }
+
+    const handlecompany = (e) => {
+        if (e.target.checked === false) {
+            setcompany("");
+        } else {
+            setcompany(e.target.value);
         }
     }
 
@@ -87,7 +109,6 @@ function ShopProduct() {
     const MaxPrice = Math.max(...priceData);
     const MinPrice = Math.min(...priceData);
 
-    console.log(sizeData);
     useEffect(() => {
         GetProducts();
     }, []);
@@ -116,7 +137,7 @@ function ShopProduct() {
 
                             <div className="row product-grid">
                                 {
-                                    currentPosts.filter((Data,i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize === size }).map((item, i) => {
+                                    currentPosts.filter((Data,i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize[i] === size }).map((item, i) => {
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                                         const Name = item.name.substring(0, 20);
 
@@ -211,8 +232,8 @@ function ShopProduct() {
 
                                                     return (
                                                         <>
-                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
+                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handlecategory} defaultValue />
+                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handlecategory}><span>{item}</span></label>
                                                             <br />
                                                         </>
                                                     )
@@ -242,14 +263,12 @@ function ShopProduct() {
                                                 sizeData.map((item,i)=>{
                                                     return(
                                                         <>
-                                                            <input id="4XS" className="check-size-input" type="checkbox" name="4XS" value="4XS" />
-                                                            <label className="check-size-label" for="4XS">{item}</label>
+                                                            <input id={item} className="check-size-input" type="checkbox" name={item} value={item} />
+                                                            <label className="check-size-label" for={item}>{item}</label>
                                                         </>
                                                     )
                                                 })
                                             }
-                                            <input id="4XS" className="check-size-input" type="checkbox" name="4XS" value="4XS" />
-                                            <label className="check-size-label" for="4XS">4XS</label>
                                         </div>
                                         <div></div>
                                         {/* <span style={{width:"100%"}}></span> */}

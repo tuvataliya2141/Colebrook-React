@@ -140,10 +140,10 @@ function Home() {
             <div className="row">
               <div className="col-md-5">
                 <div className="title">
-                  <h3>Featured Categories</h3>
+                  <h3>Featured Brands</h3>
                 </div>
               </div>
-              <div className="col-md-7" style={{ alignItems: "center", display: "flex" }}>
+              {/* <div className="col-md-7" style={{ alignItems: "center", display: "flex" }}>
                 <div className="title">
                   <ul className="list-inline nav nav-tabs links">
                     <li className="list-inline-item nav-item"><a className="nav-link" >All </a></li>
@@ -153,7 +153,7 @@ function Home() {
                     <li className="list-inline-item nav-item"><a className="nav-link" >New</a></li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
             {/* </div> */}
