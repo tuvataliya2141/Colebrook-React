@@ -3922,6 +3922,7 @@ table .product-thumbnail img {
   position: relative;
   background-color: #C6C6C6;
   overflow: hidden;
+  height: 270px;
   max-height: 320px;
   /* padding: 25px 25px 0 25px; */
 }
@@ -12729,10 +12730,20 @@ footer .hotline img {
   background-color: #222325;
 }
 
-.cat-list-home img{
-  /* width: 70px;
-  height: 50px; */
+
+.color_button
+{
+  background-color: rgb(0, 0, 0);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
 }
+
+/* .cat-list-home img{
+  /* width: 70px;
+  height: 50px;
+} */
 
 #carausel-10-columns .card-2:hover svg path{
   fill: white;

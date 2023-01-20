@@ -22,6 +22,7 @@ function Product() {
   const [List, setList] = useState([]);
   const [size, setsize] = useState([]);
   const [multipleimage, setmultipleimage] = useState([]);
+  const [colors, setcolors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
@@ -39,7 +40,7 @@ function Product() {
       setList(res.data.data);
       setsize(res.data.data.multipleSize);
       setmultipleimage(res.data.data.multipleimage);
-      // ToasterSuccess("Success");
+      setcolors(res.data.data.colors);
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -51,7 +52,9 @@ function Product() {
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
 
-   
+
+
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -59,6 +62,7 @@ function Product() {
     });
     GetSingelProducts();
   }, []);
+
 
   return (
     <div>
@@ -96,7 +100,7 @@ function Product() {
                               multipleimage.map((item, i) => {
                                 return (
                                   <>
-                                    <div><img src={item} alt="product image" width="150px" style={{ borderRadius: "10px" }} key={i} /></div>
+                                    <div><img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px",padding:"3px" }} key={i} /></div>
                                   </>
                                 )
                               })
@@ -123,10 +127,10 @@ function Product() {
                           <hr style={{ margin: "0px", color: "rgb(69 96 147)" }} />
                           <div className="clearfix product-price-cover">
                             <div className="product-price primary-color float-left">
-                              <span className="current-price text-brand">{List.price}</span>
+                              <span className="current-price text-brand">₹{List.price}</span>
                               <span>
                                 <span className="save-price font-md color3 ml-15">{List.offer ? List.offer : 0} % Off</span>
-                                <span className="old-price font-md ml-15">{List.oldPrice}</span>
+                                <span className="old-price font-md ml-15">₹{List.oldPrice}</span>
                               </span>
                             </div>
                           </div>
@@ -143,7 +147,7 @@ function Product() {
 
                                   return (
                                     <>
-                                      <li><a>{item}</a></li>
+                                      <li><button style={{ border: "none", backgroundColor: "white" }}><a>{item}</a></button></li>
                                     </>
                                   )
                                 })
@@ -151,12 +155,33 @@ function Product() {
                             </ul>
                           </div>
 
-                         
+                          <div>
+                            <div className="attr-detail attr-size mb-20">
+                              <strong className="mr-10">COLORS<span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
+                            </div>
+
+                            <div className="attr-detail attr-size mb-20">
+                            <ul className="list-filter size-filter font-small">
+                              {
+                                colors.map((item, i) => {
+                                  const red = "red";
+                                  return (
+                                    
+                                    <>
+                                     <li><button className="color_button" style={{ backgroundColor:`${item}` }}></button></li>
+                                    </>
+                                  )
+                                })
+                              }
+                            </ul>
+                          </div>
+                          </div>
+
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
-                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement( increment == 1 ? 1 : increment - 1) }} /></a>
+                              <a className="qty-down" ><i className="fi-rs-angle-small-down" onClick={() => { SetIncrement(increment == 1 ? 1 : increment - 1) }} /></a>
                               <span className="qty-val">{increment}</span>
-                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment < List.InStock ? increment + 1 : increment ) }} /></a>
+                              <a className="qty-up" ><i className="fi-rs-angle-small-up" onClick={() => { SetIncrement(increment < List.InStock ? increment + 1 : increment) }} /></a>
                             </div>
 
                             <div className="product-extra-link2">

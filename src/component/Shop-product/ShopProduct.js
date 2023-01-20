@@ -5,18 +5,23 @@ import Header from '../Header';
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
 import { ToastContainer } from "react-toastify";
+import { ToasterWarning, ToasterError } from "../../common/toaster";
 import Pagination from "../Pagination";
 import axios from 'axios'
 import { useAppContext } from '../../context/index'
 
 function ShopProduct() {
     const id = useParams();
-    const { user_id, wishlistPost,Loding,CartPost } = useAppContext();
+    const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
     let common = new CommonService();
 
     const [List, setList] = useState([]);
-    const [price, setPrice ] = useState(40);
-
+    const [price, setPrice] = useState(100);
+    const [category, setcategory] = useState(List);
+    const [company, setcompany] = useState(List);
+    const [color, setcolor] = useState(List);
+    const [brand, setBrand] = useState(List);
+    const [size, setSize] = useState(List);
 
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -26,15 +31,6 @@ function ShopProduct() {
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
     const Getlength = List.length;
 
-    const handleInput = (e)=>{
-        setPrice( e.target.value );
-      }
-
-      const hotels = [
-        { name: "A", price: 40  },
-        { name: "B", price: 50  },
-        { name: "C", price: 60  }
-      ];
 
     function GetProducts() {
         setIsLoading(true)
@@ -45,27 +41,53 @@ function ShopProduct() {
         })
             .catch(function (error) {
                 setIsLoading(false);
+
+                ToasterWarning(error.message)
                 console.log(error);
             });
     }
 
-    // function CartPost(id) {
-    //     try {
-    //       setIsLoading(true)
-    //         const Data = { id, quantity: 1 }
-    //         const CartData = `${urlConstant.Cart.PostCart}`;
-    //         axios.post(CartData, Data, {
-    //             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-    //         }).then(()=>{
-    //            ToasterSuccess("Success...!!");
-    //             setIsLoading(false)
-    //         })
-    //     }
-    //     catch (error) {
-    //         ToasterError("Error")
-    //     }
-    //   }
 
+    const handleInput = (e) => {
+        
+        debugger
+        if (e.target.value == "All") {
+            return List
+        } else {
+            setPrice(e.target.value);
+            setcategory(e.target.value);
+            setcompany(e.target.value);
+            setcolor(e.target.value);
+            setBrand(e.target.value);
+            setSize(e.target.value);
+        }
+    }
+
+    
+    const getUniqueData = (data, property) => {
+        let newVal = data.map((item, i) => {
+            return item[property];
+        });
+
+        if (property === "colors" || "multipleSize") {
+            return newVal = [...new Set(newVal.flat())]
+        } else {
+            // return (newVal = ["All", ...new Set(newVal)]);
+            return (newVal = [...new Set(newVal)]);
+        }
+
+    };
+
+    const categoryData = getUniqueData(List, "category");
+    const companyData = getUniqueData(List, "company");
+    const colorsData = getUniqueData(List, "colors");
+    const brandData = getUniqueData(List, "brand");
+    const sizeData = getUniqueData(List, "multipleSize");
+    const priceData = getUniqueData(List, "base_discounted_price");
+    const MaxPrice = Math.max(...priceData);
+    const MinPrice = Math.min(...priceData);
+
+    console.log(sizeData);
     useEffect(() => {
         GetProducts();
     }, []);
@@ -79,7 +101,7 @@ function ShopProduct() {
                     <div className="container">
                         <div className="breadcrumb">
                             <Link to="/ShopProduct" rel="nofollow"><i className="fi-rs-home mr-5" />Home</Link>
-                            <span /> <Link to="/">Shop</Link> 
+                            <span /> <Link to="/">Shop</Link>
                         </div>
                     </div>
                 </div><br />
@@ -94,17 +116,17 @@ function ShopProduct() {
 
                             <div className="row product-grid">
                                 {
-                                    currentPosts.map((item, i) => {
+                                    currentPosts.filter((Data,i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize === size }).map((item, i) => {
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
-                                        const Name = item.name.substring(0,20);
-                                       
+                                        const Name = item.name.substring(0, 20);
+
                                         return (
 
                                             <div className="col-lg-1-5 col-md-4 col-12 col-sm-6" key={item.id}>
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
-                                                            <Link  to={`/${item.id}`}>
+                                                            <Link to={`/${item.id}`}>
                                                                 <img className="default-img" src={image} alt="/" />
                                                                 <img className="hover-img" src={image} alt="/" />
                                                             </Link>
@@ -122,8 +144,8 @@ function ShopProduct() {
                                                             <a>{item.category}</a>
                                                         </div>
                                                         <h2><a href="/Product"> {Name.length > 13
-                                                                                    ? `${Name}...`
-                                                                                    : Name}</a></h2>
+                                                            ? `${Name}...`
+                                                            : Name}</a></h2>
                                                         <div className="product-rate-cover">
                                                             <div className="product-rate d-inline-block">
                                                                 <div className="product-rating" style={{ width: '90%' }} />
@@ -139,7 +161,7 @@ function ShopProduct() {
                                                                 <span className="old-price">₹{item.base_price}</span>
                                                             </div>
                                                             <div className="add-cart">
-                                                                <a className="add" onClick={()=>{CartPost(item.id,item.variants.variant)}} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
+                                                                <a className="add" onClick={() => { CartPost(item.id, item.variants.variant) }} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,133 +196,82 @@ function ShopProduct() {
                                         {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
                                             <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
-                                            <div className="caption"><h6>₹100 - ₹50000 </h6> <strong id="slider-range-value2" className="text-brand" /></div>
-                                        </div> 
-                                         <input type="range" name="price" onInput={ handleInput } />
-                                         <h1>Price: { price }</h1>
-                                         { hotels.filter( hotel => { return hotel.price > parseInt(price, 10) }).map( hotel => {
-                                                return <p key={hotel.name}>{ hotel.name } | { hotel.price } &euro; </p>
-                                            })} 
+                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
+                                        </div>
+                                        <input type="range"  name="price" onInput={handleInput} min={MinPrice} max={MaxPrice - 1}  />
                                     </div>
                                 </div>
                                 <div className="list-group">
                                     <div className="list-group-item mb-10 mt-10">
                                         <label className="fw-900">Category</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="categoryCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox1"><span>T-Shirts & Polos</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox2"><span>Shirts</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox3"><span>Eat fresh</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox4"><span>Jeans</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox5"><span>Suits & Blazers</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox6" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox6"><span>Sunglasses & Spectacle</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox7" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox7"><span>Frames</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox8" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox8"><span>Shorts</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox9" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox9"><span>Sportswear</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox10" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox10"><span>Innerwear</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="categoryCheckbox11" defaultValue />
-                                            <label className="form-check-label" htmlFor="categoryCheckbox11"><span>Rainwear</span></label>
+                                            {
+                                                categoryData.map((item, i) => {
+
+
+                                                    return (
+                                                        <>
+                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
+                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
+                                                            <br />
+                                                        </>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                         <label className="fw-900">Brand</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="brandCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="brandCheckbox1"><span>Cobblestone</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="brandCheckbox2"><span>McVitie's</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="brandCheckbox3"><span>Tastykake</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="brandCheckbox4"><span>Warburtons</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="brandCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="brandCheckbox5"><span>Wonder Bread</span></label>
+
+                                            {
+
+                                                brandData.map((item, i) => {
+                                                    return (
+                                                        <>
+
+                                                            <input className="form-check-input" type="checkbox" name="brandData" value={item} id={item + i} onClick={handleInput} defaultValue />
+                                                            <label className="form-check-label" name='brandData' htmlFor={item + i}><span>{item}</span></label><br />
+                                                        </>
+                                                    )
+                                                })
+                                            }
                                         </div>
                                         <label className="fw-900">Size</label>
                                         <div className="custome-checkbox">
+
+                                            {
+                                                sizeData.map((item,i)=>{
+                                                    return(
+                                                        <>
+                                                            <input id="4XS" className="check-size-input" type="checkbox" name="4XS" value="4XS" />
+                                                            <label className="check-size-label" for="4XS">{item}</label>
+                                                        </>
+                                                    )
+                                                })
+                                            }
                                             <input id="4XS" className="check-size-input" type="checkbox" name="4XS" value="4XS" />
                                             <label className="check-size-label" for="4XS">4XS</label>
-                                            <input id="3XS" className="check-size-input" type="checkbox" name="3XS" value="3XS" />
-                                            <label className="check-size-label" for="3XS">3XS</label>
-                                            <input id="2XS" className="check-size-input" type="checkbox" name="2XS" value="2XS" />
-                                            <label className="check-size-label" for="2XS">2XS</label>
-                                            <input id="XS" className="check-size-input" type="checkbox" name="XS" value="XS" />
-                                            <label className="check-size-label" for="XS">XS</label>
-                                            <input id="S" className="check-size-input" type="checkbox" name="S" value="S" />
-                                            <label className="check-size-label" for="S">S</label>
-                                            <input id="M" className="check-size-input" type="checkbox" name="M" value="M" />
-                                            <label className="check-size-label" for="M">M</label>
-                                            <input id="L" className="check-size-input" type="checkbox" name="L" value="L" />
-                                            <label className="check-size-label" for="L">L</label>
-                                            <input id="XL" className="check-size-input" type="checkbox" name="XL" value="XL" />
-                                            <label className="check-size-label" for="XL">XL</label>
-                                            <input id="2XL" className="check-size-input" type="checkbox" name="2XL" value="2XL" />
-                                            <label className="check-size-label" for="2XL">2XL</label>
-                                            <input id="3XL" className="check-size-input" type="checkbox" name="3XL" value="3XL" />
-                                            <label className="check-size-label" for="3XL">3XL</label>
-                                            <input id="4XL" className="check-size-input" type="checkbox" name="4XL" value="4XL" />
-                                            <label className="check-size-label" for="4XL">4XL</label>
-                                            <input id="5XL" className="check-size-input" type="checkbox" name="5XL" value="5XL" />
-                                            <label className="check-size-label" for="5XL">5XL</label>
-                                            <input id="6XL" className="check-size-input" type="checkbox" name="6XL" value="6XL" />
-                                            <label className="check-size-label" for="6XL">6XL</label>
-                                            <input id="7XL" className="check-size-input" type="checkbox" name="7XL" value="7XL" />
-                                            <label className="check-size-label" for="7XL">7XL</label>
-                                            <input id="8XL" className="check-size-input" type="checkbox" name="8XL" value="8XL" />
-                                            <label className="check-size-label" for="8XL">8XL</label>
                                         </div>
                                         <div></div>
                                         {/* <span style={{width:"100%"}}></span> */}
-                                        <label className="fw-900" style={{width:"100%"}}>Colour</label>
+                                        <label className="fw-900" style={{ width: "100%" }}>Colour</label>
                                         <div className="custome-checkbox">
-                                            <input id="#003049" className="check-size-input" type="checkbox" name="#003049" value="#003049" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#003049" }} for="#003049"></label>
+                                            {
+                                                colorsData.map((item, i) => {
                                             
-                                            <input id="#252F9C" className="check-size-input" type="checkbox" name="#252F9C" value="#252F9C" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#252F9C" }} for="#252F9C"></label>
-                                            
-                                            <input id="#7C1034" className="check-size-input" type="checkbox" name="#7C1034" value="#7C1034" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#7C1034" }} for="#7C1034"></label>
-                                            
-                                            <input id="#FAAB99" className="check-size-input" type="checkbox" name="#FAAB99" value="#FAAB99" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#FAAB99" }} for="#FAAB99"></label>
-                                            
-                                            <input id="#BE8ECC" className="check-size-input" type="checkbox" name="#BE8ECC" value="#BE8ECC" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#BE8ECC" }} for="#BE8ECC"></label>
-                            
-                                            <input id="#F77F00" className="check-size-input" type="checkbox" name="#F77F00" value="#F77F00" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#F77F00" }} for="#F77F00"></label>
-
-                                            <input id="#ccc" className="check-size-input" type="checkbox" name="#ccc" value="#ccc" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#ccc" }} for="#ccc"></label>
-
-                                            <input id="#FC9FA2" className="check-size-input" type="checkbox" name="#FC9FA2" value="#FC9FA2" />
-                                            <label className="color-check-size-label" style={{ backgroundColor: "#FC9FA2" }} for="#FC9FA2"></label>
+                                                    return (
+                                                        <>
+                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={item}  onClick={handleInput} />
+                                                            <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
+                                                           
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                    
                                         </div>
-                                        <label className="fw-900 mt-15" style={{width:"100%"}}>Pattern</label>
+                                        <label className="fw-900 mt-15" style={{ width: "100%" }}>Pattern</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox"  name="checkbox" id="patternCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="patternCheckbox1"><span>Animal print</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox2" defaultValue />
@@ -344,7 +315,7 @@ function ShopProduct() {
                                         </div>
                                         <label className="fw-900 mt-15">Price</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="priceCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
@@ -361,7 +332,7 @@ function ShopProduct() {
                                         </div>
                                         <label className="fw-900 mt-15">Offer</label>
                                         <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox"  id="offerCheckbox1" defaultValue />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
                                             <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
