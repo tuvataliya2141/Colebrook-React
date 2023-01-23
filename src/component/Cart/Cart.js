@@ -272,11 +272,17 @@ function Cart() {
                                         <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
                                     </div>
 
+                                </div><br/>
+
+                                <div>
+                                    <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>
+
                                 </div>
+
                             </div><br />
 
 
-                            <div className="border p-md-4 cart-totals ml-30">
+                            {/* <div className="border p-md-4 cart-totals ml-30">
                                 <div className="table-responsive">
                                     <table className="table no-border">
                                         <tbody>
@@ -320,7 +326,7 @@ function Cart() {
                                     </div>
                                     <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>
                                 </div>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>

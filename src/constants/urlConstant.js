@@ -31,7 +31,8 @@ const urlConstant = {
   },
   Contact: { PostContact: `${apiURL}contact` },
   ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon/apply` },
-  AllCategory : {GetAllCategory:`${apiURL}allCategory`}
+  AllCategory : {GetAllCategory:`${apiURL}allCategory`},
+  AllBrands : {GetAllBrands:`${apiURL}brands`},
 
 };
 

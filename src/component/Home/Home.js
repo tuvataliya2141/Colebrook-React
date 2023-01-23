@@ -15,6 +15,7 @@ function Home() {
   const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
 
   const [List, setList] = useState([]);
+  const [BrandsList, setBrandsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   function GetProducts() {
@@ -30,8 +31,26 @@ function Home() {
       });
   }
 
+  debugger
+  function GetBrands() {
+    setIsLoading(true)
+    const GetAllBrands = `${urlConstant.AllBrands.GetAllBrands}`;
+    common.httpGet(GetAllBrands).then(function (res) {
+      setIsLoading(false);
+      setBrandsList(res.data.data);
+    })
+      .catch(function (error) {
+        setIsLoading(false);
+        console.log(error);
+      });
+  }
+
+
+
+
   useEffect(() => {
     GetProducts();
+    GetBrands();
   }, [])
   return (
     <div>
@@ -44,14 +63,13 @@ function Home() {
             <div className="home-slide-cover mt-30">
               <div className="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
                 <div className="single-hero-slider single-animation-wrap">
-                  <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="false">
-                    <div className="carousel-indicators">
+                  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div className="carousel-inner d-none">
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div className="carousel-inner">
-
+                    <div className="carousel-inner" >
                       <div className="carousel-item active">
                         <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
                         <div className="carousel-caption d-none d-md-block">
@@ -77,7 +95,7 @@ function Home() {
                         <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
                         <div className="carousel-caption d-none d-md-block">
                           <h1>Find Your Favorite <br />
-                            Clothing</h1><br />
+                            Clothing1</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                           <div className="slider-main-button-div">
@@ -98,7 +116,7 @@ function Home() {
                         <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
                         <div className="carousel-caption d-none d-md-block">
                           <h1>Find Your Favorite <br />
-                            Clothing</h1><br />
+                            Clothing2</h1><br />
                           <p>our collection will help your fashion looks better and <br />
                             we will provide the best product for you.</p><br />
                           <div className="slider-main-button-div">
@@ -160,15 +178,20 @@ function Home() {
             <div className="carausel-10-columns-cover position-relative">
               <div className="carausel-10-columns" id="carausel-10-columns">
 
-                <div className="card-2">
-                  <div className="cat-list-home">
-                    <svg width="63" height="49" viewBox="0 0 63 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M24.8894 48.4647C11.1423 48.4647 0 37.3396 0 23.6138V0C13.7471 0 24.8894 11.125 24.8894 24.8509V48.4647Z" fill="#E4E4E4" />
-                      <path d="M27.0713 28.372V15.8326C27.0713 7.08879 34.1711 0 42.9284 0V12.5436C42.9284 21.2875 35.8287 28.372 27.0713 28.372Z" fill="#E4E4E4" />
-                      <path d="M62.9166 48.4647H44.7337C34.9784 48.4647 27.0752 40.5695 27.0752 30.8335H45.2581C55.0091 30.8335 62.9166 38.7287 62.9166 48.4647Z" fill="#E4E4E4" />
-                    </svg>
-                  </div>
-                </div>
+                {
+                  BrandsList.map((item,i)=>{
+                    return(
+                      <>  
+                        <div className="card-2">
+                          <div className="cat-list-home">
+                              <img src={item.logo} />
+                          </div>
+                        </div>
+                      </>
+                    )
+                  })
+                }
+                
 
                 <div className="card-2">
                   <div className="cat-list-home">

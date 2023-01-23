@@ -62,6 +62,10 @@ function Checkout() {
 
     }
 
+    const pay = (e) => {
+        console.log(e.target.alt);
+    }
+
     function GetCart() {
         setIsLoading(true)
         const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
@@ -390,8 +394,8 @@ function Checkout() {
                                             return (
                                                 <>
                                                     <div style={{ padding: "0px" }} key={i}>
-                                                        <a>
-                                                            <img className="mr-15" src={item.image} alt="/" width="70px" />
+                                                        <a >
+                                                            <img className="mr-15" src={item.image} alt={item.name} width="70px" onClick={(e) => { pay(e) }} />
                                                         </a>
                                                     </div>
                                                 </>
