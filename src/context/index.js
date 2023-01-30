@@ -1,19 +1,23 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import urlConstant from "../constants/urlConstant";
+import CommonService from "../services/commonService";
 import { ToasterSuccess, ToasterWarning, ToasterError } from "../common/toaster";
 import Loding from "../component/Loding";
+import swal from 'sweetalert'
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+  let common = new CommonService();
+
   const random = Math.floor(Math.random() * 100);
 
   const UserName = localStorage.getItem('user');
   const user_id = localStorage.getItem('user_id') || random;
   const [isLoading, setIsLoading] = useState(false);
-  const [CouponCode, SetCouponCode] = useState('');
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
+  const [ searchData , setSearchData ] = useState([]);
 
   function wishlistPost(P_Id) {
     try {
@@ -32,16 +36,35 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  function CartPost(id, variant, increment) {
+  function CartPost(id, variant, increment, colors, size) {
     try {
       setIsLoading(true)
-      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id) }
+      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id), colors, size }
       const CartData = `${urlConstant.Cart.PostCart}`;
       axios.post(CartData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
       }).then(() => {
         ToasterSuccess("Success...!!");
         setIsLoading(false)
+      })
+    }
+    catch (error) {
+      ToasterError("Error")
+    }
+  }
+
+
+  function GetAllSearch(key) {
+    try {
+      const Data = { search : key }
+      const SearchData = `${urlConstant.SearchData.SearchAllData}`;
+      axios.post(SearchData, Data, {
+        headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+      }).then((res) => {
+        // console.log(res);
+        // console.log("products" , res.data.data.products);
+        // console.log("categories" , res.data.data.categories);
+        setSearchData(res.data.data)
       })
     }
     catch (error) {
@@ -74,10 +97,9 @@ const AppProvider = ({ children }) => {
   }
 
   function GetAllCategory() {
-    debugger
     setIsLoading(true)
     const GetAllCategory1 = `${urlConstant.AllCategory.GetAllCategory}`;
-    axios.get(GetAllCategory1).then(function (res) {
+    common.httpGet(GetAllCategory1).then(function (res) {
       setIsLoading(false);
       SetAllCategory(res.data.data.data);
       SetLogo(res.data.logo);
@@ -89,13 +111,30 @@ const AppProvider = ({ children }) => {
       });
   }
 
+  // function GetAllCart() {
+  //   setIsLoading(true)
+  //   const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
+  //   common.httpGet(GetAllCart).then(function (res) {
+  //     SetGetCart(res.data.data[0].cart_items);
+  //     setIsLoading(false)
+  //   })
+  //     .catch(function (error) {
+  //       // ToasterError("Error");
+  //       setIsLoading(false)
+  //     });
+  // }
+
+
+
+
   useEffect(() => {
-    GetAllCategory()
+    GetAllCategory();
+    GetAllSearch();
   }, [])
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo }}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo ,GetAllSearch ,searchData }}>
       {children}
     </AppContext.Provider>
   );

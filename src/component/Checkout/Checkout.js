@@ -27,12 +27,14 @@ function Checkout() {
     const [company, Setcompany] = useState("");
     const [AdditionalInfomation, SetAdditionalInfomation] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [ListCart, setListCart] = useState([]);
     const [ListStates, setListStates] = useState([]);
     const [ListCountries, setListCountries] = useState([]);
     const [ListCity, setListCity] = useState([]);
-    const [PaymentTypes, setPaymentTypes] = useState([]);
+    const [PaymentTypesList, setPaymentTypesList] = useState([]);
+    const [PaymentTypes, setPaymentTypes] = useState("");
     const [payment_method, setpayment_method] = useState('cod');
+    const [GetCart, SetGetCart] = useState([]);
+
 
 
 
@@ -44,46 +46,51 @@ function Checkout() {
             return
         }
 
-
+        const login_type = payment_method == 'cod' ? 1 : 2;
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, company, AdditionalInfomation, user_id, login_type: 1, payment_method: 1, total_amount: Sub_Total_price };
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, company, AdditionalInfomation, user_id, login_type: 1, payment_method: login_type, total_amount: Sub_Total_price };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then(() => {
                 ToasterSuccess("Success...!!");
                 setIsLoading(false)
-            })
+            }).catch(
+                console.log("error")
+            )
         }
         catch (error) {
             ToasterError("Error")
+            setIsLoading(false)
+           
+
         }
 
     }
 
     const pay = (e) => {
-        console.log(e.target.alt);
+        setPaymentTypes(e.target.alt)
     }
 
-    function GetCart() {
+    function GetAllCart() {
         setIsLoading(true)
         const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
         common.httpGet(GetAllCart).then(function (res) {
-            setListCart(res.data.data[0].cart_items);
-            setIsLoading(false)
+          SetGetCart(res.data.data[0].cart_items);
+          setIsLoading(false)
         })
-            .catch(function (error) {
-                // ToasterError("Error");
-                setIsLoading(false)
-            });
-    }
+          .catch(function (error) {
+            // ToasterError("Error");
+            setIsLoading(false)
+          });
+      }
 
     function GetPaymentTypes() {
         setIsLoading(true)
         const PaymentTypes = `${urlConstant.Checkout.GetPaymentTypes}`;
         common.httpGet(PaymentTypes).then(function (res) {
-            setPaymentTypes(res.data);
+            setPaymentTypesList(res.data);
             setIsLoading(false)
         })
             .catch(function (error) {
@@ -133,14 +140,14 @@ function Checkout() {
             });
     }
 
-    const Sub_Total_price = ListCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
+    const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
 
     useEffect(() => {
-        GetCart();
         GetPaymentTypes();
         CountriesGet();
         StatesGet();
         CityGet();
+        GetAllCart();
     }, [Country, state])
 
     return (
@@ -301,7 +308,7 @@ function Checkout() {
                                     <table className="table no-border">
                                         <tbody>
                                             {
-                                                ListCart.map((item, i) => {
+                                                GetCart.map((item, i) => {
                                                     const { product_thumbnail_image, price, variation, product_name, currency_symbol, quantity } = item;
                                                     return (
                                                         <>
@@ -342,7 +349,7 @@ function Checkout() {
                                                     <h6 className="text-muted">Subtotal</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
+                                                    <h4 className="text-brand text-end">₹{Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -365,7 +372,7 @@ function Checkout() {
                                                     <h6 className="text-muted">Total</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
+                                                    <h4 className="text-brand text-end">₹{Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -390,12 +397,12 @@ function Checkout() {
                                 </div>
                                 {
                                     payment_method == "online" ? <div className="payment-logo d-flex">
-                                        {PaymentTypes.map((item, i) => {
+                                        {PaymentTypesList.map((item, i) => {
                                             return (
                                                 <>
                                                     <div style={{ padding: "0px" }} key={i}>
-                                                        <a >
-                                                            <img className="mr-15" src={item.image} alt={item.name} width="70px" onClick={(e) => { pay(e) }} />
+                                                        <a>
+                                                            <img className="mr-15" src={item.image} alt={item.name} width="90px" onClick={(e) => { pay(e) }} style={{ border: PaymentTypes == item.name ? "3px solid black" : "", padding: "2px" }} />
                                                         </a>
                                                     </div>
                                                 </>

@@ -129,12 +129,12 @@ function Register() {
                                     <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{backgroundColor: "#1877f2"}}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/"/></a>
                                     <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{backgroundColor: "#fff"}}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/"/></a>
                                 </div>
-                                <ReactGoogleLogin
+                                {/* <ReactGoogleLogin
                                 clientId="306853955668-5g8ove86u1a1r41ljcil4nkfjf32cfrm.apps.googleusercontent.com" 
                                 buttonText="Login with Google"
                                 onSuccess={onResponse}
                                 onFailure={onResponse}
-                                />
+                                /> */}
                                 <div>
                                 <button type="submit" style={{borderRadius: "30px",float: "right"}} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Register</button>
                                 </div>

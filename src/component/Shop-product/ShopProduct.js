@@ -17,8 +17,7 @@ function ShopProduct() {
 
     const [List, setList] = useState([]);
     const [price, setPrice] = useState(100);
-    const [category, setcategory] = useState(List);
-    const [company, setcompany] = useState(List);
+    const [category, setcategory] = useState("");
     const [color, setcolor] = useState(List);
     const [brand, setBrand] = useState(List);
     const [size, setSize] = useState(List);
@@ -47,45 +46,28 @@ function ShopProduct() {
             });
     }
 
+  
 
     const handleInput = (e) => {
-        setPrice(e.target.value);
-        
+
         if (e.target.checked === false) {
             setcategory("");
-            setcompany("");
             setcolor("");
             setBrand("");
             setSize("");
         } else {
             setPrice(e.target.value);
-            // setcategory(e.target.value);
-            // setcompany(e.target.value);
+            setcategory(e.target.value);
             setcolor(e.target.value);
             setBrand(e.target.value);
             setSize(e.target.value);
         }
     }
 
-
-
-    const handlecategory = (e) => {
-        if (e.target.checked === false) {
-            setcategory("");
-        } else {
-            setcategory(e.target.value);
-        }
+    const phandleInput = (e) => {
+        setPrice(e.target.value);
     }
 
-    const handlecompany = (e) => {
-        if (e.target.checked === false) {
-            setcompany("");
-        } else {
-            setcompany(e.target.value);
-        }
-    }
-
-    
     const getUniqueData = (data, property) => {
         let newVal = data.map((item, i) => {
             return item[property];
@@ -101,7 +83,6 @@ function ShopProduct() {
     };
 
     const categoryData = getUniqueData(List, "category");
-    const companyData = getUniqueData(List, "company");
     const colorsData = getUniqueData(List, "colors");
     const brandData = getUniqueData(List, "brand");
     const sizeData = getUniqueData(List, "multipleSize");
@@ -137,7 +118,7 @@ function ShopProduct() {
 
                             <div className="row product-grid">
                                 {
-                                    currentPosts.filter((Data,i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize[i] === size }).map((item, i) => {
+                                    currentPosts.filter((Data, i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize[i] === size }).map((item, i) => {
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                                         const Name = item.name.substring(0, 20);
 
@@ -147,7 +128,7 @@ function ShopProduct() {
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
-                                                            <Link to={`/${item.id}`}>
+                                                            <Link to={`/shop/${item.slug}`}>
                                                                 <img className="default-img" src={image} alt="/" />
                                                                 <img className="hover-img" src={image} alt="/" />
                                                             </Link>
@@ -219,7 +200,7 @@ function ShopProduct() {
                                             <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
                                             <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
                                         </div>
-                                        <input type="range"  name="price" onInput={handleInput} min={MinPrice} max={MaxPrice - 1}  />
+                                        <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
                                     </div>
                                 </div>
                                 <div className="list-group">
@@ -232,8 +213,8 @@ function ShopProduct() {
 
                                                     return (
                                                         <>
-                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handlecategory} defaultValue />
-                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handlecategory}><span>{item}</span></label>
+                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
+                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
                                                             <br />
                                                         </>
                                                     )
@@ -260,11 +241,11 @@ function ShopProduct() {
                                         <div className="custome-checkbox">
 
                                             {
-                                                sizeData.map((item,i)=>{
-                                                    return(
+                                                sizeData.map((item, i) => {
+                                                    return (
                                                         <>
-                                                            <input id={item} className="check-size-input" type="checkbox" name={item} value={item} />
-                                                            <label className="check-size-label" for={item}>{item}</label>
+                                                            <input id={item} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
+                                                            <label className="check-size-label" htmlFor={item}>{item}</label>
                                                         </>
                                                     )
                                                 })
@@ -276,17 +257,17 @@ function ShopProduct() {
                                         <div className="custome-checkbox">
                                             {
                                                 colorsData.map((item, i) => {
-                                            
+
                                                     return (
                                                         <>
-                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={item}  onClick={handleInput} />
+                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} />
                                                             <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
-                                                           
+
                                                         </>
                                                     )
                                                 })
                                             }
-                                    
+                        
                                         </div>
                                         <label className="fw-900 mt-15" style={{ width: "100%" }}>Pattern</label>
                                         <div className="custome-checkbox">

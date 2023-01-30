@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../context/index'
+import axios from 'axios';
 
-function Header({ Wishlist ,Crat }) {
-  const { UserName,AllCategory,Logo } = useAppContext();
+function Header({ Crat }) {
+  const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData } = useAppContext();
+
 
   const SignOut = () => {
     localStorage.removeItem("access_token");
@@ -12,7 +14,10 @@ function Header({ Wishlist ,Crat }) {
     localStorage.removeItem("user_id");
   }
 
-  console.log(AllCategory);
+
+  console.log(searchData);
+  const productsData = searchData.products;
+  console.log(productsData);
   return (
     <div>
       <header className="header-area header-style-1 header-height-2">
@@ -29,17 +34,27 @@ function Header({ Wishlist ,Crat }) {
                     <select className="select-active">
                       <option>All Categories ▼ </option>
                       {
-                        AllCategory.map((item,i)=>{
-                          return(
+                        AllCategory.map((item, i) => {
+                          return (
                             <>
-                              <option>{item.name.toUpperCase()}</option>
+                              <option key={i}>{item.name.toUpperCase()}</option>
                             </>
                           )
                         })
                       }
                     </select>
-                    <input type="text" placeholder="Search for items..." />
+                    <input type="text" placeholder="Search for items..." onChange={(e) => { GetAllSearch(e.target.value) }} />
+
                   </form>
+                  {/* {
+                        productsData.map((item, i) => {
+                          return (
+                            <>
+                              <option key={i}>{item.name}</option>
+                            </>
+                          )
+                        })
+                      } */}
                 </div>
                 <div className="header-action-right">
                   <div className="header-action-2">
@@ -55,9 +70,9 @@ function Header({ Wishlist ,Crat }) {
                     <div className="header-action-icon-2">
                       <Link to="/Cart">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
-                        {
-                          // Crat == null ? " " : <span className="pro-count blue">{Crat}</span>
-                        }
+                        {/* {
+                         // Crat == null ? <span className="pro-count blue">{GetCart.length}</span> : <span className="pro-count blue">{Crat}</span>
+                        }  */}
                       </Link>
                     </div>
                     <div className="header-action-icon-2">
@@ -144,7 +159,7 @@ function Header({ Wishlist ,Crat }) {
                           <li><Link to="/ShopProduct">Shop Product</Link></li>
                           <li><Link to="/wishlist">wishlist</Link></li>
                           <li><Link to="/Cart">Cart</Link></li>
-                          <li><Link to="/1">Product</Link></li>
+                          <li><Link to="/shop/girls-tops">Product</Link></li>
                           <li><Link to="/">Home</Link></li>
                           <li><Link to="/Terms-Service">Terms Service</Link></li>
                           <li><Link to="/Checkout">Checkout</Link></li>

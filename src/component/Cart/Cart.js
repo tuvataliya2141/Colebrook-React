@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding, ApplyCoupon } = useAppContext();
+    const { user_id, Loding, ApplyCoupon,GetCart } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ function Cart() {
 
 
 
-    function GetCart() {
+    function GetAllCart() {
         setIsLoading(true)
         const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
         common.httpGet(GetAllCart).then(function (res) {
@@ -42,7 +42,7 @@ function Cart() {
             });
     }
 
-    const deletehandler = async (id) => {
+     const Cartdeletehandler = async (id) => {
 
         swal({
             title: 'Are You Sure Delete Data?',
@@ -55,7 +55,7 @@ function Cart() {
                 const deleteCart = `${urlConstant.Cart.DeleteCart}/${id}`;
                 common.httpGet(deleteCart).then((res) => {
                     setIsLoading(false);
-                    GetCart();
+                    GetAllCart();
                 });
             }
             else {
@@ -72,7 +72,7 @@ function Cart() {
         const updateProjectRecourcedata = `${urlConstant.Cart.UpdateCart}`
         common.httpPost(updateProjectRecourcedata, Data)
             .then((result) => {
-                GetCart();
+                GetAllCart();
             })
     }
 
@@ -81,13 +81,13 @@ function Cart() {
         const updateProjectRecourcedata = `${urlConstant.Cart.UpdateCart}`
         common.httpPost(updateProjectRecourcedata, Data)
             .then((result) => {
-                GetCart();
+                GetAllCart();
             })
     }
     const Sub_Total_price = List.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
 
     useEffect(() => {
-        GetCart();
+        GetAllCart();
     }, []);
 
     return (
@@ -183,7 +183,7 @@ function Cart() {
                                                                     <h4 className="text-brand">₹ {total}</h4>
                                                                     {/* <h4 className="text-brand">₹10</h4> */}
                                                                 </td>
-                                                                <td className="action text-center" data-title="Remove" onClick={() => deletehandler(item.id)}>
+                                                                <td className="action text-center" data-title="Remove" onClick={() => Cartdeletehandler(item.id)}>
                                                                     <a className="text-body" ><i style={{ fontSize: "20px" }} className="fi-rs-cross-circle" /></a>
                                                                 </td>
                                                             </tr>

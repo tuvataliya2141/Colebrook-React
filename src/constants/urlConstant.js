@@ -33,6 +33,7 @@ const urlConstant = {
   ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon/apply` },
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},
   AllBrands : {GetAllBrands:`${apiURL}brands`},
+  SearchData : {SearchAllData:`${apiURL}mainAllSearch`},
 
 };
 

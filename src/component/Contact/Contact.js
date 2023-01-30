@@ -71,27 +71,27 @@ function Contact() {
                                                     <div className="row">
                                                         <div className="col-lg-6 col-md-6">
                                                             <div className="input-style mb-20">
-                                                                <input name="name" placeholder="First Name" type="text" value={first_name || ""} onChange={(e) => { Setfirst_name(e.target.value) }} />
+                                                                <input name="name" placeholder="Your Name*" type="text" value={first_name || ""} onChange={(e) => { Setfirst_name(e.target.value) }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6 col-md-6">
                                                             <div className="input-style mb-20">
-                                                                <input name="email" placeholder="Your Email" type="email" value={email || ""} onChange={(e) => { Setemail(e.target.value) }} />
+                                                                <input name="email" placeholder="Your Email*" type="email" value={email || ""} onChange={(e) => { Setemail(e.target.value) }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6 col-md-6">
                                                             <div className="input-style mb-20">
-                                                                <input name="telephone" placeholder="Your Phone" type="tel" value={phone_number || ""} onChange={(e) => { Setphone_number(e.target.value) }} />
+                                                                <input name="telephone" placeholder="Your Phone*" type="tel" value={phone_number || ""} onChange={(e) => { Setphone_number(e.target.value) }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6 col-md-6">
                                                             <div className="input-style mb-20">
-                                                                <input name="subject" placeholder="Subject" type="text" value={subject || ""} onChange={(e) => { Setsubject(e.target.value) }} />
+                                                                <input name="subject" placeholder="Subject*" type="text" value={subject || ""} onChange={(e) => { Setsubject(e.target.value) }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12 col-md-12">
                                                             <div className="textarea-style mb-30">
-                                                                <textarea name="message" placeholder="Message" defaultValue={""} value={message || ""} onChange={(e) => { Setmessage(e.target.value) }} />
+                                                                <textarea name="message" placeholder="Message*" defaultValue={""} value={message || ""} onChange={(e) => { Setmessage(e.target.value) }} />
                                                             </div>
                                                             <button className="submit submit-auto-width" onClick={SubmitHandler}>Send message</button>
                                                         </div>

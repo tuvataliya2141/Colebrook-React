@@ -9,6 +9,11 @@ import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useAppContext } from "../../context";
 import BestSellers from "../BestSellers/BestSellers";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 
 function Product() {
 
@@ -20,9 +25,12 @@ function Product() {
 
 
   const [List, setList] = useState([]);
-  const [size, setsize] = useState([]);
-  const [multipleimage, setmultipleimage] = useState([]);
-  const [colors, setcolors] = useState([]);
+  const [sizeList, setsizeList] = useState([]);
+  const [size, setsize] = useState("");
+  const [multipleimageList, setmultipleimageList] = useState([]);
+  const [mainImage, setMainImage] = useState([0]);
+  const [colors, setcolors] = useState("");
+  const [colorsList, setcolorsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
@@ -32,15 +40,15 @@ function Product() {
   function GetSingelProducts() {
     setIsLoading(true)
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
-    const Data = { product_id: id.id, user_id }
+    const Data = { slug: id.id, user_id }
     axios.post(GetAllProducts, Data, {
       headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
     }).then(function (res) {
       setIsLoading(false);
       setList(res.data.data);
-      setsize(res.data.data.multipleSize);
-      setmultipleimage(res.data.data.multipleimage);
-      setcolors(res.data.data.colors);
+      setsizeList(res.data.data.multipleSize);
+      setmultipleimageList(res.data.data.multipleimage);
+      setcolorsList(res.data.data.colors);
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -53,7 +61,23 @@ function Product() {
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
 
 
+  const sizeFun = (e) => {
+    console.log(e.target.value);
+    setsize(e.target.value);
+  }
+  const colorFun = (e) => {
+    console.log(e.target.value);
+    setcolors(e.target.value);
+  }
 
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 3,
+    speed: 500
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -91,20 +115,40 @@ function Product() {
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10">
-                              <img src={image} alt={image} style={{ width: "100%" }} />
+                              {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
+                              <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%"}} />
                             </figure>
                           </div>
                           {/* THUMBNAILS */}
-                          <div className="slider-nav-thumbnails" style={{ display: "flex" }}>
+                          {/* <div className="slider-nav-thumbnails" style={{ display: "flex" }}>
                             {
-                              multipleimage.map((item, i) => {
+                              multipleimageList.map((item, i) => {
                                 return (
                                   <>
-                                    <div><img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px",padding:"3px" }} key={i} /></div>
+                                    <div><img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} /></div>
                                   </>
                                 )
                               })
                             }
+                          </div> */}
+
+
+                          <div>
+                            <div>
+                              <Slider {...settings}>
+                                {
+                                  multipleimageList.map((item, i) => {
+                                    return (
+                                      <>
+                                        <div>
+                                          <img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
+                                        </div>
+                                      </>
+                                    )
+                                  })
+                                }
+                              </Slider>
+                            </div>
                           </div>
                         </div>
                         {/* End Gallery */}
@@ -143,11 +187,15 @@ function Product() {
                           <div className="attr-detail attr-size mb-20">
                             <ul className="list-filter size-filter font-small">
                               {
-                                size.map((item, i) => {
+                                sizeList.map((item, i) => {
 
                                   return (
                                     <>
-                                      <li><button style={{ border: "none", backgroundColor: "white" }}><a>{item}</a></button></li>
+                                      <li>
+                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                          {item}
+                                        </button>
+                                      </li>
                                     </>
                                   )
                                 })
@@ -161,20 +209,22 @@ function Product() {
                             </div>
 
                             <div className="attr-detail attr-size mb-20">
-                            <ul className="list-filter size-filter font-small">
-                              {
-                                colors.map((item, i) => {
-                                  const red = "red";
-                                  return (
-                                    
-                                    <>
-                                     <li><button className="color_button" style={{ backgroundColor:`${item}` }}></button></li>
-                                    </>
-                                  )
-                                })
-                              }
-                            </ul>
-                          </div>
+                              <ul className="list-filter size-filter font-small">
+                                {
+                                  colorsList.map((item, i) => {
+                                    return (
+
+                                      <>
+                                        <li>
+                                          <button className="color_button" style={{ backgroundColor: `${item}`, border: colors == item ? "3px solid black" : "" }} value={item} onClick={(e) => { colorFun(e) }} >
+                                          </button>
+                                        </li>
+                                      </>
+                                    )
+                                  })
+                                }
+                              </ul>
+                            </div>
                           </div>
 
                           <div className="detail-extralink mb-20">
@@ -187,10 +237,13 @@ function Product() {
                             <div className="product-extra-link2">
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(id.id, List.variant[0].variant, increment) }} ><i className="fi-rs-shopping-cart" />Add to cart</button>
+
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(List.id, List.variant[0].variant, increment,colors,size) }} >
+                                    <i className="fi-rs-shopping-cart" />Add to cart
+                                  </button>
+
                               }
-                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(id.id) }}><i className="fi-rs-heart" /></a>
-                              {/* <a aria-label="Compare" className="action-btn hover-up" href="shop-compare.html"><i className="fi-rs-shuffle" /></a> */}
+                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />
