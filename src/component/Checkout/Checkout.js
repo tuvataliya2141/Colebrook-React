@@ -174,7 +174,7 @@ function Checkout() {
                             </div>
                         </div>
                         <div className="col-lg-2 mb-40" style={{ textAlign: "end" }}>
-                            <a href="#" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</a>
+                            <Link to="/ShopProduct" className="btn btn-fill-out btn-block mt-30">←  Continue Shopping</Link>
                         </div>
                     </div>
                     <div className="row">

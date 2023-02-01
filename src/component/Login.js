@@ -20,6 +20,10 @@ function Login() {
         if (userId) {
             navigate('/')
         }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
     }, [])
 
 

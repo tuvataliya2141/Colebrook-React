@@ -380,7 +380,7 @@ function Home() {
                                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                   <div className="product-img-action-wrap">
                                     <div className="product-img product-img-zoom">
-                                      <Link to={`/shop/${item.slug}`}>
+                                      <Link to={`/${item.slug}`}>
                                         <img className="default-img" src={image} width="100%" alt="/" />
                                         <img className="hover-img" src={image} width="100%" alt="/" />
                                       </Link>
@@ -398,7 +398,9 @@ function Home() {
                                     <div className="product-category">
                                       <a >{item.category}</a>
                                     </div>
-                                    <h2><Link to={'1'}>{Name}</Link></h2>
+                                    <h2><Link to={'1'}>{Name.length > 15
+                                      ? `${Name}...`
+                                      : Name}</Link></h2>
                                     <div className="product-rate-cover">
                                       <div className="product-rate d-inline-block">
                                         <div className="product-rating" style={{ width: '90%' }} />
@@ -408,11 +410,11 @@ function Home() {
                                     <div className="product-card-bottom">
                                       <div className="product-price">
                                         <span>${item.base_price}</span>
-                                        <span className="old-price">${item.base_discounted_price + 200}</span>
+                                        <span className="old-price">${item.base_discounted_price}</span>
                                       </div>
                                       <div className="add-cart">
                                         {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
-                                        <Link to={`/${item.id}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
+                                        <Link to={`/${item.slug}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
                                       </div>
                                     </div>
                                   </div>

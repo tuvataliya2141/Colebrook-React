@@ -10,14 +10,15 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   let common = new CommonService();
 
-  const random = Math.floor(Math.random() * 100);
+  // const random = Math.floor(Math.random() * 100);
 
   const UserName = localStorage.getItem('user');
-  const user_id = localStorage.getItem('user_id') || random;
+  // const user_id = localStorage.getItem('user_id') || random;
+  const user_id = localStorage.getItem('user_id');
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
-  const [ searchData , setSearchData ] = useState([]);
+  const [searchData, setSearchData] = useState([]);
 
   function wishlistPost(P_Id) {
     try {
@@ -56,16 +57,14 @@ const AppProvider = ({ children }) => {
 
   function GetAllSearch(key) {
     try {
-      const Data = { search : key }
+      const Data = { search: key }
       const SearchData = `${urlConstant.SearchData.SearchAllData}`;
       axios.post(SearchData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
       }).then((res) => {
-        // console.log(res);
-        // console.log("products" , res.data.data.products);
-        // console.log("categories" , res.data.data.categories);
-        setSearchData(res.data.data)
+        setSearchData(res.data.data);
       })
+
     }
     catch (error) {
       ToasterError("Error")
@@ -106,7 +105,7 @@ const AppProvider = ({ children }) => {
     })
       .catch(function (error) {
         setIsLoading(false);
-        ToasterWarning(error.message)
+        // ToasterWarning(error.message)
         console.log(error);
       });
   }
@@ -134,7 +133,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo ,GetAllSearch ,searchData }}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData }}>
       {children}
     </AppContext.Provider>
   );

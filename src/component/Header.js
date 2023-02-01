@@ -6,18 +6,21 @@ import axios from 'axios';
 function Header({ Crat }) {
   const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData } = useAppContext();
 
-
+  const [hide, sethide] = useState('');
   const SignOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
     localStorage.removeItem("type");
     localStorage.removeItem("user_id");
   }
-
-
-  console.log(searchData);
   const productsData = searchData.products;
-  console.log(productsData);
+  const categoriesData = searchData.categories;
+
+  const close = (key) => {
+    sethide(key)
+  }
+
+
   return (
     <div>
       <header className="header-area header-style-1 header-height-2">
@@ -30,7 +33,7 @@ function Header({ Crat }) {
               </div>
               <div className="header-right">
                 <div className="search-style-2">
-                  <form action="#">
+                  <form className='search'>
                     <select className="select-active">
                       <option>All Categories ▼ </option>
                       {
@@ -43,18 +46,45 @@ function Header({ Crat }) {
                         })
                       }
                     </select>
-                    <input type="text" placeholder="Search for items..." onChange={(e) => { GetAllSearch(e.target.value) }} />
+                    <input type="text" placeholder="Search for items..." onChange={(e) => { GetAllSearch(e.target.value) || close(e.target.value) }} />
 
                   </form>
-                  {/* {
-                        productsData.map((item, i) => {
-                          return (
-                            <>
-                              <option key={i}>{item.name}</option>
-                            </>
-                          )
-                        })
-                      } */}
+                  {/* <div className='search1' style={{ display: searchData == "" ? "none" : "" }}> */}
+                  <div className='search1' style={{ display: hide == "" ? "none" : "" }}>
+                    {
+                      productsData?.slice(0, 3).map((item, i) => {
+                        return (
+                          <>
+                            <div className='row'>
+                              <div className='col-2'>
+                                <img src={item.thumbnail_img}  ></img>
+                              </div>
+                              <div className='col-10'>
+                                <p style={{ letterSpacing: "1px" }}><a key={i} href={`/${item.slug}`}>{item.name}</a></p>
+                              </div>
+                            </div>
+                          </>
+                        )
+                      })
+                    }
+                    {
+                      categoriesData?.map((item, i) => {
+
+                        return (
+                          <>
+                            <div className='row p-10'>
+                              <div className='col-2'>
+                                <img src="../assets/imgs/theme/icons/search.png" ></img>
+                              </div>
+                              <div className='col-10'>
+                                <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
+                              </div>
+                            </div>
+                          </>
+                        )
+                      })
+                    }
+                  </div>
                 </div>
                 <div className="header-action-right">
                   <div className="header-action-2">
@@ -208,7 +238,8 @@ function Header({ Crat }) {
 
 
 
-      <div className="mobile-header-active mobile-header-wrapper-style">
+
+      {/* <div className="mobile-header-active mobile-header-wrapper-style">
         <div className="mobile-header-wrapper-inner">
           <div className="mobile-header-top">
             <div className="mobile-header-logo">
@@ -385,7 +416,7 @@ function Header({ Crat }) {
             <div className="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.</div>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
 

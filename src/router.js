@@ -1,4 +1,5 @@
 import Error from "./component/404error";
+import BestSellers from "./component/BestSellers/BestSellers";
 import Cart from "./component/Cart/Cart";
 import Checkout from "./component/Checkout/Checkout";
 import Contact from "./component/Contact/Contact";
@@ -24,7 +25,7 @@ export default  [
     exact:true,
   },
   {
-    path:'/shop/:id',
+    path:'/:id',
     element:() => <Product/>,
     exact:true,
   },
@@ -58,6 +59,11 @@ export default  [
     element:() => <Contact/>,
     exact:true,
   },
+  // {
+  //   path:'/BestSellers',
+  //   element:() => <BestSellers/>,
+  //   exact:true,
+  // },
   {
     path:'/Privacy-Policy',
     element:() => <PrivacyPolicy/>,

@@ -46,7 +46,7 @@ function ShopProduct() {
             });
     }
 
-  
+
 
     const handleInput = (e) => {
 
@@ -128,7 +128,7 @@ function ShopProduct() {
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">
-                                                            <Link to={`/shop/${item.slug}`}>
+                                                            <Link to={`/${item.slug}`}>
                                                                 <img className="default-img" src={image} alt="/" />
                                                                 <img className="hover-img" src={image} alt="/" />
                                                             </Link>
@@ -145,7 +145,7 @@ function ShopProduct() {
                                                         <div className="product-category">
                                                             <a>{item.category}</a>
                                                         </div>
-                                                        <h2><a href="/Product"> {Name.length > 13
+                                                        <h2><a> {Name.length > 13
                                                             ? `${Name}...`
                                                             : Name}</a></h2>
                                                         <div className="product-rate-cover">
@@ -163,7 +163,8 @@ function ShopProduct() {
                                                                 <span className="old-price">₹{item.base_price}</span>
                                                             </div>
                                                             <div className="add-cart">
-                                                                <a className="add" onClick={() => { CartPost(item.id, item.variants.variant) }} ><i className="fi-rs-shopping-cart mr-5" />Add </a>
+                                                                {/* <a className="add" onClick={() => { CartPost(item.id, item.variants.variant) }} ><i className="fi-rs-shopping-cart mr-5" />Add </a> */}
+                                                                <Link to={`/${item.slug}`}> <a className="add"><i className="fi-rs-shopping-cart mr-5" />Add </a> </Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -221,6 +222,7 @@ function ShopProduct() {
                                                 })
                                             }
                                         </div>
+               
                                         <label className="fw-900">Brand</label>
                                         <div className="custome-checkbox">
 
@@ -267,7 +269,7 @@ function ShopProduct() {
                                                     )
                                                 })
                                             }
-                        
+
                                         </div>
                                         <label className="fw-900 mt-15" style={{ width: "100%" }}>Pattern</label>
                                         <div className="custome-checkbox">

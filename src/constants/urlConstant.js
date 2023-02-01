@@ -34,6 +34,7 @@ const urlConstant = {
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},
   AllBrands : {GetAllBrands:`${apiURL}brands`},
   SearchData : {SearchAllData:`${apiURL}mainAllSearch`},
+  BestSellers : {BestSellersData:`${apiURL}products/best-seller`},
 
 };
 
