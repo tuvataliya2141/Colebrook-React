@@ -35,7 +35,7 @@ function Header({ Crat }) {
                 <div className="search-style-2">
                   <form className='search'>
                     <select className="select-active">
-                      <option>All Categories ▼ </option>
+                      <option>All Categories</option>
                       {
                         AllCategory.map((item, i) => {
                           return (
@@ -145,114 +145,110 @@ function Header({ Crat }) {
             </div>
           </div>
         </div>
-        <div className="header-bottom header-bottom-bg-color sticky-bar">
-          <div className="container">
-            <div className="header-wrap header-space-between position-relative">
-              <div className="logo logo-width-1 d-block d-lg-none">
-                <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link>
-              </div>
-              <div className="header-nav d-none d-lg-flex">
-                <div className="main-categori-wrap d-none d-lg-block">
-
-
-                  <a className="categories-button-active">
-                    <span className="fi-rs-apps" />
-
-
-                    <select className="select-active" style={{ margin: "10px", color: "white" }}>
-                      <option style={{ backgroundColor: "#a8a6a4" }}>
-                        <a className="categories-button-active">
-                          <b> Browse All Categories</b> <i className="fi-rs-angle-down" />
-                        </a>
-                      </option>
-
-                      {
-                        AllCategory.map((item, i) => {
-                          return (
-                            <>
-                              <option style={{ backgroundColor: "#a8a6a4" }} key={i}><b>{item.name.toUpperCase()}</b></option>
-                            </>
-                          )
-                        })
-                      }
-                    </select>
-                  </a>
-
-
+        <div className="header-bottom  header-bottom-bg-color sticky-bar">
+          <div className='header-bottom-bg-color1'>
+            <div className="container">
+              <div className="header-wrap header-space-between position-relative">
+                <div className="logo logo-width-1 d-block d-lg-none">
+                  <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link>
                 </div>
-                <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
-                  <nav>
-                    <ul>
-                      <li>
-                        <Link to="/" >Home</Link>
-                      </li>
-                      <li>
-                        <Link to="/ShopProduct" >Shop </Link>
-                      </li>
-                      <li>
-                        <Link to="/">Offer</Link>
-                      </li>
-                      <li>
-                        <Link to="/">Man’s ware </Link>
-                      </li>
-                      <li>
-                        <Link to="/">Women's Wear </Link>
-                      </li>
-                      <li>
-                        <Link to="/Contact">Contact</Link>
-                      </li>
-                      <li>
-                        <Link to="/Privacy-Policy">Privacy Policy</Link>
-                      </li>
-                      <li>
-                        <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>
-                        <ul className="sub-menu">
-                          <li><Link to="/Register">Register</Link></li>
-                          <li><Link to="/Login">Login</Link></li>
-                          <li><Link to="/ShopProduct">Shop Product</Link></li>
-                          <li><Link to="/wishlist">wishlist</Link></li>
-                          <li><Link to="/Cart">Cart</Link></li>
-                          <li><Link to="/shop/girls-tops">Product</Link></li>
-                          <li><Link to="/">Home</Link></li>
-                          <li><Link to="/Terms-Service">Terms Service</Link></li>
-                          <li><Link to="/Checkout">Checkout</Link></li>
-                          <li><Link to="/Contact">Contact</Link></li>
-                          <li><Link to="/Privacy-Policy">Privacy Policy</Link></li>
-                          <li><Link to="/*">404 Page</Link></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-              <div className="hotline d-none d-lg-flex">
-                <img src="assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
-                <p>1900 - 888<span>24/7 Support Center</span></p>
-              </div>
-              <div className="header-action-icon-2 d-block d-lg-none">
-                <div className="burger-icon burger-icon-white">
-                  <span className="burger-icon-top" />
-                  <span className="burger-icon-mid" />
-                  <span className="burger-icon-bottom" />
-                </div>
-              </div>
-              <div className="header-action-right d-block d-lg-none">
-                <div className="header-action-2">
-                  <div className="header-action-icon-2">
-                    <a >
-                      <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
-                      <span className="pro-count white">4</span>
-                    </a>
+                <div className="header-nav d-none d-lg-flex">
+                  <div className="main-categori-wrap d-none d-lg-block">
+
+
+                    <a className="categories-button-active">
+                      <span className="fi-rs-apps" />
+                      <select className="select-active" style={{ margin: "10px 0px", color: "white" }}>
+                        <option style={{ backgroundColor: "#a8a6a4" }}>
+                          <b> Browse All Categories</b>
+                       </option>
+                       {
+                          AllCategory.map((item, i) => {
+                            return (
+                              <>
+                                <option style={{ backgroundColor: "#a8a6a4" }} key={i}><b>{item.name.toUpperCase()}</b></option>
+                              </>
+                            )
+                          })
+                        }
+                      </select>
+                    </a>  
+
                   </div>
-                  <div className="header-action-icon-2">
-                    <a className="mini-cart-icon" href="#">
-                      <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
-                      <span className="pro-count white">2</span>
-                    </a>
+                  <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
+                    <nav>
+                      <ul>
+                        <li>
+                          <Link to="/" >Home</Link>
+                        </li>
+                        <li>
+                          <Link to="/ShopProduct" >Shop </Link>
+                        </li>
+                        <li>
+                          <Link to="/">Offer</Link>
+                        </li>
+                        <li>
+                          <Link to="/">Man’s ware </Link>
+                        </li>
+                        <li>
+                          <Link to="/">Women's Wear </Link>
+                        </li>
+                        <li>
+                          <Link to="/Contact">Contact</Link>
+                        </li>
+                        <li>
+                          <Link to="/Privacy-Policy">Privacy Policy</Link>
+                        </li>
+                        <li>
+                          <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>
+                          <ul className="sub-menu">
+                            <li><Link to="/Register">Register</Link></li>
+                            <li><Link to="/Login">Login</Link></li>
+                            <li><Link to="/ShopProduct">Shop Product</Link></li>
+                            <li><Link to="/wishlist">wishlist</Link></li>
+                            <li><Link to="/Cart">Cart</Link></li>
+                            <li><Link to="/shop/girls-tops">Product</Link></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/Terms-Service">Terms Service</Link></li>
+                            <li><Link to="/Checkout">Checkout</Link></li>
+                            <li><Link to="/Contact">Contact</Link></li>
+                            <li><Link to="/Privacy-Policy">Privacy Policy</Link></li>
+                            <li><Link to="/*">404 Page</Link></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
-              </div>
+                <div className="hotline d-none d-lg-flex">
+                  <img src="assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
+                  <p>1900 - 888<span>24/7 Support Center</span></p>
+                </div>
+                <div className="header-action-icon-2 d-block d-lg-none">
+                  <div className="burger-icon burger-icon-white">
+                    <span className="burger-icon-top" />
+                    <span className="burger-icon-mid" />
+                    <span className="burger-icon-bottom" />
+                  </div>
+                </div>
+                <div className="header-action-right d-block d-lg-none">
+                  <div className="header-action-2">
+                    <div className="header-action-icon-2">
+                      <a >
+                        <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
+                        <span className="pro-count white">4</span>
+                      </a>
+                    </div>
+                    <div className="header-action-icon-2">
+                      <a className="mini-cart-icon" href="#">
+                        <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
+                        <span className="pro-count white">2</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
 
+              </div>
             </div>
           </div>
         </div>

@@ -8381,8 +8381,17 @@ h6.post-title {
 
 .header-style-1 .header-bottom-bg-color {
   background-color: #fff;
-  border-top: 1px solid #ececec;
-  border-bottom: 1px solid #ececec;
+  border-top: 1px solid #4F4F4F;
+  border-bottom: 1px solid #4F4F4F;
+  /* border-top: 1px solid #ececec;
+  border-bottom: 1px solid #ececec; */
+}
+
+
+.header-style-1 .header-bottom-bg-color1 {
+  background-color: #fff;
+  border-top: 1px solid #C2D7FF;
+  /* border-bottom: 1px solid #4F4F4F; */
 }
 
 .header-style-1 .main-categori-wrap>a {
@@ -12088,6 +12097,7 @@ footer .hotline img {
 
   .carausel-10-columns-cover .carausel-10-columns {
     padding: 10px 10px 25px 10px;
+    margin-top: 50px;
   }
 }
 

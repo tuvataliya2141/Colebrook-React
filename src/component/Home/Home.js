@@ -170,25 +170,23 @@ function Home() {
           <div className="container wow animate__animated animate__fadeIn">
             {/* <div className="section-title"> */}
             <div className="row">
-              <div className="col-md-5">
+              <div className="col-md-11">
                 <div className="title">
                   <h3>Featured Brands</h3>
                 </div>
               </div>
-              {/* <div className="col-md-7" style={{ alignItems: "center", display: "flex" }}>
-                <div className="title">
-                  <ul className="list-inline nav nav-tabs links">
-                    <li className="list-inline-item nav-item"><a className="nav-link" >All </a></li>
-                    <li className="list-inline-item nav-item"><a className="nav-link" >Sale</a></li>
-                    <li className="list-inline-item nav-item"><a className="nav-link active" >Women</a></li>
-                    <li className="list-inline-item nav-item"><a className="nav-link" >Men</a></li>
-                    <li className="list-inline-item nav-item"><a className="nav-link" >New</a></li>
-                  </ul>
-                </div>
+
+              {/* <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
+                <button className=""><span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span></button>
+                <button className=""><span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span></button>
               </div> */}
             </div>
+
+
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
             {/* </div> */}
+
+
             <div className="carausel-10-columns-cover position-relative">
 
               <div className="carausel-10-columns" id="carausel-10-columns">
@@ -223,9 +221,9 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button">
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#A5A5A5" }}>
                         <span className="text-span">
-                          Shop Now
+                          Shop Now 
                         </span>
                         <span className="img-span">
                           <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
@@ -247,7 +245,7 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button">
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#3D8440" }}>
                         <span className="text-span">
                           Shop Now
                         </span>
@@ -271,7 +269,7 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button">
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#84633D" }}>
                         <span className="text-span">
                           Shop Now
                         </span>
@@ -366,7 +364,7 @@ function Home() {
                 <div className="row product-grid-4">
 
                   {
-                    List.slice(0,10).map((item, i) => {
+                    List.slice(0, 10).map((item, i) => {
 
 
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
@@ -389,7 +387,7 @@ function Home() {
                                       {
                                         user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                       }
-                                      
+
                                       <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                                       {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                     </div>

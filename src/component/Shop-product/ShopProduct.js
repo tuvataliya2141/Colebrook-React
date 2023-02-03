@@ -82,6 +82,8 @@ function ShopProduct() {
 
     };
 
+    
+
     const categoryData = getUniqueData(List, "category");
     const colorsData = getUniqueData(List, "colors");
     const brandData = getUniqueData(List, "brand");
@@ -217,10 +219,12 @@ function ShopProduct() {
 
 
                                                     return (
-                                                        <>
+                                                        <>   
+                                                            <Link to={`?category=${item}`}></Link>
                                                             <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                            <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
+                                                             <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
                                                             <br />
+                                                        
                                                         </>
                                                     )
                                                 })
@@ -274,35 +278,6 @@ function ShopProduct() {
                                                 })
                                             }
 
-                                        </div>
-                                        <label className="fw-900 mt-15" style={{ width: "100%" }}>Pattern</label>
-                                        <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox1"><span>Animal print</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox2"><span>Argyle</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox3"><span>Camouflage</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox4"><span>Cartoon</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox5"><span>Chevron</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox6" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox6"><span>Floral</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox7" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox7"><span>Fruits</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox8" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox8"><span>Geometric</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="patternCheckbox9" defaultValue />
-                                            <label className="form-check-label" htmlFor="patternCheckbox9"><span>Herringbone</span></label>
                                         </div>
                                         <label className="fw-900 mt-15">Avg.Customer Review</label>
                                         <div className="custome-checkbox">
