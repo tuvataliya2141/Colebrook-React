@@ -13,6 +13,9 @@ function App() {
           })}
         </Routes>
       </BrowserRouter>
+      <a  class="whats-app" href="#" target="_blank">
+      <img className src="assets/imgs/theme/whatsapp.png"  alt="/"/>
+      </a>
     </div>
   );
 }

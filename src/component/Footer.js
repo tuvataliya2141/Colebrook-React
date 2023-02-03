@@ -18,7 +18,7 @@ function Footer() {
                     <p className="font-lg text-heading">Awesome grocery store website template</p>
                     </div>
                     <ul className="contact-infor">
-                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/"/><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
+                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/"/><strong>Address: </strong> <span>5171 W Campbell Ave <span >undefined Kent, Utah 53127 United States</span></span></li>
                     <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/"/><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                     <li><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/"/><strong>Email:</strong><span>colebrook@gmail.com</span></li>
                     <li><img src="assets/imgs/theme/icons/icon-clock.svg" alt="/"/><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat</span></li>
