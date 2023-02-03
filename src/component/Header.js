@@ -4,7 +4,7 @@ import { useAppContext } from '../context/index'
 import axios from 'axios';
 
 function Header({ Crat }) {
-  const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData } = useAppContext();
+  const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id } = useAppContext();
 
   const [hide, sethide] = useState('');
   const SignOut = () => {
@@ -69,19 +69,16 @@ function Header({ Crat }) {
                     }
                     {
                       categoriesData?.map((item, i) => {
-
-                        return (
-                          <>
-                            <div className='row p-10'>
-                              <div className='col-2'>
-                                <img src="../assets/imgs/theme/icons/search.png" ></img>
-                              </div>
-                              <div className='col-10'>
-                                <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
-                              </div>
+                        return (<>
+                          <div className='row p-10'>
+                            <div className='col-2'>
+                              <img src="../assets/imgs/theme/icons/search.png" ></img>
                             </div>
-                          </>
-                        )
+                            <div className='col-10'>
+                              <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
+                            </div>
+                          </div>
+                        </>)
                       })
                     }
                   </div>
@@ -89,12 +86,16 @@ function Header({ Crat }) {
                 <div className="header-action-right">
                   <div className="header-action-2">
                     <div className="header-action-icon-2">
-                      <Link to="/wishlist">
+                      {/*<Link to="/wishlist">
                         <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
-                        {/* {
+                        {
                           Wishlist == null ? " " : <span className="pro-count blue">{Wishlist}</span>
-                        } */}
-                      </Link>
+                        } 
+                      </Link>*/}
+
+                      {
+                        user_id == null ? <Link to="/login"><img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" /></Link> : <Link to="/wishlist"><img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" /></Link>
+                      }
                     </div>
 
                     <div className="header-action-icon-2">
@@ -152,10 +153,32 @@ function Header({ Crat }) {
               </div>
               <div className="header-nav d-none d-lg-flex">
                 <div className="main-categori-wrap d-none d-lg-block">
-                  <a className="categories-button-active" href="#">
-                    <span className="fi-rs-apps" /> <span className="et">Browse</span> All Categories
-                    <i className="fi-rs-angle-down" />
+
+
+                  <a className="categories-button-active">
+                    <span className="fi-rs-apps" />
+
+
+                    <select className="select-active" style={{ margin: "10px", color: "white" }}>
+                      <option style={{ backgroundColor: "#a8a6a4" }}>
+                        <a className="categories-button-active">
+                          <b> Browse All Categories</b> <i className="fi-rs-angle-down" />
+                        </a>
+                      </option>
+
+                      {
+                        AllCategory.map((item, i) => {
+                          return (
+                            <>
+                              <option style={{ backgroundColor: "#a8a6a4" }} key={i}><b>{item.name.toUpperCase()}</b></option>
+                            </>
+                          )
+                        })
+                      }
+                    </select>
                   </a>
+
+
                 </div>
                 <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                   <nav>

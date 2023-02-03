@@ -20,7 +20,8 @@ const urlConstant = {
     PostCart: `${apiURL}cart/add`,
     GetCart: `${apiURL}carts/list`,
     DeleteCart: `${apiURL}cart/delete`,
-    UpdateCart: `${apiURL}cart/update`
+    UpdateCart: `${apiURL}cart/update`,
+    AllCartDelete : `${apiURL}allCartDelete`
   },
   Checkout: { 
     PostCheckout: `${apiURL}checkout`,

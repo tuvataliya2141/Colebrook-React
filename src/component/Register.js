@@ -63,7 +63,7 @@ function Register() {
             <div className="container">
             <div className="breadcrumb">
                 <a  rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-                <span /> Create an Account <span />
+                <span /> Create an Account 
             </div>
             </div>
         </div>

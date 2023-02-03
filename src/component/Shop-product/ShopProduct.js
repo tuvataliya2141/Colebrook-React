@@ -134,7 +134,11 @@ function ShopProduct() {
                                                             </Link>
                                                         </div>
                                                         <div className="product-action-1">
-                                                            <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                                            {
+                                                                user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                                            }
+
+                                                            {/* <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
                                                             <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
                                                         </div>
                                                         <div className="product-badges product-badges-position product-badges-mrg">
@@ -222,7 +226,7 @@ function ShopProduct() {
                                                 })
                                             }
                                         </div>
-               
+
                                         <label className="fw-900">Brand</label>
                                         <div className="custome-checkbox">
 

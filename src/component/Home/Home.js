@@ -366,7 +366,7 @@ function Home() {
                 <div className="row product-grid-4">
 
                   {
-                    List.map((item, i) => {
+                    List.slice(0,10).map((item, i) => {
 
 
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
@@ -386,7 +386,10 @@ function Home() {
                                       </Link>
                                     </div>
                                     <div className="product-action-1">
-                                      <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                      {
+                                        user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                      }
+                                      
                                       <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
                                       {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                     </div>

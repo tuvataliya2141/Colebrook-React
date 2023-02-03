@@ -243,7 +243,11 @@ function Product() {
                                   </button>
 
                               }
-                              <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
+                              {/* <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a> */}
+
+                              {
+                                 user_id == null ? <Link to="/login"> <a aria-label="Add To Wishlist" className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
+                              } 
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />

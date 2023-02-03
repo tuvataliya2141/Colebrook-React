@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding, ApplyCoupon,GetCart } = useAppContext();
+    const { user_id, Loding, ApplyCoupon, GetCart } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ function Cart() {
             });
     }
 
-     const Cartdeletehandler = async (id) => {
+    const Cartdeletehandler = async (id) => {
 
         swal({
             title: 'Are You Sure Delete Data?',
@@ -65,6 +65,31 @@ function Cart() {
         })
 
     };
+
+    const AllCartdelete = async (id) => {
+
+        swal({
+            title: 'Are You Sure Delete Data?',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete1) => {
+            if (willDelete1) {
+                setIsLoading(true)
+                const Data = { user_id: user_id }
+                const deleteAllCart = `${urlConstant.Cart.AllCartDelete}`;
+                common.httpPost(deleteAllCart, Data).then((res) => {
+                    setIsLoading(false);
+                    GetAllCart();
+                })
+            }
+            else {
+                ToasterWarning("Your Data Safe...!!");
+                setIsLoading(false);
+            }
+        })
+    };
+
 
 
     const Increment = (id, item) => {
@@ -99,7 +124,7 @@ function Cart() {
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
                         <div className="breadcrumb">
-                            <a  rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
+                            <a rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
                             <span /> Shop
                             <span /> Cart
                         </div>
@@ -207,7 +232,7 @@ function Cart() {
                                     setCurrentPage={setCurrentPage}
                                 />
                                 {/* <a className="btn  mr-10 mb-sm-15" ><i className="fi-rs-trash mr-5" />Clear Cart</a> */}
-                                <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
+                                <h6 className="text-body" onClick={() => AllCartdelete()}><a className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>
 
                             </div>
                         </div>
@@ -272,7 +297,7 @@ function Cart() {
                                         <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
                                     </div>
 
-                                </div><br/>
+                                </div><br />
 
                                 <div>
                                     <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>

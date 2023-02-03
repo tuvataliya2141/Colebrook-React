@@ -62,7 +62,7 @@ function Login() {
                     <div className="container">
                         <div className="breadcrumb">
                             <a href="#" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-                            <span /> Login <span />
+                            <span /> Login 
                         </div>
                     </div>
                 </div>

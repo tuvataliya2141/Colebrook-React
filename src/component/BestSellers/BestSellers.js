@@ -48,7 +48,7 @@ function BestSellers() {
         <div className="container">
           <div className="section-title wow animate__animated animate__fadeIn">
             <h3 className>Best Sellers</h3>
-            {/* <ul className="nav nav-tabs links" id="myTab-2" role="tablist">
+            <ul className="nav nav-tabs links" id="myTab-2" role="tablist">
               <li className="nav-item" role="presentation">
                 <button className="nav-link active" id="nav-tab-one-1" data-bs-toggle="tab" data-bs-target="#tab-one-1" type="button" role="tab" aria-controls="tab-one" aria-selected="true">Meats</button>
               </li>
@@ -58,7 +58,7 @@ function BestSellers() {
               <li className="nav-item" role="presentation">
                 <button className="nav-link" id="nav-tab-three-1" data-bs-toggle="tab" data-bs-target="#tab-three-1" type="button" role="tab" aria-controls="tab-three" aria-selected="false">Fruits</button>
               </li>
-            </ul> */}
+            </ul>
           </div>
           <div className="row">
             <div className="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
@@ -80,12 +80,12 @@ function BestSellers() {
                     <div className="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
 
                       {
-                        List.slice(0, 4).map((item, i) => {
+                        List.map((item, i) => {
                           const Name = item.name.substring(0, 15);
                           return (
                             <>
                               <div className="product-cart-wrap">
-                                <div className="product-img-action-wrap">
+                                <div className="product-img-action-wrap" style={{ height:"348px" }}>
                                   <div className="product-img product-img-zoom">
                                   <Link to={`/${item.slug}`}>  
                                       <img className="default-img" src={item.thumbnail_image} alt="/" />
