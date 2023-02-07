@@ -13,8 +13,8 @@ function App() {
           })}
         </Routes>
       </BrowserRouter>
-      <a  class="whats-app" href="#" target="_blank">
-      <img className src="assets/imgs/theme/whatsapp.png"  alt="/"/>
+      <a class="whats-app" href='https://api.whatsapp.com/send?phone=+919624501047' target="_blank">
+        <img className src="assets/imgs/theme/whatsapp.png" alt="/" />
       </a>
     </div>
   );

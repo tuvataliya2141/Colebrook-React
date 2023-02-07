@@ -385,11 +385,8 @@ function Home() {
                                     </div>
                                     <div className="product-action-1">
                                       {
-                                        user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                        user_id == null ? <Link to='/login'><a  className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                       }
-
-                                      <a aria-label="Compare" className="action-btn" href=""><i className="fi-rs-shuffle" /></a>
-                                      {/* <a aria-label="Quick view" className="action-btn" data-bs-toggle="modal" data-bs-target="#quickViewModal"><i className="fi-rs-eye" /></a> */}
                                     </div>
                                     <div className="product-badges product-badges-position product-badges-mrg">
                                       {/* <span className="hot">-17%</span> */}
@@ -438,35 +435,6 @@ function Home() {
 
         {/* old */}
         <BestSellers />
-
-
-        <section className="newsletter mb-15 wow animate__animated animate__fadeIn">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="position-relative newsletter-inner">
-                  <div className="newsletter-content">
-                    <h2 className="mb-20">
-                      Stay home &amp; get your daily <br />
-                      needs from our shop
-                    </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
-                    <form className="form-subcriber d-flex">
-                      <input type="email" placeholder="Your emaill address" />
-                      <button className="btn" type="submit">Subscribe</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
-
-
-
-
         <Footer />
 
 

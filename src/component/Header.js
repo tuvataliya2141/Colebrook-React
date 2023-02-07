@@ -87,20 +87,47 @@ function Header({ Crat }) {
                   <div className="header-action-2">
                     <div className="header-action-icon-2">
                       {/*<Link to="/wishlist">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" />
+                        <img className="svgInject" alt="/" src="assets/imgs/theme/icons/Vector.svg" />
                         {
                           Wishlist == null ? " " : <span className="pro-count blue">{Wishlist}</span>
                         } 
                       </Link>*/}
 
+                      {/* {
+                        user_id == null ? <Link to="/login"><img className="svgInject" alt="/" src="assets/imgs/theme/icons/Vector.svg" /></Link> : <Link to="/wishlist"><img className="svgInject" alt="/" src="assets/imgs/theme/icons/Vector.svg" /></Link>
+                      } */}
+
+
                       {
-                        user_id == null ? <Link to="/login"><img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" /></Link> : <Link to="/wishlist"><img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/Vector.svg" /></Link>
+                        user_id == null ? <Link to="/login"><svg className='svg_icon' width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17.5 0.916992C16.3739 0.934507 15.2724 1.24885 14.3067 1.82826C13.341 2.40768 12.5453 3.23166 12 4.21699C11.4546 3.23166 10.6589 2.40768 9.6932 1.82826C8.7275 1.24885 7.62601 0.934507 6.49996 0.916992C4.7049 0.994983 3.01366 1.78025 1.79574 3.10122C0.577818 4.4222 -0.0677922 6.17152 -4.17093e-05 7.96699C-4.17093e-05 12.514 4.78596 17.48 8.79996 20.847C9.69618 21.6001 10.8293 22.013 12 22.013C13.1706 22.013 14.3037 21.6001 15.2 20.847C19.214 17.48 24 12.514 24 7.96699C24.0677 6.17152 23.4221 4.4222 22.2042 3.10122C20.9863 1.78025 19.295 0.994983 17.5 0.916992Z" fill="#A5A5A5" />
+                        </svg>
+                        </Link> :
+                          <Link to="/wishlist"><svg className='svg_icon' width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.5 0.916992C16.3739 0.934507 15.2724 1.24885 14.3067 1.82826C13.341 2.40768 12.5453 3.23166 12 4.21699C11.4546 3.23166 10.6589 2.40768 9.6932 1.82826C8.7275 1.24885 7.62601 0.934507 6.49996 0.916992C4.7049 0.994983 3.01366 1.78025 1.79574 3.10122C0.577818 4.4222 -0.0677922 6.17152 -4.17093e-05 7.96699C-4.17093e-05 12.514 4.78596 17.48 8.79996 20.847C9.69618 21.6001 10.8293 22.013 12 22.013C13.1706 22.013 14.3037 21.6001 15.2 20.847C19.214 17.48 24 12.514 24 7.96699C24.0677 6.17152 23.4221 4.4222 22.2042 3.10122C20.9863 1.78025 19.295 0.994983 17.5 0.916992Z" fill="#A5A5A5" />
+                          </svg>
+                          </Link>
                       }
                     </div>
 
                     <div className="header-action-icon-2">
                       <Link to="/Cart">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/shopping-cart.svg" />
+                        {/* <img className="svgInject"  alt="/" src="assets/imgs/theme/icons/shopping-cart.svg" /> */}
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className='svg_icon'>
+                          <g clip-path="url(#clip0_57_1591)">
+                            <path d="M22.713 4.077C22.4317 3.73944 22.0796 3.46795 21.6815 3.28182C21.2835 3.09568 20.8494 2.99946 20.41 3H4.242L4.2 2.649C4.11405 1.91942 3.76339 1.24673 3.21449 0.758478C2.6656 0.270223 1.95663 0.000341793 1.222 0L1 0C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1C0 1.26522 0.105357 1.51957 0.292893 1.70711C0.48043 1.89464 0.734784 2 1 2H1.222C1.46693 2.00003 1.70334 2.08996 1.88637 2.25272C2.06941 2.41547 2.18634 2.63975 2.215 2.883L3.591 14.583C3.73385 15.7998 4.31848 16.9218 5.23391 17.736C6.14934 18.5502 7.33186 19 8.557 19H19C19.2652 19 19.5196 18.8946 19.7071 18.7071C19.8946 18.5196 20 18.2652 20 18C20 17.7348 19.8946 17.4804 19.7071 17.2929C19.5196 17.1054 19.2652 17 19 17H8.557C7.93806 16.9983 7.3348 16.8051 6.82994 16.4471C6.32507 16.089 5.94331 15.5835 5.737 15H17.657C18.8293 15.0001 19.9643 14.5882 20.8638 13.8364C21.7633 13.0846 22.37 12.0407 22.578 10.887L23.363 6.533C23.4414 6.10101 23.4237 5.65707 23.3114 5.23264C23.1991 4.80821 22.9948 4.41368 22.713 4.077Z" fill="#A5A5A5" />
+                            <path d="M7 24C8.10457 24 9 23.1046 9 22C9 20.8954 8.10457 20 7 20C5.89543 20 5 20.8954 5 22C5 23.1046 5.89543 24 7 24Z" fill="#A5A5A5" />
+                            <path d="M17 24C18.1046 24 19 23.1046 19 22C19 20.8954 18.1046 20 17 20C15.8954 20 15 20.8954 15 22C15 23.1046 15.8954 24 17 24Z" fill="#A5A5A5" />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_57_1591">
+                              <rect width="24" height="24" fill="white" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+
+
                         {/* {
                          // Crat == null ? <span className="pro-count blue">{GetCart.length}</span> : <span className="pro-count blue">{Crat}</span>
                         }  */}
@@ -108,7 +135,12 @@ function Header({ Crat }) {
                     </div>
                     <div className="header-action-icon-2">
                       <Link to="/">
-                        <img className="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
+                        {/* <img className="svgInject" alt="/" src="assets/imgs/theme/icons/icon-compare.svg" /> */}
+                        <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path className='svg_icon1' d="M12 12C15.3137 12 18 9.31371 18 6C18 2.68629 15.3137 0 12 0C8.68629 0 6 2.68629 6 6C6 9.31371 8.68629 12 12 12Z" fill="#A5A5A5" />
+                          <path className='svg_icon1' d="M12 14C7.03172 14.0055 3.00553 18.0317 3 23C3 23.5523 3.4477 24 3.99998 24H20C20.5522 24 21 23.5523 21 23C20.9945 18.0317 16.9683 14.0055 12 14Z" fill="#A5A5A5" />
+                        </svg>
+
                       </Link>
                       <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
 
@@ -161,8 +193,8 @@ function Header({ Crat }) {
                       <select className="select-active" style={{ margin: "10px 0px", color: "white" }}>
                         <option style={{ backgroundColor: "#a8a6a4" }}>
                           <b> Browse All Categories</b>
-                       </option>
-                       {
+                        </option>
+                        {
                           AllCategory.map((item, i) => {
                             return (
                               <>
@@ -172,7 +204,7 @@ function Header({ Crat }) {
                           })
                         }
                       </select>
-                    </a>  
+                    </a>
 
                   </div>
                   <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
@@ -197,9 +229,9 @@ function Header({ Crat }) {
                           <Link to="/Contact">Contact</Link>
                         </li>
                         <li>
-                          <Link to="/Privacy-Policy">Privacy Policy</Link>
+                          <Link to="/Terms-Service">Terms and conditions</Link>
                         </li>
-                        <li>
+                        {/* <li>
                           <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>
                           <ul className="sub-menu">
                             <li><Link to="/Register">Register</Link></li>
@@ -215,7 +247,7 @@ function Header({ Crat }) {
                             <li><Link to="/Privacy-Policy">Privacy Policy</Link></li>
                             <li><Link to="/*">404 Page</Link></li>
                           </ul>
-                        </li>
+                        </li> */}
                       </ul>
                     </nav>
                   </div>
@@ -235,13 +267,13 @@ function Header({ Crat }) {
                   <div className="header-action-2">
                     <div className="header-action-icon-2">
                       <a >
-                        <img alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
+                        <img alt="/" src="assets/imgs/theme/icons/icon-heart.svg" />
                         <span className="pro-count white">4</span>
                       </a>
                     </div>
                     <div className="header-action-icon-2">
                       <a className="mini-cart-icon" href="#">
-                        <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
+                        <img alt="/" src="assets/imgs/theme/icons/icon-cart.svg" />
                         <span className="pro-count white">2</span>
                       </a>
                     </div>
@@ -432,7 +464,7 @@ function Header({ Crat }) {
               <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="/" /></a>
               <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="/" /></a>
             </div>
-            <div className="site-copyright">Copyright 2021 © Nest. All rights reserved. Powered by AliThemes.</div>
+            <div className="site-copyright">Copyright 2021 © /. All rights reserved. Powered by AliThemes.</div>
           </div>
         </div>
       </div> */}

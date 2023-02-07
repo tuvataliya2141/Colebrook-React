@@ -192,7 +192,7 @@ function Product() {
                                   return (
                                     <>
                                       <li>
-                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px",margin:"2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
                                           {item}
                                         </button>
                                       </li>
@@ -243,10 +243,10 @@ function Product() {
                                   </button>
 
                               }
-                              {/* <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a> */}
+                              {/* <a  className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a> */}
 
                               {
-                                 user_id == null ? <Link to="/login"> <a aria-label="Add To Wishlist" className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
+                                 user_id == null ? <Link to="/login"> <a  className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
                               } 
                             </div>
                           </div>
@@ -657,31 +657,7 @@ function Product() {
           </div>
         </div>
       </main>
-      <footer className="main">
-        <section className="newsletter mb-15">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="position-relative newsletter-inner">
-                  <div className="newsletter-content">
-                    <h2 className="mb-20">
-                      Stay home &amp; get your daily <br />
-                      needs from our shop
-                    </h2>
-                    <p className="mb-45">Start You'r Daily Shopping with <span className="text-brand"> Colebrook Mart</span></p>
-                    <form className="form-subcriber d-flex">
-                      <input type="email" placeholder="Your emaill address" />
-                      <button className="btn" type="submit">Subscribe</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </footer>
-
-
+  
       <Footer />
     </div>
   )

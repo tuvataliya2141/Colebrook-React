@@ -82,13 +82,9 @@ function BestSellers() {
                                     </Link>
                                   </div>
                                   <div className="product-action-1">
-                                    {/* <a aria-label="Quick view" className="action-btn small hover-up" data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i className="fi-rs-eye" /></a> */}
-
                                     {
-                                      user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                      user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                     }
-                                    {/* <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
-                                    <a aria-label="Compare" className="action-btn small hover-up" href=""><i className="fi-rs-shuffle" /></a>
                                   </div>
                                   <div className="product-badges product-badges-position product-badges-mrg">
                                     <span className="hot">Save 15%</span>

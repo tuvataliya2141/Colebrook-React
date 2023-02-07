@@ -10,11 +10,15 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   let common = new CommonService();
 
-  // const random = Math.floor(Math.random() * 100);
+  const random = Math.floor(Math.random() * 10000);
 
-  const UserName = localStorage.getItem('user');
+  
   // const user_id = localStorage.getItem('user_id') || random;
   const user_id = localStorage.getItem('user_id');
+  const UserName = localStorage.getItem('user');
+  
+
+
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
@@ -39,8 +43,11 @@ const AppProvider = ({ children }) => {
 
   function CartPost(id, variant, increment, colors, size) {
     try {
+      const localtempid = user_id == null ? random : user_id;
+      localStorage.setItem('tempid',localtempid);
+      const tempid = localStorage.getItem('tempid');
       setIsLoading(true)
-      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id), colors, size }
+      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id), tempid, colors, size }
       const CartData = `${urlConstant.Cart.PostCart}`;
       axios.post(CartData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -133,7 +140,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData }}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData}}>
       {children}
     </AppContext.Provider>
   );

@@ -17,7 +17,7 @@ function ShopProduct() {
 
     const [List, setList] = useState([]);
     const [price, setPrice] = useState(100);
-    const [category, setcategory] = useState("");
+    const [category, setcategory] = useState(List);
     const [color, setcolor] = useState(List);
     const [brand, setBrand] = useState(List);
     const [size, setSize] = useState(List);
@@ -51,15 +51,25 @@ function ShopProduct() {
     const handleInput = (e) => {
 
         if (e.target.checked === false) {
-            setcategory("");
+            setcategory(old => {
+                const newSet = new Set(old);
+                newSet.delete(e.target.value)
+                return Array.from(newSet)
+
+            });
             setcolor("");
-            setBrand("");
+            setBrand(old => {
+                const newSet = new Set(old);
+                newSet.delete(e.target.value)
+                return Array.from(newSet)
+
+            });
             setSize("");
         } else {
             setPrice(e.target.value);
-            setcategory(e.target.value);
+            setcategory(old => e.target.value ? Array.from(new Set([...old, e.target.value])) : old);
             setcolor(e.target.value);
-            setBrand(e.target.value);
+            setBrand(old => e.target.value ? Array.from(new Set([...old, e.target.value])) : old);
             setSize(e.target.value);
         }
     }
@@ -82,7 +92,7 @@ function ShopProduct() {
 
     };
 
-    
+
 
     const categoryData = getUniqueData(List, "category");
     const colorsData = getUniqueData(List, "colors");
@@ -112,15 +122,19 @@ function ShopProduct() {
                 <div className="container mb-30">
                     <div className="row flex-row-reverse">
                         <div className="col-lg-4-5">
-                            <div className="shop-product-fillter">
+                            {/* <div className="shop-product-fillter">
                                 <div className="totall-product">
                                     <p>We found <strong className="text-brand">{Getlength}</strong> items for you!</p>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className="row product-grid">
                                 {
-                                    currentPosts.filter((Data, i) => { return Data.base_discounted_price > parseInt(price, 10) || Data.brand === brand || Data.category === category || Data.colors[i] === color || Data.multipleSize[i] === size }).map((item, i) => {
+                                    currentPosts.filter((Data, i) => {
+                                        if (price || brand.length || category.length || color || size)
+                                            return Data.base_discounted_price > parseInt(price, 10) || brand.includes(Data.brand) || category.includes(Data.category) || Data.colors[i] === color || Data.multipleSize[i] === size
+                                        return Data
+                                    }).map((item, i) => {
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                                         const Name = item.name.substring(0, 20);
 
@@ -137,11 +151,11 @@ function ShopProduct() {
                                                         </div>
                                                         <div className="product-action-1">
                                                             {
-                                                                user_id == null ? <Link to='/login'><a aria-label="Add To Wishlist" className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                                                user_id == null ? <Link to='/login'><a  className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                                             }
 
-                                                            {/* <a aria-label="Add To Wishlist" className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
-                                                            <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a>
+                                                            {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
+                                                            {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
                                                         </div>
                                                         <div className="product-badges product-badges-position product-badges-mrg">
                                                             <span className="hot">Hot</span>
@@ -216,15 +230,11 @@ function ShopProduct() {
                                         <div className="custome-checkbox">
                                             {
                                                 categoryData.map((item, i) => {
-
-
                                                     return (
-                                                        <>   
-                                                            <Link to={`?category=${item}`}></Link>
-                                                            <input className="form-check-input" type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                             <label className="form-check-label" name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label>
-                                                            <br />
-                                                        
+                                                        <>
+                                                            {/* <Link to={`?category=${category.toString()}`}>h</Link> */}
+                                                            <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
+                                                            <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label><br />
                                                         </>
                                                     )
                                                 })
@@ -240,8 +250,9 @@ function ShopProduct() {
                                                     return (
                                                         <>
 
-                                                            <input className="form-check-input" type="checkbox" name="brandData" value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                            <label className="form-check-label" name='brandData' htmlFor={item + i}><span>{item}</span></label><br />
+                                                            {/* <Link to={`?brand=${brand.toString()}`}>h</Link> */}
+                                                            <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} defaultValue />
+                                                            <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label><br />
                                                         </>
                                                     )
                                                 })
@@ -270,9 +281,8 @@ function ShopProduct() {
 
                                                     return (
                                                         <>
-                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} />
+                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
                                                             <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
-
                                                         </>
                                                     )
                                                 })
