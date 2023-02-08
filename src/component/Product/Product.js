@@ -114,7 +114,7 @@ function Product() {
                           <span className="zoom-icon"><i className="fi-rs-search" /></span>
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
-                            <figure className="border-radius-10">
+                            <figure className="border-radius-10" style={{ height:"600px" }}>
                               {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
                               <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%"}} />
                             </figure>
