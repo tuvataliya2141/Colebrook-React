@@ -209,27 +209,27 @@ function Header({ Crat }) {
                   </div>
                   <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                     <nav>
-                      <ul>
-                        <li>
-                          <Link to="/" >Home</Link>
+                      <ul className='nav nav-tabs links'>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/" >Home</Link>
                         </li>
-                        <li>
-                          <Link to="/ShopProduct" >Shop </Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/ShopProduct" >Shop </Link>
                         </li>
-                        <li>
-                          <Link to="/">Offer</Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/">Offer</Link>
                         </li>
-                        <li>
-                          <Link to="/">Man’s ware </Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/">Man’s ware </Link>
                         </li>
-                        <li>
-                          <Link to="/">Women's Wear </Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/">Women's Wear </Link>
                         </li>
-                        <li>
-                          <Link to="/Contact">Contact</Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/Contact">Contact</Link>
                         </li>
-                        <li>
-                          <Link to="/Terms-Service">Terms and conditions</Link>
+                        <li className="nav-item">
+                          <Link className="nav-link" to="/Terms-Service">Terms and conditions</Link>
                         </li>
                         {/* <li>
                           <Link to="/">Pages <i className="fi-rs-angle-down" /></Link>
