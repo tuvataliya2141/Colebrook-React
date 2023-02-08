@@ -412,7 +412,7 @@ function Home() {
                                       </div>
                                       <div className="add-cart">
                                         {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
-                                        <Link to={`/${item.slug}`} className="add"><i className="fi-rs-shopping-cart mr-5" />Shop Now </Link>
+                                        <Link to={`/${item.slug}`} className="add">Shop Now </Link>
                                       </div>
                                     </div>
                                   </div>

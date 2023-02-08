@@ -150,6 +150,10 @@ function Checkout() {
         StatesGet();
         CityGet();
         GetAllCart();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }, [Country, state])
 
     return (

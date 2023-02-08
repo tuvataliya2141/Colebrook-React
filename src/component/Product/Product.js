@@ -36,7 +36,6 @@ function Product() {
   const [CouponCode, SetCouponCode] = useState('');
 
 
-
   function GetSingelProducts() {
     setIsLoading(true)
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
@@ -114,9 +113,9 @@ function Product() {
                           <span className="zoom-icon"><i className="fi-rs-search" /></span>
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
-                            <figure className="border-radius-10" style={{ height:"600px" }}>
+                            <figure className="border-radius-10" style={{ height: "600px" }}>
                               {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
-                              <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%"}} />
+                              <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} />
                             </figure>
                           </div>
                           {/* THUMBNAILS */}
@@ -192,7 +191,7 @@ function Product() {
                                   return (
                                     <>
                                       <li>
-                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px",margin:"2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
                                           {item}
                                         </button>
                                       </li>
@@ -238,7 +237,7 @@ function Product() {
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
 
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(List.id, List.variant[0].variant, increment,colors,size) }} >
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(List.id, List.variant[0].variant, increment, colors, size) }} >
                                     <i className="fi-rs-shopping-cart" />Add to cart
                                   </button>
 
@@ -246,8 +245,8 @@ function Product() {
                               {/* <a  className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a> */}
 
                               {
-                                 user_id == null ? <Link to="/login"> <a  className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
-                              } 
+                                user_id == null ? <Link to="/login"> <a className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
+                              }
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />
@@ -657,7 +656,7 @@ function Product() {
           </div>
         </div>
       </main>
-  
+
       <Footer />
     </div>
   )

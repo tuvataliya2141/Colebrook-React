@@ -3,6 +3,7 @@ import BestSellers from "./component/BestSellers/BestSellers";
 import Cart from "./component/Cart/Cart";
 import Checkout from "./component/Checkout/Checkout";
 import Contact from "./component/Contact/Contact";
+import Dashboard from "./component/Dashboard/Dashboard";
 import Home from "./component/Home/Home";
 import Login from "./component/Login";
 import PrivacyPolicy from "./component/Privacy-policy/PrivacyPolicy";
@@ -72,6 +73,11 @@ export default  [
   {
     path:'/Terms-Service',
     element:() => <Terms_Service/>,
+    exact:true,
+  },
+  {
+    path:'/Dashboard',
+    element:() => <Dashboard/>,
     exact:true,
   },
   {

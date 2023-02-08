@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import CommonService from "../services/commonService";
-import { ToasterSuccess, ToasterError } from "../common/toaster";
+import { ToasterSuccess, ToasterError, ToasterWarning } from "../common/toaster";
 import urlConstant from "../constants/urlConstant";
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
@@ -13,8 +13,6 @@ function Login() {
     const [email, SetEmail] = useState();
     const [password, SetPassword] = useState("");
 
-
-
     const userId = localStorage.getItem('user')
     useEffect(() => {
         if (userId) {
@@ -23,7 +21,7 @@ function Login() {
         window.scrollTo({
             top: 0,
             behavior: "smooth",
-          });
+        });
     }, [])
 
 
@@ -31,6 +29,11 @@ function Login() {
     const SubmitHandler = async (e) => {
         e.preventDefault();
         const data = { email, password };
+
+        if (!email || !password) {
+            ToasterWarning('Please All Enter Details')
+            return
+        }
         const LoginData = `${urlConstant.User.UserLogin}`;
         await common.httpPost(LoginData, data).then((res) => {
             if (res) {
@@ -45,10 +48,10 @@ function Login() {
                 ToasterError("Not Valid Details");
             }
         })
-        .catch((error) => {
-            console.log(error);
-            ToasterError("Not Valid Details");
-        });
+            .catch((error) => {
+                console.log(error);
+                ToasterError("Not Valid Details");
+            });
 
     }
 
@@ -62,7 +65,7 @@ function Login() {
                     <div className="container">
                         <div className="breadcrumb">
                             <a href="#" rel="nofollow"><i className="fi-rs-home mr-5" />Home</a>
-                            <span /> Login 
+                            <span /> Login
                         </div>
                     </div>
                 </div>
@@ -100,9 +103,9 @@ function Login() {
                                                     </div>
                                                     <div className="form-group">
                                                         <button type="submit" className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
-                                                        <span style={{float: "right",display: "flex"}}>
-                                                        <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{backgroundColor: "#1877f2"}}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/"/></a>
-                                                        <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{backgroundColor: "#fff"}}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/"/></a>
+                                                        <span style={{ float: "right", display: "flex" }}>
+                                                            <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
+                                                            <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                                         </span>
                                                     </div>
                                                 </form>
