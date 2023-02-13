@@ -7,7 +7,7 @@ function Header({ Crat }) {
   const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id } = useAppContext();
 
   const [hide, sethide] = useState('');
-  const [toggle, settoggle] = useState("");
+  // const [toggle, settoggle] = useState("");
   const SignOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
@@ -183,7 +183,8 @@ function Header({ Crat }) {
         <div className="header-bottom  header-bottom-bg-color sticky-bar">
           <div className='header-bottom-bg-color1'>
             <div className="container">
-              <div className="header-wrap header-space-between position-relative" onClick={(e) => { settoggle("sidebar-visible") }}>
+              {/* <div className="header-wrap header-space-between position-relative" onClick={(e) => { settoggle("sidebar-visible") }}> */}
+              <div className="header-wrap header-space-between position-relative">
                 <div className="logo logo-width-1 d-block d-lg-none">
                   <Link to="/"><img src="assets/imgs/theme/logo.svg" alt="logo" /></Link>
                 </div>
@@ -293,14 +294,16 @@ function Header({ Crat }) {
 
 
 
-      <div className={`mobile-header-active mobile-header-wrapper-style ${toggle}`}>
+      {/* <div className={`mobile-header-active mobile-header-wrapper-style ${toggle}`}> */}
+      <div className="mobile-header-active mobile-header-wrapper-style">
         <div className="mobile-header-wrapper-inner">
           <div className="mobile-header-top">
             <div className="mobile-header-logo">
               <a ><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
             </div>
             <div className="mobile-menu-close close-style-wrap close-style-position-inherit">
-              <button className="close-style search-close" onClick={(e) => { settoggle("null") }}>
+              {/* <button className="close-style search-close" onClick={(e) => { settoggle("null") }}> */}
+              <button className="close-style search-close">
                 <i className="icon-top" />
                 <i className="icon-bottom" />
               </button>
