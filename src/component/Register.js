@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
 import CommonService from "../services/commonService";
@@ -7,6 +7,7 @@ import urlConstant from "../constants/urlConstant";
 import { ToasterSuccess, ToasterError, ToasterWarning } from "../common/toaster";
 import { ToastContainer } from "react-toastify";
 import ReactGoogleLogin from "react-google-login";
+import FacebookLogin from 'react-facebook-login';
 import { config } from '../constants/config';
 
 
@@ -18,7 +19,7 @@ function Register() {
     const [email_or_phone, SetEmail_or_phone] = useState("");
     const [password, SetPassword] = useState("");
     const [cpassword, SetCPassword] = useState("");
-
+    const navigate = useNavigate()
     function SubmitData(e) {
         e.preventDefault();
 
@@ -38,6 +39,7 @@ function Register() {
             email_or_phone: email_or_phone,
             password: password,
             cpassword: cpassword,
+            register_by: "email"
         };
 
         const UserRagister = `${urlConstant.User.UserRegister}`;
@@ -47,6 +49,8 @@ function Register() {
             SetName("");
             SetPassword("");
             SetCPassword("")
+
+            navigate('/Login')
         })
             .catch((error) => {
                 console.log(error);
@@ -58,6 +62,10 @@ function Register() {
         console.log(resp);
     };
 
+
+    const responseFacebook = (response) => {
+        console.log(response);
+    }
     return (
         <div>
 
@@ -131,6 +139,13 @@ function Register() {
                                                 onSuccess={onResponse}
                                                 onFailure={onResponse}
                                             /> */}
+
+                                            {/* <FacebookLogin
+                                                appId="1327163221190975"
+                                                autoLoad={true}
+                                                fields="name,email,picture"
+                                                // onClick={componentClicked}
+                                                callback={responseFacebook} />, */}
                                             <div>
                                                 <button type="submit" style={{ borderRadius: "30px", float: "right" }} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Register</button>
                                             </div>

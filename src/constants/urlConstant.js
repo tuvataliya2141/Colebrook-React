@@ -30,6 +30,9 @@ const urlConstant = {
     States : `${apiURL}states-by-country`,
     city : `${apiURL}cities-by-state`
   },
+  Dashboard:{
+    OrdersList:`${apiURL}order/userOrderList`
+  },
   Contact: { PostContact: `${apiURL}contact` },
   ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon/apply` },
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},

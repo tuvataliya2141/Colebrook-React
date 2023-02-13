@@ -398,7 +398,7 @@ function Product() {
                                 <tr className="pa_size">
                                   <th>Size</th>
                                   <td>
-                                    <p>M, S</p>
+                                    <p>{List.multipleSize}</p>
                                   </td>
                                 </tr>
                               </tbody>

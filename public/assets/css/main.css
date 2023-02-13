@@ -13344,17 +13344,17 @@ footer .hotline img {
 
 .whats-app {
   position: fixed;
-    width: 50px;
-    height: 50px;
-    bottom: 70px;
-    /* background-color: #25d366; */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 3px 4px 3px #999;
-    right: 22px;
-    z-index: 100;
+  width: 50px;
+  height: 50px;
+  bottom: 70px;
+  /* background-color: #25d366; */
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 3px 4px 3px #999;
+  right: 22px;
+  z-index: 100;
 }
 
 .my-float {
@@ -13369,5 +13369,11 @@ footer .hotline img {
   fill:#4F4F4F;
 }
 
+@media only screen and (max-width: 776px) {
+  .header-style-1 .header-bottom-bg-color1 {
+    background-color: #fff;
+    border-top:none;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */

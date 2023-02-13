@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../Footer'
 import Header from '../Header'
 import { useAppContext } from '../../context/index'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import urlConstant from "../../constants/urlConstant";
+import { ToasterError, ToasterSuccess } from "../../common/toaster";
+import { ToastContainer } from "react-toastify";
 
 function Dashboard() {
     const { UserName, user_id } = useAppContext();
 
+    const navigate = useNavigate()
     const SignOut = () => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("user");
@@ -14,9 +19,45 @@ function Dashboard() {
         localStorage.removeItem("user_id");
         localStorage.removeItem("tempid");
     }
+
+    const [OrdersList, setOrdersList] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    function GetOrdersList(P_Id) {
+        try {
+            setIsLoading(true)
+            const Data = { user_id: parseInt(user_id) }
+            const OrdersData = `${urlConstant.Dashboard.OrdersList}`;
+            axios.post(OrdersData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                setOrdersList(res.data.data.data);
+                console.log(res.data.data.data);
+                setIsLoading(false)
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+            setIsLoading(false)
+        }
+    }
+
+
+
+    useEffect(() => {
+        if (!user_id) {
+            navigate('/')
+        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+        GetOrdersList();
+    }, [])
     return (
         <div>
             <Header />
+            <ToastContainer />
 
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
@@ -41,9 +82,9 @@ function Dashboard() {
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i className="fi-rs-shopping-bag mr-10" />Orders</a>
                                                 </li>
-                                                <li className="nav-item">
+                                                {/* <li className="nav-item">
                                                     <a className="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i className="fi-rs-shopping-cart-check mr-10" />Track Your Order</a>
-                                                </li>
+                                                </li> */}
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i className="fi-rs-marker mr-10" />My Address</a>
                                                 </li>
@@ -89,27 +130,21 @@ function Dashboard() {
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <td>#1357</td>
-                                                                        <td>March 45, 2020</td>
-                                                                        <td>Processing</td>
-                                                                        <td>$125.00 for 2 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>#2468</td>
-                                                                        <td>June 29, 2020</td>
-                                                                        <td>Completed</td>
-                                                                        <td>$364.00 for 5 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>#2366</td>
-                                                                        <td>August 02, 2020</td>
-                                                                        <td>Completed</td>
-                                                                        <td>$280.00 for 3 item</td>
-                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                    </tr>
+                                                                    {
+                                                                        OrdersList.map((item, i) => {
+                                                                            return (
+                                                                                <>
+                                                                                    <tr>
+                                                                                        <td>#{item.id}</td>
+                                                                                        <td>{item.delivery_history_date}</td>
+                                                                                        <td>{item.delivery_status}</td>
+                                                                                        <td>$125.00 for 2 item</td>
+                                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
+                                                                                    </tr>
+                                                                                </>
+                                                                            )
+                                                                        })
+                                                                    }
                                                                 </tbody>
                                                             </table>
                                                         </div>
