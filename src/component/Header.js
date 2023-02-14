@@ -14,6 +14,8 @@ function Header({ Crat }) {
     localStorage.removeItem("type");
     localStorage.removeItem("user_id");
     localStorage.removeItem("tempid");
+    localStorage.removeItem("category");
+    localStorage.removeItem("brand");
   }
   const productsData = searchData.products;
   const categoriesData = searchData.categories;
@@ -42,7 +44,7 @@ function Header({ Crat }) {
                         AllCategory.map((item, i) => {
                           return (
                             <>
-                              <option key={i}>{item.name.toUpperCase()}</option>
+                              <option key={i} style={{ textTransform: "capitalize" }}>{item.name}</option>
                             </>
                           )
                         })
@@ -202,7 +204,7 @@ function Header({ Crat }) {
                           AllCategory.map((item, i) => {
                             return (
                               <>
-                                <option style={{ backgroundColor: "#a8a6a4" }} key={i}><b>{item.name.toUpperCase()}</b></option>
+                                <option style={{ backgroundColor: "#a8a6a4",textTransform: "capitalize" }} key={i}><b>{item.name}</b></option>
                               </>
                             )
                           })
@@ -295,14 +297,14 @@ function Header({ Crat }) {
 
 
       {/* <div className={`mobile-header-active mobile-header-wrapper-style ${toggle}`}> */}
-      <div className="mobile-header-active mobile-header-wrapper-style">
+      {/* <div className="mobile-header-active mobile-header-wrapper-style">
         <div className="mobile-header-wrapper-inner">
           <div className="mobile-header-top">
             <div className="mobile-header-logo">
               <a ><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
             </div>
             <div className="mobile-menu-close close-style-wrap close-style-position-inherit">
-              {/* <button className="close-style search-close" onClick={(e) => { settoggle("null") }}> */}
+              {/* <button className="close-style search-close" onClick={(e) => { settoggle("null") }}> 
               <button className="close-style search-close">
                 <i className="icon-top" />
                 <i className="icon-bottom" />
@@ -473,7 +475,7 @@ function Header({ Crat }) {
             <div className="site-copyright">Copyright 2021 © /. All rights reserved. Powered by AliThemes.</div>
           </div>
         </div>
-      </div>
+      </div> */}
 
 
 

@@ -16,10 +16,10 @@ function ShopProduct() {
     let common = new CommonService();
 
     const [List, setList] = useState([]);
-    const [price, setPrice] = useState(100);
-    const [category, setcategory] = useState(List);
+    const [price, setPrice] = useState(0);
+    const [category, setcategory] = useState(localStorage.getItem("category") ? localStorage.getItem("category").split(',') : []);
     const [color, setcolor] = useState(List);
-    const [brand, setBrand] = useState(List);
+    const [brand, setBrand] = useState(localStorage.getItem("brand") ? localStorage.getItem("brand").split(',') : []);
     const [size, setSize] = useState(List);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,7 @@ function ShopProduct() {
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
-    const Getlength = List.length;
+    const Getlength = List?.length;
 
 
     function GetProducts() {
@@ -62,14 +62,17 @@ function ShopProduct() {
                 const newSet = new Set(old);
                 newSet.delete(e.target.value)
                 return Array.from(newSet)
-
             });
             setSize("");
         } else {
             setPrice(e.target.value);
-            setcategory(old => e.target.value ? Array.from(new Set([...old, e.target.value])) : old);
+            setcategory(old => {
+                return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
+            });
             setcolor(e.target.value);
-            setBrand(old => e.target.value ? Array.from(new Set([...old, e.target.value])) : old);
+            setBrand(old => {
+                return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
+            });
             setSize(e.target.value);
         }
     }
@@ -105,6 +108,12 @@ function ShopProduct() {
     useEffect(() => {
         GetProducts();
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem("category", category.toString())
+        localStorage.setItem("brand", brand.toString())
+    }, [category, brand]);
+
     return (
         <div>
             <ToastContainer />
@@ -123,138 +132,135 @@ function ShopProduct() {
                     {/* <div className="row flex-row-reverse"> */}
                     <div className="row">
                         <div className="col-md-3 primary-sidebar sticky-sidebar">
-                                {/* Fillter By Price */}
-                                <div className="sidebar-widget price_range range mb-30">
-                                    <h5 className="section-title style-1 mb-30">Fill by price</h5>
-                                    <div className="price-filter">
-                                        <div className="price-filter-inner">
-                                            {/* <div id="slider-range" className="mb-20" /> */}
-                                            <div className="d-flex justify-content-between">
-                                                <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
-                                                <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
-                                            </div>
-                                            <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
+                            {/* Fillter By Price */}
+                            <div className="sidebar-widget price_range range mb-30">
+                                <h5 className="section-title style-1 mb-30">Fill by price</h5>
+                                <div className="price-filter">
+                                    <div className="price-filter-inner">
+                                        {/* <div id="slider-range" className="mb-20" /> */}
+                                        <div className="d-flex justify-content-between">
+                                            <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
+                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
                                         </div>
+                                        <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
                                     </div>
-                                    <div className="list-group">
-                                        <div className="list-group-item mb-10 mt-10">
-                                            <label className="fw-900">Category</label>
-                                            <div className="custome-checkbox">
-                                                {
-                                                    categoryData.map((item, i) => {
-                                                        return (
-                                                            <>
-                                                                {/* <Link to={`?category=${category.toString()}`}>h</Link> */}
-                                                                <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                                <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label><br />
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-
-                                            <label className="fw-900">Brand</label>
-                                            <div className="custome-checkbox">
-
-                                                {
-
-                                                    brandData.map((item, i) => {
-                                                        return (
-                                                            <>
-
-                                                                {/* <Link to={`?brand=${brand.toString()}`}>h</Link> */}
-                                                                <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} defaultValue />
-                                                                <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span>{item}</span></label><br />
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            <label className="fw-900">Size</label>
-                                            <div className="custome-checkbox">
-
-                                                {
-                                                    sizeData.map((item, i) => {
-                                                        return (
-                                                            <>
-                                                                <input id={item} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
-                                                                <label className="check-size-label" htmlFor={item}>{item}</label>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                            <div></div>
-                                            {/* <span style={{width:"100%"}}></span> */}
-                                            <label className="fw-900" style={{ width: "100%" }}>Colour</label>
-                                            <div className="custome-checkbox">
-                                                {
-                                                    colorsData.map((item, i) => {
-
-                                                        return (
-                                                            <>
-                                                                <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
-                                                                <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-
-                                            </div>
-                                            <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
-                                            <div className="custome-checkbox">
-                                                <p className="star-set">
-                                                    <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                                </p>
-                                                <p className="star-set">
-                                                    <span className="star-in-set star-3">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                                </p>
-                                                <p className="star-set">
-                                                    <span className="star-in-set star-2">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                                </p>
-                                                <p className="star-set">
-                                                    <span className="star-in-set star-1">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                                </p>
-                                            </div>
-                                            <label className="fw-900 mt-15">Price</label>
-                                            <div className="custome-checkbox">
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
-                                                <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
-                                                <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
-                                                <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
-                                                <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
-                                                <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
-                                            </div>
-                                            <label className="fw-900 mt-15">Offer</label>
-                                            <div className="custome-checkbox">
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
-                                                <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
-                                                <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
-                                                <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
-                                                <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                                <br />
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
-                                                <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                                 </div>
-                                {/* Product sidebar Widget */}
+                                <div className="list-group">
+                                    <div className="list-group-item mb-10 mt-10">
+                                        <label className="fw-900">Category</label>
+                                        <div className="custome-checkbox">
+                                            {
+                                                categoryData.map((item, i) => {
+                                                    return (
+                                                        <>
+                                                            <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} checked={category.includes(item)} defaultValue />
+                                                            <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+
+                                        <label className="fw-900">Brand</label>
+                                        <div className="custome-checkbox">
+
+                                            {
+
+                                                brandData.map((item, i) => {
+                                                    return (
+                                                        <>
+                                                            <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} checked={brand.includes(item)} defaultValue />
+                                                            <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        <label className="fw-900">Size</label>
+                                        <div className="custome-checkbox">
+
+                                            {
+                                                sizeData.map((item, i) => {
+                                                    return (
+                                                        <>
+                                                            <input id={item} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
+                                                            <label className="check-size-label" htmlFor={item}>{item}</label>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                        <div></div>
+                                        {/* <span style={{width:"100%"}}></span> */}
+                                        <label className="fw-900" style={{ width: "100%" }}>Colour</label>
+                                        <div className="custome-checkbox">
+                                            {
+                                                colorsData.map((item, i) => {
+
+                                                    return (
+                                                        <>
+                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
+                                                            <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+
+                                        </div>
+                                        <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
+                                        <div className="custome-checkbox">
+                                            <p className="star-set">
+                                                <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-3">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-2">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-1">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                        </div>
+                                        <label className="fw-900 mt-15">Price</label>
+                                        <div className="custome-checkbox">
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
+                                        </div>
+                                        <label className="fw-900 mt-15">Offer</label>
+                                        <div className="custome-checkbox">
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
+                            </div>
+                            {/* Product sidebar Widget */}
                         </div>
                         <div className="col-md-9">
                             {/* <div className="shop-product-fillter">
@@ -266,8 +272,9 @@ function ShopProduct() {
                             <div className="row product-grid">
                                 {
                                     currentPosts.filter((Data, i) => {
-                                        if (price || brand.length || category.length || color || size)
-                                            return Data.base_discounted_price > parseInt(price, 10) || brand.includes(Data.brand) || category.includes(Data.category) || Data.colors[i] === color || Data.multipleSize[i] === size
+                                        if (price || brand?.length || category?.length || color?.length || size?.length) {
+                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || Data.colors[i] === color || Data.multipleSize[i] === size
+                                        }
                                         return Data
                                     }).map((item, i) => {
                                         const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
@@ -286,7 +293,7 @@ function ShopProduct() {
                                                         </div>
                                                         <div className="product-action-1">
                                                             {
-                                                                user_id == null ? <Link to='/login'><a  className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                                                user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                                             }
 
                                                             {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
@@ -300,7 +307,7 @@ function ShopProduct() {
                                                         <div className="product-category">
                                                             <a>{item.category}</a>
                                                         </div>
-                                                        <h2><a> {Name.length > 13
+                                                        <h2><a> {Name?.length > 13
                                                             ? `${Name}...`
                                                             : Name}</a></h2>
                                                         <div className="product-rate-cover">
@@ -331,7 +338,7 @@ function ShopProduct() {
                             </div>
 
                             <Pagination
-                                totalPosts={List.length}
+                                totalPosts={List?.length}
                                 postsPerPage={postsPerPage}
                                 setCurrentPage={setCurrentPage}
                                 currentPage={currentPage}

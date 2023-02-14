@@ -7,6 +7,7 @@ import axios from 'axios';
 import urlConstant from "../../constants/urlConstant";
 import { ToasterError, ToasterSuccess } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
+import Loding from '../Loding';
 
 function Dashboard() {
     const { UserName, user_id } = useAppContext();
@@ -18,6 +19,8 @@ function Dashboard() {
         localStorage.removeItem("type");
         localStorage.removeItem("user_id");
         localStorage.removeItem("tempid");
+        localStorage.removeItem("category");
+        localStorage.removeItem("brand");
     }
 
     const [OrdersList, setOrdersList] = useState([]);
@@ -58,6 +61,7 @@ function Dashboard() {
         <div>
             <Header />
             <ToastContainer />
+            {isLoading ? <Loding /> : Dashboard}
 
             <main className="main pages">
                 <div className="page-header breadcrumb-wrap">
