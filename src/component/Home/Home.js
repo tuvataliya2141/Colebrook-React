@@ -91,9 +91,9 @@ function Home() {
                         BannersList.map((item, i) => {
                           return (
                             <>
-                              <div key={i} className={`carousel-item ${i == 1 ? "active" :"" }`}>
+                              <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
                                 <img src={item.photo} className="d-block w-100" alt="/" />
-                                <div className="carousel-caption d-none d-md-block" style={{ width:"65%" }}>
+                                <div className="carousel-caption d-none d-md-block" style={{ width: "65%" }}>
                                   <h1 className='banner_title_set'>{item.title}</h1><br />
                                   <p className='banner_text_set'>{item.sub_title}</p><br />
                                   <div className="slider-main-button-div">
@@ -114,8 +114,29 @@ function Home() {
                           )
                         })
                       }
-                    </div>
-                    {/* <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+
+                      {/* <div className="carousel-item active">
+                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
+                        <div className="carousel-caption d-none d-md-block">
+                          <h1 className='banner_title_set'>Find Your Favorite <br />
+                            Clothing</h1><br />
+                          <p className='banner_text_set'>our collection will help your fashion looks better and <br />
+                            we will provide the best product for you.</p><br />
+                          <div className="slider-main-button-div">
+                            <Link to="/ShopProduct">
+                              <button className="slider-main-button">
+                                <span className="img-span">
+                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                </span>
+                                <span className="text-span">
+                                  SHOP NOW !
+                                </span>
+                              </button>
+                            </Link>
+                          </div>
+                        </div> */}
+                      </div>
+                      {/* <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                       <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span className="visually-hidden">Previous</span>
                     </button>
@@ -123,12 +144,12 @@ function Home() {
                       <span className="carousel-control-next-icon" aria-hidden="true"></span>
                       <span className="visually-hidden">Next</span>
                     </button> */}
+                    </div>
                   </div>
                 </div>
+                <div className="slider-arrow hero-slider-1-arrow" />
               </div>
-              <div className="slider-arrow hero-slider-1-arrow" />
             </div>
-          </div>
         </section>
 
 
