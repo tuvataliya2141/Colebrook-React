@@ -18,6 +18,7 @@ function Home() {
 
   const [List, setList] = useState([]);
   const [BrandsList, setBrandsList] = useState([]);
+  const [BannersList, setBannersList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   function GetProducts() {
@@ -47,24 +48,26 @@ function Home() {
       });
   }
 
-  const settings = {
-    className: "center",
-    infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 5,
-    swipeToSlide: true,
-    afterChange: function (index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
-    }
-  };
+  function GetBanners() {
+    setIsLoading(true)
+    const GetAllbanners = `${urlConstant.bannersData.bannersData}`;
+    common.httpGet(GetAllbanners).then(function (res) {
+      setIsLoading(false);
+      setBannersList(res.data.data);
+    })
+      .catch(function (error) {
+        setIsLoading(false);
+        console.log(error);
+      });
+  }
 
 
+  console.log(BannersList);
 
   useEffect(() => {
     GetProducts();
     GetBrands();
+    GetBanners();
   }, [])
   return (
     <div>
@@ -84,69 +87,33 @@ function Home() {
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div className="carousel-inner" >
-                      <div className="carousel-item active">
-                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
-                        <div className="carousel-caption d-none d-md-block">
-                          <h1 className='banner_title_set'>Find Your Favorite <br />
-                            Clothing</h1><br />
-                          <p className='banner_text_set'>our collection will help your fashion looks better and <br />
-                            we will provide the best product for you.</p><br />
-                          <div className="slider-main-button-div">
-                            <Link to="/ShopProduct">
-                              <button className="slider-main-button">
-                                <span className="img-span">
-                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
-                                </span>
-                                <span className="text-span">
-                                  SHOP NOW !
-                                </span>
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="carousel-item">
-                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
-                        <div className="carousel-caption d-none d-md-block">
-                          <h1>Find Your Favorite <br />
-                            Clothing1</h1><br />
-                          <p>our collection will help your fashion looks better and <br />
-                            we will provide the best product for you.</p><br />
-                          <div className="slider-main-button-div">
-                            <Link to="/ShopProduct">
-                              <button className="slider-main-button">
-                                <span className="img-span">
-                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
-                                </span>
-                                <span className="text-span">
-                                  SHOP NOW !
-                                </span>
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="carousel-item">
-                        <img src="assets/imgs/banner/Slider.png" className="d-block w-100" alt="/" />
-                        <div className="carousel-caption d-none d-md-block">
-                          <h1>Find Your Favorite <br />
-                            Clothing2</h1><br />
-                          <p>our collection will help your fashion looks better and <br />
-                            we will provide the best product for you.</p><br />
-                          <div className="slider-main-button-div">
-                            <Link to="/ShopProduct">
-                              <button className="slider-main-button">
-                                <span className="img-span">
-                                  <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
-                                </span>
-                                <span className="text-span">
-                                  SHOP NOW !
-                                </span>
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
+                      {
+                        BannersList.map((item, i) => {
+                          return (
+                            <>
+                              <div key={i} className={`carousel-item ${i == 1 ? "active" :"" }`}>
+                                <img src={item.photo} className="d-block w-100" alt="/" />
+                                <div className="carousel-caption d-none d-md-block" style={{ width:"65%" }}>
+                                  <h1 className='banner_title_set'>{item.title}</h1><br />
+                                  <p className='banner_text_set'>{item.sub_title}</p><br />
+                                  <div className="slider-main-button-div">
+                                    <Link to="/ShopProduct">
+                                      <button className="slider-main-button">
+                                        <span className="img-span">
+                                          <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                        </span>
+                                        <span className="text-span">
+                                          SHOP NOW !
+                                        </span>
+                                      </button>
+                                    </Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )
+                        })
+                      }
                     </div>
                     {/* <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                       <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -221,9 +188,9 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#A5A5A5" }}>
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#A5A5A5" }}>
                         <span className="text-span">
-                          Shop Now 
+                          Shop Now
                         </span>
                         <span className="img-span">
                           <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
@@ -245,7 +212,7 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#3D8440" }}>
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#3D8440" }}>
                         <span className="text-span">
                           Shop Now
                         </span>
@@ -269,7 +236,7 @@ function Home() {
                         Everyday Fresh &amp; <br />Clean with Our<br />
                         Products
                       </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor:"#84633D" }}>
+                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
                         <span className="text-span">
                           Shop Now
                         </span>
@@ -385,7 +352,7 @@ function Home() {
                                     </div>
                                     <div className="product-action-1">
                                       {
-                                        user_id == null ? <Link to='/login'><a  className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                        user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                       }
                                     </div>
                                     <div className="product-badges product-badges-position product-badges-mrg">

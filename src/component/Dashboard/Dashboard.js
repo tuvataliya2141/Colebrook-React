@@ -35,7 +35,6 @@ function Dashboard() {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then((res) => {
                 setOrdersList(res.data.data.data);
-                console.log(res.data.data.data);
                 setIsLoading(false)
             })
         }
@@ -128,26 +127,27 @@ function Dashboard() {
                                                                     <tr>
                                                                         <th>Order</th>
                                                                         <th>Date</th>
-                                                                        <th>Status</th>
+                                                                        <th>Status</th> 
                                                                         <th>Total</th>
                                                                         <th>Actions</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     {
-                                                                        OrdersList.map((item, i) => {
-                                                                            return (
-                                                                                <>
-                                                                                    <tr>
-                                                                                        <td>#{item.id}</td>
-                                                                                        <td>{item.delivery_history_date}</td>
-                                                                                        <td>{item.delivery_status}</td>
-                                                                                        <td>$125.00 for 2 item</td>
-                                                                                        <td><a href="#" className="btn-small d-block">View</a></td>
-                                                                                    </tr>
-                                                                                </>
-                                                                            )
-                                                                        })
+                                                                        OrdersList == '' ? <h2>Oops, no product in your list</h2> :
+                                                                            OrdersList.map((item, i) => {
+                                                                                return (
+                                                                                    <>
+                                                                                        <tr key={i}>
+                                                                                            <td>#{item.id}</td>
+                                                                                            <td>{item.delivery_history_date}</td>
+                                                                                            <td>{item.delivery_status}</td>
+                                                                                            <td>$125.00 for 2 item</td>
+                                                                                            <td><a href="#" className="btn-small d-block">View</a></td>
+                                                                                        </tr>
+                                                                                    </>
+                                                                                )
+                                                                            })
                                                                     }
                                                                 </tbody>
                                                             </table>

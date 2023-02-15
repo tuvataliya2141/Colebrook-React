@@ -61,11 +61,9 @@ function Product() {
 
 
   const sizeFun = (e) => {
-    console.log(e.target.value);
     setsize(e.target.value);
   }
   const colorFun = (e) => {
-    console.log(e.target.value);
     setcolors(e.target.value);
   }
 
@@ -191,7 +189,7 @@ function Product() {
                                   return (
                                     <>
                                       <li>
-                                        <button style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                        <button key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
                                           {item}
                                         </button>
                                       </li>
@@ -215,7 +213,7 @@ function Product() {
 
                                       <>
                                         <li>
-                                          <button className="color_button" style={{ backgroundColor: `${item}`, border: colors == item ? "3px solid black" : "" }} value={item} onClick={(e) => { colorFun(e) }} >
+                                          <button key={i} className="color_button" style={{ backgroundColor: `${item}`, border: colors == item ? "3px solid black" : "" }} value={item} onClick={(e) => { colorFun(e) }} >
                                           </button>
                                         </li>
                                       </>

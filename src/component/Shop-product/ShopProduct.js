@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { ToasterWarning, ToasterError } from "../../common/toaster";
 import Pagination from "../Pagination";
 import axios from 'axios'
-import { useAppContext } from '../../context/index'
+import { useAppContext } from '../../context/index';
 
 function ShopProduct() {
     const id = useParams();
@@ -28,8 +28,6 @@ function ShopProduct() {
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
-    const Getlength = List?.length;
-
 
     function GetProducts() {
         setIsLoading(true)
@@ -57,23 +55,34 @@ function ShopProduct() {
                 return Array.from(newSet)
 
             });
-            setcolor("");
             setBrand(old => {
                 const newSet = new Set(old);
                 newSet.delete(e.target.value)
                 return Array.from(newSet)
             });
-            setSize("");
+            setSize(old => {
+                const newSet = new Set(old);
+                newSet.delete(e.target.value)
+                return Array.from(newSet)
+            });
+            setcolor(old => {
+                const newSet = new Set(old);
+                newSet.delete(e.target.value)
+                return Array.from(newSet)
+            });
         } else {
-            setPrice(e.target.value);
             setcategory(old => {
                 return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
             });
-            setcolor(e.target.value);
             setBrand(old => {
                 return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
             });
-            setSize(e.target.value);
+            setSize(old => {
+                return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
+            });
+            setcolor(old => {
+                return e.target.value ? Array.from(new Set([...old, e.target.value])) : old
+            });
         }
     }
 
@@ -140,9 +149,11 @@ function ShopProduct() {
                                         {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
                                             <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
-                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
+                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>                                            
                                         </div>
+
                                         <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
+              
                                     </div>
                                 </div>
                                 <div className="list-group">
@@ -183,7 +194,7 @@ function ShopProduct() {
                                                 sizeData.map((item, i) => {
                                                     return (
                                                         <>
-                                                            <input id={item} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
+                                                            <input id={item} key={i} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
                                                             <label className="check-size-label" htmlFor={item}>{item}</label>
                                                         </>
                                                     )
@@ -199,7 +210,7 @@ function ShopProduct() {
 
                                                     return (
                                                         <>
-                                                            <input id={item} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
+                                                            <input id={item} key={i} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
                                                             <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
                                                         </>
                                                     )
@@ -273,7 +284,7 @@ function ShopProduct() {
                                 {
                                     currentPosts.filter((Data, i) => {
                                         if (price || brand?.length || category?.length || color?.length || size?.length) {
-                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || Data.colors[i] === color || Data.multipleSize[i] === size
+                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item,i)=>item[i])) || size.includes(Data.multipleSize.map((item,i)=>item[i]))
                                         }
                                         return Data
                                     }).map((item, i) => {
@@ -282,7 +293,7 @@ function ShopProduct() {
 
                                         return (
 
-                                            <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={item.id}>
+                                            <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">

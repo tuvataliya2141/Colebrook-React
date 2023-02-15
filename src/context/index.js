@@ -149,7 +149,6 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     GetAllCategory();
-    GetAllSearch();
   }, [])
 
 

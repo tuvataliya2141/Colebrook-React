@@ -29,11 +29,9 @@ function BestSellers() {
     common.httpGet(BestSellers1).then(function (res) {
       setIsLoading(false);
       SetList(res.data.data);
-      console.log(res.data.data);
     })
       .catch(function (error) {
         setIsLoading(false);
-        console.log(error);
       });
   }
 
@@ -73,7 +71,7 @@ function BestSellers() {
                           const Name = item.name.substring(0, 15);
                           return (
                             <>
-                              <div className="product-cart-wrap">
+                              <div key={i} className="product-cart-wrap">
                                 <div className="product-img-action-wrap" style={{ height:"348px" }}>
                                   <div className="product-img product-img-zoom">
                                   <Link to={`/${item.slug}`}>  

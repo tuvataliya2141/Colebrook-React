@@ -53,7 +53,6 @@ function Register() {
             navigate('/Login')
         })
             .catch((error) => {
-                console.log(error);
                 ToasterError("Not Valid Details");
             });
     }
