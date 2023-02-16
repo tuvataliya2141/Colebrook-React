@@ -72,21 +72,24 @@ function BestSellers() {
                           return (
                             <>
                               <div key={i} className="product-cart-wrap">
-                                <div className="product-img-action-wrap" style={{ height:"348px" }}>
+                                <div className="product-img-action-wrap" style={{ height: "348px" }}>
                                   <div className="product-img product-img-zoom">
-                                  <Link to={`/${item.slug}`}>  
+                                    <Link to={`/${item.slug}`}>
                                       <img className="default-img" src={item.thumbnail_image} alt="/" />
                                       <img className="hover-img" src={item.thumbnail_image} alt="/" />
                                     </Link>
                                   </div>
                                   <div className="product-action-1">
                                     {
-                                      user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                                      user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                     }
                                   </div>
-                                  <div className="product-badges product-badges-position product-badges-mrg">
-                                    <span className="hot">Save 15%</span>
-                                  </div>
+                                  {
+                                    item.discount == 0 || null ? "" :
+                                      <div className="product-badges product-badges-position product-badges-mrg">
+                                        <span className="hot">-{item.discount}%</span>
+                                      </div>
+                                  }
                                 </div>
                                 <div className="product-content-wrap">
                                   <div className="product-category">
@@ -125,7 +128,7 @@ function BestSellers() {
         </div>
       </section><br />
 
-     
+
     </div>
   )
 }

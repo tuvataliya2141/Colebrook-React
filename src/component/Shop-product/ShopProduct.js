@@ -149,11 +149,11 @@ function ShopProduct() {
                                         {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
                                             <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
-                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>                                            
+                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
                                         </div>
 
                                         <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
-              
+
                                     </div>
                                 </div>
                                 <div className="list-group">
@@ -284,7 +284,7 @@ function ShopProduct() {
                                 {
                                     currentPosts.filter((Data, i) => {
                                         if (price || brand?.length || category?.length || color?.length || size?.length) {
-                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item,i)=>item[i])) || size.includes(Data.multipleSize.map((item,i)=>item[i]))
+                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
                                         }
                                         return Data
                                     }).map((item, i) => {
@@ -310,9 +310,13 @@ function ShopProduct() {
                                                             {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
                                                             {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
                                                         </div>
-                                                        <div className="product-badges product-badges-position product-badges-mrg">
-                                                            <span className="hot">Hot</span>
-                                                        </div>
+
+                                                        {
+                                                            item.discount == 0 ? "" : 
+                                                            <div className="product-badges product-badges-position product-badges-mrg">
+                                                                <span className="hot">-{item.discount}%</span>
+                                                            </div>
+                                                        }
                                                     </div>
                                                     <div className="product-content-wrap">
                                                         <div className="product-category">
