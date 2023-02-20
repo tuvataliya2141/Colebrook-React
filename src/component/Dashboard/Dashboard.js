@@ -127,14 +127,23 @@ function Dashboard() {
                                                                     <tr>
                                                                         <th>Order</th>
                                                                         <th>Date</th>
-                                                                        <th>Status</th> 
+                                                                        <th>Status</th>
                                                                         <th>Total</th>
                                                                         <th>Actions</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     {
-                                                                        OrdersList == '' ? <h2>Oops, no product in your list</h2> :
+                                                                        OrdersList == '' ?
+                                                                            <>
+                                                                                <tr >
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                    <td><h2>Oops, no Order in your list</h2></td>
+                                                                                    <td></td>
+                                                                                    <td></td>
+                                                                                </tr></>
+                                                                            :
                                                                             OrdersList.map((item, i) => {
                                                                                 return (
                                                                                     <>

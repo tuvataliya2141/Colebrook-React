@@ -7,6 +7,9 @@ import urlConstant from "../constants/urlConstant";
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
 import axios from 'axios'
+import ReactGoogleLogin from "react-google-login";
+import FacebookLogin from 'react-facebook-login';
+import { config } from '../constants/config';
 function Login() {
 
     const navigate = useNavigate()
@@ -24,6 +27,14 @@ function Login() {
         });
     }, [])
 
+    const onResponse = (resp) => {
+        console.log(resp);
+    };
+
+
+    const responseFacebook = (response) => {
+        console.log(response);
+    }
 
     let common = new CommonService();
     const SubmitHandler = async (e) => {
@@ -106,6 +117,20 @@ function Login() {
                                                             <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
                                                             <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                                         </span>
+                                                        {/* <ReactGoogleLogin
+                                                            clientId={config.clientId}
+                                                            buttonText=""
+                                                            onSuccess={onResponse}
+                                                            onFailure={onResponse}
+                                                        />
+
+                                                        <FacebookLogin
+                                                            appId="1327163221190975"
+                                                            buttonText=""
+                                                            autoLoad={true}
+                                                            fields="name,email,picture"
+                                                            // onClick={componentClicked}
+                                                            callback={responseFacebook} />, */}
                                                     </div>
                                                 </form>
                                             </div>

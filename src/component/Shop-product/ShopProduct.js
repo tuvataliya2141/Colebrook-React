@@ -218,7 +218,7 @@ function ShopProduct() {
                                             }
 
                                         </div>
-                                        <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
+                                        {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
                                         <div className="custome-checkbox">
                                             <p className="star-set">
                                                 <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
@@ -266,7 +266,7 @@ function ShopProduct() {
                                             <br />
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
                                             <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}

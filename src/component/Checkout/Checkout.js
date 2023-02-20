@@ -49,7 +49,7 @@ function Checkout() {
         const login_type = payment_method == 'cod' ? 1 : 2;
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, company, AdditionalInfomation, user_id, login_type: 1, payment_method: login_type, total_amount: Sub_Total_price };
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id,payment_method: login_type, total_amount: Sub_Total_price };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }

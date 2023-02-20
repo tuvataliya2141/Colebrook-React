@@ -111,7 +111,7 @@ function Product() {
                           <span className="zoom-icon"><i className="fi-rs-search" /></span>
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
-                            <figure className="border-radius-10" style={{ height: "600px" }}>
+                            <figure className="border-radius-10" style={{ height: "500px" }}>
                               {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
                               <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} />
                             </figure>
@@ -550,21 +550,6 @@ function Product() {
                                           <textarea className="form-control w-100" name="comment" id="comment" cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
                                         </div>
                                       </div>
-                                      <div className="col-sm-6">
-                                        <div className="form-group">
-                                          <input className="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                        </div>
-                                      </div>
-                                      <div className="col-sm-6">
-                                        <div className="form-group">
-                                          <input className="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                        </div>
-                                      </div>
-                                      <div className="col-12">
-                                        <div className="form-group">
-                                          <input className="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                        </div>
-                                      </div>
                                     </div>
                                     <div className="form-group">
                                       <button type="submit" className="button button-contactForm">Submit Review</button>
@@ -631,20 +616,20 @@ function Product() {
 
 
                           <br />
-                          <tr>
+                          {/* <tr>
                             <td className="cart_total_label">
                               <h4 className="mb-10">Apply Coupon</h4>
                             </td>
                             <td className="cart_total_amount">
                               <h4 className="font-lg text-muted">Using A Promo Code?</h4>
                             </td>
-                          </tr>
+                          </tr> */}
                         </tbody>
                       </table>
-                      <div className="d-flex justify-content-between">
+                      {/* <div className="d-flex justify-content-between">
                         <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
                         <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

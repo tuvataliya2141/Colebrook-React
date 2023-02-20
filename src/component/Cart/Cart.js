@@ -8,12 +8,12 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
 import Pagination from "../Pagination";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from 'react-router-dom';;
 
 function Cart() {
 
     let common = new CommonService();
-    const { user_id, Loding, ApplyCoupon, GetCart } = useAppContext();
+    const { user_id, Loding, ApplyCoupon } = useAppContext();
 
     const [List, setList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ function Cart() {
     function GetAllCart() {
         setIsLoading(true)
         const tempid = localStorage.getItem('tempid');
-        const cartid =  user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
+        const cartid = user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
 
         const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
         common.httpGet(GetAllCart).then(function (res) {
@@ -79,12 +79,15 @@ function Cart() {
         }).then((willDelete1) => {
             if (willDelete1) {
                 setIsLoading(true)
-                const Data = { user_id: user_id }
+
+                const tempid = localStorage.getItem('tempid');
+                
+                const Data =  user_id ? `user_id=${user_id}` : `tempuserid=${tempid}`;
                 const deleteAllCart = `${urlConstant.Cart.AllCartDelete}`;
                 common.httpPost(deleteAllCart, Data).then((res) => {
                     setIsLoading(false);
                     GetAllCart();
-                })
+                })  
             }
             else {
                 ToasterWarning("Your Data Safe...!!");
@@ -93,8 +96,9 @@ function Cart() {
         })
     };
 
-
-
+    const Notfound = () => {
+        ToasterError("Oops, no product in your list")
+    }
     const Increment = (id, item) => {
         const Data = { cart_ids: id, cart_quantities: item + 1 }
         const updateProjectRecourcedata = `${urlConstant.Cart.UpdateCart}`
@@ -150,7 +154,9 @@ function Cart() {
                                 {/* <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6> */}
                             </div>
                             <div className="col-lg-12 mb-40" style={{ textAlign: "end" }}>
-                                <a className="btn " ><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
+                                <Link to="/ShopProduct">
+                                    <a className="btn" ><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -307,11 +313,10 @@ function Cart() {
                                 </div><br />
 
                                 <div>
-                                    {/* <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link> */}
-
                                     {
-                                        user_id == null ? <Link to={'/Login'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>:
-                                        <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>
+                                        user_id == null ? <Link to={'/Login'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link> :
+                                            List.length == 0 ? <Link onClick={Notfound} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link> :
+                                                <Link to={'/Checkout'} className="btn mb-20 w-100">Proceed To CheckOut<i className="fi-rs-sign-out ml-15" /></Link>
                                     }
                                 </div>
 

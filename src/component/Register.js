@@ -137,9 +137,9 @@ function Register() {
                                                 buttonText=""
                                                 onSuccess={onResponse}
                                                 onFailure={onResponse}
-                                            /> */}
+                                            />
 
-                                            {/* <FacebookLogin
+                                            <FacebookLogin
                                                 appId="1327163221190975"
                                                 autoLoad={true}
                                                 fields="name,email,picture"

@@ -153,7 +153,7 @@ function Home() {
 
                         <div className="card-2">
                           <div className="cat-list-home">
-                            <img src={item.logo} style={{ borderRadius: "100px", height: "100px", width: "100%" }} />
+                            <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} />
                           </div>
                         </div>
 
@@ -247,41 +247,6 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {/* <div className="col-lg-4 col-md-6">
-                <div className="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                  <img src="assets/imgs/banner/banner-2.png" alt="/" />
-                  <div className="banner-text">
-                    <h4>
-                      Make your Breakfast<br />
-                      Healthy and Easy
-                    </h4>
-                    <a href="#" className="btn btn-xs small-slider-button">
-                      <span className="text-span">
-                        Shop Now
-                      </span>
-                      <span className="img-span">
-                          <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 d-md-none d-lg-flex">
-                <div className="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                  <img src="assets/imgs/banner/banner-3.png" alt="/" />
-                  <div className="banner-text">
-                    <h4>The best Organic <br />Products Online</h4>
-                    <a href="#" className="btn btn-xs small-slider-button">
-                      <span className="text-span">
-                        Shop Now
-                      </span>
-                      <span className="img-span">
-                          <img style={{width:"100%"}} src="assets/imgs/banner/right-arrow.svg" alt="/" /> 
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>
@@ -293,7 +258,7 @@ function Home() {
           <div className="container">
             <div className="section-title style-2 wow animate__animated animate__fadeIn">
               <h3>Popular Products</h3>
-              <ul className="nav nav-tabs links" id="myTab" role="tablist">
+              {/* <ul className="nav nav-tabs links" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">
                   <button className="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
                 </li>
@@ -318,7 +283,7 @@ function Home() {
                 <li className="nav-item" role="presentation">
                   <button className="nav-link" id="nav-tab-eigth" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">High Brand</button>
                 </li>
-              </ul>
+              </ul> */}
             </div>
             {/*End nav-tabs*/}
             <div className="tab-content" id="myTabContent">
