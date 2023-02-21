@@ -32,6 +32,7 @@ function Checkout() {
     const [ListCity, setListCity] = useState([]);
     const [PaymentTypesList, setPaymentTypesList] = useState([]);
     const [PaymentTypes, setPaymentTypes] = useState("");
+    const [Paymentsuccess, setPaymentsuccess] = useState("");
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
 
@@ -41,15 +42,34 @@ function Checkout() {
     const SubmitHandler = async (e) => {
         e.preventDefault();
 
-        if (!FirstName || !LastName || !Address1 || !Address2 || !state || !city || !PostCode || !PhoneNumber || !Email) {
+        const login_type = payment_method == 'cod' ? 1 : 2;
+
+
+        if (login_type == 2) {
+            if (!PaymentTypes) {
+                ToasterWarning('Please select payment method')
+                return
+            } 
+        }
+
+        if (!FirstName || !LastName || !Address1 || !Address2 || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
+
             ToasterWarning('Please All Enter Details')
             return
         }
 
-        const login_type = payment_method == 'cod' ? 1 : 2;
+            if (PaymentTypes == "Razorpay") {
+                openPayModal()
+            } else
+                if (PaymentTypes == "Stripe") {
+                    alert("Stripe");
+                } else
+                    if (PaymentTypes == "Paypal") {
+                        alert("Paypal");
+                    }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id,payment_method: login_type, total_amount: Sub_Total_price };
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -63,30 +83,33 @@ function Checkout() {
         catch (error) {
             ToasterError("Error")
             setIsLoading(false)
-           
+
 
         }
+
+
 
     }
 
     const pay = (e) => {
         setPaymentTypes(e.target.alt)
+        console.log(e.target.alt);
     }
 
     function GetAllCart() {
         setIsLoading(true)
         const tempid = localStorage.getItem('tempid');
-        const cartid =  user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
+        const cartid = user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
         const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
         common.httpGet(GetAllCart).then(function (res) {
-          SetGetCart(res.data.data[0].cart_items);
-          setIsLoading(false)
-        })
-          .catch(function (error) {
-            // ToasterError("Error");
+            SetGetCart(res.data.data[0].cart_items);
             setIsLoading(false)
-          });
-      }
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
 
     function GetPaymentTypes() {
         setIsLoading(true)
@@ -142,7 +165,46 @@ function Checkout() {
             });
     }
 
-    const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0)
+    const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
+
+
+
+    const options = {
+        key: 'rzp_test_ii0W1QDV7ASF82',
+        amount: Sub_Total_price * 100, //  = INR 1
+        name: 'colebrook',
+        description: 'some description',
+        image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
+        handler: function (response) {
+            console.log(response.razorpay_payment_id);
+            setPaymentsuccess(response.razorpay_payment_id)
+        },
+        prefill: {
+            name: 'vikas',
+            contact: '735900265',
+            email: 'vikas@demo.com'
+        },
+        notes: {
+            address: 'some address'
+        },
+        theme: {
+            color: 'blue',
+            hide_topbar: false
+        }
+    };
+
+    const openPayModal = () => {
+        var rzp1 = new window.Razorpay(options);
+        rzp1.open();
+    };
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.async = true;
+        document.body.appendChild(script);
+    }, []);
+
+
 
     useEffect(() => {
         GetPaymentTypes();
@@ -416,7 +478,6 @@ function Checkout() {
                                         })}
                                     </div> : " "
                                 }
-
                                 <a className="btn btn-fill-out btn-block mt-30" onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                             </div>
                         </div>

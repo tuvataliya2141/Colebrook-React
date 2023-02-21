@@ -91,8 +91,8 @@ function Home() {
                               <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
                                 <img src={item.photo} className="d-block w-100" alt="/" />
                                 <div className="carousel-caption d-none d-md-block" style={{ width: "65%" }}>
-                                  <h1 className='banner_title_set'>{item.title}</h1><br />
-                                  <p className='banner_text_set'>{item.sub_title}</p><br />
+                                  <h1 className='banner_title_set mx-auto' style={{ maxWidth: "800px" }}>{item.title}</h1><br />
+                                  <p className='banner_text_set mx-auto' style={{ maxWidth: "600px" }}>{item.sub_title}</p><br />
                                   <div className="slider-main-button-div">
                                     <Link to="/ShopProduct">
                                       <button className="slider-main-button">
@@ -111,6 +111,14 @@ function Home() {
                           )
                         })
                       }
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -133,16 +141,13 @@ function Home() {
               </div>
 
               {/* <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
-                <button className=""><span class="slider-btn slider-prev"><i class="fi-rs-arrow-small-left"></i></span></button>
-                <button className=""><span class="slider-btn slider-next"><i class="fi-rs-arrow-small-right"></i></span></button>
+              <a className="page-link"><i className="fi-rs-arrow-small-left" /></a>
+              <a className="page-link"><i className="fi-rs-arrow-small-right" /></a>
               </div> */}
             </div>
 
-
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
             {/* </div> */}
-
-
             <div className="carausel-10-columns-cover position-relative">
 
               <div className="carausel-10-columns" id="carausel-10-columns">
@@ -363,15 +368,9 @@ function Home() {
         {/* old */}
         <BestSellers />
         <Footer />
-
-
-
-
-
-
       </main>
     </div>
   )
 }
 
-export default Home
+export default Home;

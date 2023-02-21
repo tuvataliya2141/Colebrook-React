@@ -185,8 +185,7 @@ function Header({ Crat }) {
                 <div className="logo logo-width-1 d-block d-lg-none">
                   <Link to="/"><img src={Logo} alt="logo" /></Link>
                 </div>
-                <div className="header-nav d-none d-lg-flex">
-                  <div className="main-categori-wrap d-none d-lg-block">
+                <div className="main-categori-wrap d-none d-lg-block">
                     <a className="categories-button-active">
                       <span className="fi-rs-apps" />
                       <select className="select-active" style={{ margin: "10px 0px", color: "white" }}>
@@ -206,6 +205,7 @@ function Header({ Crat }) {
                     </a>
 
                   </div>
+                <div className="header-nav d-none d-lg-flex">
                   <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                     <nav>
                       <ul className='nav nav-tabs links'>

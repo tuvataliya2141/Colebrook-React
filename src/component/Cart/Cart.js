@@ -8,7 +8,8 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
 import Pagination from "../Pagination";
-import { useNavigate, Link } from 'react-router-dom';;
+import { useNavigate, Link } from 'react-router-dom';import axios from "axios";
+;
 
 function Cart() {
 
@@ -79,12 +80,10 @@ function Cart() {
         }).then((willDelete1) => {
             if (willDelete1) {
                 setIsLoading(true)
-
                 const tempid = localStorage.getItem('tempid');
-                
                 const Data =  user_id ? `user_id=${user_id}` : `tempuserid=${tempid}`;
                 const deleteAllCart = `${urlConstant.Cart.AllCartDelete}`;
-                common.httpPost(deleteAllCart, Data).then((res) => {
+                axios.post(deleteAllCart, Data).then((res) => {
                     setIsLoading(false);
                     GetAllCart();
                 })  
@@ -293,22 +292,22 @@ function Cart() {
 
 
                                             <br />
-                                            <tr>
+                                            {/* <tr>
                                                 <td className="cart_total_label">
                                                     <h4 className="mb-10">Apply Coupon</h4>
                                                 </td>
                                                 <td className="cart_total_amount">
                                                     <h4 className="font-lg text-muted">Using A Promo Code?</h4>
                                                 </td>
-                                            </tr>
+                                            </tr> */}
 
                                         </tbody>
                                     </table>
 
-                                    <div className="d-flex justify-content-between">
+                                    {/* <div className="d-flex justify-content-between">
                                         <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
                                         <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
-                                    </div>
+                                    </div> */}
 
                                 </div><br />
 

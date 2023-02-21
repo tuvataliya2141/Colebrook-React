@@ -117,15 +117,12 @@ const AppProvider = ({ children }) => {
   }
 
   function GetAllCategory() {
-    setIsLoading(true)
     const GetAllCategory1 = `${urlConstant.AllCategory.GetAllCategory}`;
     common.httpGet(GetAllCategory1).then(function (res) {
-      setIsLoading(false);
       SetAllCategory(res.data.data.data);
       SetLogo(res.data.logo);
     })
       .catch(function (error) {
-        setIsLoading(false);
         // ToasterWarning(error.message)
         console.log(error);
       });
