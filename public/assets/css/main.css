@@ -1062,8 +1062,8 @@ h5.widget-title {
 }
 
 .btn-heading, button.btn-heading[type="submit"] {
-  background-color: #253D4E;
-  border-color: #253D4E;
+  background-color: black;
+  border-color: black;
   font-weight: 700;
   border: 0;
 }
