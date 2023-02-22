@@ -143,7 +143,7 @@ function ShopProduct() {
                         <div className="col-md-3 primary-sidebar sticky-sidebar">
                             {/* Fillter By Price */}
                             <div className="sidebar-widget price_range range mb-30">
-                                <h5 className="section-title style-1 mb-30">Fill by price</h5>
+                                <h5 className="section-title style-1 mb-30">Filter items</h5>
                                 <div className="price-filter">
                                     <div className="price-filter-inner">
                                         {/* <div id="slider-range" className="mb-20" /> */}

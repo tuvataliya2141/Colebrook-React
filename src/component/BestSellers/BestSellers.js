@@ -112,7 +112,7 @@ function BestSellers() {
                                     <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
                                   </div>
                                   {/* <a className="btn w-100 hover-up" onClick={() => { CartPost(item.id, item.variant+1) }}><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a> */}
-                                  <Link to={`/${item.slug}`}><a className="btn w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
+                                  <Link to={`/${item.slug}`}><a className="btn1 w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
                                 </div>
                               </div>
                             </>

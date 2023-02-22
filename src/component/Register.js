@@ -33,13 +33,14 @@ function Register() {
             ToasterError('Not same password')
             return
         }
-
+        const tempuserid = localStorage.getItem("tempid")
         const UserData = {
             name: name,
             email_or_phone: email_or_phone,
             password: password,
             cpassword: cpassword,
-            register_by: "email"
+            register_by: "email",
+            tempuserid
         };
 
         const UserRagister = `${urlConstant.User.UserRegister}`;
@@ -146,7 +147,7 @@ function Register() {
                                                 // onClick={componentClicked}
                                                 callback={responseFacebook} />, */}
                                             <div>
-                                                <button type="submit" style={{ borderRadius: "30px", float: "right" }} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Register</button>
+                                                <button type="submit" style={{ borderRadius: "30px", float: "right" }} className="btn btn-fill-out btn-block hover-up font-weight-bold" onClick={SubmitData} name="login">Submit & Register</button>
                                             </div>
                                         </div>
                                     </div>

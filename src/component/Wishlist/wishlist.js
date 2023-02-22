@@ -148,7 +148,7 @@ function Wishlist() {
                                                                 </td>
                                                                 <td className="text-right" data-title="Cart">
                                                                     {
-                                                                        InStock == 0 ? <button className="btn btn-sm" disabled >Add to cart</button> :
+                                                                        InStock == 0 ? <Link to="/Contact"><button className="btn btn-sm" >Contact Us</button></Link> :
                                                                         <Link to={`/${slug}`}><button className="btn btn-sm">Add to cart</button></Link>
                                                                             // <button className="btn btn-sm" onClick={() => { CartPost(id, variant) }} >Add to cart</button>
                                                                     }

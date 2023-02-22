@@ -1112,7 +1112,7 @@ button.submit:hover, button[type='submit']:hover {
   font-size: 14px;
 }
 
-/* .btn, .button {
+.btn, .button {
   display: inline-block;
   font-size: 14px;
   font-weight: 700;
@@ -1125,10 +1125,15 @@ button.submit:hover, button[type='submit']:hover {
   -webkit-transition: all 300ms linear 0s;
   transition: all 300ms linear 0s;
   letter-spacing: 0.5px;
-} */
+}
 
+.btn:hover, .button:hover {
+  background-color: #bbb5b5;
+  color: #000;
+}
 
-.btn, .button {
+.btn1 , .button{
+  text-align: center;
   display: inline-block;
   font-size: 14px;
   font-weight: 700;
@@ -1143,17 +1148,14 @@ button.submit:hover, button[type='submit']:hover {
   letter-spacing: 0.5px;
 }
 
-.btn:hover, .button:hover {
+.btn1:hover,.button:hover{
   background-color: #222325;
   color: #fff;
   box-shadow: 8px 9px 21px rgb(169 199 255 / 59%);
   border: 2px solid #FFFFFF;
 }
 
-/* .btn:hover, .button:hover {
-  background-color: #bbb5b5;
-  color: #000;
-} */
+
 
 .btn.btn-sm, .button.btn-sm {
   padding: 8px 18px;
@@ -5701,10 +5703,6 @@ table.no-border td, table.no-border th, table.no-border thead {
   color: #fff;
 }
 
-.apply-coupon button:hover {
-  background-color: #222325;
-}
-
 .order_table table .product-thumbnail img {
   max-width: 120px;
   border-radius: 15px;
@@ -9672,7 +9670,7 @@ footer .hotline img {
 }
 
 .widget-install-app {
-  min-width: 310px;
+  min-width: 321px;
 }
 
 .contact-infor {

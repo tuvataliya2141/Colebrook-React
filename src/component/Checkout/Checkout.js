@@ -24,7 +24,6 @@ function Checkout() {
     const [PostCode, SetPostCode] = useState("");
     const [PhoneNumber, SetPhoneNumber] = useState("");
     const [Email, SetEmail] = useState("");
-    const [company, Setcompany] = useState("");
     const [AdditionalInfomation, SetAdditionalInfomation] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [ListStates, setListStates] = useState([]);

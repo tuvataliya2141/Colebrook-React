@@ -114,7 +114,7 @@ function Login() {
                                                         <a className="text-muted" href="#">Forgot password?</a>
                                                     </div>
                                                     <div className="form-group">
-                                                        <button type="submit" className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
+                                                        <button type="submit" style={{ borderRadius: "30px",backgroundColor:"#222325" }} className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
                                                         <span style={{ float: "right", display: "flex" }}>
                                                             <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
                                                             <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>

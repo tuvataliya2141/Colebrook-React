@@ -59,6 +59,7 @@ function Header({ Crat }) {
                       productsData?.slice(0, 3).map((item, i) => {
                         return (
                           <>
+                          <a href={`/${item.slug}`}>
                             <div className='row' key={i}>
                               <div className='col-2'>
                                 <img src={item.thumbnail_img}  ></img>
@@ -67,6 +68,7 @@ function Header({ Crat }) {
                                 <p style={{ letterSpacing: "1px" }}><a key={i} href={`/${item.slug}`}>{item.name}</a></p>
                               </div>
                             </div>
+                            </a>
                           </>
                         )
                       })
@@ -74,6 +76,7 @@ function Header({ Crat }) {
                     {
                       categoriesData?.map((item, i) => {
                         return (<>
+                        <a to="/ShopProduct">
                           <div className='row p-10' key={i}>
                             <div className='col-2'>
                               <img src="../assets/imgs/theme/icons/search.png" ></img>
@@ -82,6 +85,7 @@ function Header({ Crat }) {
                               <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
                             </div>
                           </div>
+                          </a>
                         </>)
                       })
                     }
@@ -216,13 +220,13 @@ function Header({ Crat }) {
                           <Link className="nav-link" to="/ShopProduct" >Shop </Link>
                         </li>
                         <li className="nav-item">
-                          <Link className="nav-link" to="/">Offer</Link>
+                          <Link className="nav-link" to="/ShopProduct">Offer</Link>
                         </li>
                         <li className="nav-item">
-                          <Link className="nav-link" to="/">Man’s ware </Link>
+                          <Link className="nav-link" to="/ShopProduct">Man’s ware </Link>
                         </li>
                         <li className="nav-item">
-                          <Link className="nav-link" to="/">Women's Wear </Link>
+                          <Link className="nav-link" to="/ShopProduct">Women's Wear </Link>
                         </li>
                         <li className="nav-item">
                           <Link className="nav-link" to="/Contact">Contact</Link>

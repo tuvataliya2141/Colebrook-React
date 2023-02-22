@@ -42,7 +42,6 @@ function Contact() {
         }
 
     }
-
     return (
         <div>
             {isLoading ? <Loding /> : Contact}
@@ -81,7 +80,7 @@ function Contact() {
                                                         </div>
                                                         <div className="col-lg-6 col-md-6">
                                                             <div className="input-style mb-20">
-                                                                <input name="telephone" placeholder="Your Phone*" type="tel" value={phone_number || ""} onChange={(e) => { Setphone_number(e.target.value) }} />
+                                                                <input name="telephone" placeholder="Your Phone*" type="phone" maxLength={10} value={phone_number || ""} onChange={(e) => { Setphone_number(e.target.value.replace(/\D/g, '')) }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6 col-md-6">

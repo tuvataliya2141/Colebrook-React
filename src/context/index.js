@@ -96,7 +96,7 @@ const AppProvider = ({ children }) => {
 
 
     if (!CouponCode) {
-      ToasterWarning('Please All Enter Details')
+      ToasterWarning('Please Enter Coupon Code')
       return
     }
 
