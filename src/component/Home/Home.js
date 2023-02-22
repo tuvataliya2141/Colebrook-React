@@ -158,7 +158,8 @@ function Home() {
 
                         <div className="card-2">
                           <div className="cat-list-home">
-                            <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} />
+                            {/* <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} /> */}
+                            <img src={item.logo}  />
                           </div>
                         </div>
 
