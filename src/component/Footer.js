@@ -26,8 +26,8 @@ function Footer() {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="position-relative newsletter-inner">
-                                    {/* <div className="newsletter-content ml-150"> */}
-                                    <div className="newsletter-content">
+                                    <div className="newsletter-content marginleft">
+                                    {/* <div className="newsletter-content"> */}
                                         <h2 className="mb-20">
                                             Stay home &amp; get your daily <br />
                                             needs from our shop

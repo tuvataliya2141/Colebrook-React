@@ -2239,7 +2239,7 @@ label {
 
 .carausel-4-columns-cover .product-cart-wrap:hover {
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  box-shadow: 0px 4px 60px #ccc;
+  box-shadow: 0px 4px 20px #bacff7;
 }
 
 .bg-grey-10 {
@@ -8458,6 +8458,7 @@ h6.post-title {
 
 .header-style-1 .categories-dropdown-active-large {
   top: 100%;
+  width: 295px;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
 }
@@ -8929,7 +8930,7 @@ span.fi-rs-apps {
   margin: 0;
   padding: 30px;
   background: #fff;
-  border: 1px solid #BCE3C9;
+  border: 1px solid #ececec;
   border-radius: 10px;
   font-size: 16px;
   min-width: 270px;
@@ -8979,7 +8980,7 @@ span.fi-rs-apps {
 }
 
 .categories-dropdown-wrap ul li:hover {
-  border: 1px solid #BCE3C9;
+  border: 1px solid #ececec;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   transition: .3s;
@@ -13399,5 +13400,13 @@ footer .hotline img {
     border-top:none;
   }
 }
+
+
+@media screen and (min-width: 776px) {
+  .marginleft{
+    margin-left: 150px;
+  }
+}
+
 
 /*# sourceMappingURL=main.css.map */

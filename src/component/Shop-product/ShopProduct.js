@@ -9,6 +9,7 @@ import { ToasterWarning, ToasterError } from "../../common/toaster";
 import Pagination from "../Pagination";
 import axios from 'axios'
 import { useAppContext } from '../../context/index';
+import RangeSlider from './RangeSlider';
 
 function ShopProduct() {
     const id = useParams();
@@ -21,6 +22,8 @@ function ShopProduct() {
     const [color, setcolor] = useState(List);
     const [brand, setBrand] = useState(localStorage.getItem("brand") ? localStorage.getItem("brand").split(',') : []);
     const [size, setSize] = useState(List);
+
+    const [value, setValue] = useState({ min: 0, max: 7500 });
 
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -88,6 +91,7 @@ function ShopProduct() {
 
     const phandleInput = (e) => {
         setPrice(e.target.value);
+        setValue(e.target.value);
     }
 
     const getUniqueData = (data, property) => {
@@ -148,12 +152,12 @@ function ShopProduct() {
                                     <div className="price-filter-inner">
                                         {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
-                                            <div className="caption"><h6>Price Range : </h6> <strong id="slider-range-value1" className="text-brand" /></div>
-                                            <div className="caption"><h6>₹{MinPrice} - ₹{MaxPrice} </h6> <strong id="slider-range-value2" className="text-brand" /></div>
+                                        <label className="fw-900">Price Range :</label>
+                                        <div  className="caption"><h6 style={{ marginTop:"5px" }}>₹{value.min} - ₹{value.max} </h6></div>
                                         </div>
 
-                                        <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} />
-
+                                        {/* <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} /> */}
+                                        <RangeSlider min={0} max={7500} step={5} value={value} onChange={setValue} onInput={phandleInput} />
                                     </div>
                                 </div>
                                 <div className="list-group">
@@ -312,10 +316,10 @@ function ShopProduct() {
                                                         </div>
 
                                                         {
-                                                            item.discount == 0 ? "" : 
-                                                            <div className="product-badges product-badges-position product-badges-mrg">
-                                                                <span className="hot">-{item.discount}%</span>
-                                                            </div>
+                                                            item.discount == 0 ? "" :
+                                                                <div className="product-badges product-badges-position product-badges-mrg">
+                                                                    <span className="hot">-{item.discount}%</span>
+                                                                </div>
                                                         }
                                                     </div>
                                                     <div className="product-content-wrap">

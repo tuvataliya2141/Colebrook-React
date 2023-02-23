@@ -8,6 +8,8 @@ function Header({ Crat }) {
 
   const [hide, sethide] = useState('');
   const [toggle, settoggle] = useState("");
+  const [toggleCategor, settoggleCategor] = useState(false)
+  const data = toggleCategor == true ? "open" : "";
   const SignOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user");
@@ -59,15 +61,15 @@ function Header({ Crat }) {
                       productsData?.slice(0, 3).map((item, i) => {
                         return (
                           <>
-                          <a href={`/${item.slug}`}>
-                            <div className='row' key={i}>
-                              <div className='col-2'>
-                                <img src={item.thumbnail_img}  ></img>
+                            <a href={`/${item.slug}`}>
+                              <div className='row' key={i}>
+                                <div className='col-2'>
+                                  <img src={item.thumbnail_img}  ></img>
+                                </div>
+                                <div className='col-10'>
+                                  <p style={{ letterSpacing: "1px" }}><a key={i} href={`/${item.slug}`}>{item.name}</a></p>
+                                </div>
                               </div>
-                              <div className='col-10'>
-                                <p style={{ letterSpacing: "1px" }}><a key={i} href={`/${item.slug}`}>{item.name}</a></p>
-                              </div>
-                            </div>
                             </a>
                           </>
                         )
@@ -76,15 +78,15 @@ function Header({ Crat }) {
                     {
                       categoriesData?.map((item, i) => {
                         return (<>
-                        <a to="/ShopProduct">
-                          <div className='row p-10' key={i}>
-                            <div className='col-2'>
-                              <img src="../assets/imgs/theme/icons/search.png" ></img>
+                          <a to="/ShopProduct">
+                            <div className='row p-10' key={i}>
+                              <div className='col-2'>
+                                <img src="../assets/imgs/theme/icons/search.png" ></img>
+                              </div>
+                              <div className='col-10'>
+                                <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
+                              </div>
                             </div>
-                            <div className='col-10'>
-                              <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
-                            </div>
-                          </div>
                           </a>
                         </>)
                       })
@@ -190,25 +192,41 @@ function Header({ Crat }) {
                   <Link to="/"><img src={Logo} alt="logo" /></Link>
                 </div>
                 <div className="main-categori-wrap d-none d-lg-block">
-                    <a className="categories-button-active">
-                      <span className="fi-rs-apps" />
-                      <select className="select-active" style={{ margin: "10px 0px", color: "white" }}>
-                        <option style={{ backgroundColor: "#a8a6a4" }}>
-                          <b> Browse All Categories</b>
-                        </option>
+                  <a className="categories-button-active" onClick={(e) => { settoggleCategor(!toggleCategor) }}>
+                    <span className="fi-rs-apps" /> <span className="et">Browse</span> All Categories
+                    <i className="fi-rs-angle-down" />
+                  </a>
+                  <div className={`categories-dropdown-wrap categories-dropdown-active-large font-heading ${data}`}>
+                    <div className="d-flex categori-dropdown-inner">
+                      <ul>
                         {
-                          AllCategory.map((item, i) => {
+                          AllCategory.slice(0,5).map((item, i) => {
                             return (
                               <>
-                                <option style={{ backgroundColor: "#a8a6a4", textTransform: "capitalize" }} key={i}><b>{item.name}</b></option>
+                                <li>
+                                  <Link to="/shopProduct">{item.name}</Link>
+                                </li>
                               </>
                             )
                           })
                         }
-                      </select>
-                    </a>
-
+                      </ul>
+                      <ul className="end">
+                        {
+                          AllCategory.slice(6,10).map((item, i) => {
+                            return (
+                              <>
+                                <li>
+                                  <Link to="/shopProduct">{item.name}</Link>
+                                </li>
+                              </>
+                            )
+                          })
+                        }
+                      </ul>
+                    </div>
                   </div>
+                </div>
                 <div className="header-nav d-none d-lg-flex">
                   <div className="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                     <nav>

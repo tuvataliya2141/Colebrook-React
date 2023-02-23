@@ -82,17 +82,11 @@ function Checkout() {
         catch (error) {
             ToasterError("Error")
             setIsLoading(false)
-
-
         }
-
-
-
     }
 
     const pay = (e) => {
         setPaymentTypes(e.target.alt)
-        console.log(e.target.alt);
     }
 
     function GetAllCart() {
@@ -170,7 +164,7 @@ function Checkout() {
 
     const options = {
         key: 'rzp_test_ii0W1QDV7ASF82',
-        amount: Sub_Total_price * 100, //  = INR 1
+        amount: Sub_Total_price * 100, 
         name: 'colebrook',
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
