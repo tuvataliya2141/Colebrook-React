@@ -264,32 +264,6 @@ function Home() {
           <div className="container">
             <div className="section-title style-2 wow animate__animated animate__fadeIn">
               <h3>Popular Products</h3>
-              {/* <ul className="nav nav-tabs links" id="myTab" role="tablist">
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one" type="button" role="tab" aria-controls="tab-one" aria-selected="true">All</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two" type="button" role="tab" aria-controls="tab-two" aria-selected="false">Shirt</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three" type="button" role="tab" aria-controls="tab-three" aria-selected="false">T-shirt</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-four" data-bs-toggle="tab" data-bs-target="#tab-four" type="button" role="tab" aria-controls="tab-four" aria-selected="false">Shot</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-five" data-bs-toggle="tab" data-bs-target="#tab-five" type="button" role="tab" aria-controls="tab-five" aria-selected="false">Topwear</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-six" data-bs-toggle="tab" data-bs-target="#tab-six" type="button" role="tab" aria-controls="tab-six" aria-selected="false">Dress</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-seven" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">Underwear</button>
-                </li>
-                <li className="nav-item" role="presentation">
-                  <button className="nav-link" id="nav-tab-eigth" data-bs-toggle="tab" data-bs-target="#tab-seven" type="button" role="tab" aria-controls="tab-seven" aria-selected="false">High Brand</button>
-                </li>
-              </ul> */}
             </div>
             {/*End nav-tabs*/}
             <div className="tab-content" id="myTabContent">

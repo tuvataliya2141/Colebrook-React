@@ -204,7 +204,7 @@ function Header({ Crat }) {
                             return (
                               <>
                                 <li>
-                                  <Link to="/shopProduct">{item.name}</Link>
+                                  <Link to="/ShopProduct">{item.name}</Link>
                                 </li>
                               </>
                             )
@@ -217,7 +217,7 @@ function Header({ Crat }) {
                             return (
                               <>
                                 <li>
-                                  <Link to="/shopProduct">{item.name}</Link>
+                                  <Link to="/ShopProduct">{item.name}</Link>
                                 </li>
                               </>
                             )

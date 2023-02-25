@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -8,6 +9,7 @@ import { ToasterSuccess, ToasterWarning, ToasterError } from "../../common/toast
 import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import axios from 'axios';
+import { config } from '../../constants/config';
 
 function Checkout() {
     let common = new CommonService();
@@ -35,6 +37,10 @@ function Checkout() {
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
 
+    //PayPal
+    const [show, setShow] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [orderID, setOrderID] = useState(false);
 
 
 
@@ -48,7 +54,7 @@ function Checkout() {
             if (!PaymentTypes) {
                 ToasterWarning('Please select payment method')
                 return
-            } 
+            }
         }
 
         if (!FirstName || !LastName || !Address1 || !Address2 || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
@@ -57,15 +63,16 @@ function Checkout() {
             return
         }
 
-            if (PaymentTypes == "Razorpay") {
-                openPayModal()
+        if (PaymentTypes == "Razorpay") {
+            openPayModal()
+        } else
+            if (PaymentTypes == "Stripe") {
+                alert("Stripe");
             } else
-                if (PaymentTypes == "Stripe") {
-                    alert("Stripe");
-                } else
-                    if (PaymentTypes == "Paypal") {
-                        alert("Paypal");
-                    }
+                if (PaymentTypes == "Paypal") {
+                    alert("Paypal");
+                    setShow(true)
+                }
         try {
             setIsLoading(true)
             const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price };
@@ -161,10 +168,10 @@ function Checkout() {
     const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
 
 
-
+    //RazorPay
     const options = {
-        key: 'rzp_test_ii0W1QDV7ASF82',
-        amount: Sub_Total_price * 100, 
+        key: config.RazorPayKey,
+        amount: Sub_Total_price * 100,
         name: 'colebrook',
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
@@ -196,6 +203,36 @@ function Checkout() {
         script.async = true;
         document.body.appendChild(script);
     }, []);
+
+    //PayPal
+    const createOrder = (data, actions) => {
+        return actions.order.create({
+            purchase_units: [
+                {
+                    description: "Sunflower",
+                    amount: {
+                        currency_code: "USD",
+                        value: Sub_Total_price,
+                    },
+                },
+            ],
+        }).then((orderID) => {
+            setOrderID(orderID);
+            return orderID;
+        });
+    };
+    const onApprove = (data, actions) => {
+        return actions.order.capture().then(function (details) {
+            const { payer } = details;
+            setSuccess(true);
+        });
+    };
+    useEffect(() => {
+        if (success) {
+            alert("Payment successful!!");
+            console.log('Order successful . Your order id is--', orderID);
+        }
+    }, [success]);
 
 
 
@@ -471,13 +508,21 @@ function Checkout() {
                                         })}
                                     </div> : " "
                                 }
-                                <a className="btn btn-fill-out btn-block mt-30" onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+                                <PayPalScriptProvider options={{ "client-id": config.PayPal_client_Id }}>
+                                    {show ? (
+                                        <PayPalButtons
+                                            style={{ layout: "vertical" }}
+                                            createOrder={createOrder}
+                                            onApprove={onApprove}
+                                        />
+                                    ) : null}
+                                </PayPalScriptProvider>
+                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-
             <Footer />
 
         </div>

@@ -8,8 +8,10 @@ import urlConstant from "../../constants/urlConstant";
 import { ToasterError, ToasterSuccess } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import Loding from '../Loding';
+import CommonService from "../../services/commonService";
 
 function Dashboard() {
+    let common = new CommonService();
     const { UserName, user_id } = useAppContext();
 
     const navigate = useNavigate()
@@ -23,7 +25,15 @@ function Dashboard() {
         localStorage.removeItem("brand");
     }
 
+    const [id, setId] = useState(0);
+    const [name, SetName] = useState("");
+    const [email, SetEmail] = useState("");
+    const [phone, SetPhone] = useState("");
+    const [password, SetPassword] = useState("");
+    const [cpassword, SetCPassword] = useState("");
+    const [CurrentPassword, SetCurrentPassword] = useState("");
     const [OrdersList, setOrdersList] = useState([]);
+    const [UserInfoList, setUserInfoList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     function GetOrdersList(P_Id) {
@@ -44,8 +54,42 @@ function Dashboard() {
         }
     }
 
+    function GetUserInfo() {
+        const GetUserInfo1 = `${urlConstant.User.UserInfo}/${user_id}`;
+        common.httpGet(GetUserInfo1).then(function (res) {
+            setUserInfoList(res.data.data[0]);
+        })
+            .catch(function (error) {
+                // ToasterWarning(error.message)
+                console.log(error);
+            });
+    }
 
+    function ProfileUpdate() {
+        if (password != cpassword) {
+            ToasterError('Not same password')
+            return
+        }
 
+        try {
+            setIsLoading(true)
+            const Data = { id: user_id, name, email, password, phone }
+            const ProfileUpdate1 = `${urlConstant.User.UserUpdate}`;
+            axios.post(ProfileUpdate1, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                setIsLoading(false)
+                setOrdersList(res.data.data.data);
+                ToasterSuccess("your detail Updated...!!");
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+            setIsLoading(false)
+        }
+    }
+
+    console.log(UserInfoList);
     useEffect(() => {
         if (!user_id) {
             navigate('/')
@@ -55,6 +99,7 @@ function Dashboard() {
             behavior: "smooth",
         });
         GetOrdersList();
+        GetUserInfo();
     }, [])
     return (
         <div>
@@ -88,9 +133,9 @@ function Dashboard() {
                                                 {/* <li className="nav-item">
                                                     <a className="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i className="fi-rs-shopping-cart-check mr-10" />Track Your Order</a>
                                                 </li> */}
-                                                <li className="nav-item">
+                                                {/* <li className="nav-item">
                                                     <a className="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i className="fi-rs-marker mr-10" />My Address</a>
-                                                </li>
+                                                </li> */}
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i className="fi-rs-user mr-10" />Account details</a>
                                                 </li>
@@ -105,7 +150,7 @@ function Dashboard() {
                                             <div className="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                                 <div className="card">
                                                     <div className="card-header">
-                                                        <h3 className="mb-0">Hello {UserName}!</h3>
+                                                        <h3 className="mb-0">Hello {name || UserInfoList.name}!</h3>
                                                     </div>
                                                     <div className="card-body">
                                                         <p>
@@ -230,39 +275,45 @@ function Dashboard() {
                                                         <h5>Account Details</h5>
                                                     </div>
                                                     <div className="card-body">
-                                                        <p>Already have an account? <a href="/">Log in instead!</a></p>
                                                         <form method="post" name="enq">
                                                             <div className="row">
-                                                                <div className="form-group col-md-6">
-                                                                    <label>First Name <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="name" type="text" />
-                                                                </div>
-                                                                <div className="form-group col-md-6">
-                                                                    <label>Last Name <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="phone" />
-                                                                </div>
                                                                 <div className="form-group col-md-12">
-                                                                    <label>Display Name <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="dname" type="text" />
+                                                                    <label>Name <span className="required">*</span></label>
+                                                                    <input required value={name || UserInfoList.name} onChange={(e) => { SetName(e.target.value) }} className="form-control" name="name" type="text" />
                                                                 </div>
                                                                 <div className="form-group col-md-12">
                                                                     <label>Email Address <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="email" type="email" />
+                                                                    <input required value={email || UserInfoList.email} onChange={(e) => { SetEmail(e.target.value) }} className="form-control" name="email" type="email" />
                                                                 </div>
                                                                 <div className="form-group col-md-12">
-                                                                    <label>Current Password <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="password" type="password" />
+                                                                    <label>Phone<span className="required">*</span></label>
+                                                                    <input required value={phone || UserInfoList.phone} onChange={(e) => { SetPhone(e.target.value) }} className="form-control" name="dname" type="text" />
                                                                 </div>
-                                                                <div className="form-group col-md-12">
-                                                                    <label>New Password <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="npassword" type="password" />
+                                                                <div className="form-group">
+                                                                    <div className="checkbox">
+                                                                        <div className="custome-checkbox">
+                                                                            <input className="form-check-input" type="checkbox" name="checkbox" id="createaccount" />
+                                                                            <label className="form-check-label label_info" data-bs-toggle="collapse" href="#collapsePassword" data-target="#collapsePassword" aria-controls="collapsePassword" htmlFor="createaccount"><span>change your password ?</span></label>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div className="form-group col-md-12">
-                                                                    <label>Confirm Password <span className="required">*</span></label>
-                                                                    <input required className="form-control" name="cpassword" type="password" />
+                                                                <div id="collapsePassword" className="form-group create-account collapse in">
+                                                                    <div className="form-group col-md-12">
+                                                                        <label>Current Password <span className="required">*</span></label>
+                                                                        <input required className="form-control" name="password" type="password" />
+                                                                    </div>
+                                                                    <div className="form-group col-md-12">
+                                                                        <label>New Password <span className="required">*</span></label>
+                                                                        <input required className="form-control" name="npassword" type="password" value={password} onChange={(e) => { SetPassword(e.target.value) }} />
+                                                                    </div>
+                                                                    <div className="form-group col-md-12">
+                                                                        <label>Confirm Password <span className="required">*</span></label>
+                                                                        <input required className="form-control" name="cpassword" type="password" value={cpassword} onChange={(e) => { SetCPassword(e.target.value) }} />
+                                                                    </div>
                                                                 </div>
+
                                                                 <div className="col-md-12">
-                                                                    <button type="submit" className="btn btn-fill-out submit font-weight-bold" name="submit" value="Submit">Save Change</button>
+                                                                    <button type="button" onClick={ProfileUpdate} className="btn btn-fill-out submit font-weight-bold" >Save Change</button>
                                                                 </div>
                                                             </div>
                                                         </form>

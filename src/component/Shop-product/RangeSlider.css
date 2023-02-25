@@ -1,7 +1,7 @@
 #root {
     /* max-width: 500px; */
-    padding: 12px;
-    margin: auto;
+    /* padding: 12px;
+    margin: auto; */
   }
   .wrapper {
     position: relative;
@@ -99,7 +99,7 @@
     position: absolute;
     height: 100%;
     background: #222325;
-    opacity: 0.5;
+    /* opacity: 0.5; */
   }
   .control {
     width: 16px;

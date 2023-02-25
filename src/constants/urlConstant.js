@@ -5,7 +5,9 @@ const { apiURL } = config;
 const urlConstant = {
   User: {
     UserLogin: `${apiURL}auth/login`,
-    UserRegister: `${apiURL}auth/signup`
+    UserRegister: `${apiURL}auth/signup`,
+    UserInfo : `${apiURL}user/info`,
+    UserUpdate : `${apiURL}profile/update`
   },
   Products: {
     GetProducts: `${apiURL}products/home`,
