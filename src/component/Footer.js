@@ -11,7 +11,7 @@ function Footer() {
     const [email, SetEmail] = useState();
 
     const submit = (e) => {
-        // e.preventdefault()
+        e.preventDefault();
         if (!email) {
             ToasterWarning('Please Your Enter Email..')
             return
@@ -59,7 +59,7 @@ function Footer() {
                             <div className="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                                 <h4 className="widget-title">Company</h4>
                                 <ul className="footer-list mb-sm-5 mb-md-0">
-                                    <li><a href="#">About Us</a></li>
+                                    <li><Link to={"/ShopProduct"}>About Us</Link></li>
                                     <li><Link to={"/Privacy-Policy"}>Privacy Policy</Link></li>
                                     <li><Link to={"/Terms-Service"}>Terms &amp; Conditions</Link></li>
                                     <li><Link to={"/Contact"}>Contact Us</Link></li>
@@ -79,13 +79,12 @@ function Footer() {
                             <div className="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                                 <h4 className="widget-title">Popular</h4>
                                 <ul className="footer-list mb-sm-5 mb-md-0">
-                                    <li><a href="#">Shirts</a></li>
-                                    <li><a href="#">T-shirts</a></li>
-                                    <li><a href="#">kruti</a></li>
-                                    <li><a href="#">kurta shirt</a></li>
-                                    <li><a href="#">Dresses</a></li>
-                                    <li><a href="#">Night Dress</a></li>
-                                    <li><a href="#">Saree</a></li>
+                                    <li><Link to="/ShopProduct">Shirts</Link></li>
+                                    <li><Link to="/ShopProduct">T-shirts</Link></li>
+                                    <li><Link to="/ShopProduct">kruti</Link></li>
+                                    <li><Link to="/ShopProduct">kurta shirt</Link></li>
+                                    <li><Link to="/ShopProduct">Dresses</Link></li>
+                                    <li><Link to="/ShopProduct">View All Order</Link></li>
                                 </ul>
                             </div>
                             <div className="footer-link-widget widget-install-app col wow animate__animated animate__fadeInUp" data-wow-delay=".5s">

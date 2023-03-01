@@ -8,11 +8,12 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
 import Pagination from "../Pagination";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 function Wishlist() {
+    const navigate = useNavigate()
     let common = new CommonService();
     const { user_id, Loding, CartPost } = useAppContext();
 
@@ -64,7 +65,14 @@ function Wishlist() {
 
     const WishlistLength = List.length
     useEffect(() => {
+        if (!user_id) {
+            navigate('/')
+        }
         GetWishlist();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }, []);
     return (
         <div>
@@ -165,12 +173,14 @@ function Wishlist() {
 
                                         </tbody>
                                     </table>
+                                    <div className="cart-action d-flex justify-content-between">
                                     <Pagination
                                         totalPosts={List.length}
                                         postsPerPage={postsPerPage}
                                         setCurrentPage={setCurrentPage}
                                         currentPage={currentPage}
                                     />
+                                    </div>
                                 </div>
                             </div>
                         </div>

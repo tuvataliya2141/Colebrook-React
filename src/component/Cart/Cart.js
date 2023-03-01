@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from '../../context/index';
 import swal from 'sweetalert'
 import Pagination from "../Pagination";
-import { useNavigate, Link } from 'react-router-dom';import axios from "axios";
+import { useNavigate, Link } from 'react-router-dom'; import axios from "axios";
 ;
 
 function Cart() {
@@ -81,12 +81,12 @@ function Cart() {
             if (willDelete1) {
                 setIsLoading(true)
                 const tempid = localStorage.getItem('tempid');
-                const Data =  user_id ? `user_id=${user_id}` : `tempuserid=${tempid}`;
+                const Data = user_id ? `user_id=${user_id}` : `tempuserid=${tempid}`;
                 const deleteAllCart = `${urlConstant.Cart.AllCartDelete}`;
                 axios.post(deleteAllCart, Data).then((res) => {
                     setIsLoading(false);
                     GetAllCart();
-                })  
+                })
             }
             else {
                 ToasterWarning("Your Data Safe...!!");
@@ -239,9 +239,10 @@ function Cart() {
                             <div className="divider-2 mb-30" />
                             <div className="cart-action d-flex justify-content-between">
                                 <Pagination
-                                    totalPosts={List.length}
+                                    totalPosts={List?.length}
                                     postsPerPage={postsPerPage}
                                     setCurrentPage={setCurrentPage}
+                                    currentPage={currentPage}
                                 />
                                 {/* <a className="btn  mr-10 mb-sm-15" ><i className="fi-rs-trash mr-5" />Clear Cart</a> */}
                                 <h6 className="text-body" onClick={() => AllCartdelete()}><a className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6>

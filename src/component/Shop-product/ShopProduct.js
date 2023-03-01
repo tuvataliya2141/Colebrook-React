@@ -17,7 +17,6 @@ function ShopProduct() {
     let common = new CommonService();
 
     const [List, setList] = useState([]);
-    const [price, setPrice] = useState(0);
     const [category, setcategory] = useState(localStorage.getItem("category") ? localStorage.getItem("category").split(',') : []);
     const [color, setcolor] = useState(List);
     const [brand, setBrand] = useState(localStorage.getItem("brand") ? localStorage.getItem("brand").split(',') : []);
@@ -90,8 +89,8 @@ function ShopProduct() {
     }
 
     const phandleInput = (e) => {
-        setPrice(e.target.value);
-        setValue(e.target.value);
+        setValue(value.min == e.target.value)
+        setValue(value.max == e.target.value)
     }
 
     const getUniqueData = (data, property) => {
@@ -120,6 +119,10 @@ function ShopProduct() {
 
     useEffect(() => {
         GetProducts();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     }, []);
 
     useEffect(() => {
@@ -152,11 +155,10 @@ function ShopProduct() {
                                     <div className="price-filter-inner">
                                         {/* <div id="slider-range" className="mb-20" /> */}
                                         <div className="d-flex justify-content-between">
-                                        <label className="fw-900">Price Range :</label>
-                                        <div  className="caption"><h6 style={{ marginTop:"5px" }}>₹{value.min} - ₹{value.max} </h6></div>
+                                            <label className="fw-900">Price Range :</label>
+                                            <div className="caption"><h6 style={{ marginTop: "5px" }}>₹{value.min} - ₹{value.max} </h6></div>
                                         </div>
 
-                                        {/* <input type="range" name="price" onInput={phandleInput} min={MinPrice} max={MaxPrice - 1} /> */}
                                         <RangeSlider min={0} max={7500} step={5} value={value} onChange={setValue} onInput={phandleInput} />
                                     </div>
                                 </div>
@@ -278,17 +280,11 @@ function ShopProduct() {
                             {/* Product sidebar Widget */}
                         </div>
                         <div className="col-md-9">
-                            {/* <div className="shop-product-fillter">
-                                <div className="totall-product">
-                                    <p>We found <strong className="text-brand">{Getlength}</strong> items for you!</p>
-                                </div>
-                            </div> */}
-
                             <div className="row product-grid">
                                 {
                                     currentPosts.filter((Data, i) => {
-                                        if (price || brand?.length || category?.length || color?.length || size?.length) {
-                                            return (price ? Data.base_discounted_price > parseInt(price, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
+                                        if (value?.min  || brand?.length || category?.length || color?.length || size?.length) {
+                                            return (value.min ? Data.base_discounted_price > parseInt(value.min, 10) : false)   || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
                                         }
                                         return Data
                                     }).map((item, i) => {

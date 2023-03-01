@@ -59,76 +59,80 @@ function BestSellers() {
 
               </div>
             </div>
-            <div className="col-lg-9 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
-              <div className="tab-content" id="myTabContent-1">
-                <div className="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
-                  <div className="carausel-4-columns-cover arrow-center position-relative">
-                    <div className="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-arrows" />
-                    <div className="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
+            <div className="col-md-9">
+              <div className="row product-grid">
+                {
+                  List.map((item, i) => {
+                    const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
+                    const Name = item.name.substring(0, 20);
 
-                      {
-                        List.map((item, i) => {
-                          const Name = item.name.substring(0, 15);
-                          return (
-                            <>
-                              <div key={i} className="product-cart-wrap">
-                                <div className="product-img-action-wrap" style={{ height: "348px" }}>
-                                  <div className="product-img product-img-zoom">
-                                    <Link to={`/${item.slug}`}>
-                                      <img className="default-img" src={item.thumbnail_image} alt="/" />
-                                      <img className="hover-img" src={item.thumbnail_image} alt="/" />
-                                    </Link>
-                                  </div>
-                                  <div className="product-action-1">
-                                    {
-                                      user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
-                                    }
-                                  </div>
-                                  {
-                                    item.discount == 0 || null ? "" :
-                                      <div className="product-badges product-badges-position product-badges-mrg">
-                                        <span className="hot">-{item.discount}%</span>
-                                      </div>
-                                  }
+                    return (
+
+                      <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
+                        <div className="product-cart-wrap mb-30" style={{ height: "636px" }}>
+                          <div className="product-img-action-wrap" style={{ height: "320px" }}>
+                            <div className="product-img product-img-zoom">
+                              <Link to={`/${item.slug}`}>
+                                <img className="default-img" src={image} alt="/" />
+                                <img className="hover-img" src={image} alt="/" />
+                              </Link>
+                            </div>
+                            <div className="product-action-1">
+                              {
+                                user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
+                              }
+
+                              {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
+                              {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
+                            </div>
+
+                            {
+                              item.discount == 0 ? "" :
+                                <div className="product-badges product-badges-position product-badges-mrg">
+                                  <span className="hot">-{item.discount}%</span>
                                 </div>
-                                <div className="product-content-wrap">
-                                  <div className="product-category">
-                                    <a >{item.slug}</a>
-                                  </div>
-                                  <h2><Link to={'1'}>{Name.length > 13
-                                    ? `${Name}...`
-                                    : Name}</Link></h2>
-                                  <div className="product-rate d-inline-block">
-                                    <div className="product-rating" style={{ width: item.rating + 35 }} />
-                                  </div>
-                                  <div className="product-price mt-10">
-                                    <span>{item.main_price}</span>
-                                    <span className="old-price">{item.stroked_price}</span>
-                                  </div>
-                                  <div className="sold mt-18 mb-25">
-                                    <div className="progress mb-5">
-                                      <div className="progress-bar" role="progressbar" style={{ width: '60%' }} aria-valuemin={0} aria-valuemax={100} />
-                                    </div>
-                                    <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
-                                  </div>
-                                  {/* <a className="btn w-100 hover-up" onClick={() => { CartPost(item.id, item.variant+1) }}><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a> */}
-                                  <Link to={`/${item.slug}`}><a className="btn1 w-100 hover-up"><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
-                                </div>
+                            }
+                          </div>
+                          <div className="product-content-wrap">
+                            <div className="product-category">
+                              <a>{item.slug}</a>
+                            </div>
+                            <h2><a> {Name?.length > 13
+                              ? `${Name}...`
+                              : Name}</a></h2>
+                            <div className="product-rate-cover">
+                              <div className="product-rate d-inline-block">
+                                <div className="product-rating" style={{ width: item.rating + 35 }} />
                               </div>
-                            </>
-                          )
-                        })
-                      }
-                    </div>
-                  </div>
-                </div>
+                              <span className="font-small ml-5 text-muted"> ({item.rating})</span>
+                            </div>
+                            <div className="product-price mt-10">
+                              <span>{item.main_price}</span>
+                              <span className="old-price">{item.stroked_price}</span>
+                            </div>
+                            <div className="sold mt-18 mb-25">
+                              <div className="progress mb-5">
+                                <div className="progress-bar" role="progressbar" style={{ width: '60%' }} aria-valuemin={0} aria-valuemax={100} />
+                              </div>
+                              <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
+                            </div>
+                            <div className="product-card-bottom">
+
+
+                              <Link to={`/${item.slug}`} style={{ width: "260px" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </div>
         </div>
       </section><br />
-
-
     </div>
   )
 }

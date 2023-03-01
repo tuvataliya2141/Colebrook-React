@@ -243,18 +243,18 @@ function Product() {
                               {/* <a  className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a> */}
 
                               {
-                                user_id == null ? <Link to="/login"> <a className="action-btn hover-up"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
+                                user_id == null ? <Link to="/login" className="action-btn hover-up"><i className="fi-rs-heart" /></Link> :
+                                  <a className="action-btn hover-up" onClick={() => { wishlistPost(List.id) }}><i className="fi-rs-heart" /></a>
                               }
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />
-                          <div className="font-xs">
-                            <ul className="mr-50 float-start">
-                              <h6>DELIVERY OPTIONS</h6><br />
-                              <li className="mb-5"><img src='assets/imgs/theme/delivery.png' width="20px" />&nbsp;   Get it by 7 days</li>
-                              <li className="mb-5"><img src='assets/imgs/theme/paydelivery.png' width="20px" />&nbsp;   Pay on delivery available</li>
-                              <li className="mb-5"><img src='assets/imgs/theme/return.png' width="20px" />&nbsp;  Easy 30 days return & exchange available</li>
-                              100% Original Products
+                          <div class="font-xs">
+                            <ul class="mr-50 float-start">
+                              <li class="mb-5"><img src='assets/imgs/theme/delivery.png' width="25px" />&nbsp;<span class="text-brand product-text">  Get it by 7 days</span></li>
+                              <li class="mb-5"><img src='assets/imgs/theme/paydelivery.png' width="25px" />&nbsp;<span class="text-brand product-text">  Pay on delivery available</span></li>
+                              <li><img src='assets/imgs/theme/return.png' width="25px" />&nbsp; <span class="text-brand product-text">  Easy 30 days return & exchange available</span></li>
+                              <span class="text-brand product-text">100% Original Products</span>
                             </ul>
                           </div>
                         </div>
@@ -381,16 +381,16 @@ function Product() {
                               <div className="product-rate d-inline-block mb-30" />
                               <div className="row">
                                 <div className="col-lg-8 col-md-12">
-                                  <form className="form-contact comment_form" id="commentForm">
+                                  <form className="form-contact comment_form">
                                     <div className="row">
                                       <div className="col-12">
                                         <div className="form-group">
-                                          <textarea className="form-control w-100" name="comment" id="comment" cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
+                                          <textarea className="form-control w-100" name="comment"  cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
                                         </div>
                                       </div>
                                     </div>
                                     <div className="form-group">
-                                      <button type="submit" className="button button-contactForm">Submit Review</button>
+                                      <button type="button" className="button button-contactForm">Submit Review</button>
                                     </div>
                                   </form>
                                 </div>

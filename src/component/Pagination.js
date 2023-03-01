@@ -11,7 +11,7 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
         <>
             <div className="pagination-area mt-20 mb-20">
                 <nav aria-label="Page navigation example">
-                    <ul className="pagination justify-content-start">
+                    <ul className="pagination justify-content-center">
                         <li className="page-item">
                             <a className="page-link"><i className="fi-rs-arrow-small-left" /></a>
                         </li>

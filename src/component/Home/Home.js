@@ -91,8 +91,8 @@ function Home() {
                               <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
                                 <img src={item.photo} className="d-block w-100" alt="/" />
                                 <div className="carousel-caption d-none d-md-block" style={{ width: "65%" }}>
-                                  <h1 className='banner_title_set mx-auto' style={{ maxWidth: "800px" }}>{item.title}</h1><br />
-                                  <p className='banner_text_set mx-auto' style={{ maxWidth: "600px" }}>{item.sub_title}</p><br />
+                                  <h1 className='banner_title_set mx-auto' style={{ maxWidth: "640px" }}>{item.title}</h1><br />
+                                  <p className='banner_text_set mx-auto' style={{ maxWidth: "435px" }}>{item.sub_title}</p><br />
                                   <div className="slider-main-button-div">
                                     <Link to="/ShopProduct">
                                       <button className="slider-main-button">
@@ -159,7 +159,7 @@ function Home() {
                         <div className="card-2">
                           <div className="cat-list-home">
                             {/* <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} /> */}
-                            <img src={item.logo}  />
+                            <img src={item.logo} />
                           </div>
                         </div>
 
@@ -256,8 +256,6 @@ function Home() {
             </div>
           </div>
         </section>
-
-
 
 
         <section className="product-tabs section-padding position-relative">

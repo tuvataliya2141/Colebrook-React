@@ -7,6 +7,7 @@ import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
 import { ToasterSuccess, ToasterWarning, ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
+import StripeCheckout from 'react-stripe-checkout';
 import { useAppContext } from '../../context/index';
 import axios from 'axios';
 import { config } from '../../constants/config';
@@ -42,7 +43,8 @@ function Checkout() {
     const [success, setSuccess] = useState(false);
     const [orderID, setOrderID] = useState(false);
 
-
+    // Stripe
+    const [name, setname] = useState(100);
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -70,7 +72,7 @@ function Checkout() {
                 alert("Stripe");
             } else
                 if (PaymentTypes == "Paypal") {
-                    alert("Paypal");
+                    // alert("Paypal");
                     setShow(true)
                 }
         try {
@@ -182,7 +184,7 @@ function Checkout() {
         prefill: {
             name: 'vikas',
             contact: '735900265',
-            email: 'vikas@demo.com'
+            email: 'vikas@gmail.com'
         },
         notes: {
             address: 'some address'
@@ -234,6 +236,20 @@ function Checkout() {
         }
     }, [success]);
 
+
+    //Stripe
+    const priceForStripe = name * 100;
+    const publishableKey = 'pk_test_51M5QJeSAOFagUnsl0K7aPh4aI9Gw0KHaWzj6RgaIhVtiq7dAcgWcE89paSHwRB8Vv4ojNmsHb1zFPkFiFWjAjL8c001uprsgcq';
+
+    const onToken = (token, payment_methods) => {
+        console.log(payment_methods);
+        console.log(token);
+        alert('Payment Succesful!');
+    };
+    const Stripe = () => {
+      
+        
+    }
 
 
     useEffect(() => {
@@ -506,7 +522,7 @@ function Checkout() {
                                                 </>
                                             )
                                         })}
-                                    </div> : " "
+                                    </div> : null
                                 }
                                 <PayPalScriptProvider options={{ "client-id": config.PayPal_client_Id }}>
                                     {show ? (
@@ -517,6 +533,20 @@ function Checkout() {
                                         />
                                     ) : null}
                                 </PayPalScriptProvider>
+
+                                {/* <StripeCheckout
+                                    label='Pay Now'
+                                    name='Colebrooknow'
+                                    billingAddress
+                                    shippingAddress
+                                    image='https://colebrooknow.com/admin/public/uploads/all/Frame.svg'
+                                    description={`Your total is $${name}`}
+                                    amount={priceForStripe}
+                                    panelLabel='Pay Now'
+                                    token={onToken}
+                                    stripeKey={publishableKey}
+                                /> */}
+
                                 <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                             </div>
                         </div>
