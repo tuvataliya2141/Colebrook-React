@@ -381,7 +381,7 @@ function Checkout() {
                                             <input required type="text" name="cname" placeholder="Company Name" value={company || ""} onChange={(e) => { Setcompany(e.target.value) }} />
                                         </div> */}
                                         <div className="form-group col-lg-6">
-                                            <input required type="text" name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value) }} />
+                                            <input required type="phone" maxLength={10}  name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />

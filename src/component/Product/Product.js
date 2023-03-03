@@ -12,7 +12,7 @@ import BestSellers from "../BestSellers/BestSellers";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import './Product.css'
 
 
 function Product() {
@@ -138,7 +138,7 @@ function Product() {
                                     return (
                                       <>
                                         <div>
-                                          <img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
+                                          <img src={item} alt="product image" width="100%" height="130px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
                                         </div>
                                       </>
                                     )
@@ -378,14 +378,27 @@ function Product() {
                             {/*comment form*/}
                             <div className="comment-form">
                               <h4 className="mb-15">Add a review</h4>
-                              <div className="product-rate d-inline-block mb-30" />
+                              <div className="row">
+                                <div className="rate">
+                                  <input type="radio" id="star5" name="rate" defaultValue={5} />
+                                  <label htmlFor="star5" >5 stars</label>
+                                  <input type="radio" id="star4" name="rate" defaultValue={4} />
+                                  <label htmlFor="star4" >4 stars</label>
+                                  <input type="radio" id="star3" name="rate" defaultValue={3} />
+                                  <label htmlFor="star3" >3 stars</label>
+                                  <input type="radio" id="star2" name="rate" defaultValue={2} />
+                                  <label htmlFor="star2" >2 stars</label>
+                                  <input type="radio" id="star1" name="rate" defaultValue={1} />
+                                  <label htmlFor="star1" >1 star</label>
+                                </div>
+                                </div>
                               <div className="row">
                                 <div className="col-lg-8 col-md-12">
                                   <form className="form-contact comment_form">
                                     <div className="row">
                                       <div className="col-12">
                                         <div className="form-group">
-                                          <textarea className="form-control w-100" name="comment"  cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
+                                          <textarea className="form-control w-100" name="comment" cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
                                         </div>
                                       </div>
                                     </div>

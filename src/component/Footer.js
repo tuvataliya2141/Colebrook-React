@@ -90,6 +90,7 @@ function Footer() {
                             <div className="footer-link-widget widget-install-app col wow animate__animated animate__fadeInUp" data-wow-delay=".5s">
                                 <h4 className="widget-title">Payment</h4>
                                 <img className src="assets/imgs/theme/payment-method.png" alt="/" />
+                                <hr/>
                                 <ul className="contact-infor">
                                         <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/" /><strong>Address: </strong> <span>5171 W Campbell Ave</span></li><li style={{ marginLeft: "20px" }}> undefined Kent, Utah 53127 United States</li>
                                         <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>

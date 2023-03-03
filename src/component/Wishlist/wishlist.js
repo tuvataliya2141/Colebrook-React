@@ -162,7 +162,7 @@ function Wishlist() {
                                                                     }
                                                                 </td>
                                                                 <td className="action text-center" data-title="Remove" onClick={() => deletehandler(id)}>
-                                                                    <a className="text-body"><i style={{ fontSize: "20px" }} className="fi-rs-cross-circle" /></a>
+                                                                    <a className="text-body"><i style={{ fontSize: "28px" }} className="fi-rs-cross-circle" /></a>
                                                                 </td>
                                                             </tr>
                                                         )
@@ -173,6 +173,7 @@ function Wishlist() {
 
                                         </tbody>
                                     </table>
+                                    <hr/>
                                     <div className="cart-action d-flex justify-content-between">
                                     <Pagination
                                         totalPosts={List.length}

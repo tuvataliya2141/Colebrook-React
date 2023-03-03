@@ -35,6 +35,11 @@ function BestSellers() {
       });
   }
 
+  
+  const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
+  const newList = shuffle(List);
+
+  console.log(newList);
   useEffect(() => {
     BestSeller();
   }, [])
@@ -62,7 +67,7 @@ function BestSellers() {
             <div className="col-md-9">
               <div className="row product-grid">
                 {
-                  List.map((item, i) => {
+                  newList.map((item, i) => {
                     const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                     const Name = item.name.substring(0, 20);
 
@@ -87,7 +92,7 @@ function BestSellers() {
                             </div>
 
                             {
-                              item.discount == 0 ? "" :
+                              item.discount == 0 ? null :
                                 <div className="product-badges product-badges-position product-badges-mrg">
                                   <span className="hot">-{item.discount}%</span>
                                 </div>

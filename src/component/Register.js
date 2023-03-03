@@ -86,6 +86,8 @@ function Register() {
                         <div className="row">
                             <div className="heading_s1">
                                 <h1 className="mb-5">Create an Account</h1>
+                                <p>Your personal data will be used to support your experience throughout this website, to</p>
+                                <p> manage access to your account, and for other purposes described in our privacy policy </p>
                                 <p className="mb-30">Already have an account? <Link to="/Login">Login</Link></p>
                             </div>
                             <div className="col-xl-8 col-lg-10 col-md-12 m-auto">
@@ -123,7 +125,7 @@ function Register() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
+                                            {/* <p className="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p> */}
                                             {/* </form> */}
                                         </div>
                                     </div>

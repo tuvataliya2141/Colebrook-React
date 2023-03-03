@@ -172,84 +172,71 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className="banners mb-25">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="row banner-row" style={{ backgroundColor: "#E4E4E4", borderRadius: "10px" }}>
-                  <div className="col-md-7 banner-text-set">
-                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
-                      <h4 className="banner-in-text">
-                        Everyday Fresh &amp; <br />Clean with Our<br />
-                        Products
-                      </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#A5A5A5" }}>
-                        <Link to="/ShopProduct">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                        </Link>
-                        <span className="img-span">
-                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+
+        {/* new */}
+        <section class="banners mb-25">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
+                  <img src="assets/imgs/banner/banner-1-full.png" alt="" />
+                  <div class="banner-text">
+                    <h4>
+                      Everyday Fresh & <br />Clean with Our<br />
+                      Products
+                    </h4>
+                    <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#A5A5A5" }}>
+                      <Link to="/ShopProduct">
+                        <span className="text-span">
+                          Shop Now
                         </span>
-                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
-                    <img src="assets/imgs/banner/banner-1.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                      </Link>
+                      <span className="img-span">
+                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                      </span>
+                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                    </a>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="row banner-row" style={{ backgroundColor: "#DEFFB4", borderRadius: "10px" }}>
-                  <div className="col-md-7 banner-text-set">
-                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
-                      <h4 className="banner-in-text">
-                        Everyday Fresh &amp; <br />Clean with Our<br />
-                        Products
-                      </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#3D8440" }}>
-                        <Link to="/ShopProduct">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                        </Link>
-                        <span className="img-span">
-                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+              <div class="col-lg-4 col-md-6">
+                <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
+                  <img src="assets/imgs/banner/banner-2 - Copy.png" alt="" />
+                  <div class="banner-text">
+                    <h4>
+                      Make your Breakfast<br />
+                      Healthy and Easy
+                    </h4>
+                    <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#3D8440" }}>
+                      <Link to="/ShopProduct">
+                        <span className="text-span">
+                          Shop Now
                         </span>
-                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
-                    <img src="assets/imgs/banner/banner-2.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                      </Link>
+                      <span className="img-span">
+                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                      </span>
+                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                    </a>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4">
-                <div className="row banner-row" style={{ backgroundColor: "#FFE1B4", borderRadius: "10px" }}>
-                  <div className="col-md-7 banner-text-set">
-                    <div className="banner-text" style={{ margin: "19px 0px 20px 0px" }}>
-                      <h4 className="banner-in-text">
-                        Everyday Fresh &amp; <br />Clean with Our<br />
-                        Products
-                      </h4>
-                      <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
-                        <Link to="/ShopProduct">
-                          <span className="text-span">
-                            Shop Now
-                          </span>
-                        </Link>
-                        <span className="img-span">
-                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+              <div class="col-lg-4 d-md-none d-lg-flex">
+                <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
+                  <img src="assets/imgs/banner/banner-3 - Copy.png" alt="" />
+                  <div class="banner-text">
+                    <h4>The best Organic <br />Products Online</h4>
+                    <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
+                      <Link to="/ShopProduct">
+                        <span className="text-span">
+                          Shop Now
                         </span>
-                        {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
-                      </a>
-                    </div>
-                  </div>
-                  <div className="col-md-5 p-0" style={{ maxHeight: "271px" }}>
-                    <img src="assets/imgs/banner/banner-3.png" className="img-fluid" alt="/" style={{ width: "100%", borderRadius: "0px 10px 10px 0px" }} />
+                      </Link>
+                      <span className="img-span">
+                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                      </span>
+                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
+                    </a>
                   </div>
                 </div>
               </div>

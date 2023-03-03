@@ -3481,6 +3481,7 @@ table .product-thumbnail img {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   padding: 0 30px;
+  width: 300px
 }
 
 .banner-img .banner-text span {
@@ -4229,6 +4230,7 @@ table .product-thumbnail img {
   color: #adadad;
   margin: 0 0 0 7px;
   text-decoration: line-through;
+  font-weight: 500;
 }
 
 .product-cart-wrap .product-content-wrap .rating-result {
@@ -13409,6 +13411,18 @@ footer .hotline img {
   }
 }
 
+
+@media screen and (max-width: 320px) {
+  .banner-img .banner-text {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 0 30px;
+    width: 190px
+  }
+}
 
 
 /*# sourceMappingURL=main.css.map */

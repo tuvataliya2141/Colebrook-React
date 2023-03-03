@@ -209,7 +209,7 @@ function ShopProduct() {
                                         </div>
                                         <div></div>
                                         {/* <span style={{width:"100%"}}></span> */}
-                                        <label className="fw-900" style={{ width: "100%" }}>Colour</label>
+                                        <label className="fw-900" style={{ width: "110%" }}>Colour</label>
                                         <div className="custome-checkbox">
                                             {
                                                 colorsData.map((item, i) => {
@@ -284,7 +284,7 @@ function ShopProduct() {
                                 {
                                     currentPosts.filter((Data, i) => {
                                         if (value?.min  || brand?.length || category?.length || color?.length || size?.length) {
-                                            return (value.min ? Data.base_discounted_price > parseInt(value.min, 10) : false)   || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
+                                            return (value.min ? Data.base_discounted_price > parseInt(value.min, 10) : false)  || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
                                         }
                                         return Data
                                     }).map((item, i) => {
