@@ -14,7 +14,7 @@ import { config } from '../../constants/config';
 
 function Checkout() {
     let common = new CommonService();
-    const { Loding, user_id, ApplyCoupon } = useAppContext();
+    const { Loding, user_id, ApplyCoupon, Logo } = useAppContext();
 
     const [CouponCode, SetCouponCode] = useState('');
     const [FirstName, SetFirstName] = useState("");
@@ -178,7 +178,7 @@ function Checkout() {
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
         handler: function (response) {
-            console.log(response.razorpay_payment_id);
+            // console.log(response.razorpay_payment_id);
             setPaymentsuccess(response.razorpay_payment_id)
         },
         prefill: {
@@ -239,16 +239,16 @@ function Checkout() {
 
     //Stripe
     const priceForStripe = name * 100;
-    const publishableKey = 'pk_test_51M5QJeSAOFagUnsl0K7aPh4aI9Gw0KHaWzj6RgaIhVtiq7dAcgWcE89paSHwRB8Vv4ojNmsHb1zFPkFiFWjAjL8c001uprsgcq';
+    const publishableKey = config.StripeKey;
 
     const onToken = (token, payment_methods) => {
-        console.log(payment_methods);
+        // console.log(payment_methods);
         console.log(token);
         alert('Payment Succesful!');
     };
     const Stripe = () => {
-      
-        
+
+
     }
 
 
@@ -381,7 +381,7 @@ function Checkout() {
                                             <input required type="text" name="cname" placeholder="Company Name" value={company || ""} onChange={(e) => { Setcompany(e.target.value) }} />
                                         </div> */}
                                         <div className="form-group col-lg-6">
-                                            <input required type="phone" maxLength={10}  name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
+                                            <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
@@ -534,20 +534,21 @@ function Checkout() {
                                     ) : null}
                                 </PayPalScriptProvider>
 
-                                {/* <StripeCheckout
-                                    label='Pay Now'
-                                    name='Colebrooknow'
-                                    billingAddress
-                                    shippingAddress
-                                    image='https://colebrooknow.com/admin/public/uploads/all/Frame.svg'
-                                    description={`Your total is $${name}`}
-                                    amount={priceForStripe}
-                                    panelLabel='Pay Now'
-                                    token={onToken}
-                                    stripeKey={publishableKey}
-                                /> */}
-
                                 <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+                                {
+                                    PaymentTypes == "Stripe" ? <StripeCheckout
+                                        label='Pay Now'
+                                        name='Colebrooknow'
+                                        billingAddress
+                                        shippingAddress
+                                        image={Logo}
+                                        description={`Your total is  ₹${Sub_Total_price}`}
+                                        amount={priceForStripe}
+                                        panelLabel='stripe'
+                                        token={onToken}
+                                        stripeKey={publishableKey}
+                                    /> : null
+                                }
                             </div>
                         </div>
                     </div>

@@ -259,7 +259,7 @@ function Cart() {
                                                     <h6 className="text-muted">Subtotal</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
+                                                    <h4 className="text-brand text-end">₹{Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -287,7 +287,7 @@ function Cart() {
                                                     <h6 className="text-muted">Total</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹ {Sub_Total_price}</h4>
+                                                    <h4 className="text-brand text-end">₹{Sub_Total_price}</h4>
                                                 </td>
                                             </tr>
 

@@ -13356,8 +13356,8 @@ footer .hotline img {
 
 .search1 {
   position: absolute;
-  top: 90px;
-  left: 830px;
+  /* top: 90px; */
+  left: 43%;
   background-color: whitesmoke;
   z-index: 10;
   color: black;

@@ -8,6 +8,9 @@ export const config = {
    //RazorPay key
    RazorPayKey: 'rzp_test_ii0W1QDV7ASF82',
 
+   //Stripe key
+   StripeKey : 'pk_test_51M5QJeSAOFagUnsl0K7aPh4aI9Gw0KHaWzj6RgaIhVtiq7dAcgWcE89paSHwRB8Vv4ojNmsHb1zFPkFiFWjAjL8c001uprsgcq',
+
    // live google login
    clientId: "69098547658-rh80vkf9mr56bgvhv21bpou1h4r7ritj.apps.googleusercontent.com"
 };

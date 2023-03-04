@@ -65,7 +65,8 @@ function Dashboard() {
             });
     }
 
-    function ProfileUpdate() {
+    const ProfileUpdate = async () => {
+    // function ProfileUpdate() {
         if (password != cpassword) {
             ToasterError('Not same password')
             return
@@ -75,12 +76,12 @@ function Dashboard() {
             setIsLoading(true)
             const Data = { id: user_id, name, email, password, phone }
             const ProfileUpdate1 = `${urlConstant.User.UserUpdate}`;
-            axios.post(ProfileUpdate1, Data, {
+           await axios.post(ProfileUpdate1, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then((res) => {
                 setIsLoading(false)
+                ToasterSuccess("Your detail Updated...!!");
                 setOrdersList(res.data.data.data);
-                ToasterSuccess("your detail Updated...!!");
             })
         }
         catch (error) {
@@ -88,8 +89,6 @@ function Dashboard() {
             setIsLoading(false)
         }
     }
-
-    console.log(UserInfoList);
     useEffect(() => {
         if (!user_id) {
             navigate('/')
@@ -196,7 +195,7 @@ function Dashboard() {
                                                                                             <td>#{item.id}</td>
                                                                                             <td>{item.delivery_history_date}</td>
                                                                                             <td>{item.delivery_status}</td>
-                                                                                            <td>$125.00 for 2 item</td>
+                                                                                            <td>₹{item.grand_total}</td>
                                                                                             <td><a href="#" className="btn-small d-block">View</a></td>
                                                                                         </tr>
                                                                                     </>
