@@ -67,13 +67,21 @@ function Product() {
     setcolors(e.target.value);
   }
 
+  // const settings = {
+  //   className: "center",
+  //   centerMode: true,
+  //   infinite: true,
+  //   centerPadding: "60px",
+  //   slidesToShow: 3,
+  //   speed: 500
+  // };
+
   const settings = {
-    className: "center",
-    centerMode: true,
+    // dots: true,
     infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
-    speed: 500
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 3
   };
 
   useEffect(() => {
@@ -138,7 +146,7 @@ function Product() {
                                     return (
                                       <>
                                         <div>
-                                          <img src={item} alt="product image" width="100%" height="130px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
+                                          <img src={item} alt="product image" width="100%" height="160px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
                                         </div>
                                       </>
                                     )
@@ -249,6 +257,17 @@ function Product() {
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />
+                          {/* <div className="attr-detail attr-size mb-20">
+                            <strong className="mr-10">DELIVERY OPTIONS<span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
+                          </div>
+                          <div className="detail-extralink mb-20">
+                            <div className="detail-qty border radius">
+                              
+                              <input type="text" />
+                             
+                            </div>
+                          </div> */}
+
                           <div class="font-xs">
                             <ul class="mr-50 float-start">
                               <li class="mb-5"><img src='assets/imgs/theme/delivery.png' width="25px" />&nbsp;<span class="text-brand product-text">  Get it by 7 days</span></li>
@@ -391,7 +410,7 @@ function Product() {
                                   <input type="radio" id="star1" name="rate" defaultValue={1} />
                                   <label htmlFor="star1" >1 star</label>
                                 </div>
-                                </div>
+                              </div>
                               <div className="row">
                                 <div className="col-lg-8 col-md-12">
                                   <form className="form-contact comment_form">
