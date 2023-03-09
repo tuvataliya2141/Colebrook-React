@@ -40,31 +40,19 @@ function Header({ Crat }) {
               <div className="header-right">
                 <div className="search-style-2">
                   <form className='search'>
-                    <select className="select-active">
-                      <option>All Categories</option>
-                      {
-                        AllCategory.map((item, i) => {
-                          return (
-                            <>
-                              <option key={i} style={{ textTransform: "capitalize" }}>{item.name}</option>
-                            </>
-                          )
-                        })
-                      }
-                    </select>
                     <input type="text" placeholder="Search for items..." onChange={(e) => { GetAllSearch(e.target.value) || close(e.target.value) }} />
 
                   </form>
                   {/* <div className='search1' style={{ display: searchData == "" ? "none" : "" }}> */}
                   <div className='search1' style={{ display: hide == "" ? "none" : "" }}>
                     {
-                      productsData?.slice(0, 3).map((item, i) => {
+                      productsData?.slice(0, 5).map((item, i) => {
                         return (
                           <>
                             <a href={`/${item.slug}`}>
                               <div className='row' key={i}>
                                 <div className='col-2'>
-                                  <img src={item.thumbnail_img}  ></img>
+                                  <img src={item.thumbnail_img} width="60px" style={{ border: "1px solid black" }} ></img>
                                 </div>
                                 <div className='col-10'>
                                   <p style={{ letterSpacing: "1px" }}><a key={i} href={`/${item.slug}`}>{item.name}</a></p>
@@ -75,23 +63,7 @@ function Header({ Crat }) {
                         )
                       })
                     }
-                    {
-                      categoriesData?.map((item, i) => {
-                        return (<>
-                          <a to="/ShopProduct">
-                            <div className='row p-10' key={i}>
-                              <div className='col-2'>
-                                <img src="../assets/imgs/theme/icons/search.png" ></img>
-                              </div>
-                              <div className='col-10'>
-                                <p style={{ letterSpacing: "1px" }}><a key={i} href={'/ShopProduct'}>{item.name}</a></p>
-                              </div>
-                            </div>
-                          </a>
-                        </>)
-                      })
-                    }
-                    {!categoriesData?.length && !productsData?.length ? <p>Not found data...</p> : ""}
+                    {!productsData?.length ? <p>Not found data...</p> : ""}
                   </div>
                 </div>
                 <div className="header-action-right">
@@ -200,20 +172,7 @@ function Header({ Crat }) {
                     <div className="d-flex categori-dropdown-inner">
                       <ul>
                         {
-                          AllCategory.slice(0,5).map((item, i) => {
-                            return (
-                              <>
-                                <li>
-                                  <Link to="/ShopProduct">{item.name}</Link>
-                                </li>
-                              </>
-                            )
-                          })
-                        }
-                      </ul>
-                      <ul className="end">
-                        {
-                          AllCategory.slice(6,10).map((item, i) => {
+                          AllCategory.map((item, i) => {
                             return (
                               <>
                                 <li>

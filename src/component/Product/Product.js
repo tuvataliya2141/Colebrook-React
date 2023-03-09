@@ -267,9 +267,9 @@ function Product() {
                           <li className="nav-item">
                             <a className="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">Description</a>
                           </li>
-                          <li className="nav-item">
+                          {/* <li className="nav-item">
                             <a className="nav-link" id="Additional-info-tab" data-bs-toggle="tab" href="#Additional-info">Additional info</a>
-                          </li>
+                          </li> */}
                           {/* <li className="nav-item">
                             <a className="nav-link" id="Vendor-info-tab" data-bs-toggle="tab" href="#Vendor-info">Vendor</a>
                           </li> */}

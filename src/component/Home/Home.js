@@ -10,8 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BestSellers from '../BestSellers/BestSellers';
 import Slider from "react-slick";
-
-
+  
 function Home() {
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
@@ -20,6 +19,7 @@ function Home() {
   const [BrandsList, setBrandsList] = useState([]);
   const [BannersList, setBannersList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [BrandsSlider, setBrandsSlider] = useState(0);
 
   function GetProducts() {
     setIsLoading(true)
@@ -140,10 +140,20 @@ function Home() {
                 </div>
               </div>
 
-              {/* <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
-              <a className="page-link"><i className="fi-rs-arrow-small-left" /></a>
-              <a className="page-link"><i className="fi-rs-arrow-small-right" /></a>
-              </div> */}
+              <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
+                <div className="pagination-area">
+                  <nav aria-label="Page navigation">
+                    <ul className="pagination justify-content-center">
+                      <li className="page-item">
+                        <a className="page-link" onClick={(e) => { setBrandsSlider(BrandsSlider - 1) }}><i className="fi-rs-arrow-small-left" /></a>
+                      </li>
+                      <li className="page-item">
+                        <a className="page-link" onClick={(e) => { setBrandsSlider(BrandsSlider + 1) }}><i className="fi-rs-arrow-small-right" /></a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
             </div>
 
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows" />
@@ -151,24 +161,24 @@ function Home() {
             <div className="carausel-10-columns-cover position-relative">
 
               <div className="carausel-10-columns" id="carausel-10-columns">
-                {
-                  BrandsList.map((item, i) => {
-                    return (
-                      <>
+                  {
+                    // BrandsList.slice((BrandsSlider) , (BrandsSlider + 6)).map((item, i) => {
+                    BrandsList.slice((0), (7)).map((item, i) => {
+                      return (
+                        <>
 
-                        <div className="card-2">
-                          <div className="cat-list-home">
-                            {/* <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} /> */}
-                            <img src={item.logo} />
+                          <div className="card-2">
+                            <div className="cat-list-home">
+                              {/* <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} /> */}
+                              <img src={item.logo} />
+                            </div>
                           </div>
-                        </div>
 
-                      </>
-                    )
-                  })
-                }
+                        </>
+                      )
+                    })
+                  }
               </div>
-
             </div>
           </div>
         </section>

@@ -534,7 +534,7 @@ function Checkout() {
                                     ) : null}
                                 </PayPalScriptProvider>
 
-                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true || PaymentTypes == "Stripe"  ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                                 {
                                     PaymentTypes == "Stripe" ? <StripeCheckout
                                         label='Pay Now'

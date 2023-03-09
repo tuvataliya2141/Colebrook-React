@@ -85,7 +85,7 @@ function Dashboard() {
             })
         }
         catch (error) {
-            ToasterError("Error")
+            // ToasterError("Error")
             setIsLoading(false)
         }
     }
@@ -129,9 +129,9 @@ function Dashboard() {
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i className="fi-rs-shopping-bag mr-10" />Orders</a>
                                                 </li>
-                                                {/* <li className="nav-item">
+                                                <li className="nav-item">
                                                     <a className="nav-link" id="track-orders-tab" data-bs-toggle="tab" href="#track-orders" role="tab" aria-controls="track-orders" aria-selected="false"><i className="fi-rs-shopping-cart-check mr-10" />Track Your Order</a>
-                                                </li> */}
+                                                </li>
                                                 {/* <li className="nav-item">
                                                     <a className="nav-link" id="address-tab" data-bs-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i className="fi-rs-marker mr-10" />My Address</a>
                                                 </li> */}
