@@ -13,7 +13,7 @@ import Slider from "react-slick";
 
 function Home() {
   let common = new CommonService();
-  const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
+  const { user_id, wishlistPost, Loding, HomeCard } = useAppContext();
 
   const [List, setList] = useState([]);
   const [BrandsList, setBrandsList] = useState([]);
@@ -76,10 +76,12 @@ function Home() {
 
   var settings = {
     // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToScroll: 4,
-    slidesToShow: 6
+      infinite: true,
+      slidesToShow: 7,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      pauseOnHover: true
   };
 
   useEffect(() => {
@@ -161,27 +163,27 @@ function Home() {
                 </div>
               </div>
 
-              <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
+              {/* <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
                 <div className="pagination-area">
                   <nav aria-label="Page navigation">
                     <ul className="pagination justify-content-center">
                       <li className="page-item">
-                        {/* <a className="page-link" onClick={handlePrevCard}><i className="fi-rs-arrow-small-left" /></a> */}
+                        // <a className="page-link" onClick={handlePrevCard}><i className="fi-rs-arrow-small-left" /></a> 
                         <a className="page-link" ><i className="fi-rs-arrow-small-left" /></a>
                       </li>
                       <li className="page-item">
-                        {/* <a className="page-link" onClick={handleNextCard}><i className="fi-rs-arrow-small-right" /></a> */}
+                        // <a className="page-link" onClick={handleNextCard}><i className="fi-rs-arrow-small-right" /></a> 
                         <a className="page-link" ><i className="fi-rs-arrow-small-right" /></a>
                       </li>
                     </ul>
                   </nav>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" />
             {/* </div> */}
-            <div className="carausel-10-columns-cover position-relative">
+            <div className="carausel-10-columns-cover position-relative" style={{ marginTop:"30px" }}>
               <Slider {...settings}>
 
                 {

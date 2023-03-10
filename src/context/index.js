@@ -22,6 +22,7 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
+  const [HomeCard, SetHomeCard] = useState([]);
   const [searchData, setSearchData] = useState([]);
 
   function wishlistPost(P_Id) {
@@ -99,15 +100,15 @@ const AppProvider = ({ children }) => {
       ToasterWarning('Please Enter Coupon Code')
       return
     }
-
     try {
       setIsLoading(true)
       const Data = { code: CouponCode, user_id: parseInt(user_id) }
       const CouponData = `${urlConstant.ApplyCoupon.PostApplyCoupon}`;
       axios.post(CouponData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-      }).then(() => {
-        ToasterSuccess("Success...!!");
+      }).then((res) => {
+        // ToasterSuccess("Success...!!");
+        ToasterSuccess(res.data.message);
         setIsLoading(false)
       })
     }
@@ -128,29 +129,30 @@ const AppProvider = ({ children }) => {
       });
   }
 
-  // function GetAllCart() {
-  //   setIsLoading(true)
-  //   const GetAllCart = `${urlConstant.Cart.GetCart}?userId=${user_id}`;
-  //   common.httpGet(GetAllCart).then(function (res) {
-  //     SetGetCart(res.data.data[0].cart_items);
-  //     setIsLoading(false)
-  //   })
-  //     .catch(function (error) {
-  //       // ToasterError("Error");
-  //       setIsLoading(false)
-  //     });
-  // }
+  function GetHomeCard() {
+    setIsLoading(true)
+    const GetHomeCard1 = `${urlConstant.AllHomeCard.GetHomeCard}`;
+    common.httpGet(GetHomeCard1).then(function (res) {
+      SetHomeCard(res.data.data);
+      setIsLoading(false)
+    })
+      .catch(function (error) {
+        // ToasterError("Error");
+        setIsLoading(false)
+      });
+  }
 
 
 
 
   useEffect(() => {
     GetAllCategory();
+    GetHomeCard();
   }, [])
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData}}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData,HomeCard}}>
       {children}
     </AppContext.Provider>
   );

@@ -17,6 +17,7 @@ function ShopProduct() {
     let common = new CommonService();
 
     const [List, setList] = useState([]);
+    const [toggleMobile, settoggleMobile] = useState(false)
     const [category, setcategory] = useState(localStorage.getItem("category") ? localStorage.getItem("category").split(',') : []);
     const [color, setcolor] = useState(List);
     const [brand, setBrand] = useState(localStorage.getItem("brand") ? localStorage.getItem("brand").split(',') : []);
@@ -30,6 +31,37 @@ function ShopProduct() {
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
+
+
+
+    //mobile view
+    function getCurrntDimensions() {
+        return {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+    }
+    function useDimensionHook() {
+        const [currentDimenstion, setCurrentDimenstion] = useState(getCurrntDimensions());
+
+        useEffect(() => {
+            const handleResize = () => { setCurrentDimenstion(getCurrntDimensions()) }
+
+            window.addEventListener('resize', handleResize)
+
+            return () => window.removeEventListener('resize', handleResize)
+        }, [])
+
+        return currentDimenstion;
+    }
+
+
+    const { height, width } = useDimensionHook();
+
+    const isMobile = width >= 426
+
+    console.log(isMobile);
+    //mobile view our
 
     function GetProducts() {
         setIsLoading(true)
@@ -146,85 +178,99 @@ function ShopProduct() {
                 </div><br />
                 <div className="container mb-30">
                     {/* <div className="row flex-row-reverse"> */}
+
+                    {!isMobile && <button className="btn btn-sm" style={{ margin: "10px" }} onClick={(e) => { settoggleMobile(!toggleMobile) }}>Filter</button>}
+
                     <div className="row">
-                        <div className="col-md-3 primary-sidebar sticky-sidebar">
-                            {/* Fillter By Price */}
-                            <div className="sidebar-widget price_range range mb-30">
-                                <h5 className="section-title style-1 mb-30">Filter items</h5>
-                                <div className="price-filter">
-                                    <div className="price-filter-inner">
-                                        {/* <div id="slider-range" className="mb-20" /> */}
-                                        <div className="d-flex justify-content-between">
-                                            <label className="fw-900">Price Range :</label>
-                                            <div className="caption"><h6 style={{ marginTop: "5px" }}>₹{value.min} - ₹{value.max} </h6></div>
+                        {toggleMobile &&
+                            <div className="col-md-3 primary-sidebar sticky-sidebar">
+                                {/* Fillter By Price */}
+                                <div className="sidebar-widget price_range range mb-30">
+                                    <div className="d-flex justify-content-between">
+                                        <h5 className="section-title style-1 mb-30">Filter items</h5>
+                                        <div className="mobile-menu-close close-style-wrap close-style-position-inherit">
+                                            <button className="close-style search-close" onClick={(e) => { settoggleMobile(false) }}>
+                                                {/* <button className="close-style search-close"> */}
+                                                <i className="icon-top" />
+                                                <i className="icon-bottom" />
+                                            </button>
                                         </div>
-
-                                        <RangeSlider min={0} max={7500} step={5} value={value} onChange={setValue} onInput={phandleInput} />
                                     </div>
-                                </div>
-                                <div className="list-group">
-                                    <div className="list-group-item mb-10 mt-10">
-                                        <label className="fw-900">Category</label>
-                                        <div className="custome-checkbox">
-                                            {
-                                                categoryData.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} checked={category.includes(item)} defaultValue />
-                                                            <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
-                                                        </>
-                                                    )
-                                                })
-                                            }
+
+                                    <div className="price-filter">
+                                        <div className="price-filter-inner">
+                                            {/* <div id="slider-range" className="mb-20" /> */}
+                                            <div className="d-flex justify-content-between">
+                                                <label className="fw-900">Price Range :</label>
+                                                <div className="caption"><h6 style={{ marginTop: "5px" }}>₹{value.min} - ₹{value.max} </h6></div>
+                                            </div>
+
+                                            <RangeSlider min={0} max={7500} step={5} value={value} onChange={setValue} onInput={phandleInput} />
                                         </div>
+                                    </div>
+                                    <div className="list-group">
+                                        <div className="list-group-item mb-10 mt-10">
+                                            <label className="fw-900">Category</label>
+                                            <div className="custome-checkbox">
+                                                {
+                                                    categoryData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} checked={category.includes(item)} defaultValue />
+                                                                <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
 
-                                        <label className="fw-900">Brand</label>
-                                        <div className="custome-checkbox">
+                                            <label className="fw-900">Brand</label>
+                                            <div className="custome-checkbox">
 
-                                            {
+                                                {
 
-                                                brandData.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} checked={brand.includes(item)} defaultValue />
-                                                            <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                        <label className="fw-900">Size</label>
-                                        <div className="custome-checkbox">
+                                                    brandData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} checked={brand.includes(item)} defaultValue />
+                                                                <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            <label className="fw-900">Size</label>
+                                            <div className="custome-checkbox">
 
-                                            {
-                                                sizeData.map((item, i) => {
-                                                    return (
-                                                        <>
-                                                            <input id={item} key={i} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
-                                                            <label className="check-size-label" htmlFor={item}>{item}</label>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                        <div></div>
-                                        {/* <span style={{width:"100%"}}></span> */}
-                                        <label className="fw-900" style={{ width: "110%" }}>Colour</label>
-                                        <div className="custome-checkbox">
-                                            {
-                                                colorsData.map((item, i) => {
+                                                {
+                                                    sizeData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input id={item} key={i} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
+                                                                <label className="check-size-label" htmlFor={item}>{item}</label>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            <div></div>
+                                            {/* <span style={{width:"100%"}}></span> */}
+                                            <label className="fw-900" style={{ width: "110%" }}>Colour</label>
+                                            <div className="custome-checkbox">
+                                                {
+                                                    colorsData.map((item, i) => {
 
-                                                    return (
-                                                        <>
-                                                            <input id={item} key={i} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
-                                                            <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
-                                                        </>
-                                                    )
-                                                })
-                                            }
+                                                        return (
+                                                            <>
+                                                                <input id={item} key={i} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
+                                                                <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
 
-                                        </div>
-                                        {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
+                                            </div>
+                                            {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
                                         <div className="custome-checkbox">
                                             <p className="star-set">
                                                 <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
@@ -273,18 +319,152 @@ function ShopProduct() {
                                             <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
                                             <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
                                         </div> */}
+                                        </div>
                                     </div>
+                                    {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                                 </div>
-                                {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
-                            </div>
-                            {/* Product sidebar Widget */}
-                        </div>
+                                {/* Product sidebar Widget */}
+                            </div>}
+
+                        {isMobile &&
+                            <div className="col-md-3 primary-sidebar sticky-sidebar">
+                                {/* Fillter By Price */}
+                                <div className="sidebar-widget price_range range mb-30">
+                                    <h5 className="section-title style-1 mb-30">Filter items</h5>
+                                    <div className="price-filter">
+                                        <div className="price-filter-inner">
+                                            {/* <div id="slider-range" className="mb-20" /> */}
+                                            <div className="d-flex justify-content-between">
+                                                <label className="fw-900">Price Range :</label>
+                                                <div className="caption"><h6 style={{ marginTop: "5px" }}>₹{value.min} - ₹{value.max} </h6></div>
+                                            </div>
+
+                                            <RangeSlider min={0} max={7500} step={5} value={value} onChange={setValue} onInput={phandleInput} />
+                                        </div>
+                                    </div>
+                                    <div className="list-group">
+                                        <div className="list-group-item mb-10 mt-10">
+                                            <label className="fw-900">Category</label>
+                                            <div className="custome-checkbox">
+                                                {
+                                                    categoryData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input className="form-check-input" key={'box-' + item} type="checkbox" name="categoryData" value={item} id={item + i} onClick={handleInput} checked={category.includes(item)} defaultValue />
+                                                                <label className="form-check-label" key={'label-' + item} name='categoryData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+
+                                            <label className="fw-900">Brand</label>
+                                            <div className="custome-checkbox">
+
+                                                {
+
+                                                    brandData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input className="form-check-input" type="checkbox" name="brandData" key={'box-' + item} value={item} id={item + i} onClick={handleInput} checked={brand.includes(item)} defaultValue />
+                                                                <label className="form-check-label" key={'label-' + item} name='brandData' htmlFor={item + i} onClick={handleInput}><span style={{ textTransform: "capitalize" }}>{item}</span></label><br />
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            <label className="fw-900">Size</label>
+                                            <div className="custome-checkbox">
+
+                                                {
+                                                    sizeData.map((item, i) => {
+                                                        return (
+                                                            <>
+                                                                <input id={item} key={i} className="check-size-input" type="checkbox" name={item} value={item} onClick={handleInput} defaultValue />
+                                                                <label className="check-size-label" htmlFor={item}>{item}</label>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                            <div></div>
+                                            {/* <span style={{width:"100%"}}></span> */}
+                                            <label className="fw-900" style={{ width: "110%" }}>Colour</label>
+                                            <div className="custome-checkbox">
+                                                {
+                                                    colorsData.map((item, i) => {
+
+                                                        return (
+                                                            <>
+                                                                <input id={item} key={i} className="check-size-input" type="checkbox" name="colorData" value={`${item}`} onClick={handleInput} defaultValue />
+                                                                <label className="color-check-size-label" style={{ backgroundColor: `${item}` }} for={item} ></label>
+                                                            </>
+                                                        )
+                                                    })
+                                                }
+
+                                            </div>
+                                            {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
+                                        <div className="custome-checkbox">
+                                            <p className="star-set">
+                                                <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-3">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-2">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                            <p className="star-set">
+                                                <span className="star-in-set star-1">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
+                                            </p>
+                                        </div>
+                                        <label className="fw-900 mt-15">Price</label>
+                                        <div className="custome-checkbox">
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
+                                            <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
+                                        </div>
+                                        <label className="fw-900 mt-15">Offer</label>
+                                        <div className="custome-checkbox">
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
+                                            <br />
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
+                                            <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
+                                        </div> */}
+                                        </div>
+                                    </div>
+                                    {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
+                                </div>
+                                {/* Product sidebar Widget */}
+                            </div>}
                         <div className="col-md-9">
                             <div className="row product-grid">
                                 {
                                     currentPosts.filter((Data, i) => {
-                                        if (value?.min  || brand?.length || category?.length || color?.length || size?.length) {
-                                            return (value.min ? Data.base_discounted_price > parseInt(value.min, 10) : false)  || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
+                                        if (value?.min || brand?.length || category?.length || color?.length || size?.length) {
+                                            return (value.min ? Data.base_discounted_price > parseInt(value.min, 10) : false) || brand.includes(Data.brand) || category.includes(Data.category) || color.includes(Data.colors.map((item, i) => item[i])) || size.includes(Data.multipleSize.map((item, i) => item[i]))
                                         }
                                         return Data
                                     }).map((item, i) => {
@@ -366,6 +546,8 @@ function ShopProduct() {
 
                         </div>
                     </div>
+
+
                 </div>
 
                 <div className="modal fade custom-modal" id="quickViewModal" tabIndex={-1} aria-labelledby="quickViewModalLabel" aria-hidden="true">
