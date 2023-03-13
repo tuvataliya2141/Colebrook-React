@@ -102,7 +102,7 @@ const AppProvider = ({ children }) => {
     }
     try {
       setIsLoading(true)
-      const Data = { code: CouponCode, user_id: parseInt(user_id) }
+      const Data = { coupon_code: CouponCode, user_id: parseInt(user_id) }
       const CouponData = `${urlConstant.ApplyCoupon.PostApplyCoupon}`;
       axios.post(CouponData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -141,7 +141,6 @@ const AppProvider = ({ children }) => {
         setIsLoading(false)
       });
   }
-
 
 
 
