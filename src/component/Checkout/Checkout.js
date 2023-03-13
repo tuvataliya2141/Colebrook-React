@@ -14,7 +14,7 @@ import { config } from '../../constants/config';
 
 function Checkout() {
     let common = new CommonService();
-    const { Loding, user_id, ApplyCoupon, Logo } = useAppContext();
+    const { Loding, user_id, Logo } = useAppContext();
 
     const [CouponCode, SetCouponCode] = useState('');
     const [FirstName, SetFirstName] = useState("");
@@ -37,6 +37,7 @@ function Checkout() {
     const [Paymentsuccess, setPaymentsuccess] = useState("");
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
+    const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
 
     //PayPal
     const [show, setShow] = useState(false);
@@ -167,13 +168,57 @@ function Checkout() {
             });
     }
 
+
+    function ApplyCoupon(CouponCode) {
+        if (!CouponCode) {
+            ToasterWarning('Please Enter Coupon Code')
+            return
+        }
+        try {
+            setIsLoading(true)
+            const Data = { coupon_code: CouponCode, user_id: parseInt(user_id) }
+            const CouponData = `${urlConstant.ApplyCoupon.PostApplyCoupon}`;
+            axios.post(CouponData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                // ToasterSuccess("Success...!!");
+                ToasterSuccess(res.data.message);
+                SetCouponResult(res.data.discount);
+                localStorage.setItem('discount',res.data.discount);
+                setIsLoading(false)
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+        }
+    }
+
+    function CouponRemove(CouponCode) {
+        try {
+            setIsLoading(true)
+            const Data = { user_id: parseInt(user_id) }
+            const CouponData = `${urlConstant.ApplyCoupon.RemoveCoupon}`;
+            axios.post(CouponData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                ToasterSuccess(res.data.message);
+                localStorage.removeItem('discount');
+                setIsLoading(false)
+                window.location.href = window.location.href
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+        }
+    }
+
     const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
 
 
     //RazorPay
     const options = {
         key: config.RazorPayKey,
-        amount: Sub_Total_price * 100,
+        amount: (Sub_Total_price - CouponResult) * 100,
         name: 'colebrook',
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
@@ -214,7 +259,7 @@ function Checkout() {
                     description: "Sunflower",
                     amount: {
                         currency_code: "USD",
-                        value: Sub_Total_price,
+                        value: Sub_Total_price - CouponResult,
                     },
                 },
             ],
@@ -473,10 +518,18 @@ function Checkout() {
                                                 <td className="cart_total_amount">
                                                     <h5 className="text-heading text-end">Free </h5></td></tr> <tr>
                                                 <td className="cart_total_label">
-                                                    <h6 className="text-muted">Estimate for</h6>
+                                                    <h6 className="text-muted">Discount</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h5 className="text-heading text-end">United Kingdom </h5></td></tr> <tr>
+                                                    <h5 className="text-heading text-end">- {CouponResult == null ? "₹0" : "₹" + CouponResult}</h5></td></tr>
+                                            <tr>
+                                                <td className="cart_total_label">
+                                                    <h6 className="text-muted"></h6>
+                                                </td>
+                                                <td className="cart_total_amount">
+                                                    <a><p className="text-danger text-end" onClick={CouponRemove}>{CouponResult ? "Remove Coupon" : "" }</p></a>
+                                                </td></tr>
+                                            <tr>
                                                 <td scope="col" colSpan={2}>
                                                     <div className="divider-2 mt-10 mb-10" />
                                                 </td>
@@ -486,7 +539,7 @@ function Checkout() {
                                                     <h6 className="text-muted">Total</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹{Sub_Total_price}</h4>
+                                                    <h4 className="text-brand text-end">₹{Sub_Total_price - CouponResult}</h4>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -534,7 +587,7 @@ function Checkout() {
                                     ) : null}
                                 </PayPalScriptProvider>
 
-                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true || PaymentTypes == "Stripe"  ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true || PaymentTypes == "Stripe" ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
                                 {
                                     PaymentTypes == "Stripe" ? <StripeCheckout
                                         label='Pay Now'
@@ -542,7 +595,7 @@ function Checkout() {
                                         billingAddress
                                         shippingAddress
                                         image={Logo}
-                                        description={`Your total is  ₹${Sub_Total_price}`}
+                                        description={`Your total is  ₹${Sub_Total_price - CouponResult}`}
                                         amount={priceForStripe}
                                         panelLabel='stripe'
                                         token={onToken}

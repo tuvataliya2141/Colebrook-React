@@ -35,8 +35,11 @@ const urlConstant = {
   Dashboard:{
     OrdersList:`${apiURL}order/userOrderList`
   },
+  ApplyCoupon: { 
+    PostApplyCoupon: `${apiURL}coupon-apply`,
+    RemoveCoupon: `${apiURL}coupon-remove`,
+   },
   Contact: { PostContact: `${apiURL}contact` },
-  ApplyCoupon: { PostApplyCoupon: `${apiURL}coupon-apply` },
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},
   AllBrands : {GetAllBrands:`${apiURL}brands`},
   SearchData : {SearchAllData:`${apiURL}mainAllSearch`},

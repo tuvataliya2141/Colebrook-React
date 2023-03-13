@@ -33,7 +33,7 @@ function Home() {
     setCurrentCardIndex(newIndex);
     console.log(newIndex);
   };
-
+console.log(HomeCard[0]?.title);
   function GetProducts() {
     setIsLoading(true)
     const GetAllProducts = `${urlConstant.Products.GetProducts}`;
@@ -217,8 +217,7 @@ function Home() {
                   <img src="assets/imgs/banner/banner-1-full.png" alt="" />
                   <div class="banner-text">
                     <h4>
-                      Everyday Fresh & <br />Clean with Our<br />
-                      Products
+                    {HomeCard[0]?.title}
                     </h4>
                     <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#A5A5A5" }}>
                       <Link to="/ShopProduct">
@@ -239,8 +238,7 @@ function Home() {
                   <img src="assets/imgs/banner/banner-2 - Copy.png" alt="" />
                   <div class="banner-text">
                     <h4>
-                      Make your Breakfast<br />
-                      Healthy and Easy
+                    {HomeCard[1]?.title}
                     </h4>
                     <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#3D8440" }}>
                       <Link to="/ShopProduct">
@@ -260,7 +258,7 @@ function Home() {
                 <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                   <img src="assets/imgs/banner/banner-3 - Copy.png" alt="" />
                   <div class="banner-text">
-                    <h4>The best Organic <br />Products Online</h4>
+                    <h4> {HomeCard[2]?.title}</h4>
                     <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
                       <Link to="/ShopProduct">
                         <span className="text-span">

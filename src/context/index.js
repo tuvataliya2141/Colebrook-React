@@ -93,29 +93,6 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  function ApplyCoupon(CouponCode) {
-
-
-    if (!CouponCode) {
-      ToasterWarning('Please Enter Coupon Code')
-      return
-    }
-    try {
-      setIsLoading(true)
-      const Data = { coupon_code: CouponCode, user_id: parseInt(user_id) }
-      const CouponData = `${urlConstant.ApplyCoupon.PostApplyCoupon}`;
-      axios.post(CouponData, Data, {
-        headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-      }).then((res) => {
-        // ToasterSuccess("Success...!!");
-        ToasterSuccess(res.data.message);
-        setIsLoading(false)
-      })
-    }
-    catch (error) {
-      ToasterError("Error")
-    }
-  }
 
   function GetAllCategory() {
     const GetAllCategory1 = `${urlConstant.AllCategory.GetAllCategory}`;
@@ -151,7 +128,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, ApplyCoupon, AllCategory, Logo, GetAllSearch, searchData,HomeCard}}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData,HomeCard}}>
       {children}
     </AppContext.Provider>
   );
