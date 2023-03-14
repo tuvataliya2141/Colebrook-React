@@ -5702,7 +5702,7 @@ table.no-border td, table.no-border th, table.no-border thead {
   min-width: 150px;
   height: 51px;
   border-radius: 0 30px 30px 0;
-  background-color: #000;
+  /* background-color: #000; */
   color: #fff;
 }
 

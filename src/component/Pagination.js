@@ -6,7 +6,6 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pages.push(i);
     }
-
     return (
         <>
             <div className="pagination-area mt-20 mb-20">
@@ -29,7 +28,7 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage, currentPage }) =
                             })
                         }
                         <li className="page-item">
-                            <a className="page-link"><i className="fi-rs-arrow-small-right" /></a>
+                            <a className="page-link"><i className="fi-rs-arrow-small-right"/></a>
                         </li>
                     </ul>
                 </nav>

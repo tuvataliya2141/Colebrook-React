@@ -22,7 +22,7 @@ function Cart() {
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(5);
+    const [postsPerPage, setPostsPerPage] = useState(2);
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);

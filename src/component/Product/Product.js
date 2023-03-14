@@ -4,11 +4,12 @@ import Footer from '../Footer';
 import Header from '../Header';
 import CommonService from "../../services/commonService";
 import urlConstant from "../../constants/urlConstant";
-import { ToasterWarning, ToasterError } from "../../common/toaster";
+import { ToasterWarning,ToasterSuccess,ToasterError } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useAppContext } from "../../context";
 import BestSellers from "../BestSellers/BestSellers";
+import {config} from '../../constants/config'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,9 +17,6 @@ import './Product.css'
 
 
 function Product() {
-
-
-
   const id = useParams();
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost, ApplyCoupon } = useAppContext();
@@ -34,6 +32,8 @@ function Product() {
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
+  const [PinCode, SetPinCode] = useState('');
+  const [message, SetMessage] = useState('');
 
 
   function GetSingelProducts() {
@@ -54,6 +54,49 @@ function Product() {
         ToasterError("Error");
       });
   }
+
+  function GetPinCode() {
+    setIsLoading(true)
+    const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
+    const Data = {
+      "data": {
+        "pincode": PinCode,
+        "access_token": config.access_token,
+        "secret_key": config.secret_key
+      }
+    }
+    axios.post(GetPinCode1, Data).then(function (res) {
+      setIsLoading(false);
+      console.log(res.data.data);
+    })
+      .catch(function (error) {
+        setIsLoading(false);
+        ToasterError("Error");
+      });
+  }
+
+  const SubmitReviews = async (e) => {
+    e.preventDefault();
+
+    if (!message) {
+        ToasterWarning('Please All Enter Details')
+        return
+    }
+
+    try {
+        const data = { message };
+        const ContactData = `${urlConstant.Products.Reviews}`;
+        await common.httpPost(ContactData, data).then(() => {
+            ToasterSuccess("Success...!!");
+            setIsLoading(false)
+        })
+    }
+    catch (error) {
+        ToasterError("Error")
+        setIsLoading(false)
+    }
+
+}
 
 
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
@@ -90,6 +133,7 @@ function Product() {
       behavior: "smooth",
     });
     GetSingelProducts();
+    GetPinCode();
   }, []);
 
 
@@ -119,25 +163,11 @@ function Product() {
                           <span className="zoom-icon"><i className="fi-rs-search" /></span>
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
-                            <figure className="border-radius-10" style={{ height: "500px" }}>
+                            <figure className="border-radius-10 img-size">
                               {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
                               <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} />
                             </figure>
                           </div>
-                          {/* THUMBNAILS */}
-                          {/* <div className="slider-nav-thumbnails" style={{ display: "flex" }}>
-                            {
-                              multipleimageList.map((item, i) => {
-                                return (
-                                  <>
-                                    <div><img src={item} alt="product image" width="150px" height="165px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} /></div>
-                                  </>
-                                )
-                              })
-                            }
-                          </div> */}
-
-
                           <div>
                             <div>
                               <Slider {...settings}>
@@ -257,22 +287,24 @@ function Product() {
                             </div>
                           </div>
                           <hr style={{ margin: "10px", color: "rgb(69 96 147)" }} />
-                          {/* <div className="attr-detail attr-size mb-20">
+
+
+
+                          <div className="attr-detail attr-size mb-20">
                             <strong className="mr-10">DELIVERY OPTIONS<span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
                           </div>
-                          <div className="detail-extralink mb-20">
-                            <div className="detail-qty border radius">
-                              
-                              <input type="text" />
-                             
+                          <div className="row mb-30">
+                            <div className="col-lg-6 apply-coupon">
+                              <input type="text" placeholder="Enter Pincode..." value={PinCode} onChange={(e) => { SetPinCode(e.target.value) }} style={{ width: "170px" }} />
+                              <button className="btn btn-md" onClick={() => { GetPinCode(PinCode) }}>Pincode</button>
                             </div>
-                          </div> */}
+                          </div>
 
                           <div class="font-xs">
                             <ul class="mr-50 float-start">
                               <li class="mb-5"><img src='assets/imgs/theme/delivery.png' width="25px" />&nbsp;<span class="text-brand product-text">  Get it by 7 days</span></li>
                               <li class="mb-5"><img src='assets/imgs/theme/paydelivery.png' width="25px" />&nbsp;<span class="text-brand product-text">  Pay on delivery available</span></li>
-                              <li><img src='assets/imgs/theme/return.png' width="25px" />&nbsp; <span class="text-brand product-text">  Easy 30 days return & exchange available</span></li>
+                              <li><img src='assets/imgs/theme/return.png' width="25px" />&nbsp; <span class="text-brand product-text">  Easy {List.return_days} days return & exchange available</span></li>
                               <span class="text-brand product-text">100% Original Products</span>
                             </ul>
                           </div>
@@ -417,12 +449,12 @@ function Product() {
                                     <div className="row">
                                       <div className="col-12">
                                         <div className="form-group">
-                                          <textarea className="form-control w-100" name="comment" cols={30} rows={9} placeholder="Write Comment" defaultValue={""} />
+                                          <textarea className="form-control w-100" name="comment" cols={30} rows={9} placeholder="Write Comment" value={message} onChange={(e)=>{SetMessage(e.target.value)}} />
                                         </div>
                                       </div>
                                     </div>
                                     <div className="form-group">
-                                      <button type="button" className="button button-contactForm">Submit Review</button>
+                                      <button type="button" className="button button-contactForm" onClick={SubmitReviews}>Submit Review</button>
                                     </div>
                                   </form>
                                 </div>

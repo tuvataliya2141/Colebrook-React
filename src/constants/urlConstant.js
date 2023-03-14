@@ -12,6 +12,7 @@ const urlConstant = {
   Products: {
     GetProducts: `${apiURL}products/home`,
     PostSingelProducts: `${apiURL}products/details`,
+    Reviews:`${apiURL}reviews/submit`
   },
   Wishlist: {
     PostWishlist: `${apiURL}wishlists-add-product`,
@@ -39,6 +40,10 @@ const urlConstant = {
     PostApplyCoupon: `${apiURL}coupon-apply`,
     RemoveCoupon: `${apiURL}coupon-remove`,
    },
+  ShippingApi:{
+    Pincode:"https://pre-alpha.ithinklogistics.com/api_v3/pincode/check.json"
+  }, 
+  Subscribe: { SubscribePost: `${apiURL}Subscribe` },
   Contact: { PostContact: `${apiURL}contact` },
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},
   AllBrands : {GetAllBrands:`${apiURL}brands`},
