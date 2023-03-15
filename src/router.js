@@ -12,6 +12,7 @@ import Register from "./component/Register";
 import ShopProduct from "./component/Shop-product/ShopProduct";
 import Terms_Service from "./component/Terms-Service/Terms_Service";
 import Wishlist from "./component/Wishlist/wishlist";
+import TicketSupport from "./component/Ticket_support/Ticket_support";
 
 
 export default  [
@@ -84,7 +85,12 @@ export default  [
     path:'*',
     element:() => <Error/>,
     exact:true,
-  }        
+  },  
+  {
+    path:'/TicketSupport',
+    element:() => <TicketSupport/>,
+    exact:true,
+  }      
 
 ]
 
