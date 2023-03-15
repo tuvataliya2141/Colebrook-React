@@ -8,6 +8,7 @@ import { ToasterWarning,ToasterSuccess,ToasterError } from "../../common/toaster
 import { ToastContainer } from "react-toastify";
 import axios from "axios";
 import { useAppContext } from "../../context";
+import { useShippingContext } from "../../context/shippingContext";
 import BestSellers from "../BestSellers/BestSellers";
 import {config} from '../../constants/config'
 import Slider from "react-slick";
@@ -20,6 +21,7 @@ function Product() {
   const id = useParams();
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost, ApplyCoupon } = useAppContext();
+  const { GetPinCode } = useShippingContext();
 
 
   const [List, setList] = useState([]);
@@ -55,25 +57,7 @@ function Product() {
       });
   }
 
-  function GetPinCode() {
-    setIsLoading(true)
-    const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
-    const Data = {
-      "data": {
-        "pincode": PinCode,
-        "access_token": config.access_token,
-        "secret_key": config.secret_key
-      }
-    }
-    axios.post(GetPinCode1, Data).then(function (res) {
-      setIsLoading(false);
-      console.log(res.data.data);
-    })
-      .catch(function (error) {
-        setIsLoading(false);
-        ToasterError("Error");
-      });
-  }
+ 
 
   const SubmitReviews = async (e) => {
     e.preventDefault();
@@ -133,7 +117,6 @@ function Product() {
       behavior: "smooth",
     });
     GetSingelProducts();
-    GetPinCode();
   }, []);
 
 

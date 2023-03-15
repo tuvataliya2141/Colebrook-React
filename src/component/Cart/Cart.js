@@ -22,7 +22,7 @@ function Cart() {
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(2);
+    const [postsPerPage, setPostsPerPage] = useState(5);
     const lastPostIndex = currentPage * postsPerPage;
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
@@ -179,7 +179,15 @@ function Cart() {
                                     <tbody>
 
                                         {
-                                            List == '' ? <h1 style={{ textAlign: "center" }}>Oops, no product in your list</h1> :
+                                            List == '' ?
+                                                <>
+                                                    <tr >
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><h2>Oops, no Order in your list</h2></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr></> :
                                                 currentPosts.map((item, i) => {
 
                                                     const image = item.product_thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.product_thumbnail_image

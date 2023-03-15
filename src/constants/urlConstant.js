@@ -41,7 +41,12 @@ const urlConstant = {
     RemoveCoupon: `${apiURL}coupon-remove`,
    },
   ShippingApi:{
-    Pincode:"https://pre-alpha.ithinklogistics.com/api_v3/pincode/check.json"
+    Pincode:"https://pre-alpha.ithinklogistics.com/api_v3/pincode/check.json",
+    CreateOrder:"https://pre-alpha.ithinklogistics.com/api_v3/order/add.json",
+    TrackOrder:"https://pre-alpha.ithinklogistics.com/api_v3/order/track.json",
+    PrintShipmnet:"https://pre-alpha.ithinklogistics.com/api_v3/shipping/label.json",
+    Manifest:"https://pre-alpha.ithinklogistics.com/api_v3/shipping/manifest.json",
+    OrderCancel:"https://pre-alpha.ithinklogistics.com/api_v3/order/cancel.json",
   }, 
   Subscribe: { SubscribePost: `${apiURL}Subscribe` },
   Contact: { PostContact: `${apiURL}contact` },

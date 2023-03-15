@@ -629,7 +629,7 @@ function ShopProduct() {
                                             </div>
                                             <div className="font-xs">
                                                 <ul>
-                                                    <li className="mb-5">Vendor: <span className="text-brand">Nest</span></li>
+                                                    <li className="mb-5">Vendor: <span className="text-brand">colebrook</span></li>
                                                     <li className="mb-5">MFG:<span className="text-brand"> Jun 4.2021</span></li>
                                                 </ul>
                                             </div>

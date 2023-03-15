@@ -11,10 +11,12 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useAppContext } from '../../context/index';
 import axios from 'axios';
 import { config } from '../../constants/config';
+import { useShippingContext } from '../../context/shippingContext';
 
 function Checkout() {
     let common = new CommonService();
     const { Loding, user_id, Logo } = useAppContext();
+    const { CreateOrder } = useShippingContext();
 
     const [CouponCode, SetCouponCode] = useState('');
     const [FirstName, SetFirstName] = useState("");
@@ -78,12 +80,13 @@ function Checkout() {
                 }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price };
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price,address_same_type:0 };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then(() => {
                 ToasterSuccess("Success...!!");
+                CreateOrder();
                 setIsLoading(false)
             }).catch(
                 console.log("error")
@@ -346,7 +349,7 @@ function Checkout() {
                                 </div>
                                 <div className="col-lg-6 apply-coupon">
                                     <input type="text" placeholder="Enter Coupon Code..." value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
-                                    <button className="btn btn-md" onClick={() => { ApplyCoupon(CouponCode) }}>Apply Coupon</button>
+                                    <button className="btn btn-md button-size" onClick={() => { ApplyCoupon(CouponCode) }}>Apply Coupon</button>
                                 </div>
                             </div>
                             <div className="row">

@@ -44,17 +44,14 @@
 .img-size {
   height: 500px;
 }
-.apply-coupon button{
+/* .apply-coupon button{
   height: 51px !important;
   border-radius: 0 30px 30px 0 !important;
   color: #fff !important;
-  max-width: 100px !important;
-}
+} */
 
 @media only screen and (max-width: 600px) {
   .img-size {
     height: 300px;
   }
 }
-
-/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */

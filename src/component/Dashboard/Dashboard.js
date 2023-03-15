@@ -217,7 +217,7 @@ function Dashboard() {
                                                         <p>To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
                                                         <div className="row">
                                                             <div className="col-lg-8">
-                                                                <form className="contact-form-style mt-30 mb-50" action="#" method="post">
+                                                                <form className="contact-form-style mt-30 mb-50">
                                                                     <div className="input-style mb-20">
                                                                         <label>Order ID</label>
                                                                         <input name="order-id" placeholder="Found in your order confirmation email" type="text" />

@@ -1,5 +1,5 @@
 /***
- Theme Name: Nest
+ Theme Name: colebrook
  Description: Grocery, Super Market, eCommerce HTML Template
  Version: 1.0
  License: GNU General Public License v2 or later
@@ -5699,7 +5699,6 @@ table.no-border td, table.no-border th, table.no-border thead {
 }
 
 .apply-coupon button {
-  min-width: 150px;
   height: 51px;
   border-radius: 0 30px 30px 0;
   /* background-color: #000; */
@@ -13403,6 +13402,10 @@ footer .hotline img {
 
 .svg_icon1:hover{
   fill:#4F4F4F;
+}
+
+.button-size{
+  width: 250px;
 }
 
 @media only screen and (max-width: 776px) {
