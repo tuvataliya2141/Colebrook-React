@@ -9,10 +9,12 @@ import { ToasterError, ToasterSuccess } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import Loding from '../Loding';
 import CommonService from "../../services/commonService";
+import { useShippingContext } from '../../context/shippingContext';
 
 function Dashboard() {
     let common = new CommonService();
     const { UserName, user_id } = useAppContext();
+    const { TrackOrder } = useShippingContext();
 
     const navigate = useNavigate()
     const SignOut = () => {
@@ -34,6 +36,7 @@ function Dashboard() {
     const [CurrentPassword, SetCurrentPassword] = useState("");
     const [OrdersList, setOrdersList] = useState([]);
     const [UserInfoList, setUserInfoList] = useState([]);
+    const [TrackOrderId, setTrackOrderId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     function GetOrdersList(P_Id) {
@@ -196,7 +199,7 @@ function Dashboard() {
                                                                                             <td>{item.delivery_history_date}</td>
                                                                                             <td>{item.delivery_status}</td>
                                                                                             <td>₹{item.grand_total}</td>
-                                                                                            <td><a href="#" className="btn-small d-block">View</a></td>
+                                                                                            <td><Link to={`/OrderDetail?id=${item.id}`}>View</Link></td>
                                                                                         </tr>
                                                                                     </>
                                                                                 )
@@ -217,17 +220,13 @@ function Dashboard() {
                                                         <p>To track your order please enter your OrderID in the box below and press "Track" button. This was given to you on your receipt and in the confirmation email you should have received.</p>
                                                         <div className="row">
                                                             <div className="col-lg-8">
-                                                                <form className="contact-form-style mt-30 mb-50">
+                                                                <div className="contact-form-style mt-30 mb-50">
                                                                     <div className="input-style mb-20">
                                                                         <label>Order ID</label>
-                                                                        <input name="order-id" placeholder="Found in your order confirmation email" type="text" />
+                                                                        <input name="order-id" placeholder="Found in your order confirmation" type="text" value={TrackOrderId} onChange={(e)=>{setTrackOrderId(e.target.value)}} />
                                                                     </div>
-                                                                    <div className="input-style mb-20">
-                                                                        <label>Billing email</label>
-                                                                        <input name="billing-email" placeholder="Email you used during checkout" type="email" />
-                                                                    </div>
-                                                                    <button className="submit submit-auto-width" type="submit">Track</button>
-                                                                </form>
+                                                                    <button className="submit submit-auto-width" onClick={(e)=>{TrackOrder(TrackOrderId)}}>Track</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

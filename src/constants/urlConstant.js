@@ -34,7 +34,8 @@ const urlConstant = {
     city : `${apiURL}cities-by-state`
   },
   Dashboard:{
-    OrdersList:`${apiURL}order/userOrderList`
+    OrdersList:`${apiURL}order/userOrderList`,
+    OrderDetail:`${apiURL}order/userOrderDetail`
   },
   ApplyCoupon: { 
     PostApplyCoupon: `${apiURL}coupon-apply`,

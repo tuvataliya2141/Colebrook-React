@@ -81,7 +81,8 @@ console.log(HomeCard[0]?.title);
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 2000,
-      pauseOnHover: true
+      pauseOnHover: true,
+      arrows:false
   };
 
   useEffect(() => {
@@ -168,11 +169,11 @@ console.log(HomeCard[0]?.title);
                   <nav aria-label="Page navigation">
                     <ul className="pagination justify-content-center">
                       <li className="page-item">
-                        // <a className="page-link" onClick={handlePrevCard}><i className="fi-rs-arrow-small-left" /></a> 
+                        // <a className="page-link"><i className="fi-rs-arrow-small-left" /></a> 
                         <a className="page-link" ><i className="fi-rs-arrow-small-left" /></a>
                       </li>
                       <li className="page-item">
-                        // <a className="page-link" onClick={handleNextCard}><i className="fi-rs-arrow-small-right" /></a> 
+                        // <a className="page-link" ><i className="fi-rs-arrow-small-right" /></a> 
                         <a className="page-link" ><i className="fi-rs-arrow-small-right" /></a>
                       </li>
                     </ul>

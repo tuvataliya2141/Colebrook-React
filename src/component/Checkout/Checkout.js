@@ -80,13 +80,13 @@ function Checkout() {
                 }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price,address_same_type:0 };
+            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1 };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then(() => {
                 ToasterSuccess("Success...!!");
-                CreateOrder();
+                // CreateOrder();
                 setIsLoading(false)
             }).catch(
                 console.log("error")
@@ -187,7 +187,7 @@ function Checkout() {
                 // ToasterSuccess("Success...!!");
                 ToasterSuccess(res.data.message);
                 SetCouponResult(res.data.discount);
-                localStorage.setItem('discount',res.data.discount);
+                localStorage.setItem('discount', res.data.discount);
                 setIsLoading(false)
             })
         }
@@ -294,12 +294,7 @@ function Checkout() {
         console.log(token);
         alert('Payment Succesful!');
     };
-    const Stripe = () => {
-
-
-    }
-
-
+    
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
@@ -530,7 +525,7 @@ function Checkout() {
                                                     <h6 className="text-muted"></h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <a><p className="text-danger text-end" onClick={CouponRemove}>{CouponResult ? "Remove Coupon" : "" }</p></a>
+                                                    <a><p className="text-danger text-end" onClick={CouponRemove}>{CouponResult ? "Remove Coupon" : ""}</p></a>
                                                 </td></tr>
                                             <tr>
                                                 <td scope="col" colSpan={2}>
@@ -590,9 +585,11 @@ function Checkout() {
                                     ) : null}
                                 </PayPalScriptProvider>
 
-                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true || PaymentTypes == "Stripe" ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
-                                {
-                                    PaymentTypes == "Stripe" ? <StripeCheckout
+                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+
+                                {/* <a className="btn btn-fill-out btn-block mt-30">
+
+                                    <StripeCheckout
                                         label='Pay Now'
                                         name='Colebrooknow'
                                         billingAddress
@@ -603,8 +600,10 @@ function Checkout() {
                                         panelLabel='stripe'
                                         token={onToken}
                                         stripeKey={publishableKey}
-                                    /> : null
-                                }
+                                    />
+                                    <i className="fi-rs-sign-out ml-15" />
+                                </a> */}
+
                             </div>
                         </div>
                     </div>

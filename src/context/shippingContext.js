@@ -22,7 +22,8 @@ const ShippingProvider = ({ children }) => {
       }
     }
     axios.post(GetPinCode1, Data).then(function (res) {
-      console.log(res.data.data);
+      console.log(res.data);
+      console.log(res.data)
     })
       .catch(function (error) {
         ToasterError("Error");
@@ -122,11 +123,11 @@ const ShippingProvider = ({ children }) => {
   }
 
 
-  function TrackOrder() {
+  function TrackOrder(id) {
     const TrackOrder1 = `${urlConstant.ShippingApi.TrackOrder}`;
     const Data = {
       "data": {
-        "awb_number_list": "1333110027365",
+        "awb_number_list": id,
         "access_token": config.access_token,
         "secret_key": config.secret_key
       }
