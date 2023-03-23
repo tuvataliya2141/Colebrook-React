@@ -409,41 +409,46 @@ function Product() {
                             </table>
                           </div>
                           <div className="tab-pane fade" id="Reviews">
-                            {/*comment form*/}
-                            <div className="comment-form">
-                              <h4 className="mb-15">Add a review</h4>
-                              <div className="row">
-                                <div className="rate">
-                                  <input type="radio" id="star5" name="rate" defaultValue={5} />
-                                  <label htmlFor="star5" >5 stars</label>
-                                  <input type="radio" id="star4" name="rate" defaultValue={4} />
-                                  <label htmlFor="star4" >4 stars</label>
-                                  <input type="radio" id="star3" name="rate" defaultValue={3} />
-                                  <label htmlFor="star3" >3 stars</label>
-                                  <input type="radio" id="star2" name="rate" defaultValue={2} />
-                                  <label htmlFor="star2" >2 stars</label>
-                                  <input type="radio" id="star1" name="rate" defaultValue={1} />
-                                  <label htmlFor="star1" >1 star</label>
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="col-lg-8 col-md-12">
-                                  <form className="form-contact comment_form">
-                                    <div className="row">
-                                      <div className="col-12">
-                                        <div className="form-group">
-                                          <textarea className="form-control w-100" name="comment" cols={30} rows={9} placeholder="Write Comment" value={message} onChange={(e)=>{SetMessage(e.target.value)}} />
+                          {
+                              List.userReview == "yes" ? 
+                                <>
+                                <div className="comment-form">
+                                  <h4 className="mb-15">Add a review</h4>
+                                  <div className="row">
+                                    <div className="rate">
+                                      <input type="radio" id="star5" name="rate" defaultValue={5} />
+                                      <label htmlFor="star5" >5 stars</label>
+                                      <input type="radio" id="star4" name="rate" defaultValue={4} />
+                                      <label htmlFor="star4" >4 stars</label>
+                                      <input type="radio" id="star3" name="rate" defaultValue={3} />
+                                      <label htmlFor="star3" >3 stars</label>
+                                      <input type="radio" id="star2" name="rate" defaultValue={2} />
+                                      <label htmlFor="star2" >2 stars</label>
+                                      <input type="radio" id="star1" name="rate" defaultValue={1} />
+                                      <label htmlFor="star1" >1 star</label>
+                                    </div>
+                                  </div>
+                                  <div className="row">
+                                    <div className="col-lg-8 col-md-12">
+                                      <form className="form-contact comment_form">
+                                        <div className="row">
+                                          <div className="col-12">
+                                            <div className="form-group">
+                                              <textarea className="form-control w-100" name="comment" cols={30} rows={9} placeholder="Write Comment" value={message} onChange={(e)=>{SetMessage(e.target.value)}} />
+                                            </div>
+                                          </div>
                                         </div>
-                                      </div>
+                                        <div className="form-group">
+                                          <button type="button" className="button button-contactForm" onClick={SubmitReviews}>Submit Review</button>
+                                        </div>
+                                      </form>
                                     </div>
-                                    <div className="form-group">
-                                      <button type="button" className="button button-contactForm" onClick={SubmitReviews}>Submit Review</button>
-                                    </div>
-                                  </form>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
+                                </>
+                              : null
+                          }
+                         </div>  
                         </div>
                       </div>
                     </div>
