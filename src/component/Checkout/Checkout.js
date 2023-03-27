@@ -12,6 +12,7 @@ import { useAppContext } from '../../context/index';
 import axios from 'axios';
 import { config } from '../../constants/config';
 import { useShippingContext } from '../../context/shippingContext';
+import Select2 from "react-select2-wrapper";
 
 function Checkout() {
     let common = new CommonService();
@@ -19,10 +20,8 @@ function Checkout() {
     const { CreateOrder } = useShippingContext();
 
     const [CouponCode, SetCouponCode] = useState('');
-    const [FirstName, SetFirstName] = useState("");
-    const [LastName, SetLastName] = useState("");
-    const [Address1, SetAddress1] = useState("");
-    const [Address2, SetAddress2] = useState("");
+    const [Name, SetName] = useState("");
+    const [Address, SetAddress] = useState("");
     const [state, Setstate] = useState(null);
     const [city, Setcity] = useState("");
     const [Country, SetCountry] = useState("");
@@ -62,7 +61,7 @@ function Checkout() {
             }
         }
 
-        if (!FirstName || !LastName || !Address1 || !Address2 || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
+        if (!Name || !Address || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
 
             ToasterWarning('Please All Enter Details')
             return
@@ -80,7 +79,7 @@ function Checkout() {
                 }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, first_name: FirstName, last_name: LastName, address_1: Address1, address_2: Address2, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1 };
+            const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1 };
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -337,11 +336,11 @@ function Checkout() {
                     <div className="row">
                         <div className="col-lg-7">
                             <div className="row mb-50">
-                                <div className="col-lg-6 mb-sm-15 mb-lg-0 mb-md-3">
+                                {/* <div className="col-lg-6 mb-sm-15 mb-lg-0 mb-md-3">
                                     <div className="toggle_info">
                                         <span><i className="fi-rs-user mr-10" /><span className="text-muted font-lg">Already have an account?</span> <Link to="/Login" className="collapsed font-lg" >Click here to login</Link></span>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-6 apply-coupon">
                                     <input type="text" placeholder="Enter Coupon Code..." value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
                                     <button className="btn btn-md button-size" onClick={() => { ApplyCoupon(CouponCode) }}>Apply Coupon</button>
@@ -352,23 +351,30 @@ function Checkout() {
                                 <form method="post">
                                     <div className="row">
                                         <div className="form-group col-lg-6">
-                                            <input type="text" required name="fname" placeholder="First name *" value={FirstName || ""} onChange={(e) => { SetFirstName(e.target.value) }} />
+                                            <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
                                         </div>
                                         <div className="form-group col-lg-6">
-                                            <input type="text" required name="lname" placeholder="Last name *" value={LastName || ""} onChange={(e) => { SetLastName(e.target.value) }} />
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="form-group col-lg-6">
-                                            <input type="text" name="billing_address" required placeholder="Address 1 *" value={Address1 || ""} onChange={(e) => { SetAddress1(e.target.value) }} />
-                                        </div>
-                                        <div className="form-group col-lg-6">
-                                            <input type="text" name="billing_address2" required placeholder="Address line 2 *" value={Address2 || ""} onChange={(e) => { SetAddress2(e.target.value) }} />
+                                            <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
                                         </div>
                                     </div>
                                     <div className="row shipping_calculator">
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
+                                                {/* {
+                                                    <Select2
+                                                    className="form-control select-active"
+                                                    defaultValue="1"
+                                                    options={options}
+                                                    data={[
+                                                      { id: "1", text: "Alerts" },
+                                                      { id: "2", text: "Badges" },
+                                                      { id: "3", text: "Buttons" },
+                                                      { id: "4", text: "Cards" },
+                                                      { id: "5", text: "Forms" },
+                                                      { id: "6", text: "Modals" }
+                                                    ]}
+                                                  />
+                                                } */}
                                                 <select className="form-control select-active" value={Country || ""} onChange={(e) => { SetCountry(e.target.value) }}>
                                                     <option value="null">Select an Country...</option>
                                                     {
@@ -433,14 +439,14 @@ function Checkout() {
                                     <div className="form-group mb-30">
                                         <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <div className="checkbox">
                                             <div className="custome-checkbox">
                                                 <input className="form-check-input" type="checkbox" name="checkbox" id="createaccount" />
                                                 <label className="form-check-label label_info" data-bs-toggle="collapse" href="#collapsePassword" data-target="#collapsePassword" aria-controls="collapsePassword" htmlFor="createaccount"><span>Create an account?</span></label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="ship_detail">
                                         <div className="form-group">
                                             <div className="chek-form">
@@ -448,6 +454,80 @@ function Checkout() {
                                                     <input className="form-check-input" type="checkbox" name="checkbox" id="differentaddress" />
                                                     <label className="form-check-label label_info" data-bs-toggle="collapse" data-target="#collapseAddress" href="#collapseAddress" aria-controls="collapseAddress" htmlFor="differentaddress"><span>Ship to a different address?</span></label>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div id="collapseAddress" className="different_address collapse in">
+                                            <div className="row">
+                                                <div className="form-group col-lg-6">
+                                                    <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
+                                                </div>
+                                                <div className="form-group col-lg-6">
+                                                    <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
+                                                </div>
+                                            </div>
+                                            <div className="row shipping_calculator">
+                                                <div className="form-group col-lg-6">
+                                                    <div className="custom_select">
+                                                        <select className="form-control select-active" value={Country || ""} onChange={(e) => { SetCountry(e.target.value) }}>
+                                                            <option value="null">Select an Country...</option>
+                                                            {
+                                                                ListCountries.map((item, i) => {
+                                                                    return (
+                                                                        <>
+                                                                            <option key={i} value={item.id}>{item.name}</option>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className="form-group col-lg-6">
+                                                    <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }} disabled={Country == null || ListStates.length == 0}>
+                                                        <option value="null">Select an State...</option>
+                                                        {
+                                                            ListStates.map((item, i) => {
+                                                                return (
+                                                                    <>
+                                                                        <option key={i} value={item.id}>{item.name}</option>
+                                                                    </>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="form-group col-lg-6">
+                                                    {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
+
+                                                    <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} disabled={state == null || ListCity.length == 0}>
+                                                        <option value="null">Select an city...</option>
+                                                        {
+                                                            ListCity.map((item, i) => {
+                                                                return (
+                                                                    <>
+                                                                        <option key={i} value={item.id}>{item.name}</option>
+                                                                    </>
+                                                                )
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div className="form-group col-lg-6">
+                                                    <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="form-group col-lg-6">
+                                                    <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
+                                                </div>
+                                                <div className="form-group col-lg-6">
+                                                    <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
+                                                </div>
+                                            </div>
+                                            <div className="form-group mb-30">
+                                                <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
                                             </div>
                                         </div>
                                     </div>

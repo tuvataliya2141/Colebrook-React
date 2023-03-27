@@ -284,8 +284,8 @@ function Cart() {
                                                 <td className="cart_total_label">
                                                     <h6 className="text-muted">Estimate for</h6>
                                                 </td>
-                                                <td className="cart_total_amount">
-                                                    <h5 className="text-heading text-end">United Kingdom </h5></td></tr> <tr>
+                                                {/* <td className="cart_total_amount">
+                                                    <h5 className="text-heading text-end">United Kingdom </h5></td></tr> <tr> */}
                                                 <td scope="col" colSpan={2}>
                                                     <div className="divider-2 mt-10 mb-10" />
                                                 </td>
