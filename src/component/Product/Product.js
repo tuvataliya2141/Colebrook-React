@@ -31,6 +31,7 @@ function Product() {
   const [mainImage, setMainImage] = useState([0]);
   const [colors, setcolors] = useState("");
   const [colorsList, setcolorsList] = useState([]);
+  const [reviewsList, setreviewsList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
@@ -50,6 +51,7 @@ function Product() {
       setsizeList(res.data.data.multipleSize);
       setmultipleimageList(res.data.data.multipleimage);
       setcolorsList(res.data.data.colors);
+      setreviewsList(res.data.data.reviews);
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -183,7 +185,7 @@ function Product() {
                               <div className="product-rate d-inline-block">
                                 <div className="product-rating" style={{ width: '90%' }} />
                               </div>
-                              <span className="font-small ml-5 text-muted">{List.rating} (0 reviews)</span>
+                              <span className="font-small ml-5 text-muted">{List.rating} (reviews)</span>
                             </div>
                           </div>
                           <hr style={{ margin: "0px", color: "rgb(69 96 147)" }} />
@@ -409,6 +411,43 @@ function Product() {
                             </table>
                           </div>
                           <div className="tab-pane fade" id="Reviews">
+                            <div className="comments-area">
+                                <div className="row">
+                                    <div className="col-lg-8">
+                                        <h4 className="mb-30">Customer questions & answers</h4>
+                                        <div className="comment-list">
+                                          {
+                                            reviewsList.map((item, i) => {
+                                              return (
+
+                                                <>
+                                                  <div className="single-comment justify-content-between d-flex mb-30">
+                                                    <div className="user justify-content-between d-flex">
+                                                        <div className="thumb text-center">
+                                                            <img src="assets/imgs/blog/author-2.png" alt="" />
+                                                            <a href="#" className="font-heading text-brand">{item.name}</a>
+                                                        </div>
+                                                        <div className="desc">
+                                                            <div className="d-flex justify-content-between mb-10">
+                                                                <div className="d-flex align-items-center">
+                                                                    <span className="font-xs text-muted">{item.time}</span>
+                                                                </div>
+                                                                <div className="product-rate d-inline-block">
+                                                                    <div className="product-rating" style={{ maxWidth: "100%" }}></div>
+                                                                </div>
+                                                            </div>
+                                                            <p className="mb-10">{item.comment} <a href="#" class="reply">Reply</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </>
+                                              )
+                                            })
+                                          }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                           {
                               List.userReview == "yes" ? 
                                 <>
