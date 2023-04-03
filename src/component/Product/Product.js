@@ -15,6 +15,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Product.css'
+import { Rating } from 'react-simple-star-rating'
 
 
 function Product() {
@@ -37,7 +38,7 @@ function Product() {
   const [CouponCode, SetCouponCode] = useState('');
   const [PinCode, SetPinCode] = useState('');
   const [message, SetMessage] = useState('');
-
+  
 
   function GetSingelProducts() {
     setIsLoading(true)
@@ -59,7 +60,17 @@ function Product() {
       });
   }
 
- 
+  const [rating, setRating] = useState(0)
+
+  // Catch Rating value
+  const handleRating = (rate: number) => {
+    setRating(rate)
+  }
+
+  const handleReset = () => {
+    // Set the initial value
+    setRating(0)
+  }
 
   const SubmitReviews = async (e) => {
     e.preventDefault();
@@ -68,9 +79,8 @@ function Product() {
         ToasterWarning('Please All Enter Details')
         return
     }
-
     try {
-        const data = { message };
+        const data = { comment:message, rating: rating, user_id, product_id: List.id };
         const ContactData = `${urlConstant.Products.Reviews}`;
         await common.httpPost(ContactData, data).then(() => {
             ToasterSuccess("Success...!!");
@@ -120,6 +130,9 @@ function Product() {
     });
     GetSingelProducts();
   }, []);
+
+
+ 
 
 
   return (
@@ -414,7 +427,7 @@ function Product() {
                             <div className="comments-area">
                                 <div className="row">
                                     <div className="col-lg-8">
-                                        <h4 className="mb-30">Customer questions & answers</h4>
+                                        <h4 className="mb-30">Review this product</h4>
                                         <div className="comment-list">
                                           {
                                             reviewsList.map((item, i) => {
@@ -433,7 +446,19 @@ function Product() {
                                                                     <span className="font-xs text-muted">{item.time}</span>
                                                                 </div>
                                                                 <div className="product-rate d-inline-block">
-                                                                    <div className="product-rating" style={{ maxWidth: "100%" }}></div>
+                                                                  {
+                                                                    item.rating == 1 ?
+                                                                    <div className="product-rating" style={{ maxWidth: "20%" }}></div>: 
+                                                                    item.rating == 2 ?                                                                                                                                   
+                                                                    <div className="product-rating" style={{ maxWidth: "40%" }}></div>:
+                                                                    item.rating == 3 ? 
+                                                                    <div className="product-rating" style={{ maxWidth: "60%" }}></div>:
+                                                                    item.rating == 4 ? 
+                                                                    <div className="product-rating" style={{ maxWidth: "80%" }}></div>:
+                                                                    item.rating == 5 ? 
+                                                                    <div className="product-rating" style={{ maxWidth: "100%" }}></div>:
+                                                                    <div className="product-rating" style={{ maxWidth: "0%" }}></div>
+                                                                  }                                                          
                                                                 </div>
                                                             </div>
                                                             <p className="mb-10">{item.comment} <a href="#" class="reply">Reply</a></p>
@@ -454,7 +479,13 @@ function Product() {
                                 <div className="comment-form">
                                   <h4 className="mb-15">Add a review</h4>
                                   <div className="row">
-                                    <div className="rate">
+                                    <div className='App'>
+                                      {/* set initial value */}
+                                      <Rating onClick={handleRating} initialValue={rating} />
+
+                                      {/* <button onClick={handleReset}>reset</button> */}
+                                    </div>
+                                    {/* <div className="rate">
                                       <input type="radio" id="star5" name="rate" defaultValue={5} />
                                       <label htmlFor="star5" >5 stars</label>
                                       <input type="radio" id="star4" name="rate" defaultValue={4} />
@@ -465,7 +496,7 @@ function Product() {
                                       <label htmlFor="star2" >2 stars</label>
                                       <input type="radio" id="star1" name="rate" defaultValue={1} />
                                       <label htmlFor="star1" >1 star</label>
-                                    </div>
+                                    </div> */}
                                   </div>
                                   <div className="row">
                                     <div className="col-lg-8 col-md-12">
