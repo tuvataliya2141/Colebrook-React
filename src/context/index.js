@@ -22,6 +22,11 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
+  const [FacebookLink, SeFacebook] = useState([]);
+  const [TwitterLink, SetTwitter] = useState([]);
+  const [InstagramLink, SetInstagram] = useState([]);
+  const [YoutubeLink, SetYoutube] = useState([]);
+  const [LinkedinLink, SetLinkedin] = useState([]);
   const [HomeCard, SetHomeCard] = useState([]);
   const [searchData, setSearchData] = useState([]);
 
@@ -99,6 +104,11 @@ const AppProvider = ({ children }) => {
     common.httpGet(GetAllCategory1).then(function (res) {
       SetAllCategory(res.data.data.data);
       SetLogo(res.data.logo);
+      SeFacebook(res.data.facebook);
+      SetTwitter(res.data.twitter);
+      SetInstagram(res.data.instagram);
+      SetYoutube(res.data.youtube);
+      SetLinkedin(res.data.linkedin);
     })
       .catch(function (error) {
         // ToasterWarning(error.message)
@@ -128,7 +138,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData,HomeCard}}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink}}>
       {children}
     </AppContext.Provider>
   );

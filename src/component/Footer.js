@@ -11,6 +11,11 @@ import Loding from "./Loding";
 
 function Footer() {
     const { Logo } = useAppContext();
+    const { FacebookLink } = useAppContext();
+    const { TwitterLink } = useAppContext();
+    const { InstagramLink } = useAppContext();
+    const { YoutubeLink } = useAppContext();
+    const { LinkedinLink } = useAppContext();
     let common = new CommonService();
     const [email, SetEmail] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -138,6 +143,14 @@ function Footer() {
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
+                        <div class="mobile-social-icon">
+                            <h6>Follow Us</h6>
+                            <a href={FacebookLink}><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
+                            <a href={TwitterLink}><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
+                            <a href={InstagramLink}><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
+                            <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>
+                            <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+                        </div>
                             <p className="font-sm">Designed by Alithemes.com. All rights reserved </p>
                         </div>
                     </div>

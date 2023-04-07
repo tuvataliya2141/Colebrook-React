@@ -6,15 +6,17 @@ import { ToasterSuccess, ToasterError, ToasterWarning } from "../common/toaster"
 import urlConstant from "../constants/urlConstant";
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
-import axios from 'axios'
-import ReactGoogleLogin from "react-google-login";
+import axios from 'axios';
 import FacebookLogin from 'react-facebook-login';
 import { config } from '../constants/config';
-function Login() {
+import { gapi } from 'gapi-script';
 
+function Login() {
     const navigate = useNavigate()
     const [email, SetEmail] = useState();
     const [password, SetPassword] = useState("");
+    // const clientId = '505048236034-csm6okkntdi62hikvnk6q93sg4o0cm1j.apps.googleusercontent.com';
+    const clientId = '978879487832-hhpsnnutn65urmi8mjmt79087pusp7ce.apps.googleusercontent.com';
 
     const userId = localStorage.getItem('user')
     useEffect(() => {
@@ -25,16 +27,11 @@ function Login() {
             top: 0,
             behavior: "smooth",
         });
+
+        gapi.load("client:auth2", ()=>{
+            gapi.auth2.init({clientId:clientId})
+        })
     }, [])
-
-    const onResponse = (resp) => {
-        console.log(resp);
-    };
-
-
-    const responseFacebook = (response) => {
-        console.log(response);
-    }
 
     let common = new CommonService();
     const SubmitHandler = async (e) => {
@@ -43,7 +40,7 @@ function Login() {
         const data = { email, password,tempuserid };
 
         if (!email || !password) {
-            ToasterWarning('Please All Enter Details')
+            ToasterWarning('Please enter all the details')
             return
         }
        
@@ -60,13 +57,61 @@ function Login() {
             } else {
                 ToasterError("Not Valid Details");
             }
-        })
-            .catch((error) => {
-                ToasterError("Not Valid Details");
-            });
-
+        }).catch((error) => {
+            ToasterError("Not Valid Details");
+        });
     }
 
+    const handleGoogleLogin = () => {
+        window.gapi.load('auth2', async () => {
+            const auth2 = await window.gapi.auth2.init({
+                client_id: clientId,
+            });
+            auth2.signIn().then((response) => {
+                const id_token = response.getAuthResponse().id_token;
+                const GoogleLoginData = `${urlConstant.User.GoogleLogin}?access_token=${id_token}`;
+                common.httpGet(GoogleLoginData).then((res) => {
+                if (res) {
+                    ToasterSuccess('Login Successfully');
+                    localStorage.setItem('access_token', res.data.access_token);
+                    localStorage.setItem('user', res.data.user.name);
+                    localStorage.setItem('type', res.data.user.type);
+                    localStorage.setItem('user_id', res.data.user.id);
+                    window.location.href = '/';
+                } else {
+                    ToasterError('Not Valid Details');
+                }
+                }).catch((error) => {
+                    ToasterError('Not Valid Details');
+                });
+            });
+        });
+    };
+
+    // const handleFacebookResponse = (response) => {
+    //     console.log("FACEBOOK:- ", response);
+    //     const { accessToken, userID } = response;
+    //     const data = {
+    //         accessToken,
+    //         userID,
+    //     };
+    //     const FacebookLoginData = `${urlConstant.User.FacebookLogin}?access_token=${accessToken}`;
+    //     common.httpPost(FacebookLoginData, data).then((res) => {
+    //         if (res) {
+    //             localStorage.setItem('access_token', res.data.access_token);
+    //             localStorage.setItem('user', res.data.user.name);
+    //             localStorage.setItem('type', res.data.user.type);
+    //             localStorage.setItem('user_id', res.data.user.id);
+    //             ToasterSuccess('Login Successfully');
+    //             window.location.href = window.location.href;
+    //         } else {
+    //             ToasterError('Not Valid Details');
+    //         }
+    //         })
+    //         .catch((error) => {
+    //         ToasterError('Not Valid Details');
+    //     });
+    // };
 
     return (
         <div>
@@ -116,23 +161,9 @@ function Login() {
                                                     <div className="form-group">
                                                         <button type="submit" style={{ borderRadius: "30px",backgroundColor:"#222325" }} className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
                                                         <span style={{ float: "right", display: "flex" }}>
-                                                            <a href='#' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
-                                                            <a href='#' className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
+                                                            <a href='login/facebook' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
+                                                            <a href='#' onClick={handleGoogleLogin} className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                                         </span>
-                                                        {/* <ReactGoogleLogin
-                                                            clientId={config.clientId}
-                                                            buttonText=""
-                                                            onSuccess={onResponse}
-                                                            onFailure={onResponse}
-                                                        />
-
-                                                        <FacebookLogin
-                                                            appId="1327163221190975"
-                                                            buttonText=""
-                                                            autoLoad={true}
-                                                            fields="name,email,picture"
-                                                            // onClick={componentClicked}
-                                                            callback={responseFacebook} />, */}
                                                     </div>
                                                 </form>
                                             </div>
@@ -144,7 +175,8 @@ function Login() {
                     </div>
                 </div>
             </main>
-
+            `<script src="https://apis.google.com/js/platform.js" async defer></script>`
+            `<script src="https://connect.facebook.net/en_US/sdk.js"></script>`
             <Footer />
         </div>
     )
