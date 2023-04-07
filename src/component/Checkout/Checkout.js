@@ -101,6 +101,7 @@ function Checkout() {
         setPaymentTypes(e.target.alt)
     }
 
+    
     function GetAllCart() {
         setIsLoading(true)
         const tempid = localStorage.getItem('tempid');
