@@ -13435,8 +13435,34 @@ footer .hotline img {
   }
 }
 
-.select2-hidden-accessible{
-  
+
+/* Select 2 Dropdown CSS */
+
+.custom_select .select2-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.custom_select .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 64px;
+}
+.custom_select.cityDropdown .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 19px !important;
+}
+.custom_select .select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 50% !important;
+}
+.select2-dropdown .select2-search--dropdown .select2-search__field {
+  border-color: #222325;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #222325;
+  color: #fff;
+  border-radius: 4px;
+  padding-left: 5px;
+}
+.custom_select .select2-container--default .select2-selection--single {
+  border-radius: 50px !important;
+  height: 64px !important;
 }
 
 

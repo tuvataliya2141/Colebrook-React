@@ -31,7 +31,8 @@ const urlConstant = {
     GetPaymentTypes: `${apiURL}payment-types` ,
     Countries : `${apiURL}countries`,
     States : `${apiURL}states-by-country`,
-    city : `${apiURL}cities-by-state`
+    city : `${apiURL}cities-by-state`,
+    addressList : `${apiURL}user/shipping/address`
   },
   Dashboard:{
     OrdersList:`${apiURL}order/userOrderList`,

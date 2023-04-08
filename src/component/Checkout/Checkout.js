@@ -39,6 +39,7 @@ function Checkout() {
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
     const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
+    const [AddressList, setAddressList] = useState([]);
 
     //PayPal
     const [show, setShow] = useState(false);
@@ -347,10 +348,31 @@ function Checkout() {
         console.log(token);
         alert('Payment Succesful!');
     };
+
+    function GetaddressList() {
+        try {
+            setIsLoading(true)
+            const Data = { user_id: parseInt(user_id) }
+            const addressData = `${urlConstant.Checkout.addressList}/`+parseInt(user_id);
+            // const addressData = `${urlConstant.Checkout.addressList}`;
+            axios.get(addressData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                console.log(res.data.data.data);
+                setAddressList(res.data.data.data);
+                setIsLoading(false)
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+            setIsLoading(false)
+        }
+    }
     
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
+        GetaddressList();
         // StatesGet();
         // CityGet();
         GetAllCart();
@@ -416,23 +438,23 @@ function Checkout() {
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
                                                 {
-                                                    <Select2 placeholder="Select Country" className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={Country} data = {ListCountries} onChange={handleCountryChange}/>
                                                 }
                                             </div>
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
                                                 {
-                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={state} data = {ListStates} onChange={handleStateChange}/>
                                                 }
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-lg-6">
-                                            <div className="custom_select">
+                                            <div className="custom_select cityDropdown ">
                                                 {
-                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={city} data = {ListCity} onChange={handleCityChange}/>
                                                 }
                                             </div>
                                             {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
@@ -513,7 +535,7 @@ function Checkout() {
                                             <div className="row">
                                                 <div className="form-group col-lg-6">
                                                     {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-                                                    <div className="custom_select">
+                                                    <div className="custom_select cityDropdown">
                                                         {
                                                             <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
                                                         }
