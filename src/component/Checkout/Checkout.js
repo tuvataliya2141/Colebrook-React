@@ -130,11 +130,37 @@ function Checkout() {
             });
     }
 
+    function handleCountryChange(e) {
+        SetCountry(e.target.value);
+        StatesGet(e.target.value);
+    };
+
+    function handleStateChange(e) {
+        Setstate(e.target.value);
+        CityGet(e.target.value);
+    };
+
+    const handleCityChange = (e) => {
+        Setcity(e.target.value);
+    };
+
     function CountriesGet() {
         setIsLoading(true)
+        const listOfCountry = [{
+            id : '',
+            text : "Select Country",
+        }];
         const GetCountries = `${urlConstant.Checkout.Countries}`;
         common.httpGet(GetCountries).then(function (res) {
-            setListCountries(res.data.data);
+            const countryList = res.data.data;
+            countryList.forEach(function countriesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfCountry.push(myArray);
+            })
+            setListCountries(listOfCountry);
             setIsLoading(false)
         })
             .catch(function (error) {
@@ -143,32 +169,60 @@ function Checkout() {
             });
     }
 
-    function CityGet() {
-        setIsLoading(true)
-
-        const Getcity = `${urlConstant.Checkout.city}/${state}`;
+    function CityGet(state_id = null) {
+        if(state_id == null) {
+            setIsLoading(false)
+        }
+        // setIsLoading(true)
+        const Getcity = `${urlConstant.Checkout.city}/`+state_id;
+        // const Getcity = `${urlConstant.Checkout.city}/${state}`;
         common.httpGet(Getcity).then(function (res) {
-            setListCity(res.data.data);
-            setIsLoading(false)
-        })
-            .catch(function (error) {
+            let listOfCity = [{
+                id : '',
+                text : "Select City",
+            }];
+            const cityList = res.data.data;
+            cityList.forEach(function citiesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfCity.push(myArray);
+            })
+            setListCity(listOfCity);
+            // setIsLoading(false)
+        }).catch(function (error) {
                 // ToasterError("Error");
-                setIsLoading(false)
-            });
+                // setIsLoading(false)
+        });
     }
 
-    function StatesGet() {
-
-        setIsLoading(true)
-        const StatesData = `${urlConstant.Checkout.States}/${Country}`;
-        common.httpGet(StatesData).then(function (res) {
-            setListStates(res.data.data);
+    function StatesGet(country_id = null) {
+        if(country_id == null) {
             setIsLoading(false)
-        })
-            .catch(function (error) {
+        }
+        // setIsLoading(true)
+        const StatesData = `${urlConstant.Checkout.States}/`+country_id;
+        // const StatesData = `${urlConstant.Checkout.States}/${Country}`;
+        common.httpGet(StatesData).then(function (res) {
+            const listOfState = [{
+                id : '',
+                text : "Select State",
+            }];
+            const stateList = res.data.data;
+            stateList.forEach(function statesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfState.push(myArray);
+            })
+            setListStates(listOfState);
+            // setIsLoading(false)
+        }).catch(function (error) {
                 // ToasterError("Error");
-                setIsLoading(false)
-            });
+                // setIsLoading(false)
+        });
     }
 
 
@@ -216,7 +270,6 @@ function Checkout() {
     }
 
     const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
-
 
     //RazorPay
     const options = {
@@ -298,8 +351,8 @@ function Checkout() {
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
-        StatesGet();
-        CityGet();
+        // StatesGet();
+        // CityGet();
         GetAllCart();
         window.scrollTo({
             top: 0,
@@ -312,6 +365,7 @@ function Checkout() {
             {isLoading ? <Loding /> : Checkout}
             <Header />
             <ToastContainer />
+            {/* <link rel="stylesheet" href="https://unpkg.com/react-select/dist/react-select.css"></link> */}
             <main className="main">
                 <div className="page-header breadcrumb-wrap">
                     <div className="container">
@@ -361,55 +415,29 @@ function Checkout() {
                                     <div className="row shipping_calculator">
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
-                                                {/* {
-                                                    <Select2
-                                                    className="form-control select-active"
-                                                    defaultValue="1"
-                                                    options={options}
-                                                    data={[
-                                                      { id: "1", text: "Alerts" },
-                                                      { id: "2", text: "Badges" },
-                                                      { id: "3", text: "Buttons" },
-                                                      { id: "4", text: "Cards" },
-                                                      { id: "5", text: "Forms" },
-                                                      { id: "6", text: "Modals" }
-                                                    ]}
-                                                  />
-                                                } */}
-                                                <select className="form-control select-active" value={Country || ""} onChange={(e) => { SetCountry(e.target.value) }}>
-                                                    <option value="null">Select an Country...</option>
-                                                    {
-                                                        ListCountries.map((item, i) => {
-                                                            return (
-                                                                <>
-                                                                    <option key={i} value={item.id}>{item.name}</option>
-                                                                </>
-                                                            )
-                                                        })
-                                                    }
-                                                </select>
+                                                {
+                                                    <Select2 placeholder="Select Country" className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
+                                                }
                                             </div>
                                         </div>
                                         <div className="form-group col-lg-6">
-                                            <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }} disabled={Country == null || ListStates.length == 0}>
-                                                <option value="null">Select an State...</option>
+                                            <div className="custom_select">
                                                 {
-                                                    ListStates.map((item, i) => {
-                                                        return (
-                                                            <>
-                                                                <option key={i} value={item.id}>{item.name}</option>
-                                                            </>
-                                                        )
-                                                    })
+                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
                                                 }
-                                            </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-lg-6">
+                                            <div className="custom_select">
+                                                {
+                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
+                                                }
+                                            </div>
                                             {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
 
-                                            <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} disabled={state == null || ListCity.length == 0}>
+                                            {/* <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }}>
                                                 <option value="null">Select an city...</option>
                                                 {
                                                     ListCity.map((item, i) => {
@@ -420,7 +448,7 @@ function Checkout() {
                                                         )
                                                     })
                                                 }
-                                            </select>
+                                            </select> */}
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
@@ -469,51 +497,27 @@ function Checkout() {
                                             <div className="row shipping_calculator">
                                                 <div className="form-group col-lg-6">
                                                     <div className="custom_select">
-                                                        <select className="form-control select-active" value={Country || ""} onChange={(e) => { SetCountry(e.target.value) }}>
-                                                            <option value="null">Select an Country...</option>
-                                                            {
-                                                                ListCountries.map((item, i) => {
-                                                                    return (
-                                                                        <>
-                                                                            <option key={i} value={item.id}>{item.name}</option>
-                                                                        </>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </select>
+                                                        {
+                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
+                                                        }
                                                     </div>
                                                 </div>
                                                 <div className="form-group col-lg-6">
-                                                    <select className="form-control select-active" value={state || ""} onChange={(e) => { Setstate(e.target.value) }} disabled={Country == null || ListStates.length == 0}>
-                                                        <option value="null">Select an State...</option>
+                                                    <div className="custom_select">
                                                         {
-                                                            ListStates.map((item, i) => {
-                                                                return (
-                                                                    <>
-                                                                        <option key={i} value={item.id}>{item.name}</option>
-                                                                    </>
-                                                                )
-                                                            })
+                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
                                                         }
-                                                    </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="row">
                                                 <div className="form-group col-lg-6">
                                                     {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-
-                                                    <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} disabled={state == null || ListCity.length == 0}>
-                                                        <option value="null">Select an city...</option>
+                                                    <div className="custom_select">
                                                         {
-                                                            ListCity.map((item, i) => {
-                                                                return (
-                                                                    <>
-                                                                        <option key={i} value={item.id}>{item.name}</option>
-                                                                    </>
-                                                                )
-                                                            })
+                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
                                                         }
-                                                    </select>
+                                                    </div>
                                                 </div>
                                                 <div className="form-group col-lg-6">
                                                     <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />

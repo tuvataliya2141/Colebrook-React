@@ -11,6 +11,8 @@ import Loding from "./Loding";
 
 function Footer() {
     const { Logo } = useAppContext();
+    const { HeaderLogo } = useAppContext();
+    const { FooterLogo } = useAppContext();
     const { FacebookLink } = useAppContext();
     const { TwitterLink } = useAppContext();
     const { InstagramLink } = useAppContext();

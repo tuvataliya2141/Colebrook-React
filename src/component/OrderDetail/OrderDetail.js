@@ -45,9 +45,10 @@ function OrderDetail() {
 
     function OrderDetail() {
         try {
-          const Data = { order_id:`${id}` }
+          const Data = { id:`${id}` }
+        //   console.log(Data);
           const GetOrderDetail = `${urlConstant.Dashboard.OrderDetail}`;
-          axios.post(GetOrderDetail, Data, {
+          common.httpGet(GetOrderDetail, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
           }).then((res) => {
             console.log(res);
@@ -84,7 +85,7 @@ function OrderDetail() {
                                     <div className="row">
                                         <div className="col-xl-8">
                                             <div className="contact-from-area padding-20-row-col">
-                                                <h2 className="mb-10">Ticket Support </h2>
+                                                <h2 className="mb-10"> Support Ticket </h2>
                                                 <form className="contact-form-style mt-30" id="contact-form" action="#" method="post">
                                                     <div className="row">
                                                         <div className="col-lg-12 col-md-12">

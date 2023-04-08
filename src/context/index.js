@@ -22,6 +22,8 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
   const [Logo, SetLogo] = useState([]);
+  const [HeaderLogo, SetHeaderLogo] = useState([]);
+  const [FooterLogo, SetFooterLogo] = useState([]);
   const [FacebookLink, SeFacebook] = useState([]);
   const [TwitterLink, SetTwitter] = useState([]);
   const [InstagramLink, SetInstagram] = useState([]);
@@ -104,6 +106,8 @@ const AppProvider = ({ children }) => {
     common.httpGet(GetAllCategory1).then(function (res) {
       SetAllCategory(res.data.data.data);
       SetLogo(res.data.logo);
+      SetHeaderLogo(res.data.headerLogo);
+      SetFooterLogo(res.data.footerLogo);
       SeFacebook(res.data.facebook);
       SetTwitter(res.data.twitter);
       SetInstagram(res.data.instagram);
@@ -138,7 +142,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink}}>
+    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo}}>
       {children}
     </AppContext.Provider>
   );
