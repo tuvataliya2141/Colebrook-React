@@ -39,6 +39,7 @@ function Checkout() {
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
     const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
+    const [AddressList, setAddressList] = useState([]);
 
     //PayPal
     const [show, setShow] = useState(false);
@@ -347,10 +348,33 @@ function Checkout() {
         console.log(token);
         alert('Payment Succesful!');
     };
+
+    function GetaddressList() {
+        setIsLoading(true)
+        const addressData = `${urlConstant.Checkout.addressList}/`+parseInt(user_id);
+        // const addressData = `${urlConstant.Checkout.addressList}`;
+        common.httpGet(addressData).then(function (res) {
+            // const stateList = res.data.data;
+            // axios.get(addressData, Data, {
+            //     headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            // }).then((res) => {
+                const addList = res.data.data;
+                console.log(addList);
+                setAddressList(res.data.data);
+                setIsLoading(false)
+            // })
+            
+        }).catch(function (error) {
+            ToasterError("Error");
+            setIsLoading(false)
+        });
+    }
+    
     
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
+        GetaddressList();
         // StatesGet();
         // CityGet();
         GetAllCart();
@@ -402,6 +426,34 @@ function Checkout() {
                                 </div>
                             </div>
                             <div className="row">
+                                <h4 className="mb-30">My Address</h4>
+                                <div className={AddressList.length == 0 ? 'addresses hideAddress' : 'addresses'}>
+                                    <div className="row product-grid-4">
+                                        {
+                                            AddressList.map((item, i) => {
+                                                return (
+                                                    <>
+                                                        <div className="col-lg-1-4 col-md-4 col-12 col-sm-6">
+                                                            <div className="product-cart-wrap userAddresses mb-40 mt-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                                                <div className="product-content-wrap">
+                                                                    {/* <div className="product-action-1 edit">
+                                                                        <a className="action-btn"><i className="fi-rs-pencil" onClick={(e) => {editAddress(item.id)}}/></a>
+                                                                    </div>
+                                                                    <div className="product-action-1 delete">
+                                                                        <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
+                                                                    </div> */} 
+                                                                    <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
                                 <h4 className="mb-30">Billing Details</h4>
                                 <form method="post">
                                     <div className="row">
@@ -416,23 +468,23 @@ function Checkout() {
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
                                                 {
-                                                    <Select2 placeholder="Select Country" className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={Country} data = {ListCountries} onChange={handleCountryChange}/>
                                                 }
                                             </div>
                                         </div>
                                         <div className="form-group col-lg-6">
                                             <div className="custom_select">
                                                 {
-                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={state} data = {ListStates} onChange={handleStateChange}/>
                                                 }
                                             </div>
                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="form-group col-lg-6">
-                                            <div className="custom_select">
+                                            <div className="custom_select cityDropdown ">
                                                 {
-                                                    <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
+                                                    <Select2 className="form-control select-active" defaultValue={city} data = {ListCity} onChange={handleCityChange}/>
                                                 }
                                             </div>
                                             {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
@@ -513,7 +565,7 @@ function Checkout() {
                                             <div className="row">
                                                 <div className="form-group col-lg-6">
                                                     {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-                                                    <div className="custom_select">
+                                                    <div className="custom_select cityDropdown">
                                                         {
                                                             <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
                                                         }
