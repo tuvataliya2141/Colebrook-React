@@ -7,6 +7,10 @@ const urlConstant = {
     UserLogin: `${apiURL}auth/login`,
     UserRegister: `${apiURL}auth/signup`,
     UserInfo : `${apiURL}user/info`,
+    UserAddresses : `${apiURL}user/addresses`,
+    UserAddAddresses : `${apiURL}user/addAddresses`,
+    UserUpdateAddresses : `${apiURL}user/updateAddresses`,
+    UserDeleteAddresses : `${apiURL}user/deleteAddresses`,
     UserUpdate : `${apiURL}profile/update`
   },
   Products: {

@@ -32,8 +32,6 @@ function ShopProduct() {
     const firstPostIndex = lastPostIndex - postsPerPage;
     const currentPosts = List.slice(firstPostIndex, lastPostIndex);
 
-
-
     //mobile view
     function getCurrntDimensions() {
         return {

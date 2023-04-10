@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import Loding from '../Loding';
 import CommonService from "../../services/commonService";
 import { useShippingContext } from '../../context/shippingContext';
+import Select2 from "react-select2-wrapper";
 
 function Dashboard() {
     let common = new CommonService();
@@ -28,7 +29,9 @@ function Dashboard() {
     }
 
     const [id, setId] = useState(0);
+    const [addressId, setAddressId] = useState(0);
     const [name, SetName] = useState("");
+    const [address, SetAddress] = useState("");
     const [email, SetEmail] = useState("");
     const [phone, SetPhone] = useState("");
     const [password, SetPassword] = useState("");
@@ -36,8 +39,114 @@ function Dashboard() {
     const [CurrentPassword, SetCurrentPassword] = useState("");
     const [OrdersList, setOrdersList] = useState([]);
     const [UserInfoList, setUserInfoList] = useState([]);
+    const [userAddressesList, setUserAddressesList] = useState([]);
     const [TrackOrderId, setTrackOrderId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const [ListStates, setListStates] = useState([]);
+    const [ListCountries, setListCountries] = useState([]);
+    const [ListCity, setListCity] = useState([]);
+    const [state, Setstate] = useState(null);
+    const [city, Setcity] = useState("");
+    const [Country, SetCountry] = useState("");
+    const [PostalCode, SetPostalcode] = useState("");
+    // const [DefaultAdd, SetDefaultAddress] = useState("");
+
+    
+    function handleCountryChange(e) {
+        SetCountry(e.target.value);
+        StatesGet(e.target.value);
+    };
+
+    function handleStateChange(e) {
+        Setstate(e.target.value);
+        CityGet(e.target.value);
+    };
+
+    const handleCityChange = (e) => {
+        Setcity(e.target.value);
+    };
+
+    function CountriesGet() {
+        setIsLoading(true)
+        const listOfCountry = [{
+            id : '',
+            text : "Select Country",
+        }];
+        const GetCountries = `${urlConstant.Checkout.Countries}`;
+        common.httpGet(GetCountries).then(function (res) {
+            const countryList = res.data.data;
+            countryList.forEach(function countriesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfCountry.push(myArray);
+            })
+            setListCountries(listOfCountry);
+            setIsLoading(false)
+        })
+            .catch(function (error) {
+                // ToasterError("Error");
+                setIsLoading(false)
+            });
+    }
+
+    function CityGet(state_id = null) {
+        if(state_id == null) {
+            setIsLoading(false)
+        }
+        // setIsLoading(true)
+        const Getcity = `${urlConstant.Checkout.city}/`+state_id;
+        // const Getcity = `${urlConstant.Checkout.city}/${state}`;
+        common.httpGet(Getcity).then(function (res) {
+            let listOfCity = [{
+                id : '',
+                text : "Select City",
+            }];
+            const cityList = res.data.data;
+            cityList.forEach(function citiesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfCity.push(myArray);
+            })
+            setListCity(listOfCity);
+            // setIsLoading(false)
+        }).catch(function (error) {
+                // ToasterError("Error");
+                // setIsLoading(false)
+        });
+    }
+
+    function StatesGet(country_id = null) {
+        if(country_id == null) {
+            setIsLoading(false)
+        }
+        // setIsLoading(true)
+        const StatesData = `${urlConstant.Checkout.States}/`+country_id;
+        // const StatesData = `${urlConstant.Checkout.States}/${Country}`;
+        common.httpGet(StatesData).then(function (res) {
+            const listOfState = [{
+                id : '',
+                text : "Select State",
+            }];
+            const stateList = res.data.data;
+            stateList.forEach(function statesList(item, index){
+                const myArray = {
+                    id : item.id,
+                    text : item.name,
+                }
+                listOfState.push(myArray);
+            })
+            setListStates(listOfState);
+            // setIsLoading(false)
+        }).catch(function (error) {
+                // ToasterError("Error");
+                // setIsLoading(false)
+        });
+    }
 
     function GetOrdersList(P_Id) {
         try {
@@ -66,6 +175,79 @@ function Dashboard() {
                 // ToasterWarning(error.message)
                 console.log(error);
             });
+    }
+
+    function GetUserAddresses() {
+        const GetUserAddresses = `${urlConstant.User.UserAddresses}/${user_id}`;
+        common.httpGet(GetUserAddresses).then(function (res) {
+            setUserAddressesList(res.data.data);
+        }).catch(function (error) {
+            // ToasterWarning(error.message)
+            console.log(error);
+        });
+    }
+
+    // function editAddress(address_id) {
+    const editAddress = async (address_id) => {
+        const GetAddress = `${urlConstant.User.UserUpdateAddresses}/`+address_id;
+        await common.httpGet(GetAddress).then(function (res) {
+            setAddressId(address_id);
+            SetAddress(res.data.data.address);
+            SetCountry(res.data.data.country_id);
+            SetPostalcode(res.data.data.postal_code);
+            StatesGet(res.data.data.country_id);
+            CityGet(res.data.data.state_id);
+            setTimeout(() => {
+                Setstate(res.data.data.state_id);
+                Setcity(res.data.data.city_id);
+            }, 1000);
+
+        }).catch(function (error) {
+            // ToasterWarning(error.message)
+            console.log(error);
+        });
+    }
+
+    function deleteAddress(address_id) {
+        try {
+            setIsLoading(true)
+            const Data = { id: address_id }
+            const DeleteAddress1 = `${urlConstant.User.UserDeleteAddresses}`;
+            axios.post(DeleteAddress1, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                setIsLoading(false)
+                ToasterSuccess("Your address deleted successfully...!!");
+                GetUserAddresses();
+            })
+        } catch (error) {
+            setIsLoading(false)
+        }
+    }
+
+    const AddAddress = async () => {
+        try {
+            setIsLoading(true)
+            const Data = { addressId, userId: user_id, address, Country, state, city, PostalCode, phone }
+            const AddAddress1 = `${urlConstant.User.UserAddAddresses}`;
+            await axios.post(AddAddress1, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                setIsLoading(false)
+                ToasterSuccess("Your address added successfully...!!");
+                GetUserAddresses();
+                setAddressId(0);
+                SetAddress("");
+                SetCountry("");
+                SetPostalcode("");
+                Setstate("");
+                setListStates([]);
+                Setcity("");
+                setListCity([]);
+            })
+        } catch (error) {
+            setIsLoading(false)
+        }
     }
 
     const ProfileUpdate = async () => {
@@ -101,7 +283,9 @@ function Dashboard() {
             behavior: "smooth",
         });
         GetOrdersList();
+        CountriesGet();
         GetUserInfo();
+        GetUserAddresses();
     }, [])
     return (
         <div>
@@ -128,6 +312,9 @@ function Dashboard() {
                                             <ul className="nav flex-column" role="tablist">
                                                 <li className="nav-item">
                                                     <a className="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i className="fi-rs-settings-sliders mr-10" />Dashboard</a>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="addresses-tab" data-bs-toggle="tab" href="#addresses" role="tab" aria-controls="addresses" aria-selected="false"><i className="fi-rs-settings-sliders mr-10" />My Addresses</a>
                                                 </li>
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i className="fi-rs-shopping-bag mr-10" />Orders</a>
@@ -160,6 +347,86 @@ function Dashboard() {
                                                             manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a>
                                                         </p>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className="tab-pane fade" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <h3 className="mb-0">My Address</h3>
+                                                    </div>
+                                                    <div className={userAddressesList.length == 0 ? 'addresses hideAddress' : 'addresses'}>
+                                                        <div className="row product-grid-4">
+                                                            {
+                                                                userAddressesList.map((item, i) => {
+                                                                    return (
+                                                                        <>
+                                                                            <div className="col-lg-1-4 col-md-4 col-12 col-sm-6">
+                                                                                <div className="product-cart-wrap userAddresses mb-40 mt-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                                                                    <div className="product-content-wrap">
+                                                                                        <div className="product-action-1 edit">
+                                                                                            <a className="action-btn"><i className="fi-rs-pencil" onClick={(e) => {editAddress(item.id)}}/></a>
+                                                                                        </div>
+                                                                                        <div className="product-action-1 delete">
+                                                                                            <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
+                                                                                        </div>
+                                                                                        <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <form method="post" name="address">
+                                                        <div className="row">
+                                                            <div className="form-group col-md-12">
+                                                                <label>Address <span className="required">*</span></label>
+                                                                <input required value={address} onChange={(e) => { SetAddress(e.target.value) }} className="form-control" name="name" type="text" />
+                                                            </div>
+                                                            <div className="form-group col-lg-6">
+                                                                <div className="custom_select">
+                                                                    <label>Country<span className="required">*</span></label>
+                                                                    {
+                                                                        <Select2 required placeholder="Select Country" name="country" className="form-control select-active" defaultValue={Country} data = {ListCountries} onChange={handleCountryChange}/>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div className="form-group col-lg-6">
+                                                                <div className="custom_select">
+                                                                    <label>State<span className="required">*</span></label>
+                                                                    {
+                                                                        <Select2 required className="form-control select-active" name="state" defaultValue={state} data = {ListStates} onChange={handleStateChange}/>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div className="form-group col-lg-6">
+                                                                <div className="custom_select">
+                                                                    <label>City<span className="required">*</span></label>
+                                                                    {
+                                                                        <Select2 required className="form-control select-active" name="city" defaultValue={city} data = {ListCity} onChange={handleCityChange}/>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                            <div className="form-group col-md-6">
+                                                                <label>Postal Code<span className="required">*</span></label>
+                                                                <input required value={PostalCode} onChange={(e) => { SetPostalcode(e.target.value) }} className="form-control" name="dname" type="text"/>
+                                                            </div>
+                                                            {/* <div className="form-group">
+                                                                <div className="checkbox">
+                                                                    <div className="custome-checkbox">
+                                                                        <input className="form-check-input" onChange={(e) => { SetDefaultAddress(e.target.value) }} type="checkbox" name="checkbox" id="setDefault" />
+                                                                        <label className="form-check-label label_info" data-bs-toggle="collapse" aria-controls="collapsePassword" htmlFor="setDefault"><span>Is this your default address ?</span></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div> */}
+
+                                                            <div className="col-md-12">
+                                                                <button type="button" onClick={AddAddress} className="btn btn-fill-out submit font-weight-bold" >Save Change</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div className="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
