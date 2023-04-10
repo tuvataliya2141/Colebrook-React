@@ -13435,9 +13435,46 @@ footer .hotline img {
   }
 }
 
+.addresses.hideAddress {
+  display: none;
+}
+
+.product-cart-wrap.userAddresses:hover .product-content-wrap .product-img a img.hover-img {
+  opacity: 1;
+  visibility: visible;
+}
+
+.product-cart-wrap.userAddresses .product-action-1.edit {
+  left: 82%;
+}
+
+.product-cart-wrap.userAddresses .product-action-1.delete {
+  left: 92%;
+}
+
+.product-cart-wrap.userAddresses {
+  border-color: #000000;
+}
+
+.product-cart-wrap.userAddresses .product-content-wrap h2 {
+  line-height: 25px;
+  max-width: 210px;
+}
+
+.product-cart-wrap.userAddresses .product-action-1.edit,
+.product-cart-wrap.userAddresses .product-action-1.delete {
+  background-color: transparent !important;
+  top: 15%;
+  box-shadow: none;
+}
+
+.product-cart-wrap.userAddresses:hover .product-content-wrap .product-action-1 {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 /* Select 2 Dropdown CSS */
-
 .custom_select .select2-container {
   width: 100% !important;
   max-width: 100% !important;
@@ -13464,6 +13501,4 @@ footer .hotline img {
   border-radius: 50px !important;
   height: 64px !important;
 }
-
-
 /*# sourceMappingURL=main.css.map */

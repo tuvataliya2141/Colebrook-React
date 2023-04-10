@@ -350,24 +350,26 @@ function Checkout() {
     };
 
     function GetaddressList() {
-        try {
-            setIsLoading(true)
-            const Data = { user_id: parseInt(user_id) }
-            const addressData = `${urlConstant.Checkout.addressList}/`+parseInt(user_id);
-            // const addressData = `${urlConstant.Checkout.addressList}`;
-            axios.get(addressData, Data, {
-                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-            }).then((res) => {
-                console.log(res.data.data.data);
-                setAddressList(res.data.data.data);
+        setIsLoading(true)
+        const addressData = `${urlConstant.Checkout.addressList}/`+parseInt(user_id);
+        // const addressData = `${urlConstant.Checkout.addressList}`;
+        common.httpGet(addressData).then(function (res) {
+            // const stateList = res.data.data;
+            // axios.get(addressData, Data, {
+            //     headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            // }).then((res) => {
+                const addList = res.data.data;
+                console.log(addList);
+                setAddressList(res.data.data);
                 setIsLoading(false)
-            })
-        }
-        catch (error) {
-            ToasterError("Error")
+            // })
+            
+        }).catch(function (error) {
+            ToasterError("Error");
             setIsLoading(false)
-        }
+        });
     }
+    
     
     useEffect(() => {
         GetPaymentTypes();
@@ -421,6 +423,34 @@ function Checkout() {
                                 <div className="col-lg-6 apply-coupon">
                                     <input type="text" placeholder="Enter Coupon Code..." value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
                                     <button className="btn btn-md button-size" onClick={() => { ApplyCoupon(CouponCode) }}>Apply Coupon</button>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <h4 className="mb-30">My Address</h4>
+                                <div className={AddressList.length == 0 ? 'addresses hideAddress' : 'addresses'}>
+                                    <div className="row product-grid-4">
+                                        {
+                                            AddressList.map((item, i) => {
+                                                return (
+                                                    <>
+                                                        <div className="col-lg-1-4 col-md-4 col-12 col-sm-6">
+                                                            <div className="product-cart-wrap userAddresses mb-40 mt-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                                                <div className="product-content-wrap">
+                                                                    {/* <div className="product-action-1 edit">
+                                                                        <a className="action-btn"><i className="fi-rs-pencil" onClick={(e) => {editAddress(item.id)}}/></a>
+                                                                    </div>
+                                                                    <div className="product-action-1 delete">
+                                                                        <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
+                                                                    </div> */}
+                                                                    <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                             <div className="row">

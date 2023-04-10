@@ -7,6 +7,10 @@ const urlConstant = {
     UserLogin: `${apiURL}auth/login`,
     UserRegister: `${apiURL}auth/signup`,
     UserInfo : `${apiURL}user/info`,
+    UserAddresses : `${apiURL}user/addresses`,
+    UserAddAddresses : `${apiURL}user/addAddresses`,
+    UserUpdateAddresses : `${apiURL}user/updateAddresses`,
+    UserDeleteAddresses : `${apiURL}user/deleteAddresses`,
     UserUpdate : `${apiURL}profile/update`
   },
   Products: {
@@ -31,8 +35,7 @@ const urlConstant = {
     GetPaymentTypes: `${apiURL}payment-types` ,
     Countries : `${apiURL}countries`,
     States : `${apiURL}states-by-country`,
-    city : `${apiURL}cities-by-state`,
-    addressList : `${apiURL}user/shipping/address`
+    city : `${apiURL}cities-by-state`
   },
   Dashboard:{
     OrdersList:`${apiURL}order/userOrderList`,
