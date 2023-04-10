@@ -441,7 +441,7 @@ function Checkout() {
                                                                     </div>
                                                                     <div className="product-action-1 delete">
                                                                         <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
-                                                                    </div> */}
+                                                                    </div> */} 
                                                                     <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
                                                                 </div>
                                                             </div>
