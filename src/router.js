@@ -13,6 +13,7 @@ import ShopProduct from "./component/Shop-product/ShopProduct";
 import Terms_Service from "./component/Terms-Service/Terms_Service";
 import Wishlist from "./component/Wishlist/wishlist";
 import OrderDetail from "./component/OrderDetail/OrderDetail";
+import TicketsDetail from "./component/TicketsDetail/TicketsDetail";
 
 
 export default  [
@@ -90,7 +91,12 @@ export default  [
     path:'/OrderDetail',
     element:() => <OrderDetail/>,
     exact:true,
-  }      
+  },  
+  {
+    path:'/TicketsDetail',
+    element:() => <TicketsDetail/>,
+    exact:true,
+  }
 
 ]
 

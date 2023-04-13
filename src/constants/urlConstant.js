@@ -5,12 +5,16 @@ const { apiURL } = config;
 const urlConstant = {
   User: {
     UserLogin: `${apiURL}auth/login`,
+    GoogleLogin: `${apiURL}auth/login/google`,
     UserRegister: `${apiURL}auth/signup`,
     UserInfo : `${apiURL}user/info`,
     UserAddresses : `${apiURL}user/addresses`,
     UserAddAddresses : `${apiURL}user/addAddresses`,
     UserUpdateAddresses : `${apiURL}user/updateAddresses`,
     UserDeleteAddresses : `${apiURL}user/deleteAddresses`,
+    GetTickets : `${apiURL}user/supportTicketsList`,
+    supportTicketUrl : `${apiURL}user/supportTicketDetails`,
+    TicketReply : `${apiURL}user/ticketReply`,
     UserUpdate : `${apiURL}profile/update`
   },
   Products: {
@@ -32,6 +36,7 @@ const urlConstant = {
   },
   Checkout: { 
     PostCheckout: `${apiURL}checkout`,
+    PlaceOrder: `${apiURL}order/store`,
     GetPaymentTypes: `${apiURL}payment-types` ,
     Countries : `${apiURL}countries`,
     States : `${apiURL}states-by-country`,
@@ -39,7 +44,8 @@ const urlConstant = {
   },
   Dashboard:{
     OrdersList:`${apiURL}order/userOrderList`,
-    OrderDetail:`${apiURL}order/userOrderDetail`
+    OrderDetail:`${apiURL}order/userOrderDetail`,
+    OrderSummary:`${apiURL}order/userOrderSummary`
   },
   ApplyCoupon: { 
     PostApplyCoupon: `${apiURL}coupon-apply`,
@@ -54,7 +60,7 @@ const urlConstant = {
     OrderCancel:"https://pre-alpha.ithinklogistics.com/api_v3/order/cancel.json",
   }, 
   Subscribe: { SubscribePost: `${apiURL}Subscribe` },
-  Contact: { PostContact: `${apiURL}contact` },
+  Contact: { PostContact: `${apiURL}ticket-support` },
   AllCategory : {GetAllCategory:`${apiURL}allCategory`},
   AllBrands : {GetAllBrands:`${apiURL}brands`},
   SearchData : {SearchAllData:`${apiURL}mainAllSearch`},

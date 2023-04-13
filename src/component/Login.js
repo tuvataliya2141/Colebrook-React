@@ -50,6 +50,7 @@ function Login() {
                 ToasterSuccess("Login Successfully");
                 localStorage.setItem('access_token', res.data.access_token)
                 localStorage.setItem('user', res.data.user.name)
+                localStorage.setItem('userEmail', res.data.user.email)
                 localStorage.setItem('type', res.data.user.type)
                 localStorage.setItem('user_id', res.data.user.id)
 
@@ -71,10 +72,12 @@ function Login() {
                 const id_token = response.getAuthResponse().id_token;
                 const GoogleLoginData = `${urlConstant.User.GoogleLogin}?access_token=${id_token}`;
                 common.httpGet(GoogleLoginData).then((res) => {
-                if (res) {
+                    console.log(res.data);
+                if (res.data.user.name) {
                     ToasterSuccess('Login Successfully');
                     localStorage.setItem('access_token', res.data.access_token);
                     localStorage.setItem('user', res.data.user.name);
+                    localStorage.setItem('userEmail', res.data.user.email)
                     localStorage.setItem('type', res.data.user.type);
                     localStorage.setItem('user_id', res.data.user.id);
                     window.location.href = '/';
@@ -100,6 +103,7 @@ function Login() {
     //         if (res) {
     //             localStorage.setItem('access_token', res.data.access_token);
     //             localStorage.setItem('user', res.data.user.name);
+                // localStorage.setItem('userEmail', res.data.user.email)
     //             localStorage.setItem('type', res.data.user.type);
     //             localStorage.setItem('user_id', res.data.user.id);
     //             ToasterSuccess('Login Successfully');

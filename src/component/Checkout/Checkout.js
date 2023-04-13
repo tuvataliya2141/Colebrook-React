@@ -16,7 +16,7 @@ import Select2 from "react-select2-wrapper";
 
 function Checkout() {
     let common = new CommonService();
-    const { Loding, user_id, Logo } = useAppContext();
+    const { Loding, user_id, Logo, UserEmail } = useAppContext();
     const { CreateOrder } = useShippingContext();
 
     const [CouponCode, SetCouponCode] = useState('');
@@ -34,8 +34,9 @@ function Checkout() {
     const [ListCountries, setListCountries] = useState([]);
     const [ListCity, setListCity] = useState([]);
     const [PaymentTypesList, setPaymentTypesList] = useState([]);
-    const [PaymentTypes, setPaymentTypes] = useState("");
+    const [PaymentTypes, setPaymentTypes] = useState('cash_on_delivery');
     const [Paymentsuccess, setPaymentsuccess] = useState("");
+    const [PaymentStatus, setPaymentStatus] = useState('unpaid');
     const [payment_method, setpayment_method] = useState('cod');
     const [GetCart, SetGetCart] = useState([]);
     const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
@@ -54,7 +55,6 @@ function Checkout() {
 
         const login_type = payment_method == 'cod' ? 1 : 2;
 
-
         if (login_type == 2) {
             if (!PaymentTypes) {
                 ToasterWarning('Please select payment method')
@@ -62,38 +62,47 @@ function Checkout() {
             }
         }
 
+        
         if (!Name || !Address || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
-
-            ToasterWarning('Please All Enter Details')
+            ToasterWarning('Please select or add the address')
             return
         }
 
         if (PaymentTypes == "Razorpay") {
             openPayModal()
+            setPaymentTypes('Razorpay');
         } else
             if (PaymentTypes == "Stripe") {
                 alert("Stripe");
-            } else
+                setPaymentTypes('Stripe');
+            } else {
                 if (PaymentTypes == "Paypal") {
                     // alert("Paypal");
-                    setShow(true)
+                    setShow(true);
+                    setPaymentTypes('Paypal');
                 }
+            }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1 };
+            const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes};
+
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-            }).then(() => {
-                ToasterSuccess("Success...!!");
-                // CreateOrder();
-                setIsLoading(false)
-            }).catch(
-                console.log("error")
-            )
+            }).then((res) => {
+                if (res.data.status == true) {
+                    ToasterSuccess("Order Successfully placed...!!");
+                    window.location.href = '/Dashboard';
+                } else {
+                    ToasterError(res.data.message)
+                }
+                setIsLoading(false);
+            }).catch((res) => {
+                console.log("error");
+            })
         }
         catch (error) {
-            ToasterError("Error")
+            // ToasterError("Error")
             setIsLoading(false)
         }
     }
@@ -104,31 +113,24 @@ function Checkout() {
 
     
     function GetAllCart() {
-        setIsLoading(true)
         const tempid = localStorage.getItem('tempid');
         const cartid = user_id ? `?userId=${user_id}` : `?tempuserid=${tempid}`;
         const GetAllCart = `${urlConstant.Cart.GetCart}${cartid}`;
         common.httpGet(GetAllCart).then(function (res) {
             SetGetCart(res.data.data[0].cart_items);
-            setIsLoading(false)
-        })
-            .catch(function (error) {
-                // ToasterError("Error");
-                setIsLoading(false)
-            });
+        }).catch(function (error) {
+            // ToasterError("Error");
+        });
     }
 
     function GetPaymentTypes() {
-        setIsLoading(true)
         const PaymentTypes = `${urlConstant.Checkout.GetPaymentTypes}`;
         common.httpGet(PaymentTypes).then(function (res) {
             setPaymentTypesList(res.data);
             setIsLoading(false)
-        })
-            .catch(function (error) {
-                // ToasterError("Error");
-                setIsLoading(false)
-            });
+        }).catch(function (error) {
+            // ToasterError("Error");
+        });
     }
 
     function handleCountryChange(e) {
@@ -146,7 +148,6 @@ function Checkout() {
     };
 
     function CountriesGet() {
-        setIsLoading(true)
         const listOfCountry = [{
             id : '',
             text : "Select Country",
@@ -162,21 +163,16 @@ function Checkout() {
                 listOfCountry.push(myArray);
             })
             setListCountries(listOfCountry);
-            setIsLoading(false)
-        })
-            .catch(function (error) {
-                // ToasterError("Error");
-                setIsLoading(false)
-            });
+        }).catch(function (error) {
+            // ToasterError("Error");
+        });
     }
 
     function CityGet(state_id = null) {
         if(state_id == null) {
             setIsLoading(false)
         }
-        // setIsLoading(true)
         const Getcity = `${urlConstant.Checkout.city}/`+state_id;
-        // const Getcity = `${urlConstant.Checkout.city}/${state}`;
         common.httpGet(Getcity).then(function (res) {
             let listOfCity = [{
                 id : '',
@@ -191,10 +187,8 @@ function Checkout() {
                 listOfCity.push(myArray);
             })
             setListCity(listOfCity);
-            // setIsLoading(false)
         }).catch(function (error) {
                 // ToasterError("Error");
-                // setIsLoading(false)
         });
     }
 
@@ -202,9 +196,7 @@ function Checkout() {
         if(country_id == null) {
             setIsLoading(false)
         }
-        // setIsLoading(true)
         const StatesData = `${urlConstant.Checkout.States}/`+country_id;
-        // const StatesData = `${urlConstant.Checkout.States}/${Country}`;
         common.httpGet(StatesData).then(function (res) {
             const listOfState = [{
                 id : '',
@@ -219,14 +211,12 @@ function Checkout() {
                 listOfState.push(myArray);
             })
             setListStates(listOfState);
-            // setIsLoading(false)
         }).catch(function (error) {
                 // ToasterError("Error");
-                // setIsLoading(false)
         });
     }
 
-
+    
     function ApplyCoupon(CouponCode) {
         if (!CouponCode) {
             ToasterWarning('Please Enter Coupon Code')
@@ -247,7 +237,7 @@ function Checkout() {
             })
         }
         catch (error) {
-            ToasterError("Error")
+            // ToasterError("Error")
         }
     }
 
@@ -266,7 +256,7 @@ function Checkout() {
             })
         }
         catch (error) {
-            ToasterError("Error")
+            // ToasterError("Error")
         }
     }
 
@@ -280,16 +270,24 @@ function Checkout() {
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
         handler: function (response) {
-            // console.log(response.razorpay_payment_id);
             setPaymentsuccess(response.razorpay_payment_id)
+            if(response.razorpay_payment_id) {
+                setTimeout(() => {
+                    setPaymentStatus('paid');
+                }, 500);
+                setTimeout(() => {
+                    placeOrder(response.razorpay_payment_id);
+                }, 1700);
+            }
+
         },
         prefill: {
-            name: 'vikas',
-            contact: '735900265',
-            email: 'vikas@gmail.com'
+            name: Name,
+            contact: PhoneNumber,
+            email: Email
         },
         notes: {
-            address: 'some address'
+            address: Address
         },
         theme: {
             color: 'blue',
@@ -313,10 +311,10 @@ function Checkout() {
         return actions.order.create({
             purchase_units: [
                 {
-                    description: "Sunflower",
+                    description: "Kingoodie - Order",
                     amount: {
                         currency_code: "USD",
-                        value: Sub_Total_price - CouponResult,
+                        value: (Sub_Total_price - CouponResult) / 80,
                     },
                 },
             ],
@@ -327,14 +325,16 @@ function Checkout() {
     };
     const onApprove = (data, actions) => {
         return actions.order.capture().then(function (details) {
+            console.log("DETAILS:- ", details);
             const { payer } = details;
             setSuccess(true);
         });
     };
     useEffect(() => {
         if (success) {
-            alert("Payment successful!!");
+            alert("Payment successful!!");            
             console.log('Order successful . Your order id is--', orderID);
+            // placeOrder();
         }
     }, [success]);
 
@@ -344,39 +344,63 @@ function Checkout() {
     const publishableKey = config.StripeKey;
 
     const onToken = (token, payment_methods) => {
-        // console.log(payment_methods);
         console.log(token);
         alert('Payment Succesful!');
     };
 
-    function GetaddressList() {
+    function placeOrder(payment_id = null) {
         setIsLoading(true)
-        const addressData = `${urlConstant.Checkout.addressList}/`+parseInt(user_id);
-        // const addressData = `${urlConstant.Checkout.addressList}`;
+        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
+        axios.post(PlaceOrderUrl, Data, {
+            headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+        }).then(() => {
+            ToasterSuccess("Order Placed Successfully...!!");
+            setIsLoading(false);
+            window.location.href = '/Dashboard';
+        }).catch(
+            console.log("error")
+        )
+    }
+
+    function GetaddressList() {
+        const addressData = `${urlConstant.User.UserAddresses}/`+parseInt(user_id);
         common.httpGet(addressData).then(function (res) {
-            // const stateList = res.data.data;
-            // axios.get(addressData, Data, {
-            //     headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
-            // }).then((res) => {
                 const addList = res.data.data;
-                console.log(addList);
                 setAddressList(res.data.data);
-                setIsLoading(false)
-            // })
-            
         }).catch(function (error) {
-            ToasterError("Error");
-            setIsLoading(false)
+            // ToasterError("Error");
         });
     }
     
-    
+    const setShippingAddress = async (address_id) => {
+        setIsLoading(true)
+        const GetAddress = `${urlConstant.User.UserUpdateAddresses}/`+address_id;
+        await common.httpGet(GetAddress).then(function (res) {
+            SetName(res.data.data.name);
+            SetEmail(`${UserEmail}`);
+            SetPhoneNumber(res.data.data.phone);
+            SetAddress(res.data.data.address);
+            SetPostCode(res.data.data.postal_code);
+            StatesGet(res.data.data.country_id);
+            CityGet(res.data.data.state_id);
+            setTimeout(() => {
+                SetCountry(res.data.data.country_id);
+                Setstate(res.data.data.state_id);
+                Setcity(res.data.data.city_id);
+                setIsLoading(false);
+            }, 1700);
+
+        }).catch(function (error) {
+            // ToasterWarning(error.message)
+            console.log(error);
+        });
+    }
+
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
         GetaddressList();
-        // StatesGet();
-        // CityGet();
         GetAllCart();
         window.scrollTo({
             top: 0,
@@ -428,24 +452,21 @@ function Checkout() {
                             <div className="row">
                                 <h4 className="mb-30">My Address</h4>
                                 <div className={AddressList.length == 0 ? 'addresses hideAddress' : 'addresses'}>
-                                    <div className="row product-grid-4">
+                                    {/* <div className="row product-grid-4"> */}
+                                    <div class="grid userAddresses">
                                         {
                                             AddressList.map((item, i) => {
                                                 return (
                                                     <>
-                                                        <div className="col-lg-1-4 col-md-4 col-12 col-sm-6">
-                                                            <div className="product-cart-wrap userAddresses mb-40 mt-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
-                                                                <div className="product-content-wrap">
-                                                                    {/* <div className="product-action-1 edit">
-                                                                        <a className="action-btn"><i className="fi-rs-pencil" onClick={(e) => {editAddress(item.id)}}/></a>
-                                                                    </div>
-                                                                    <div className="product-action-1 delete">
-                                                                        <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
-                                                                    </div> */} 
-                                                                    <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        {<label class="card">
+                                                            <input name="plan" class="radio" type="radio" value={item.id} onChange={(e) => { setShippingAddress(e.target.value) }}/>
+                                                            <span class="plan-details">
+                                                                <h2>{item.name}</h2><br/>
+                                                                <span>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</span><br/>
+                                                                <h3>Mobile: <b>{item.phone}</b></h3>
+                                                            </span>
+                                                        </label>
+                                                        }
                                                     </>
                                                 )
                                             })
@@ -454,141 +475,125 @@ function Checkout() {
                                 </div>
                             </div>
                             <div className="row">
-                                <h4 className="mb-30">Billing Details</h4>
-                                <form method="post">
-                                    <div className="row">
-                                        <div className="form-group col-lg-6">
-                                            <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
-                                        </div>
-                                        <div className="form-group col-lg-6">
-                                            <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
+                                <div className="form-group">
+                                    <div className="chek-form">
+                                        <div className="custome-checkbox">
+                                            <input className="form-check-input" type="checkbox" name="checkbox" id="addaddress" />
+                                            <label className="form-check-label label_info" data-bs-toggle="collapse" data-target="#newAddress" href="#newAddress" aria-controls="newAddress" htmlFor="addaddress"><span>Add New Address</span></label>
                                         </div>
                                     </div>
-                                    <div className="row shipping_calculator">
-                                        <div className="form-group col-lg-6">
-                                            <div className="custom_select">
-                                                {
-                                                    <Select2 className="form-control select-active" defaultValue={Country} data = {ListCountries} onChange={handleCountryChange}/>
-                                                }
+                                </div>
+                                <div id="newAddress" className="different_address collapse in">
+                                    <form method="post">
+                                        <div className="row">
+                                            <div className="form-group col-lg-6">
+                                                <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
+                                            </div>
+                                            <div className="form-group col-lg-6">
+                                                <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
                                             </div>
                                         </div>
-                                        <div className="form-group col-lg-6">
-                                            <div className="custom_select">
-                                                {
-                                                    <Select2 className="form-control select-active" defaultValue={state} data = {ListStates} onChange={handleStateChange}/>
-                                                }
+                                        <div className="row shipping_calculator">
+                                            <div className="form-group col-lg-6">
+                                                <div className="custom_select">
+                                                    {
+                                                        <Select2 className="form-control select-active" defaultValue={Country} data = {ListCountries} onChange={handleCountryChange}/>
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="form-group col-lg-6">
-                                            <div className="custom_select cityDropdown ">
-                                                {
-                                                    <Select2 className="form-control select-active" defaultValue={city} data = {ListCity} onChange={handleCityChange}/>
-                                                }
-                                            </div>
-                                            {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-
-                                            {/* <select className="form-control select-active" value={city || ""} onChange={(e) => { Setcity(e.target.value) }}>
-                                                <option value="null">Select an city...</option>
-                                                {
-                                                    ListCity.map((item, i) => {
-                                                        return (
-                                                            <>
-                                                                <option key={i} value={item.id}>{item.name}</option>
-                                                            </>
-                                                        )
-                                                    })
-                                                }
-                                            </select> */}
-                                        </div>
-                                        <div className="form-group col-lg-6">
-                                            <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        {/* <div className="form-group col-lg-6">
-                                            <input required type="text" name="cname" placeholder="Company Name" value={company || ""} onChange={(e) => { Setcompany(e.target.value) }} />
-                                        </div> */}
-                                        <div className="form-group col-lg-6">
-                                            <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
-                                        </div>
-                                        <div className="form-group col-lg-6">
-                                            <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
-                                        </div>
-                                    </div>
-                                    <div className="form-group mb-30">
-                                        <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
-                                    </div>
-                                    {/* <div className="form-group">
-                                        <div className="checkbox">
-                                            <div className="custome-checkbox">
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="createaccount" />
-                                                <label className="form-check-label label_info" data-bs-toggle="collapse" href="#collapsePassword" data-target="#collapsePassword" aria-controls="collapsePassword" htmlFor="createaccount"><span>Create an account?</span></label>
-                                            </div>
-                                        </div>
-                                    </div> */}
-                                    <div className="ship_detail">
-                                        <div className="form-group">
-                                            <div className="chek-form">
-                                                <div className="custome-checkbox">
-                                                    <input className="form-check-input" type="checkbox" name="checkbox" id="differentaddress" />
-                                                    <label className="form-check-label label_info" data-bs-toggle="collapse" data-target="#collapseAddress" href="#collapseAddress" aria-controls="collapseAddress" htmlFor="differentaddress"><span>Ship to a different address?</span></label>
+                                            <div className="form-group col-lg-6">
+                                                <div className="custom_select">
+                                                    {
+                                                        <Select2 className="form-control select-active" defaultValue={state} data = {ListStates} onChange={handleStateChange}/>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="collapseAddress" className="different_address collapse in">
-                                            <div className="row">
-                                                <div className="form-group col-lg-6">
-                                                    <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
-                                                </div>
-                                                <div className="form-group col-lg-6">
-                                                    <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
+                                        <div className="row">
+                                            <div className="form-group col-lg-6">
+                                                <div className="custom_select cityDropdown ">
+                                                    {
+                                                        <Select2 className="form-control select-active" defaultValue={city} data = {ListCity} onChange={handleCityChange}/>
+                                                    }
                                                 </div>
                                             </div>
-                                            <div className="row shipping_calculator">
-                                                <div className="form-group col-lg-6">
-                                                    <div className="custom_select">
-                                                        {
-                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div className="form-group col-lg-6">
-                                                    <div className="custom_select">
-                                                        {
-                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
-                                                        }
+                                            <div className="form-group col-lg-6">
+                                                <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="form-group col-lg-6">
+                                                <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
+                                            </div>
+                                            <div className="form-group col-lg-6">
+                                                <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
+                                            </div>
+                                        </div>
+                                        <div className="form-group mb-30">
+                                            <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
+                                        </div>
+                                        <div className="ship_detail">
+                                            <div className="form-group">
+                                                <div className="chek-form">
+                                                    <div className="custome-checkbox">
+                                                        <input className="form-check-input" type="checkbox" name="checkbox" id="differentaddress" />
+                                                        <label className="form-check-label label_info" data-bs-toggle="collapse" data-target="#collapseAddress" href="#collapseAddress" aria-controls="collapseAddress" htmlFor="differentaddress"><span>Ship to a different address?</span></label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="row">
-                                                <div className="form-group col-lg-6">
-                                                    {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
-                                                    <div className="custom_select cityDropdown">
-                                                        {
-                                                            <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
-                                                        }
+                                            <div id="collapseAddress" className="different_address collapse in">
+                                                <div className="row">
+                                                    <div className="form-group col-lg-6">
+                                                        <input type="text" required name="name" placeholder="Full name *" value={Name || ""} onChange={(e) => { SetName(e.target.value) }} />
+                                                    </div>
+                                                    <div className="form-group col-lg-6">
+                                                        <input type="text" name="billing_address" required placeholder="Address*" value={Address || ""} onChange={(e) => { SetAddress(e.target.value) }} />
                                                     </div>
                                                 </div>
-                                                <div className="form-group col-lg-6">
-                                                    <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                                <div className="row shipping_calculator">
+                                                    <div className="form-group col-lg-6">
+                                                        <div className="custom_select">
+                                                            {
+                                                                <Select2 className="form-control select-active" defaultValue="" data = {ListCountries} onChange={handleCountryChange}/>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div className="form-group col-lg-6">
+                                                        <div className="custom_select">
+                                                            {
+                                                                <Select2 className="form-control select-active" defaultValue="" data = {ListStates} onChange={handleStateChange}/>
+                                                            }
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="form-group col-lg-6">
-                                                    <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
+                                                <div className="row">
+                                                    <div className="form-group col-lg-6">
+                                                        {/* <input required type="text" name="city" placeholder="City / Town *" value={city || ""} onChange={(e) => { Setcity(e.target.value) }} /> */}
+                                                        <div className="custom_select cityDropdown">
+                                                            {
+                                                                <Select2 className="form-control select-active" defaultValue="" data = {ListCity} onChange={handleCityChange}/>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div className="form-group col-lg-6">
+                                                        <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                                    </div>
                                                 </div>
-                                                <div className="form-group col-lg-6">
-                                                    <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
+                                                <div className="row">
+                                                    <div className="form-group col-lg-6">
+                                                        <input required type="phone" maxLength={10} name="phone" placeholder="Phone *" value={PhoneNumber || ""} onChange={(e) => { SetPhoneNumber(e.target.value.replace(/\D/g, '')) }} />
+                                                    </div>
+                                                    <div className="form-group col-lg-6">
+                                                        <input required type="text" name="email" placeholder="Email address *" value={Email || ""} onChange={(e) => { SetEmail(e.target.value) }} />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="form-group mb-30">
-                                                <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
+                                                <div className="form-group mb-30">
+                                                    <textarea rows={5} placeholder="Additional information" defaultValue={""} value={AdditionalInfomation || ""} onChange={(e) => { SetAdditionalInfomation(e.target.value) }} />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <div className="col-lg-5">

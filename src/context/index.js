@@ -16,8 +16,7 @@ const AppProvider = ({ children }) => {
   // const user_id = localStorage.getItem('user_id') || random;
   const user_id = localStorage.getItem('user_id');
   const UserName = localStorage.getItem('user');
-  
-
+  const UserEmail = localStorage.getItem('userEmail');
 
   const [isLoading, setIsLoading] = useState(false);
   const [AllCategory, SetAllCategory] = useState([]);
@@ -142,7 +141,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo}}>
+    <AppContext.Provider value={{ user_id, UserEmail, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo}}>
       {children}
     </AppContext.Provider>
   );

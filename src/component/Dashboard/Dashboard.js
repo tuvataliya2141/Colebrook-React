@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import serviceIcon from '../../service-icon.svg'
 import Footer from '../Footer'
 import Header from '../Header'
 import { useAppContext } from '../../context/index'
@@ -11,6 +12,7 @@ import Loding from '../Loding';
 import CommonService from "../../services/commonService";
 import { useShippingContext } from '../../context/shippingContext';
 import Select2 from "react-select2-wrapper";
+import Moment from 'moment';
 
 function Dashboard() {
     let common = new CommonService();
@@ -40,6 +42,7 @@ function Dashboard() {
     const [OrdersList, setOrdersList] = useState([]);
     const [UserInfoList, setUserInfoList] = useState([]);
     const [userAddressesList, setUserAddressesList] = useState([]);
+    const [userSupportTicketsList, setSupportTicketsList] = useState([]);
     const [TrackOrderId, setTrackOrderId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -51,7 +54,6 @@ function Dashboard() {
     const [Country, SetCountry] = useState("");
     const [PostalCode, SetPostalcode] = useState("");
     // const [DefaultAdd, SetDefaultAddress] = useState("");
-
     
     function handleCountryChange(e) {
         SetCountry(e.target.value);
@@ -187,11 +189,25 @@ function Dashboard() {
         });
     }
 
+    function GetsupportTickets() {
+        const GetsupportTickets = `${urlConstant.User.GetTickets}/${user_id}`;
+        common.httpGet(GetsupportTickets).then(function (res) {
+            if (res.data.status != false) {
+                setSupportTicketsList(res.data.data);
+            }
+        }).catch(function (error) {
+            // ToasterWarning(error.message)
+            console.log(error);
+        });
+    }
+
     // function editAddress(address_id) {
     const editAddress = async (address_id) => {
         const GetAddress = `${urlConstant.User.UserUpdateAddresses}/`+address_id;
         await common.httpGet(GetAddress).then(function (res) {
             setAddressId(address_id);
+            SetName(res.data.data.name);
+            SetPhone(res.data.data.phone);
             SetAddress(res.data.data.address);
             SetCountry(res.data.data.country_id);
             SetPostalcode(res.data.data.postal_code);
@@ -228,7 +244,7 @@ function Dashboard() {
     const AddAddress = async () => {
         try {
             setIsLoading(true)
-            const Data = { addressId, userId: user_id, address, Country, state, city, PostalCode, phone }
+            const Data = { addressId, userId: user_id, name, phone, address, Country, state, city, PostalCode, phone }
             const AddAddress1 = `${urlConstant.User.UserAddAddresses}`;
             await axios.post(AddAddress1, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -237,6 +253,8 @@ function Dashboard() {
                 ToasterSuccess("Your address added successfully...!!");
                 GetUserAddresses();
                 setAddressId(0);
+                SetName("");
+                SetPhone("");
                 SetAddress("");
                 SetCountry("");
                 SetPostalcode("");
@@ -274,6 +292,7 @@ function Dashboard() {
             setIsLoading(false)
         }
     }
+
     useEffect(() => {
         if (!user_id) {
             navigate('/')
@@ -286,6 +305,7 @@ function Dashboard() {
         CountriesGet();
         GetUserInfo();
         GetUserAddresses();
+        GetsupportTickets();        
     }, [])
     return (
         <div>
@@ -314,7 +334,7 @@ function Dashboard() {
                                                     <a className="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i className="fi-rs-settings-sliders mr-10" />Dashboard</a>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <a className="nav-link" id="addresses-tab" data-bs-toggle="tab" href="#addresses" role="tab" aria-controls="addresses" aria-selected="false"><i className="fi-rs-settings-sliders mr-10" />My Addresses</a>
+                                                    <a className="nav-link" id="addresses-tab" data-bs-toggle="tab" href="#addresses" role="tab" aria-controls="addresses" aria-selected="false"><i className="fi-rs-marker mr-10" />My Addresses</a>
                                                 </li>
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i className="fi-rs-shopping-bag mr-10" />Orders</a>
@@ -327,6 +347,9 @@ function Dashboard() {
                                                 </li> */}
                                                 <li className="nav-item">
                                                     <a className="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i className="fi-rs-user mr-10" />Account details</a>
+                                                </li>
+                                                <li className="nav-item">
+                                                    <a className="nav-link" id="support-ticket-tab" data-bs-toggle="tab" href="#support-ticket" role="tab" aria-controls="support-ticket" aria-selected="true"><svg className='mr-10' width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_1_5)"> <path d="M17.5093 12.3392V11.2C17.5093 9.29045 16.7182 7.45909 15.3099 6.10883C13.9016 4.75857 11.9916 4 9.99998 4C8.00839 4 6.09834 4.75857 4.69009 6.10883C3.28181 7.45909 2.49066 9.29045 2.49066 11.2V12.3392C1.61553 12.7086 0.899343 13.3551 0.461982 14.1705C0.0246223 14.9858 -0.10736 15.9203 0.0881303 16.8178C0.283621 17.7153 0.794719 18.5211 1.53586 19.1004C2.277 19.6797 3.2032 19.9973 4.1594 20H5.82812V12H4.1594V11.2C4.1594 9.71477 4.77474 8.2904 5.87006 7.2402C6.96542 6.19 8.45099 5.6 9.99998 5.6C11.549 5.6 13.0346 6.19 14.1299 7.2402C15.2253 8.2904 15.8406 9.71477 15.8406 11.2V12H14.1718V18.4H10.8343V20H15.8406C16.7968 19.9973 17.723 19.6797 18.4641 19.1004C19.2053 18.5211 19.7164 17.7153 19.9119 16.8178C20.1074 15.9203 19.9754 14.9858 19.538 14.1705C19.1006 13.3551 18.3845 12.7086 17.5093 12.3392ZM4.1594 18.4C3.49553 18.4 2.85885 18.1471 2.38943 17.6971C1.92 17.247 1.65629 16.6365 1.65629 16C1.65629 15.3635 1.92 14.753 2.38943 14.3029C2.85885 13.8529 3.49553 13.6 4.1594 13.6V18.4ZM15.8406 18.4V13.6C16.5045 13.6 17.1411 13.8529 17.6106 14.3029C18.08 14.753 18.3437 15.3635 18.3437 16C18.3437 16.6365 18.08 17.247 17.6106 17.6971C17.1411 18.1471 16.5045 18.4 15.8406 18.4Z" fill="#7E7E7E" fill-opacity="0.6"/> </g> <defs> <clipPath id="clip0_1_5"> <rect width="20" height="24" fill="white"/> </clipPath> </defs> </svg>Support Tickets</a>
                                                 </li>
                                                 <li className="nav-item">
                                                     <a className="nav-link" onClick={SignOut} href="/"><i className="fi-rs-sign-out mr-10" />Logout</a>
@@ -369,7 +392,9 @@ function Dashboard() {
                                                                                         <div className="product-action-1 delete">
                                                                                             <a className="action-btn"><i className="fi-rs-trash" onClick={(e) => {deleteAddress(item.id)}}/></a>
                                                                                         </div>
-                                                                                        <h2>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</h2>
+                                                                                        <h2>{item.name}</h2>
+                                                                                        <h3><b>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</b></h3><br/>
+                                                                                        <h3><b>Mobile: </b>{item.phone}</h3>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -381,9 +406,17 @@ function Dashboard() {
                                                     </div>
                                                     <form method="post" name="address">
                                                         <div className="row">
+                                                            <div className="form-group col-md-6">
+                                                                <label>Full Name <span className="required">*</span></label>
+                                                                <input required value={name} onChange={(e) => { SetName(e.target.value) }} className="form-control" name="name" type="text" />
+                                                            </div>
+                                                            <div className="form-group col-md-6">
+                                                                <label>Phone <span className="required">*</span></label>
+                                                                <input required value={phone} onChange={(e) => { SetPhone(e.target.value) }} className="form-control" name="phone" type="text" />
+                                                            </div>
                                                             <div className="form-group col-md-12">
                                                                 <label>Address <span className="required">*</span></label>
-                                                                <input required value={address} onChange={(e) => { SetAddress(e.target.value) }} className="form-control" name="name" type="text" />
+                                                                <input required value={address} onChange={(e) => { SetAddress(e.target.value) }} className="form-control" name="address" type="text" />
                                                             </div>
                                                             <div className="form-group col-lg-6">
                                                                 <div className="custom_select">
@@ -429,51 +462,94 @@ function Dashboard() {
                                                     </form>
                                                 </div>
                                             </div>
+                                            <div className="tab-pane fade" id="support-ticket" role="tabpanel" aria-labelledby="support-ticket">
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <h3 className="mb-0">Support Ticket</h3>
+                                                    </div>
+                                                    <div className='card-body'>
+                                                        <div className="table-responsive shopping-summery">
+                                                            {
+                                                                userSupportTicketsList.length <= 0 ?                                                                    
+                                                                    <>
+                                                                        <h2>Oops, no Support Tickets in your list</h2>
+                                                                    </>
+                                                                :
+                                                                    <table className="table table-wishlist">
+                                                                        <thead>
+                                                                            <tr className="main-heading">
+                                                                                <th className='start pl-30'>Order</th>
+                                                                                <th>Date</th>
+                                                                                <th>Status</th>
+                                                                                <th>Subject</th>
+                                                                                <th className='end'>Actions</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {
+                                                                                userSupportTicketsList.map((item, i) => {
+                                                                                    return (
+                                                                                        <>
+                                                                                            <tr key={i}>
+                                                                                                <td className='pl-30'>#{item.code}</td>
+                                                                                                <td>{Moment(item.created_at).format('DD-MM-YYYY')}</td>
+                                                                                                <td>{item.status}</td>
+                                                                                                <td>{item.subject}</td>
+                                                                                                <td><Link to={`/TicketsDetail?id=${item.id}`}>View</Link></td>
+                                                                                            </tr>
+                                                                                        </>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                            }
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
                                             <div className="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                                                 <div className="card">
                                                     <div className="card-header">
                                                         <h3 className="mb-0">Your Orders</h3>
                                                     </div>
                                                     <div className="card-body">
-                                                        <div className="table-responsive">
-                                                            <table className="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Order</th>
-                                                                        <th>Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Total</th>
-                                                                        <th>Actions</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    {
-                                                                        OrdersList == '' ?
-                                                                            <>
-                                                                                <tr >
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                    <td><h2>Oops, no Order in your list</h2></td>
-                                                                                    <td></td>
-                                                                                    <td></td>
-                                                                                </tr></>
-                                                                            :
-                                                                            OrdersList.map((item, i) => {
-                                                                                return (
-                                                                                    <>
-                                                                                        <tr key={i}>
-                                                                                            <td>#{item.id}</td>
-                                                                                            <td>{item.delivery_history_date}</td>
-                                                                                            <td>{item.delivery_status}</td>
-                                                                                            <td>₹{item.grand_total}</td>
-                                                                                            <td><Link to={`/OrderDetail?id=${item.id}`}>View</Link></td>
-                                                                                        </tr>
-                                                                                    </>
-                                                                                )
-                                                                            })
-                                                                    }
-                                                                </tbody>
-                                                            </table>
+                                                        <div className="table-responsive shopping-summery">
+                                                            {
+                                                                OrdersList == '' ?
+                                                                    <>
+                                                                        <h2>Oops, no Order in your list</h2>
+                                                                    </>
+                                                                :
+                                                                    <table className="table table-wishlist">
+                                                                        <thead>
+                                                                            <tr className="main-heading">
+                                                                                <th className='start pl-30'>Order</th>
+                                                                                <th>Date</th>
+                                                                                <th>Status</th>
+                                                                                <th>Total</th>
+                                                                                <th className='end'>Actions</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {
+                                                                                OrdersList.map((item, i) => {
+                                                                                    return (
+                                                                                        <>
+                                                                                            <tr key={i}>
+                                                                                                <td className='pl-30'>#{item.id}</td>
+                                                                                                <td>{Moment(item.delivery_history_date).format('DD-MM-YYYY')}</td>
+                                                                                                <td>{item.delivery_status}</td>
+                                                                                                <td>₹{item.grand_total}</td>
+                                                                                                <td><Link to={`/OrderDetail?id=${item.id}`}>View</Link></td>
+                                                                                            </tr>
+                                                                                        </>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>
