@@ -1,5 +1,6 @@
 export const config = {
    // apiURL: 'https://colebrooknow.com/admin/api/v2/',
+   // apiURL: 'https://kingoodie.com/admin/api/v2/',
    apiURL: 'http://localhost/colebrook-admin/api/v2/',
 
    // shipping api key

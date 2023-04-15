@@ -13621,6 +13621,7 @@ footer .hotline img {
 }
 .message-left {
   text-align: left;
+  margin: 30px 0;
 }
 .message-left .me {
   display: flex;
@@ -13657,6 +13658,7 @@ footer .hotline img {
 }
 .message-right {
   text-align: right;
+  margin: 30px 0;
 }
 .message-right .me {
   display: flex;
