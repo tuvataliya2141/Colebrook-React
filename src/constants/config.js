@@ -14,7 +14,7 @@ export const config = {
    RazorPayKey: 'rzp_test_ii0W1QDV7ASF82',
 
    //Stripe key
-   StripeKey: 'pk_test_51M5QJeSAOFagUnsl0K7aPh4aI9Gw0KHaWzj6RgaIhVtiq7dAcgWcE89paSHwRB8Vv4ojNmsHb1zFPkFiFWjAjL8c001uprsgcq',
+   StripeKey: 'pk_test_51McFL8SCjJTE2JxUqfahfv5phYnyHAgscvNwftrvzjNZ90OcPDeWgoZPfUpUxe0i2iMfKx2jy14I7jDAUrqUuSNW00FckS1oP6',
 
    // live google login
    clientId: "69098547658-rh80vkf9mr56bgvhv21bpou1h4r7ritj.apps.googleusercontent.com"

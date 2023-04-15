@@ -37,6 +37,7 @@ const urlConstant = {
   Checkout: { 
     PostCheckout: `${apiURL}checkout`,
     PlaceOrder: `${apiURL}order/store`,
+    stripeCharge: `${apiURL}stripe/charge`,
     GetPaymentTypes: `${apiURL}payment-types` ,
     Countries : `${apiURL}countries`,
     States : `${apiURL}states-by-country`,

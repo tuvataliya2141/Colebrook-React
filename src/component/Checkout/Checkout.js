@@ -46,8 +46,9 @@ function Checkout() {
     const [show, setShow] = useState(false);
     const [success, setSuccess] = useState(false);
     const [orderID, setOrderID] = useState(false);
-
+    
     // Stripe
+    const [showStripe, setShowStripe] = useState(false);
     const [name, setname] = useState(100);
 
     const SubmitHandler = async (e) => {
@@ -73,7 +74,7 @@ function Checkout() {
             setPaymentTypes('Razorpay');
         } else
             if (PaymentTypes == "Stripe") {
-                alert("Stripe");
+                setShowStripe(true);
                 setPaymentTypes('Stripe');
             } else {
                 if (PaymentTypes == "Paypal") {
@@ -314,7 +315,7 @@ function Checkout() {
                     description: "Kingoodie - Order",
                     amount: {
                         currency_code: "USD",
-                        value: (Sub_Total_price - CouponResult) / 80,
+                        value: ((Sub_Total_price - CouponResult) / 81) * 100,
                     },
                 },
             ],
@@ -340,12 +341,33 @@ function Checkout() {
 
 
     //Stripe
-    const priceForStripe = name * 100;
+    const priceForStripe = (Sub_Total_price - CouponResult) * 100;
     const publishableKey = config.StripeKey;
 
-    const onToken = (token, payment_methods) => {
-        console.log(token);
-        alert('Payment Succesful!');
+    const onToken = async (token, payment_methods) => {
+        try {
+            console.log(token);
+            console.log(token.id);
+            const Data = { token_id: token.id, amount: priceForStripe };
+            const stripeChargeUrl = `${urlConstant.Checkout.stripeCharge}`;
+            axios.post(stripeChargeUrl, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                console.log(res);
+                if(res.data.success == false) {
+                    ToasterError("Please try with different payment gateway");
+                    setShowStripe(false);
+                } else {
+                    ToasterSuccess("Order Placed Successfully...!!");
+                    // window.location.href = '/Dashboard';
+                }
+                setIsLoading(false);
+            }).catch(
+                console.log("error")
+            )
+          } catch (error) {
+            console.error(error);
+          }
     };
 
     function placeOrder(payment_id = null) {
@@ -688,12 +710,13 @@ function Checkout() {
                             </div>
                             <div className="payment ml-30">
                                 <h4 className="mb-30">Payment</h4>
+                                <label style={{ color: 'red' }}>Please use <b>Razorpay</b> Payment gateway if you are from india.</label>
                                 <div className="payment_option">
                                     {/* <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios3" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
                                     </div> */}
-                                    <div className="custome-radio">
+                                    <div className="custome-radio" style={{ display: show == true || showStripe == true ? "none" : "" }}>
                                         <input className="form-check-input" required type="radio" name="payment_option" id="cod" value="cod" checked={payment_method === 'cod'} onChange={(e) => { setpayment_method(e.target.value) }} />
                                         <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                                     </div>
@@ -727,7 +750,23 @@ function Checkout() {
                                     ) : null}
                                 </PayPalScriptProvider>
 
-                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>
+                                {showStripe ? (
+                                    <StripeCheckout
+                                        label='Pay Now'
+                                        name='Colebrooknow'
+                                        billingAddress
+                                        shippingAddress
+                                        image={Logo}
+                                        description={`Your total is  ₹${Sub_Total_price - CouponResult}`}
+                                        amount={priceForStripe}
+                                        currency='INR'
+                                        panelLabel='stripe'
+                                        token={onToken}
+                                        stripeKey={publishableKey}
+                                    />
+                                ) : null}
+
+                                <a className="btn btn-fill-out btn-block mt-30" style={{ display: show == true || showStripe == true ? "none" : "" }} onClick={SubmitHandler}>Place an Order<i className="fi-rs-sign-out ml-15" /></a>                                                                        
 
                                 {/* <a className="btn btn-fill-out btn-block mt-30">
 
