@@ -19,7 +19,8 @@ function OrderDetail() {
 
     const [List, setList] = useState([]);
     const [subject, Setsubject] = useState();
-    const [attachments, Setattachments] = useState("");
+    const [attachments, Setattachments] = useState('');
+    const [file, SetFile] = useState([]);
     const [product_id, Setproduct_id] = useState("");
     const [order_id, SetOrder_id] = useState("");
     const [OrderDetails, SetOrderDetails] = useState([]);
@@ -36,29 +37,32 @@ function OrderDetail() {
     const [ShippingPhone, SetShippingPhone] = useState("");
     const [PaymentStatus, SetPaymentStatus] = useState("");
 
+    const handleFileChange = (e) => {
+        SetFile(e.target.files[0]);
+        Setattachments(e.target.value);
+    };
+
     const SubmitHandler = async (e) => {
         e.preventDefault();
-        if (!subject || !attachments || !product_id || !details) {
-            console.log("SUBJ:- ", subject);
-            console.log("SUBJ:- ", attachments);
-            console.log("SUBJ:- ", product_id);
-            console.log("SUBJ:- ", details);
-            console.log("SUBJ:- ", localStorage.getItem('access_token'));
+        if (!subject || !file || !product_id || !details) {
             ToasterWarning('Please enter all the details')
             return
         }
         try {
-            const data = { subject, attachments, product_id, details };
+            const data = { subject, attachments: file, product_id, details };
             const ContactData = `${urlConstant.Contact.PostContact}`;
             await axios.post(ContactData, data, {
-                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+                headers: { 
+                    "Authorization": `Bearer ${localStorage.getItem('access_token')}`,
+                    "Content-Type": "multipart/form-data"
+                }
               }).then(() => {
                 ToasterSuccess("Success...!!");
                 Setsubject('');
                 Setproduct_id('');
                 Setdetails('');
-                Setattachments('');
-                setIsLoading(false)
+                Setattachments(null);
+                setIsLoading(false);
             })
         }
         catch (error) {
@@ -221,7 +225,7 @@ function OrderDetail() {
                                                         <div className="col-lg-12 col-md-12">
                                                             <div className="input-style mb-20">
                                                                 <h6 style={{ padding:"10px" }}>Attachments :</h6>
-                                                                <input name="attachments" type="file" value={attachments || ""} onChange={(e) => { Setattachments(e.target.value) }} style={{padding:"18px" }} />
+                                                                <input name="attachments" type="file" value={attachments || ""} onChange={handleFileChange} style={{padding:"18px" }} />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12 col-md-12">
