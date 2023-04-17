@@ -23,6 +23,7 @@ function OrderDetail() {
     const [file, SetFile] = useState([]);
     const [product_id, Setproduct_id] = useState("");
     const [order_id, SetOrder_id] = useState("");
+    const [orderMainId, SetOrderMainId] = useState("");
     const [OrderDetails, SetOrderDetails] = useState([]);
     const [productDetails, SetProductDetails] = useState("");
     const [details, Setdetails] = useState("");
@@ -82,6 +83,7 @@ function OrderDetail() {
             }).then((res) => {
                 SetOrderDetails(res.data.data);
                 SetOrder_id(res.data.data.code);
+                SetOrderMainId(res.data.data.id);
                 OrderSummery();
                 setIsLoading(false);
 
@@ -140,8 +142,13 @@ function OrderDetail() {
                 <div className="page-content pt-50">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-12 mb-40 d-flex align-items-center">
+                            <div className="col-lg-9 mb-40 d-flex align-items-center">
                                 <h1 className="heading-2 mb-10 mr-30">Order </h1><h5>#{order_id}</h5>
+                            </div>
+                            <div className="col-lg-3 mb-40 d-flex align-items-center">
+                            <a className="btn btn-fill-out btn-block mt-30" onClick={() => Setproduct_id(orderMainId)} data-bs-toggle="collapse" data-target="#getSupport" href="#getSupport" aria-controls="getSupport" htmlFor="getSupport">
+                                                Cancel Order
+                                            </a>
                             </div>
                         </div>
                         <div className="row">
@@ -158,7 +165,7 @@ function OrderDetail() {
                                                             <th scope="col"  style={{ textAlign: 'center' }}>Unit Price</th>
                                                             <th scope="col"  style={{ textAlign: 'center' }}>Quantity</th>
                                                             <th scope="col"  style={{ textAlign: 'center' }}>Subtotal</th>
-                                                            <th scope="col" className="end"  style={{ textAlign: 'center' }}>Support</th>
+                                                            {/* <th scope="col" className="end"  style={{ textAlign: 'center' }}>Support</th> */}
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -201,9 +208,9 @@ function OrderDetail() {
                                                                                 <td className="price text-center" data-title="Price">
                                                                                     <h4 className="text-brand">₹ {total}</h4>
                                                                                 </td>
-                                                                                <td className="action text-center" data-title="Remove">
+                                                                                {/* <td className="action text-center" data-title="Remove">
                                                                                     <a className="text-body" onClick={() => Setproduct_id(item.product_id)} data-bs-toggle="collapse" data-target="#getSupport" href="#getSupport" aria-controls="getSupport" htmlFor="getSupport"><img src={serviceImage} alt="Contact Support"  style={{ width: '25%', border: 'none' }}/></a>
-                                                                                </td>
+                                                                                </td> */}
                                                                             </tr>
                                                                         </>
                                                                     )

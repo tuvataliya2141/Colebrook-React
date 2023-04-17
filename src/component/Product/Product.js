@@ -22,7 +22,7 @@ function Product() {
   const id = useParams();
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost, ApplyCoupon } = useAppContext();
-  const { GetPinCode } = useShippingContext();
+  // const { GetPinCode } = useShippingContext();
 
 
   const [List, setList] = useState([]);
@@ -38,6 +38,8 @@ function Product() {
   const [CouponCode, SetCouponCode] = useState('');
   const [PinCode, SetPinCode] = useState('');
   const [message, SetMessage] = useState('');
+  const [PinMessage, setPinMessage] = useState(null);
+  
   
 
   function GetSingelProducts() {
@@ -122,6 +124,32 @@ function Product() {
     slidesToShow: 3,
     slidesToScroll: 3
   };
+
+  function GetPinCode(PinCode) {
+    const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
+    const Data = {
+      "data": {
+        "pincode": PinCode,
+        "access_token": config.access_token,
+        "secret_key": config.secret_key
+      }
+    }
+    axios.post(GetPinCode1, Data).then(function (res) {
+      const delhiveryArray = Object.values(res.data.data[PinCode].delhivery);
+      setPinMessage(null);
+      if (delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'Y') {
+        setPinMessage('This product is available for courier delivery at '+PinCode+' location.');
+      } else if(delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'N'){
+        setPinMessage('This product is not available for cash on drlivary.');
+      } else {
+        setPinMessage('This product is not available for courier delivery.');
+      } 
+      console.log(delhiveryArray);
+    })
+    .catch(function (error) {
+      ToasterError("Error");
+    });
+  }
 
   useEffect(() => {
     window.scrollTo({
@@ -296,6 +324,9 @@ function Product() {
                               <input type="text" placeholder="Enter Pincode..." value={PinCode} onChange={(e) => { SetPinCode(e.target.value) }} style={{ width: "170px" }} />
                               <button className="btn btn-md" onClick={() => { GetPinCode(PinCode) }}>Pincode</button>
                             </div>
+                          </div>
+                          <div className="attr-detail attr-size mb-20">
+                            {PinMessage && <div style={{ fontSize: "14px", color: "red" }}>{PinMessage}</div>}
                           </div>
 
                           <div class="font-xs">

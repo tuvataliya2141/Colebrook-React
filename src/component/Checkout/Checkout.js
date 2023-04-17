@@ -41,6 +41,8 @@ function Checkout() {
     const [GetCart, SetGetCart] = useState([]);
     const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
     const [AddressList, setAddressList] = useState([]);
+    const [PinMessage, setPinMessage] = useState(null);
+    const [Showcodbtn, setshowcodbtn] = useState(0);
 
     //PayPal
     const [show, setShow] = useState(false);
@@ -419,6 +421,35 @@ function Checkout() {
         });
     }
 
+    function GetPinCode(PinCode) {
+        const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
+        const Data = {
+          "data": {
+            "pincode": PinCode,
+            "access_token": config.access_token,
+            "secret_key": config.secret_key
+          }
+        }
+        console.log(PinCode);
+        axios.post(GetPinCode1, Data).then(function (res) {
+          const delhiveryArray = Object.values(res.data.data[PinCode].delhivery);
+          setPinMessage(null);
+          setshowcodbtn(0);
+          if (delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'Y') {
+            setPinMessage('This product is available for courier delivery at '+PinCode+' location.');
+          } else if(delhiveryArray[0] == 'Y' && delhiveryArray[1] == 'N'){
+            setshowcodbtn(1);
+            setPinMessage('This product is not available for cash on drlivary.');
+          } else {
+            setPinMessage('This product is not available for courier delivery.');
+          } 
+          console.log(delhiveryArray);
+        })
+        .catch(function (error) {
+          ToasterError("Error");
+        });
+      }
+
     useEffect(() => {
         GetPaymentTypes();
         CountriesGet();
@@ -481,7 +512,7 @@ function Checkout() {
                                                 return (
                                                     <>
                                                         {<label class="card">
-                                                            <input name="plan" class="radio" type="radio" value={item.id} onChange={(e) => { setShippingAddress(e.target.value) }}/>
+                                                            <input name="plan" class="radio" type="radio" onClick={() => { GetPinCode(item.postal_code) }} value={item.id} onChange={(e) => { setShippingAddress(e.target.value) }}/>
                                                             <span class="plan-details">
                                                                 <h2>{item.name}</h2><br/>
                                                                 <span>{item.address}, {item.city_name}, {item.state_name}, {item.country_name} - {item.postal_code}</span><br/>
@@ -495,6 +526,7 @@ function Checkout() {
                                         }
                                     </div>
                                 </div>
+                                {PinMessage && <div style={{ fontSize: "14px", color: "red" }}>{PinMessage}</div>}
                             </div>
                             <div className="row">
                                 <div className="form-group">
@@ -540,7 +572,8 @@ function Checkout() {
                                                 </div>
                                             </div>
                                             <div className="form-group col-lg-6">
-                                                <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                                {PinMessage && <div style={{ fontSize: "14px", color: "red" }}>{PinMessage}</div>}
+                                                <input required type="text" name="zipcode" onBlur={() => { GetPinCode(PostCode) }} placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
                                             </div>
                                         </div>
                                         <div className="row">
@@ -598,7 +631,8 @@ function Checkout() {
                                                         </div>
                                                     </div>
                                                     <div className="form-group col-lg-6">
-                                                        <input required type="text" name="zipcode" placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
+                                                        {PinMessage && <div style={{ fontSize: "14px", color: "red" }}>{PinMessage}</div>}
+                                                        <input required type="text" name="zipcode" onBlur={() => { GetPinCode(PostCode) }} placeholder="Postcode / ZIP *" value={PostCode || ""} onChange={(e) => { SetPostCode(e.target.value) }} />
                                                     </div>
                                                 </div>
                                                 <div className="row">
@@ -715,11 +749,16 @@ function Checkout() {
                                     {/* <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="exampleRadios3" defaultChecked />
                                         <label className="form-check-label" htmlFor="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">Direct Bank Transfer</label>
-                                    </div> */}
-                                    <div className="custome-radio" style={{ display: show == true || showStripe == true ? "none" : "" }}>
-                                        <input className="form-check-input" required type="radio" name="payment_option" id="cod" value="cod" checked={payment_method === 'cod'} onChange={(e) => { setpayment_method(e.target.value) }} />
-                                        <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
-                                    </div>
+                                    </div> Showcodbtn */}
+                                    {
+                                        Showcodbtn == 0 ? 
+                                        <div className="custome-radio" style={{ display: show == true || showStripe == true ? "none" : "" }}>
+                                            <input className="form-check-input" required type="radio" name="payment_option" id="cod" value="cod" checked={payment_method === 'cod'} onChange={(e) => { setpayment_method(e.target.value) }} />
+                                            <label className="form-check-label" htmlFor="cod" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
+                                        </div> 
+                                        : null
+                                    }
+                                    
                                     <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="online" value="online" checked={payment_method === 'online'} onChange={(e) => { setpayment_method(e.target.value) }} />
                                         <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>

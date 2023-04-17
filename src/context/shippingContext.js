@@ -7,28 +7,14 @@ import { ToastContainer } from "react-toastify";
 import Loding from "../component/Loding";
 import { config } from '../constants/config'
 const shippingContext = createContext();
+// const [PinMessage, setPinMessage] = useState('');
+
 
 const ShippingProvider = ({ children }) => {
   let common = new CommonService();
 
 
-  function GetPinCode(PinCode) {
-    const GetPinCode1 = `${urlConstant.ShippingApi.Pincode}`;
-    const Data = {
-      "data": {
-        "pincode": PinCode,
-        "access_token": config.access_token,
-        "secret_key": config.secret_key
-      }
-    }
-    axios.post(GetPinCode1, Data).then(function (res) {
-      console.log(res.data);
-      console.log(res.data)
-    })
-      .catch(function (error) {
-        ToasterError("Error");
-      });
-  }
+  
 
 
   function CreateOrder() {
@@ -207,7 +193,7 @@ const ShippingProvider = ({ children }) => {
 
 
   return (
-    <shippingContext.Provider value={{ GetPinCode, CreateOrder, TrackOrder, PrintShipmnet, Manifest, OrderCancel }}>
+    <shippingContext.Provider value={{ CreateOrder, TrackOrder, PrintShipmnet, Manifest, OrderCancel }}>
       {children}
     </shippingContext.Provider>
   );
