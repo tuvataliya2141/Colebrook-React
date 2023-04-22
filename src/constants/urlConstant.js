@@ -46,7 +46,8 @@ const urlConstant = {
   Dashboard:{
     OrdersList:`${apiURL}order/userOrderList`,
     OrderDetail:`${apiURL}order/userOrderDetail`,
-    OrderSummary:`${apiURL}order/userOrderSummary`
+    OrderSummary:`${apiURL}order/userOrderSummary`,
+    TrackOrderData:`${apiURL}track-order`
   },
   ApplyCoupon: { 
     PostApplyCoupon: `${apiURL}coupon-apply`,

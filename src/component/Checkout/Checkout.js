@@ -38,11 +38,13 @@ function Checkout() {
     const [Paymentsuccess, setPaymentsuccess] = useState("");
     const [PaymentStatus, setPaymentStatus] = useState('unpaid');
     const [payment_method, setpayment_method] = useState('cod');
+    const [PaypalPaymentId, setPaypalPaymentId] = useState(null);
     const [GetCart, SetGetCart] = useState([]);
     const [CouponResult, SetCouponResult] = useState(localStorage.getItem('discount'));
     const [AddressList, setAddressList] = useState([]);
     const [PinMessage, setPinMessage] = useState(null);
     const [Showcodbtn, setshowcodbtn] = useState(0);
+    const [PaymentOrderId, setPaymentOrderId] = useState(null);
 
     //PayPal
     const [show, setShow] = useState(false);
@@ -74,15 +76,21 @@ function Checkout() {
         if (PaymentTypes == "Razorpay") {
             openPayModal()
             setPaymentTypes('Razorpay');
+            document.getElementById('Stripe').style.display = "none";
+            document.getElementById('Paypal').style.display = "none";
         } else
             if (PaymentTypes == "Stripe") {
                 setShowStripe(true);
                 setPaymentTypes('Stripe');
+                document.getElementById('Razorpay').style.display = "none";
+                document.getElementById('Paypal').style.display = "none";
             } else {
                 if (PaymentTypes == "Paypal") {
                     // alert("Paypal");
                     setShow(true);
                     setPaymentTypes('Paypal');
+                    document.getElementById('Razorpay').style.display = "none";
+                    document.getElementById('Stripe').style.display = "none";
                 }
             }
         try {
@@ -279,8 +287,11 @@ function Checkout() {
                     setPaymentStatus('paid');
                 }, 500);
                 setTimeout(() => {
+                    console.log(response.razorpay_payment_id);
+                    setPaymentOrderId(response.razorpay_payment_id);
                     placeOrder(response.razorpay_payment_id);
                 }, 1700);
+                
             }
 
         },
@@ -310,6 +321,7 @@ function Checkout() {
     }, []);
 
     //PayPal
+    var paypalPrice = (Sub_Total_price - CouponResult) / 81;
     const createOrder = (data, actions) => {
         return actions.order.create({
             purchase_units: [
@@ -317,7 +329,8 @@ function Checkout() {
                     description: "Kingoodie - Order",
                     amount: {
                         currency_code: "USD",
-                        value: ((Sub_Total_price - CouponResult) / 81) * 100,
+                        value: paypalPrice.toFixed(2),
+                        // value: Sub_Total_price - CouponResult,
                     },
                 },
             ],
@@ -328,16 +341,14 @@ function Checkout() {
     };
     const onApprove = (data, actions) => {
         return actions.order.capture().then(function (details) {
-            console.log("DETAILS:- ", details);
-            const { payer } = details;
             setSuccess(true);
+            console.log(details);
+            setPaypalPaymentId(details.purchase_units[0].payments.captures[0].id);
         });
     };
     useEffect(() => {
         if (success) {
-            alert("Payment successful!!");            
-            console.log('Order successful . Your order id is--', orderID);
-            // placeOrder();
+            placeOrder(PaypalPaymentId);
         }
     }, [success]);
 
@@ -374,7 +385,15 @@ function Checkout() {
 
     function placeOrder(payment_id = null) {
         setIsLoading(true)
-        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        var payment_order_id = null;
+        if(PaymentTypes == "Razorpay"){
+            var payment_order_id = PaymentOrderId;
+        }else if(PaymentTypes == "Stripe"){
+
+        }else if(PaymentTypes == "Paypal"){
+            var payment_order_id = PaypalPaymentId;
+        }
+        const Data = { payment_order_id, CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
         const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
         axios.post(PlaceOrderUrl, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -769,9 +788,9 @@ function Checkout() {
                                         {PaymentTypesList.map((item, i) => {
                                             return (
                                                 <>
-                                                    <div style={{ padding: "0px" }} key={i}>
+                                                    <div style={{ padding: "0px" }} key={i} id={item.name}>
                                                         <a>
-                                                            <img className="mr-15" src={item.image} alt={item.name} width="90px" onClick={(e) => { pay(e) }} style={{ border: PaymentTypes == item.name ? "3px solid black" : "", padding: "2px" }} />
+                                                            <img className="mr-15" src={item.image} alt={item.name} title={PaymentTypes} width="90px" onClick={(e) => { pay(e) }} style={{ border: PaymentTypes == item.name ? "3px solid black" : "", padding: "2px" }} />
                                                         </a>
                                                     </div>
                                                 </>
@@ -779,7 +798,7 @@ function Checkout() {
                                         })}
                                     </div> : null
                                 }
-                                <PayPalScriptProvider options={{ "client-id": config.PayPal_client_Id }}>
+                                <PayPalScriptProvider options={{ "client-id": config.PayPal_client_Id }} >
                                     {show ? (
                                         <PayPalButtons
                                             style={{ layout: "vertical" }}

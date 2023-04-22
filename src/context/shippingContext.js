@@ -111,6 +111,7 @@ const ShippingProvider = ({ children }) => {
 
   function TrackOrder(id) {
     const TrackOrder1 = `${urlConstant.ShippingApi.TrackOrder}`;
+    console.log(id);
     const Data = {
       "data": {
         "awb_number_list": id,

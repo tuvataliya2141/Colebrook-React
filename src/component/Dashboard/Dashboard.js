@@ -12,12 +12,13 @@ import Loding from '../Loding';
 import CommonService from "../../services/commonService";
 import { useShippingContext } from '../../context/shippingContext';
 import Select2 from "react-select2-wrapper";
+import {config} from '../../constants/config'
 import Moment from 'moment';
 
 function Dashboard() {
     let common = new CommonService();
     const { UserName, user_id } = useAppContext();
-    const { TrackOrder } = useShippingContext();
+    // const { TrackOrder } = useShippingContext();
 
     const navigate = useNavigate()
     const SignOut = () => {
@@ -291,6 +292,38 @@ function Dashboard() {
             // ToasterError("Error")
             setIsLoading(false)
         }
+    }
+
+    function TrackOrder(awd_no) {
+        const TrackOrder1 = `${urlConstant.ShippingApi.TrackOrder}`;
+        console.log(awd_no);
+        const Data = {
+            "data": {
+                "awb_number_list": awd_no,
+                "access_token": config.access_token,
+                "secret_key": config.secret_key
+            }
+        }
+        axios.post(TrackOrder1, Data).then(function (res) {
+            const setVal = '901234567109';
+            // const trackArray = Object.values(res.data.data);
+            console.log(res.data.data[setVal]);
+        })
+        // axios.post(GetPinCode1, Data).then(function (res) {
+        //   const delhiveryArray = Object.values(res.data.data[PinCode].delhivery);
+        //   setPinMessage(null);
+        //   if (delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'Y') {
+        //     setPinMessage('This product is available for courier delivery at '+PinCode+' location.');
+        //   } else if(delhiveryArray[0] == 'Y' || delhiveryArray[1] == 'N'){
+        //     setPinMessage('This product is not available for cash on drlivary.');
+        //   } else {
+        //     setPinMessage('This product is not available for courier delivery.');
+        //   } 
+        //   console.log(delhiveryArray);
+        // })
+        .catch(function (error) {
+          ToasterError("Error");
+        });
     }
 
     useEffect(() => {
@@ -573,6 +606,50 @@ function Dashboard() {
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div className="card">
+                                                    <div className="card-header">
+                                                        <h3 className="mb-0">Your Orders</h3>
+                                                    </div>
+                                                    {/* <div className="card-body">
+                                                        <div className="table-responsive shopping-summery">
+                                                            {
+                                                                OrdersList == '' ?
+                                                                    <>
+                                                                        <h2>Oops, no Order in your list</h2>
+                                                                    </>
+                                                                :
+                                                                    <table className="table table-wishlist">
+                                                                        <thead>
+                                                                            <tr className="main-heading">
+                                                                                <th className='start pl-30'>Current Status</th>
+                                                                                <th>Date</th>
+                                                                                <th>Status</th>
+                                                                                <th>Total</th>
+                                                                                <th className='end'>Actions</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            {
+                                                                                OrdersList.map((item, i) => {
+                                                                                    return (
+                                                                                        <>
+                                                                                            <tr key={i}>
+                                                                                                <td className='pl-30'>#{item.id}</td>
+                                                                                                <td>{Moment(item.delivery_history_date).format('DD-MM-YYYY')}</td>
+                                                                                                <td>{item.delivery_status}</td>
+                                                                                                <td>₹{item.grand_total}</td>
+                                                                                                <td><Link to={`/OrderDetail?id=${item.id}`}>View</Link></td>
+                                                                                            </tr>
+                                                                                        </>
+                                                                                    )
+                                                                                })
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                            }
+                                                        </div>
+                                                    </div> */}
                                                 </div>
                                             </div>
                                             <div className="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">

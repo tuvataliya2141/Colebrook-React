@@ -121,7 +121,8 @@ console.log(HomeCard[0]?.title);
                                     <Link to="/ShopProduct">
                                       <button className="slider-main-button">
                                         <span className="img-span">
-                                          <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" />
+                                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                                          {/* <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" /> */}
                                         </span>
                                         <span className="text-span">
                                           SHOP NOW !
