@@ -145,10 +145,10 @@ function OrderDetail() {
                             <div className="col-lg-9 mb-40 d-flex align-items-center">
                                 <h1 className="heading-2 mb-10 mr-30">Order </h1><h5>#{order_id}</h5>
                             </div>
-                            <div className="col-lg-3 mb-40 d-flex align-items-center">
-                            <a className="btn btn-fill-out btn-block mt-30" onClick={() => Setproduct_id(orderMainId)} data-bs-toggle="collapse" data-target="#getSupport" href="#getSupport" aria-controls="getSupport" htmlFor="getSupport">
-                                                Cancel Order
-                                            </a>
+                            <div className="col-lg-3 mb-40 d-flex align-items-center justify-content-end">
+                                <a className="btn btn-fill-out btn-block" onClick={() => Setproduct_id(orderMainId)} data-bs-toggle="collapse" data-target="#getSupport" href="#getSupport" aria-controls="getSupport" htmlFor="getSupport">
+                                    Cancel Order
+                                </a>
                             </div>
                         </div>
                         <div className="row">
@@ -252,11 +252,6 @@ function OrderDetail() {
                                                 <div className="table-responsive">
                                                     <table className="table no-border">
                                                         <tbody>
-                                                            <tr>
-                                                                <td scope="col" colSpan={2}>
-                                                                    <div className="divider-2 mt-10 mb-10" />
-                                                                </td>
-                                                            </tr>
                                                             <tr>
                                                                 <td className="cart_total_label">
                                                                     <h6 className="text-muted">Shipping Information</h6>
