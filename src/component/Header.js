@@ -160,6 +160,13 @@ function Header({ Crat }) {
           <div className='header-bottom-bg-color1'>
             <div className="container">
               <div className="header-wrap header-space-between position-relative">
+                <div className="header-action-icon-2 d-block d-lg-none">
+                  <div className="burger-icon burger-icon-white" onClick={(e) => { settoggle("sidebar-visible") }}>
+                    <span className="burger-icon-top" />
+                    <span className="burger-icon-mid" />
+                    <span className="burger-icon-bottom" />
+                  </div>
+                </div>
                 <div className="logo logo-width-1 d-block d-lg-none">
                   <Link to="/"><img src={Logo} alt="logo" /></Link>
                 </div>
@@ -236,13 +243,13 @@ function Header({ Crat }) {
                   <img src="assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
                   <p>1900 - 888<span>24/7 Support Center</span></p>
                 </div>
-                <div className="header-action-icon-2 d-block d-lg-none">
+                {/* <div className="header-action-icon-2 d-block d-lg-none">
                   <div className="burger-icon burger-icon-white" onClick={(e) => { settoggle("sidebar-visible") }}>
                     <span className="burger-icon-top" />
                     <span className="burger-icon-mid" />
                     <span className="burger-icon-bottom" />
                   </div>
-                </div>
+                </div> */}
                 <div className="header-action-right d-block d-lg-none">
                   <div className="header-action-2">
                     <div className="header-action-icon-2">

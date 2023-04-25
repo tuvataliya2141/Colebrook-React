@@ -43,7 +43,7 @@ function BestSellers() {
   return (
     <div>
       {isLoading ? <Loding /> : BestSellers}
-      <section className="section-padding pb-5">
+      <section className="section-padding pb-5 best-seller-sec">
         <div className="container">
           <div className="section-title wow animate__animated animate__fadeIn">
             <h3 className>Best Sellers</h3>
@@ -120,7 +120,7 @@ function BestSellers() {
                             <div className="product-card-bottom">
 
 
-                              <Link to={`/${item.slug}`} style={{ width: "260px" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
+                              <Link to={`/${item.slug}`} style={{ width: "100%" }} ><a className="btn1 w-100 hover-up" ><i className="fi-rs-shopping-cart mr-5" />Add To Cart</a></Link>
 
                             </div>
                           </div>
