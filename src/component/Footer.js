@@ -18,10 +18,14 @@ function Footer() {
     const { InstagramLink } = useAppContext();
     const { YoutubeLink } = useAppContext();
     const { LinkedinLink } = useAppContext();
+    const { FooterAddress } = useAppContext();
+    const { FooterPhone } = useAppContext();
+    const { FooterEmail } = useAppContext();
+    const { FooterDesc } = useAppContext();
     let common = new CommonService();
     const [email, SetEmail] = useState();
     const [isLoading, setIsLoading] = useState(false);
-
+    
     const submit = (e) => {
         e.preventDefault();
         if (!email) {
@@ -78,7 +82,7 @@ function Footer() {
                                 <div className="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp" data-wow-delay={0}>
                                     <div className="logo mb-30">
                                         <a className="mb-15"><img src={Logo} alt="logo" /></a>
-                                        <p className="font-lg text-heading">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        <p className="font-lg text-heading">{FooterDesc}</p>
                                     </div>
                                 </div>
                             </div>
@@ -118,10 +122,10 @@ function Footer() {
                                 <img className src="assets/imgs/theme/payment-method.png" alt="/" />
                                 <hr />
                                 <ul className="contact-infor">
-                                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/" /><strong>Address: </strong> <span>5171 W Campbell Ave</span></li><li style={{ marginLeft: "20px" }}> undefined Kent, Utah 53127 United States</li>
-                                    <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" /><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
-                                    <li><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" /><strong>Email:</strong><span>colebrook@gmail.com</span></li>
-                                    <li><img src="assets/imgs/theme/icons/icon-clock.svg" alt="/" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat </span></li>
+                                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/" /><strong>Address: </strong> <span>{FooterAddress}</span></li>
+                                    <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" /><strong>Call Us:</strong><span>{FooterPhone}</span></li>
+                                    <li><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" /><strong>Email:</strong><span>{FooterEmail}</span></li>
+                                    {/* <li><img src="assets/imgs/theme/icons/icon-clock.svg" alt="/" /><strong>Hours:</strong><span>10:00 - 18:00, Mon - Sat </span></li> */}
                                 </ul>
                             </div>
                         </div>
@@ -134,7 +138,7 @@ function Footer() {
                             <div className="footer-bottom" />
                         </div>
                         <div className="col-xl-4 col-lg-6 col-md-6">
-                            <p className="font-sm mb-0">© 2022, <strong className="text-brand"> Colebrook</strong> - Ecommerce website </p>
+                            <p className="font-sm mb-0">© 2023, <strong className="text-brand"> kingoodie</strong> - Ecommerce website </p>
                         </div>
                         <div className="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                             <div className="hotline d-lg-inline-flex mr-30">
@@ -147,11 +151,11 @@ function Footer() {
                         <div className="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                         <div class="mobile-social-icon">
                             <h6>Follow Us</h6>
-                            <a href={FacebookLink}><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>
-                            <a href={TwitterLink}><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>
-                            <a href={InstagramLink}><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>
-                            <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>
-                            <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>
+                            {FacebookLink && <a href={FacebookLink}><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>}
+                            {TwitterLink && <a href={TwitterLink}><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>}
+                            {InstagramLink && <a href={InstagramLink}><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>}
+                            {LinkedinLink && <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>}
+                            {YoutubeLink && <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>}
                         </div>
                             <p className="font-sm">Designed by Alithemes.com. All rights reserved </p>
                         </div>

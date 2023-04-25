@@ -28,6 +28,10 @@ const AppProvider = ({ children }) => {
   const [InstagramLink, SetInstagram] = useState([]);
   const [YoutubeLink, SetYoutube] = useState([]);
   const [LinkedinLink, SetLinkedin] = useState([]);
+  const [FooterAddress, SetFooterAddress] = useState([]);
+  const [FooterPhone, SetFooterPhone] = useState([]);
+  const [FooterEmail, SetFooterEmail] = useState([]);
+  const [FooterDesc, SetFooterDesc] = useState([]);
   const [HomeCard, SetHomeCard] = useState([]);
   const [searchData, setSearchData] = useState([]);
 
@@ -112,6 +116,10 @@ const AppProvider = ({ children }) => {
       SetInstagram(res.data.instagram);
       SetYoutube(res.data.youtube);
       SetLinkedin(res.data.linkedin);
+      SetFooterAddress(res.data.footerAddress);
+      SetFooterPhone(res.data.footerPhone);
+      SetFooterEmail(res.data.footerEmail);
+      SetFooterDesc(res.data.footerDesc);
     })
       .catch(function (error) {
         // ToasterWarning(error.message)
@@ -141,7 +149,7 @@ const AppProvider = ({ children }) => {
 
 
   return (
-    <AppContext.Provider value={{ user_id, UserEmail, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo}}>
+    <AppContext.Provider value={{ user_id, UserEmail, UserName, wishlistPost, Loding, CartPost, AllCategory, Logo, GetAllSearch, searchData, HomeCard, FacebookLink, TwitterLink, InstagramLink, YoutubeLink, LinkedinLink, HeaderLogo, FooterLogo, FooterAddress, FooterPhone, FooterEmail, FooterDesc}}>
       {children}
     </AppContext.Provider>
   );
