@@ -285,10 +285,9 @@ function Checkout() {
             if(response.razorpay_payment_id) {
                 setTimeout(() => {
                     setPaymentStatus('paid');
+                    setPaymentOrderId(response.razorpay_payment_id);
                 }, 500);
                 setTimeout(() => {
-                    console.log(response.razorpay_payment_id);
-                    setPaymentOrderId(response.razorpay_payment_id);
                     placeOrder(response.razorpay_payment_id);
                 }, 1700);
                 
@@ -330,7 +329,6 @@ function Checkout() {
                     amount: {
                         currency_code: "USD",
                         value: paypalPrice.toFixed(2),
-                        // value: Sub_Total_price - CouponResult,
                     },
                 },
             ],
@@ -341,8 +339,8 @@ function Checkout() {
     };
     const onApprove = (data, actions) => {
         return actions.order.capture().then(function (details) {
-            setSuccess(true);
             console.log(details);
+            setSuccess(true);
             setPaypalPaymentId(details.purchase_units[0].payments.captures[0].id);
         });
     };
@@ -359,14 +357,11 @@ function Checkout() {
 
     const onToken = async (token, payment_methods) => {
         try {
-            console.log(token);
-            console.log(token.id);
             const Data = { token_id: token.id, amount: priceForStripe };
             const stripeChargeUrl = `${urlConstant.Checkout.stripeCharge}`;
             axios.post(stripeChargeUrl, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then((res) => {
-                console.log(res);
                 if(res.data.success == false) {
                     ToasterError("Please try with different payment gateway");
                     setShowStripe(false);
@@ -449,7 +444,6 @@ function Checkout() {
             "secret_key": config.secret_key
           }
         }
-        console.log(PinCode);
         axios.post(GetPinCode1, Data).then(function (res) {
           const delhiveryArray = Object.values(res.data.data[PinCode].delhivery);
           setPinMessage(null);
@@ -461,8 +455,7 @@ function Checkout() {
             setPinMessage('This product is not available for cash on drlivary.');
           } else {
             setPinMessage('This product is not available for courier delivery.');
-          } 
-          console.log(delhiveryArray);
+          }
         })
         .catch(function (error) {
           ToasterError("Error");
