@@ -284,8 +284,8 @@ function Checkout() {
             setPaymentsuccess(response.razorpay_payment_id)
             if(response.razorpay_payment_id) {
                 setTimeout(() => {
-                    setPaymentStatus('paid');
                     setPaymentOrderId(response.razorpay_payment_id);
+                    setPaymentStatus('paid');
                 }, 500);
                 setTimeout(() => {
                     placeOrder(response.razorpay_payment_id);
@@ -329,6 +329,7 @@ function Checkout() {
                     amount: {
                         currency_code: "USD",
                         value: paypalPrice.toFixed(2),
+                        // value: Sub_Total_price - CouponResult,
                     },
                 },
             ],
@@ -339,8 +340,8 @@ function Checkout() {
     };
     const onApprove = (data, actions) => {
         return actions.order.capture().then(function (details) {
-            console.log(details);
             setSuccess(true);
+            console.log(details);
             setPaypalPaymentId(details.purchase_units[0].payments.captures[0].id);
         });
     };
@@ -357,11 +358,14 @@ function Checkout() {
 
     const onToken = async (token, payment_methods) => {
         try {
+            console.log(token);
+            console.log(token.id);
             const Data = { token_id: token.id, amount: priceForStripe };
             const stripeChargeUrl = `${urlConstant.Checkout.stripeCharge}`;
             axios.post(stripeChargeUrl, Data, {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then((res) => {
+                console.log(res);
                 if(res.data.success == false) {
                     ToasterError("Please try with different payment gateway");
                     setShowStripe(false);
@@ -380,15 +384,7 @@ function Checkout() {
 
     function placeOrder(payment_id = null) {
         setIsLoading(true)
-        var payment_order_id = null;
-        if(PaymentTypes == "Razorpay"){
-            var payment_order_id = PaymentOrderId;
-        }else if(PaymentTypes == "Stripe"){
-
-        }else if(PaymentTypes == "Paypal"){
-            var payment_order_id = PaypalPaymentId;
-        }
-        const Data = { payment_order_id, CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
         const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
         axios.post(PlaceOrderUrl, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -444,6 +440,7 @@ function Checkout() {
             "secret_key": config.secret_key
           }
         }
+        console.log(PinCode);
         axios.post(GetPinCode1, Data).then(function (res) {
           const delhiveryArray = Object.values(res.data.data[PinCode].delhivery);
           setPinMessage(null);
@@ -455,7 +452,8 @@ function Checkout() {
             setPinMessage('This product is not available for cash on drlivary.');
           } else {
             setPinMessage('This product is not available for courier delivery.');
-          }
+          } 
+          console.log(delhiveryArray);
         })
         .catch(function (error) {
           ToasterError("Error");

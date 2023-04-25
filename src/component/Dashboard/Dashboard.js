@@ -41,6 +41,8 @@ function Dashboard() {
     const [cpassword, SetCPassword] = useState("");
     const [CurrentPassword, SetCurrentPassword] = useState("");
     const [OrdersList, setOrdersList] = useState([]);
+    const [TrackOrderData, setTrackOrder] = useState([]);
+    const [TrackOrderDiv, setTrackOrderDiv] = useState('none');
     const [UserInfoList, setUserInfoList] = useState([]);
     const [userAddressesList, setUserAddressesList] = useState([]);
     const [userSupportTicketsList, setSupportTicketsList] = useState([]);
@@ -326,6 +328,26 @@ function Dashboard() {
         });
     }
 
+    function GetTrackOrder(awd_no) {
+        try {
+            setIsLoading(true)
+            const Data = { user_id: parseInt(user_id), order_code:awd_no }
+            const OrdersData = `${urlConstant.Dashboard.TrackOrderData}`;
+            axios.post(OrdersData, Data, {
+                headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
+            }).then((res) => {
+                console.log(res.data.data);
+                setTrackOrderDiv('show');
+                setTrackOrder(res.data.data);
+                setIsLoading(false)
+            })
+        }
+        catch (error) {
+            ToasterError("Error")
+            setIsLoading(false)
+        }
+    }
+
     useEffect(() => {
         if (!user_id) {
             navigate('/')
@@ -601,56 +623,52 @@ function Dashboard() {
                                                                         <label>Order ID</label>
                                                                         <input name="order-id" placeholder="Found in your order confirmation" type="text" value={TrackOrderId} onChange={(e)=>{setTrackOrderId(e.target.value)}} />
                                                                     </div>
-                                                                    <button className="submit submit-auto-width" onClick={(e)=>{TrackOrder(TrackOrderId)}}>Track</button>
+                                                                    <button className="submit submit-auto-width" onClick={(e)=>{GetTrackOrder(TrackOrderId)}}>Track</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="card">
-                                                    <div className="card-header">
-                                                        <h3 className="mb-0">Your Orders</h3>
-                                                    </div>
-                                                    {/* <div className="card-body">
-                                                        <div className="table-responsive shopping-summery">
-                                                            {
-                                                                OrdersList == '' ?
-                                                                    <>
-                                                                        <h2>Oops, no Order in your list</h2>
-                                                                    </>
-                                                                :
-                                                                    <table className="table table-wishlist">
-                                                                        <thead>
-                                                                            <tr className="main-heading">
-                                                                                <th className='start pl-30'>Current Status</th>
-                                                                                <th>Date</th>
-                                                                                <th>Status</th>
-                                                                                <th>Total</th>
-                                                                                <th className='end'>Actions</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            {
-                                                                                OrdersList.map((item, i) => {
-                                                                                    return (
-                                                                                        <>
-                                                                                            <tr key={i}>
-                                                                                                <td className='pl-30'>#{item.id}</td>
-                                                                                                <td>{Moment(item.delivery_history_date).format('DD-MM-YYYY')}</td>
-                                                                                                <td>{item.delivery_status}</td>
-                                                                                                <td>₹{item.grand_total}</td>
-                                                                                                <td><Link to={`/OrderDetail?id=${item.id}`}>View</Link></td>
-                                                                                            </tr>
-                                                                                        </>
-                                                                                    )
-                                                                                })
-                                                                            }
-                                                                        </tbody>
-                                                                    </table>
-                                                            }
+                                                {
+                                                    TrackOrderDiv == 'show' ?
+                                                    <>
+                                                        <div className="card">
+                                                            <div className="card-header">
+                                                                <h3 className="mb-0">Your Orders</h3>
+                                                            </div>
+                                                            <div className="card-body">
+                                                                <div className="table-responsive shopping-summery">
+                                                                    {
+                                                                        TrackOrderData.length == 0 ?
+                                                                            <>
+                                                                                <h2>Oops, no Order in your list</h2>
+                                                                            </>
+                                                                        :
+                                                                            <table className="table table-wishlist">
+                                                                                <thead>
+                                                                                    <tr className="main-heading">
+                                                                                        <th className='start pl-30'>Order Id</th>
+                                                                                        <th>Delivery Status</th>
+                                                                                        <th>Order Date</th>
+                                                                                        <th>Delivery Date</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td className='pl-30'>#{TrackOrderData.code}</td>
+                                                                                        <td>{TrackOrderData.delivery_status}</td>
+                                                                                        <td>{TrackOrderData.date}</td>
+                                                                                        <td>{TrackOrderData.delivery_date}</td>
+                                                                                    </tr>
+                                                                                                
+                                                                                </tbody>
+                                                                            </table>
+                                                                    }
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div> */}
-                                                </div>
+                                                        </>: null
+                                                    }
                                             </div>
                                             <div className="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
                                                 <div className="row">
