@@ -69,6 +69,7 @@ function Checkout() {
 
         
         if (!Name || !Address || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
+            
             ToasterWarning('Please select or add the address')
             return
         }
