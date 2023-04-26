@@ -56,7 +56,7 @@ function ShopProduct() {
 
     const { height, width } = useDimensionHook();
 
-    const isMobile = width >= 426
+    const isMobile = width >= 992
 
     console.log(isMobile);
     //mobile view our
@@ -174,7 +174,7 @@ function ShopProduct() {
                         </div>
                     </div>
                 </div><br />
-                <div className="container mb-30">
+                <div className="container mb-30 product-listing">
                     {/* <div className="row flex-row-reverse"> */}
 
                     {!isMobile && <button className="btn btn-sm" style={{ margin: "10px" }} onClick={(e) => { settoggleMobile(!toggleMobile) }}>Filter</button>}
@@ -268,60 +268,9 @@ function ShopProduct() {
                                                 }
 
                                             </div>
-                                            {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
-                                        <div className="custome-checkbox">
-                                            <p className="star-set">
-                                                <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-3">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-2">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-1">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                        </div>
-                                        <label className="fw-900 mt-15">Price</label>
-                                        <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
-                                        </div>
-                                        <label className="fw-900 mt-15">Offer</label>
-                                        <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
-                                        </div> */}
                                         </div>
                                     </div>
-                                    {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                                 </div>
-                                {/* Product sidebar Widget */}
                             </div>}
 
                         {isMobile &&
@@ -402,60 +351,9 @@ function ShopProduct() {
                                                 }
 
                                             </div>
-                                            {/* <label className="fw-900 mt-15" style={{ width: "100%" }}>Avg.Customer Review</label>
-                                        <div className="custome-checkbox">
-                                            <p className="star-set">
-                                                <span className="star-in-set star-4">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-3">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-2">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                            <p className="star-set">
-                                                <span className="star-in-set star-1">★★★★★ <span style={{ color: "#95A1A9", fontSize: "15px" }}>& Up</span></span>
-                                            </p>
-                                        </div>
-                                        <label className="fw-900 mt-15">Price</label>
-                                        <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox1"><span>Under ₹300</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox2"><span>₹300 - ₹500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="priceCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="priceCheckbox5"><span>Over ₹1,500</span></label>
-                                        </div>
-                                        <label className="fw-900 mt-15">Offer</label>
-                                        <div className="custome-checkbox">
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox1" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox1"><span>Under ₹300</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox2" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox2"><span>₹300 - ₹500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox3" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox3"><span>₹500 - ₹1,000</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox4" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox4"><span>₹1,000 - ₹1,500</span></label>
-                                            <br />
-                                            <input className="form-check-input" type="checkbox" name="checkbox" id="offerCheckbox5" defaultValue />
-                                            <label className="form-check-label" htmlFor="offerCheckbox5"><span>Over ₹1,500</span></label>
-                                        </div> */}
                                         </div>
                                     </div>
-                                    {/* <a className="btn btn-sm btn-default"><i className="fi-rs-filter mr-5" /> Fillter</a> */}
                                 </div>
-                                {/* Product sidebar Widget */}
                             </div>}
                         <div className="col-md-9">
                             <div className="row product-grid">
@@ -471,7 +369,7 @@ function ShopProduct() {
 
                                         return (
 
-                                            <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
+                                            <div className="col-lg-3 col-md-4 col-12 col-sm-6" key={i}>
                                                 <div className="product-cart-wrap mb-30">
                                                     <div className="product-img-action-wrap">
                                                         <div className="product-img product-img-zoom">

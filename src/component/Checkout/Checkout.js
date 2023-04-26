@@ -702,7 +702,7 @@ function Checkout() {
                                             }
                                         </tbody>
                                     </table>
-                                    <table className="table no-border">
+                                    <table className="table no-border cart-subtotal-box">
                                         <tbody>
                                             <tr>
                                                 <td scope="col" colSpan={2}>

@@ -142,34 +142,27 @@ function Cart() {
                 </div>
                 <div className="container mb-80 mt-50">
                     <div className="row">
-                        <div className="col-lg-12 mb-40">
+                        <div className="col-lg-12 mb-40 cart-title">
                             <h1 className="heading-2 mb-10">Your Cart</h1>
-                            <div className="d-flex justify-content-between">
+                            <div className="d-flex flex-column justify-content-between">
                                 <h6 className="text-body">There are <span className="text-brand">
                                     {List.length}
                                 </span> products in your cart</h6>
-
-
-                                {/* <h6 className="text-body"><a href="#" className="text-muted"><i className="fi-rs-trash mr-5" />Clear Cart</a></h6> */}
                             </div>
-                            <div className="col-lg-12 mb-40" style={{ textAlign: "end" }}>
+                            <div style={{ textAlign: "end" }} className="con-shop">
                                 <Link to="/ShopProduct">
-                                    <a className="btn" ><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
+                                    <a className="btn continue-shopping" ><i className="fi-rs-arrow-left mr-10" />Continue Shopping</a>
                                 </Link>
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className="row cart-box">
                         <div className="col-lg-8">
                             <div className="table-responsive shopping-summery">
                                 <table className="table table-wishlist">
                                     <thead>
                                         <tr className="main-heading">
-                                            <th className="custome-checkbox start pl-30">
-                                                <input className="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" defaultValue />
-                                                <label className="form-check-label" htmlFor="exampleCheckbox11" />
-                                            </th>
-                                            <th scope="col" colSpan={2}>Product</th>
+                                            <th className=" start pl-30" scope="col" colSpan={2}>Product</th>
                                             <th scope="col">Unit Price</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Subtotal</th>
@@ -183,7 +176,6 @@ function Cart() {
                                                 <>
                                                     <tr >
                                                         <td></td>
-                                                        <td></td>
                                                         <td><h2>Oops, no Order in your list</h2></td>
                                                         <td></td>
                                                         <td></td>
@@ -196,11 +188,7 @@ function Cart() {
                                                     return (
                                                         <>
                                                             <tr className="pt-30" key={i}>
-                                                                <td className="custome-checkbox pl-30">
-                                                                    <input className="form-check-input" type="checkbox" name="checkbox" id={i} defaultValue />
-                                                                    <label className="form-check-label" htmlFor={i} />
-                                                                </td>
-                                                                <td className="image product-thumbnail pt-40"><img src={image} alt={image} /></td>
+                                                                <td className="image product-thumbnail pt-40 pl-10 pr-10"><img src={image} alt={image} /></td>
                                                                 <td className="product-des product-name">
                                                                     <h6 className="mb-5">{item.product_name}</h6>
                                                                     <div className="product-rate-cover">
@@ -257,7 +245,7 @@ function Cart() {
 
                             </div>
                         </div>
-                        <div className="col-lg-4">
+                        <div className="col-lg-4 cart-subtotal-box">
                             <div className="border p-md-4 cart-totals ml-30">
                                 <div className="table-responsive">
                                     <table className="table no-border">

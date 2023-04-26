@@ -75,14 +75,50 @@ console.log(HomeCard[0]?.title);
   }
 
   var settings = {
-    // dots: true,
       infinite: true,
       slidesToShow: 7,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000,
       pauseOnHover: true,
-      arrows:false
+      arrows:false,
+      responsive: [
+        {
+          breakpoint: 1440, // screen size at which settings will change
+          settings: {
+            slidesToShow: 6,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 1200, // screen size at which settings will change
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 992, // screen size at which settings will change
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 767, // screen size at which settings will change
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 480, // screen size at which settings will change
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ]
   };
 
   useEffect(() => {
@@ -101,7 +137,8 @@ console.log(HomeCard[0]?.title);
             <div className="home-slide-cover mt-30">
               <div className="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
                 <div className="single-hero-slider single-animation-wrap">
-                  <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
+                  {/* <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel"> */}
+                  <div id="carouselExampleAutoplaying" className="carousel slide">
                     <div className="carousel-inner d-none">
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -114,9 +151,9 @@ console.log(HomeCard[0]?.title);
                             <>
                               <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
                                 <img src={item.photo} className="d-block w-100" alt="/" />
-                                <div className="carousel-caption d-none d-md-block" style={{ width: "65%" }}>
-                                  <h1 className='banner_title_set mx-auto' style={{ maxWidth: "640px" }}>{item.title}</h1><br />
-                                  <p className='banner_text_set mx-auto' style={{ maxWidth: "435px" }}>{item.sub_title}</p><br />
+                                <div className="carousel-caption d-md-block" style={{ width: "65%" }}>
+                                  <h1 className='banner_title_set mx-auto' style={{ maxWidth: "640px" }}>{item.title}</h1>
+                                  <p className='banner_text_set mx-auto' style={{ maxWidth: "435px" }}>{item.sub_title}</p>
                                   <div className="slider-main-button-div">
                                     <Link to="/ShopProduct">
                                       <button className="slider-main-button">
@@ -136,14 +173,14 @@ console.log(HomeCard[0]?.title);
                           )
                         })
                       }
-                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                      {/* <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                       </button>
                       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -153,41 +190,19 @@ console.log(HomeCard[0]?.title);
           </div>
         </section>
 
-
-
         <section className="popular-categories section-padding">
           <div className="container wow animate__animated animate__fadeIn">
-            {/* <div className="section-title"> */}
             <div className="row">
               <div className="col-md-11">
                 <div className="title">
                   <h3>Featured Brands</h3>
                 </div>
               </div>
-
-              {/* <div className="col-md-1" style={{ alignItems: "end", display: "flex" }}>
-                <div className="pagination-area">
-                  <nav aria-label="Page navigation">
-                    <ul className="pagination justify-content-center">
-                      <li className="page-item">
-                        // <a className="page-link"><i className="fi-rs-arrow-small-left" /></a> 
-                        <a className="page-link" ><i className="fi-rs-arrow-small-left" /></a>
-                      </li>
-                      <li className="page-item">
-                        // <a className="page-link" ><i className="fi-rs-arrow-small-right" /></a> 
-                        <a className="page-link" ><i className="fi-rs-arrow-small-right" /></a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div> */}
             </div>
 
             <div className="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" />
-            {/* </div> */}
             <div className="carausel-10-columns-cover position-relative" style={{ marginTop:"30px" }}>
               <Slider {...settings}>
-
                 {
                   BrandsList.map((item, i) => {
                     return (
@@ -195,7 +210,6 @@ console.log(HomeCard[0]?.title);
                         <div className="carausel-10-columns" id="carausel-10-columns">
                           <div className="card-2">
                             <div className="cat-list-home">
-                              {/* <img src={item.logo} style={{ borderRadius: "30px", height: "100px", width: "100%" }} /> */}
                               <img src={item.logo} />
                             </div>
                           </div>
@@ -205,7 +219,6 @@ console.log(HomeCard[0]?.title);
                   })
                 }
               </Slider>
-
             </div>
           </div>
         </section>
@@ -256,7 +269,7 @@ console.log(HomeCard[0]?.title);
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 d-md-none d-lg-flex">
+              <div class="col-lg-4 col-md-6">
                 <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                   <img src="assets/imgs/banner/banner-3 - Copy.png" alt="" />
                   <div class="banner-text">
@@ -278,7 +291,6 @@ console.log(HomeCard[0]?.title);
             </div>
           </div>
         </section>
-
 
         <section className="product-tabs section-padding position-relative">
           <div className="container">
@@ -358,7 +370,6 @@ console.log(HomeCard[0]?.title);
             {/*End tab-content*/}
           </div>
         </section>
-
 
         {/* old */}
         <BestSellers />

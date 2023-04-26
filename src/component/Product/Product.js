@@ -531,23 +531,8 @@ function Product() {
                                   <h4 className="mb-15">Add a review</h4>
                                   <div className="row">
                                     <div className='App'>
-                                      {/* set initial value */}
                                       <Rating onClick={handleRating} initialValue={rating} />
-
-                                      {/* <button onClick={handleReset}>reset</button> */}
                                     </div>
-                                    {/* <div className="rate">
-                                      <input type="radio" id="star5" name="rate" defaultValue={5} />
-                                      <label htmlFor="star5" >5 stars</label>
-                                      <input type="radio" id="star4" name="rate" defaultValue={4} />
-                                      <label htmlFor="star4" >4 stars</label>
-                                      <input type="radio" id="star3" name="rate" defaultValue={3} />
-                                      <label htmlFor="star3" >3 stars</label>
-                                      <input type="radio" id="star2" name="rate" defaultValue={2} />
-                                      <label htmlFor="star2" >2 stars</label>
-                                      <input type="radio" id="star1" name="rate" defaultValue={1} />
-                                      <label htmlFor="star1" >1 star</label>
-                                    </div> */}
                                   </div>
                                   <div className="row">
                                     <div className="col-lg-8 col-md-12">
@@ -576,7 +561,7 @@ function Product() {
                   </div>
                 </div>
 
-                <div className="col-xl-4 primary-sidebar sticky-sidebar mt-30">
+                <div className="col-xl-4 primary-sidebar sticky-sidebar mt-30 sub-total-box">
 
                   <div className="border p-md-4 cart-totals ml-30">
                     <div className="table-responsive">
@@ -618,23 +603,8 @@ function Product() {
                               <h4 className="text-brand text-end">₹{List.price * increment}</h4>
                             </td>
                           </tr>
-
-
-                          <br />
-                          {/* <tr>
-                            <td className="cart_total_label">
-                              <h4 className="mb-10">Apply Coupon</h4>
-                            </td>
-                            <td className="cart_total_amount">
-                              <h4 className="font-lg text-muted">Using A Promo Code?</h4>
-                            </td>
-                          </tr> */}
                         </tbody>
                       </table>
-                      {/* <div className="d-flex justify-content-between">
-                        <input className="font-medium mr-15 coupon" name="Coupon" placeholder="Enter Your Coupon" value={CouponCode} onChange={(e) => { SetCouponCode(e.target.value) }} />
-                        <button className="btn" onClick={() => { ApplyCoupon(CouponCode) }}><i className="fi-rs-label mr-10" />Apply</button>
-                      </div> */}
                     </div>
                   </div>
                 </div>
