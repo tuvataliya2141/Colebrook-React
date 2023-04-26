@@ -12,10 +12,6 @@ export const config = {
    PayPal_client_Id: 'AQ--tCY2U0vaYX5l4J5ugzv-bH1COHRa7t6ajPd9YCkyQE0wpbnBGeB9IrjFQd0oZ2kPdUkLCEin0ly_',
 
    //RazorPay key
-<<<<<<< HEAD
-   // RazorPayKey: 'rzp_test_ii0W1QDV7ASF82',
-=======
->>>>>>> 3b41474dec87472c37cef6cafb76d3f46ccd8e21
    RazorPayKey: 'rzp_test_AYZxM72P7McpLH',
 
    //Stripe key

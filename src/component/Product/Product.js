@@ -33,15 +33,16 @@ function Product() {
   const [colors, setcolors] = useState("");
   const [colorsList, setcolorsList] = useState([]);
   const [reviewsList, setreviewsList] = useState([]);
+  const [sizechartList, setsizechartList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [increment, SetIncrement] = useState(1);
   const [CouponCode, SetCouponCode] = useState('');
   const [PinCode, SetPinCode] = useState('');
   const [message, SetMessage] = useState('');
   const [PinMessage, setPinMessage] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   
-  
-
+ 
   function GetSingelProducts() {
     setIsLoading(true)
     const GetAllProducts = `${urlConstant.Products.PostSingelProducts}`;
@@ -55,6 +56,7 @@ function Product() {
       setmultipleimageList(res.data.data.multipleimage);
       setcolorsList(res.data.data.colors);
       setreviewsList(res.data.data.reviews);
+      setsizechartList(res.data.data.sizeData);
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -97,9 +99,21 @@ function Product() {
 }
 
 
+  const openModel = (e) => {
+    if(e == true) {
+      setShowModal(e);
+      document.querySelector(".body-overlay-1").style.opacity = '1'; 
+      document.querySelector(".body-overlay-1").style.visibility = 'visible';
+      document.querySelector(".body-overlay-1").style.cursor = 'auto';
+    } else if(e == false) {
+      setShowModal(e);
+      document.querySelector(".body-overlay-1").style.opacity = '0'; 
+      document.querySelector(".body-overlay-1").style.visibility = 'hidden'; 
+    }
+  }
+
   const defaultImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU';
   const image = List.thumbnail_img == '' ? defaultImg : List.thumbnail_img;
-
 
   const sizeFun = (e) => {
     setsize(e.target.value);
@@ -177,6 +191,7 @@ function Product() {
             </div>
           </div>
         </div>
+        
         <div className="container mb-30">
           <div className="row">
             <div className="col-xl-11 col-lg-12 m-auto">
@@ -244,6 +259,11 @@ function Product() {
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
+                            {
+                              sizechartList == '' ? null :
+                                <strong className="mr-10"><a style={{ color: "#FE5D17", textDecoration: "underline" }} onClick={() => openModel(true)}>Size Chart</a></strong> 
+                                
+                            }
                           </div>
                           <div className="attr-detail attr-size mb-20">
                             <ul className="list-filter size-filter font-small">
@@ -621,6 +641,61 @@ function Product() {
               </div>
             </div>
             <BestSellers />
+          </div>
+        </div>
+        <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Size Chart</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => openModel(false)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                  <div className="table-responsive shopping-summery">
+                    <table className="table table-wishlist">
+                        <thead>
+                            <tr className="main-heading">
+                                <th className="text-center" scope="col">Size</th>
+                                <th className="text-center" scope="col">Title</th>
+                                <th className="text-center" scope="col">Value in inches</th>
+                                <th className="text-center" scope="col">Value in CM</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                sizechartList == '' ?
+                                    <>
+                                        <tr >
+                                            <td></td>
+                                            {/* <td style={{textAlign: "end"}}><h6>Oops, no size &nbsp;&nbsp;</h6></td> */}
+                                            <td className="" style={{textAlign: "end"}} colspan="2"><h6>Oops, no size data your list</h6></td>
+                                            <td></td>
+                                        </tr></> :
+                                    sizechartList.map((item, i) => {
+                                        return (
+                                            <>
+                                                <tr className="pt-30" key={i}>
+                                                    <td className="text-center detail-info">{item.size}</td>
+                                                    <td className="text-center detail-info">{item.title}</td>
+                                                    <td className="text-center detail-info">{item.inches_value}</td>
+                                                    <td className="text-center detail-info">{item.cm_value}</td>
+                                                </tr>
+                                            </>
+                                        )
+                                    })
+
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <img src={List.sizeImg} alt={List.sizeImg} />
+              </div>
+            </div>
           </div>
         </div>
       </main>
