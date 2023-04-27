@@ -1,7 +1,7 @@
 export const config = {
    // apiURL: 'https://colebrooknow.com/admin/api/v2/',
-   apiURL: 'https://kingoodie.com/admin/api/v2/',
    // apiURL: 'http://localhost/colebrook-admin/api/v2/',
+   apiURL: 'https://kingoodie.com/admin/api/v2/',
 
    // shipping api key
    access_token: '5a7b40197cd919337501dd6e9a3aad9a',

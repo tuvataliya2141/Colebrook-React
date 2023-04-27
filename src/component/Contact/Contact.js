@@ -108,46 +108,17 @@ function Contact() {
                                         <div className="row mb-60">
                                             <div className="col-md-8" style={{ paddingRight: "0px" }}>
                                                 <div className="border-radius-15 overflow-hidden">
-                                                    {/* <div id="map-panes" className="leaflet-map" /> */}
                                                     <iframe className="leaflet-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d59507.233368723566!2d72.8498176!3d21.2238336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1669055784304!5m2!1sen!2sin" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                                 </div>
                                             </div>
                                             <div className="col-md-4" style={{ paddingLeft: "0px" }}>
                                                 <div className="contact-div">
-                                                    <div><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" /><span>   (123) 456-7890</span></div><br />
-                                                    <div><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" /><span>   contact@Evara.com</span></div><br />
-                                                    <div><img src="assets/imgs/theme/icons/icon-location.svg" alt="/" /><span>  205 North Michigan Avenue, Suite 810</span></div>
+                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="tel:7990580921">7990580921</a></span></div><br />
+                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="mailto:kingoodie2023@gmail.com">kingoodie2023@gmail.com</a></span></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </section>
-
-                                    <div className="row mb-60">
-                                        <div className="col-md-4 mb-4 mb-md-0">
-                                            <h4 className="mb-15 text-brand">Office</h4>
-                                            205 North Michigan Avenue, Suite 810<br />
-                                            Chicago, 60601, USA<br />
-                                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                            <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                            <a className="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i className="fi-rs-marker mr-5" />View map</a>
-                                        </div>
-                                        <div className="col-md-4 mb-4 mb-md-0">
-                                            <h4 className="mb-15 text-brand">Studio</h4>
-                                            205 North Michigan Avenue, Suite 810<br />
-                                            Chicago, 60601, USA<br />
-                                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                            <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                            <a className="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i className="fi-rs-marker mr-5" />View map</a>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <h4 className="mb-15 text-brand">Shop</h4>
-                                            205 North Michigan Avenue, Suite 810<br />
-                                            Chicago, 60601, USA<br />
-                                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                            <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                            <a className="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i className="fi-rs-marker mr-5" />View map</a>
-                                        </div>
-                                    </div>
                                 </section>
                             </div>
                         </div>

@@ -11,6 +11,8 @@ import Product from "./component/Product/Product";
 import Register from "./component/Register";
 import ShopProduct from "./component/Shop-product/ShopProduct";
 import Terms_Service from "./component/Terms-Service/Terms_Service";
+import RefundPolicy from "./component/RefundPolicy/RefundPolicy";
+import ReturnExchangePolicy from "./component/ReturnExchangePolicy/ReturnExchangePolicy";
 import Wishlist from "./component/Wishlist/wishlist";
 import OrderDetail from "./component/OrderDetail/OrderDetail";
 import TicketsDetail from "./component/TicketsDetail/TicketsDetail";
@@ -62,11 +64,6 @@ export default  [
     element:() => <Contact/>,
     exact:true,
   },
-  // {
-  //   path:'/BestSellers',
-  //   element:() => <BestSellers/>,
-  //   exact:true,
-  // },
   {
     path:'/Privacy-Policy',
     element:() => <PrivacyPolicy/>,
@@ -75,6 +72,16 @@ export default  [
   {
     path:'/Terms-Service',
     element:() => <Terms_Service/>,
+    exact:true,
+  },
+  {
+    path:'/Refund-Policy',
+    element:() => <RefundPolicy/>,
+    exact:true,
+  },
+  {
+    path:'/Return-Exchange-Policy',
+    element:() => <ReturnExchangePolicy/>,
     exact:true,
   },
   {

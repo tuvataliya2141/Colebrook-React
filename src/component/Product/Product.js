@@ -560,9 +560,7 @@ function Product() {
                     </div>
                   </div>
                 </div>
-
                 <div className="col-xl-4 primary-sidebar sticky-sidebar mt-30 sub-total-box">
-
                   <div className="border p-md-4 cart-totals ml-30">
                     <div className="table-responsive">
                       <table className="table no-border">
