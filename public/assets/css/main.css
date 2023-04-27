@@ -11905,9 +11905,6 @@ footer .hotline img {
   .product-cart-wrap .product-content-wrap h2 {
     white-space: nowrap;
   }
-  .best-seller-sec .row.product-grid .col-md-3 {
-    width: 50% !important;
-  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 992px) {
@@ -12008,6 +12005,9 @@ footer .hotline img {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  .best-seller-sec .row.product-grid .col-md-3 {
+    width: 50% !important;
+  }
   .banners .col-md-4:first-child,
   .banners .col-md-6:first-child {
     margin-bottom: 10px;
@@ -12401,8 +12401,11 @@ footer .hotline img {
 }
 
 @media only screen and (max-width: 767.98px) {
+  .header-wrap.header-space-between {
+    padding: 10px 0;
+  }
   .cart-title h1 {
-    font-size: 30px
+    font-size: 30px;
   }
   
   .cart-title h6 {
