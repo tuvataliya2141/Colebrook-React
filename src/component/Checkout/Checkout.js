@@ -66,12 +66,25 @@ function Checkout() {
                 return
             }
         }
-
+        console.log('name : ',Name);
+        console.log('Address : ',Address);
+        console.log('state : ',state);
+        console.log('city : ',city);
+        console.log('PostCode : ',PostCode);
+        console.log('PhoneNumber : ',PhoneNumber);
+        console.log('Email : ',Email);
+        console.log('payment_method : ',payment_method);
         
+        if(!city){
+            ToasterWarning('Please select another address')
+            return
+        }
         if (!Name || !Address || !state || !city || !PostCode || !PhoneNumber || !Email || !payment_method) {
             ToasterWarning('Please select or add the address')
             return
         }
+
+        
 
         if (PaymentTypes == "Razorpay") {
             openPayModal()
@@ -423,7 +436,7 @@ function Checkout() {
                 Setstate(res.data.data.state_id);
                 Setcity(res.data.data.city_id);
                 setIsLoading(false);
-            }, 1700);
+            }, 3000);
 
         }).catch(function (error) {
             // ToasterWarning(error.message)

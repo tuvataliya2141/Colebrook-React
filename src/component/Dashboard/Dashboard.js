@@ -6,7 +6,7 @@ import { useAppContext } from '../../context/index'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import urlConstant from "../../constants/urlConstant";
-import { ToasterError, ToasterSuccess } from "../../common/toaster";
+import { ToasterError, ToasterWarning, ToasterSuccess } from "../../common/toaster";
 import { ToastContainer } from "react-toastify";
 import Loding from '../Loding';
 import CommonService from "../../services/commonService";
@@ -14,6 +14,7 @@ import { useShippingContext } from '../../context/shippingContext';
 import Select2 from "react-select2-wrapper";
 import {config} from '../../constants/config'
 import Moment from 'moment';
+
 
 function Dashboard() {
     let common = new CommonService();
@@ -206,6 +207,7 @@ function Dashboard() {
 
     // function editAddress(address_id) {
     const editAddress = async (address_id) => {
+        setIsLoading(true)
         const GetAddress = `${urlConstant.User.UserUpdateAddresses}/`+address_id;
         await common.httpGet(GetAddress).then(function (res) {
             setAddressId(address_id);
@@ -219,8 +221,8 @@ function Dashboard() {
             setTimeout(() => {
                 Setstate(res.data.data.state_id);
                 Setcity(res.data.data.city_id);
-            }, 1000);
-
+                setIsLoading(false)
+            }, 3000);
         }).catch(function (error) {
             // ToasterWarning(error.message)
             console.log(error);
@@ -245,6 +247,10 @@ function Dashboard() {
     }
 
     const AddAddress = async () => {
+        if (!addressId || !name || !phone || !address || !Country || !state || !city || !PostalCode) {
+            ToasterWarning('Please select or add the address')
+            return
+        }
         try {
             setIsLoading(true)
             const Data = { addressId, userId: user_id, name, phone, address, Country, state, city, PostalCode, phone }

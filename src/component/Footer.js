@@ -157,7 +157,7 @@ function Footer() {
                             {LinkedinLink && <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>}
                             {YoutubeLink && <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>}
                         </div>
-                            <p className="font-sm">Designed by Alithemes.com. All rights reserved </p>
+                            <p className="font-sm">Designed by Anant Solutions (anant-solutions.com)+. All rights reserved </p>
                         </div>
                     </div>
                 </div>
