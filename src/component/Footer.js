@@ -29,7 +29,7 @@ function Footer() {
     const submit = (e) => {
         e.preventDefault();
         if (!email) {
-            ToasterWarning('Please Your Enter Email..')
+            ToasterWarning('Please Enter Your Email..')
             return
         }
 
@@ -155,7 +155,7 @@ function Footer() {
                             {LinkedinLink && <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>}
                             {YoutubeLink && <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>}
                         </div>
-                            <p className="font-sm">Designed by <a href="anant-solutions.com">Anant Solutions </a>. All rights reserved </p>
+                            <p className="font-sm">Designed by <a href="https://anant-solutions.com" target='_blank'>Anant Solutions </a>. All rights reserved </p>
                         </div>
                     </div>
                 </div>

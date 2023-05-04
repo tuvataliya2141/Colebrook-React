@@ -16,7 +16,7 @@ function Login() {
     const [email, SetEmail] = useState();
     const [password, SetPassword] = useState("");
     // const clientId = '505048236034-csm6okkntdi62hikvnk6q93sg4o0cm1j.apps.googleusercontent.com';
-    const clientId = '978879487832-hhpsnnutn65urmi8mjmt79087pusp7ce.apps.googleusercontent.com';
+    const clientId = '247491786250-1b5ir565ngoevjuesutoe42hpio9doil.apps.googleusercontent.com';
 
     const userId = localStorage.getItem('user')
     useEffect(() => {
