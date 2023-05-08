@@ -45,15 +45,20 @@ function Checkout() {
     const [PinMessage, setPinMessage] = useState(null);
     const [Showcodbtn, setshowcodbtn] = useState(0);
     const [PaymentOrderId, setPaymentOrderId] = useState(null);
+    const [onlineDescount, setonlineDescount] = useState(0);
+    const [onlineSubTotalPrice, setonlineSubTotalPrice] = useState(0);
 
     //PayPal
     const [show, setShow] = useState(false);
     const [success, setSuccess] = useState(false);
     const [orderID, setOrderID] = useState(false);
-    
     // Stripe
     const [showStripe, setShowStripe] = useState(false);
     const [name, setname] = useState(100);
+
+    var Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
+    var main_Sub_Total_price = Sub_Total_price - (Sub_Total_price * 5 / 100);
+    console.log('main sub check pay:', main_Sub_Total_price); 
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
@@ -66,14 +71,21 @@ function Checkout() {
                 return
             }
         }
-        console.log('name : ',Name);
-        console.log('Address : ',Address);
-        console.log('state : ',state);
-        console.log('city : ',city);
-        console.log('PostCode : ',PostCode);
-        console.log('PhoneNumber : ',PhoneNumber);
-        console.log('Email : ',Email);
-        console.log('payment_method : ',payment_method);
+        
+        if(payment_method != 'cod'){
+            
+            const onlineDescount = (Sub_Total_price * 5 / 100);
+            const SubTotalPrice = Sub_Total_price - onlineDescount;
+            setonlineDescount(onlineDescount);
+            // setIsLoading(true)
+            // setTimeout(() => {
+                setonlineSubTotalPrice(SubTotalPrice);
+                // setIsLoading(false)
+            // }, 1700);
+            console.log('main check pay:', onlineSubTotalPrice); 
+        }
+        console.log('main check pay:', onlineSubTotalPrice - CouponResult);
+        
         
         if(!city){
             ToasterWarning('Please select another address')
@@ -84,9 +96,7 @@ function Checkout() {
             ToasterWarning('Please select or add the address')
             return
         }
-
         
-
         if (PaymentTypes == "Razorpay") {
             openPayModal()
             setPaymentTypes('Razorpay');
@@ -275,9 +285,11 @@ function Checkout() {
                 headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
             }).then((res) => {
                 ToasterSuccess(res.data.message);
+                SetCouponResult(0);
                 localStorage.removeItem('discount');
+                SetCouponCode('');
                 setIsLoading(false)
-                window.location.href = window.location.href
+                // window.location.href = window.location.href
             })
         }
         catch (error) {
@@ -285,12 +297,11 @@ function Checkout() {
         }
     }
 
-    const Sub_Total_price = GetCart.map(item => item.price * item.quantity).reduce((total, value) => total + value, 0);
-
     //RazorPay
     const options = {
         key: config.RazorPayKey,
-        amount: (Sub_Total_price - CouponResult) * 100,
+        amount: (main_Sub_Total_price - CouponResult) * 100,
+        // amount: (Sub_Total_price - CouponResult) * 100,
         name: 'colebrook',
         description: 'some description',
         image: 'https://colebrooknow.com/admin/public/uploads/all/Frame.svg',
@@ -323,6 +334,7 @@ function Checkout() {
     };
 
     const openPayModal = () => {
+        console.log('check pay:', onlineSubTotalPrice - CouponResult);
         var rzp1 = new window.Razorpay(options);
         rzp1.open();
     };
@@ -334,7 +346,8 @@ function Checkout() {
     }, []);
 
     //PayPal
-    var paypalPrice = (Sub_Total_price - CouponResult) / 81;
+    var paypalPrice = (main_Sub_Total_price - CouponResult) / 81;
+    // var paypalPrice = (Sub_Total_price - CouponResult) / 81;
     const createOrder = (data, actions) => {
         return actions.order.create({
             purchase_units: [
@@ -367,7 +380,8 @@ function Checkout() {
 
 
     //Stripe
-    const priceForStripe = (Sub_Total_price - CouponResult) * 100;
+    const priceForStripe = (main_Sub_Total_price - CouponResult) * 100;
+    // const priceForStripe = (Sub_Total_price - CouponResult) * 100;
     const publishableKey = config.StripeKey;
 
     const onToken = async (token, payment_methods) => {
@@ -398,7 +412,7 @@ function Checkout() {
 
     function placeOrder(payment_id = null) {
         setIsLoading(true)
-        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: main_Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
         const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
         axios.post(PlaceOrderUrl, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -736,32 +750,62 @@ function Checkout() {
                                                     <h6 className="text-muted">Shipping</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h5 className="text-heading text-end">Free </h5></td></tr> <tr>
+                                                    <h5 className="text-heading text-end">Free </h5>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td className="cart_total_label">
-                                                    <h6 className="text-muted">Discount</h6>
+                                                    <h6 className="text-muted">Coupon Discount</h6>
                                                 </td>
                                                 <td className="cart_total_amount">
-                                                    <h5 className="text-heading text-end">- {CouponResult == null ? "₹0" : "₹" + CouponResult}</h5></td></tr>
+                                                    <h5 className="text-heading text-end">- {CouponResult == null ? "₹0" : "₹" + CouponResult}</h5>
+                                                </td>
+                                            </tr>
+                                            {
+                                                onlineDescount == 0 ? null :
+                                                <tr>
+                                                    <td className="cart_total_label">
+                                                        <h6 className="text-muted">Discount on MRP (5%)</h6>
+                                                    </td>
+                                                    <td className="cart_total_amount">
+                                                        <h5 className="text-heading text-end">- ₹{onlineDescount}</h5>
+                                                    </td>
+                                                </tr>
+                                            }
                                             <tr>
                                                 <td className="cart_total_label">
                                                     <h6 className="text-muted"></h6>
                                                 </td>
                                                 <td className="cart_total_amount">
                                                     <a><p className="text-danger text-end" onClick={CouponRemove}>{CouponResult ? "Remove Coupon" : ""}</p></a>
-                                                </td></tr>
+                                                </td>
+                                            </tr>
+                                            
                                             <tr>
                                                 <td scope="col" colSpan={2}>
                                                     <div className="divider-2 mt-10 mb-10" />
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td className="cart_total_label">
-                                                    <h6 className="text-muted">Total</h6>
-                                                </td>
-                                                <td className="cart_total_amount">
-                                                    <h4 className="text-brand text-end">₹{Sub_Total_price - CouponResult}</h4>
-                                                </td>
-                                            </tr>
+                                            {
+                                                onlineDescount == 0 ? 
+                                                <tr>
+                                                    <td className="cart_total_label">
+                                                        <h6 className="text-muted">Total</h6>
+                                                    </td>
+                                                    <td className="cart_total_amount">
+                                                        <h4 className="text-brand text-end">₹{Sub_Total_price - CouponResult}</h4>
+                                                    </td>
+                                                </tr> :
+                                                <tr>
+                                                    <td className="cart_total_label">
+                                                        <h6 className="text-muted">Total</h6>
+                                                    </td>
+                                                    <td className="cart_total_amount">
+                                                        <h5 className="text-heading text-end">₹{onlineSubTotalPrice - CouponResult}</h5>
+                                                    </td>
+                                                </tr>
+                                            }
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -785,7 +829,7 @@ function Checkout() {
                                     
                                     <div className="custome-radio">
                                         <input className="form-check-input" required type="radio" name="payment_option" id="online" value="online" checked={payment_method === 'online'} onChange={(e) => { setpayment_method(e.target.value) }} />
-                                        <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway</label>
+                                        <label className="form-check-label" htmlFor="online" data-bs-toggle="collapse" data-target="#paypal" aria-controls="paypal">Online Getway <span style={{color:"green"}}>(Instant 5% less on online payment.)</span></label>
                                     </div>
                                 </div>
                                 {

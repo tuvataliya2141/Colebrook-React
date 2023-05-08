@@ -303,7 +303,8 @@ console.log(HomeCard[0]?.title);
                 <div className="row product-grid-4">
 
                   {
-                    List.slice(0, 10).map((item, i) => {
+                    List.map((item, i) => {
+                    // List.slice(0, 10).map((item, i) => {
 
 
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
@@ -327,8 +328,32 @@ console.log(HomeCard[0]?.title);
                                         user_id == null ? <Link to='/login'><a className="action-btn"><i className="fi-rs-heart" /></a></Link> : <a className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a>
                                       }
                                     </div>
-                                    <div className="product-badges product-badges-position product-badges-mrg">
-                                      {/* <span className="hot">-17%</span> */}
+                                    <div className="product-badges product-badges-position product-badges-mrg flex-column">
+                                      {
+                                        item.on_sale == 0 ? null :
+                                        <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
+                                      }
+                                      {
+                                        item.best_selling == 0 ? null :
+                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
+                                      }
+                                      {
+                                        item.selling_fast == 0 ? null :
+                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
+                                      }
+                                      {
+                                        item.limited_stock == 0 ? null :
+                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
+                                      }
+                                      {
+                                        item.designer_piece == 0 ? null :
+                                        <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
+                                      }
+                                      
+                                      
+                                      
+                                      
+                                      
                                     </div>
                                   </div>
                                   <div className="product-content-wrap">

@@ -52,7 +52,7 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  function CartPost(id, variant, increment, colors, size) {
+  function CartPost(id, variant, increment, colors, size, Customizations='', Sleeves) {
     try {
 
       if (!size) {
@@ -72,7 +72,7 @@ const AppProvider = ({ children }) => {
       }
       const localtempid = user_id == null ? tempid : user_id;
       setIsLoading(true)
-      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id), tempid: parseInt(localtempid), colors, size }
+      const Data = { id, variant: variant, quantity: increment || 1, user_id: parseInt(user_id), tempid: parseInt(localtempid), colors, size, customizations:Customizations, sleeves:Sleeves }
       const CartData = `${urlConstant.Cart.PostCart}`;
       axios.post(CartData, Data, {
         headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }

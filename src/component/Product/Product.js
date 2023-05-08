@@ -16,6 +16,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './Product.css'
 import { Rating } from 'react-simple-star-rating'
+import Select2 from "react-select2-wrapper";
+import { Helmet } from 'react-helmet';
 
 
 function Product() {
@@ -41,7 +43,8 @@ function Product() {
   const [message, SetMessage] = useState('');
   const [PinMessage, setPinMessage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  
+  const [Customizations, SetCustomizations] = useState("");
+  const [Sleeves, Setsleeves] = useState("");
  
   function GetSingelProducts() {
     setIsLoading(true)
@@ -57,6 +60,9 @@ function Product() {
       setcolorsList(res.data.data.colors);
       setreviewsList(res.data.data.reviews);
       setsizechartList(res.data.data.sizeData);
+      if(res.data.data.sleeves_option) {
+        Setsleeves("Full Sleeves");
+      }
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -105,10 +111,12 @@ function Product() {
       document.querySelector(".body-overlay-1").style.opacity = '1'; 
       document.querySelector(".body-overlay-1").style.visibility = 'visible';
       document.querySelector(".body-overlay-1").style.cursor = 'auto';
+      document.querySelector("body").style.overflow = 'hidden';
     } else if(e == false) {
       setShowModal(e);
       document.querySelector(".body-overlay-1").style.opacity = '0'; 
-      document.querySelector(".body-overlay-1").style.visibility = 'hidden'; 
+      document.querySelector(".body-overlay-1").style.visibility = 'hidden';
+      document.querySelector("body").style.overflow = 'visible'; 
     }
   }
 
@@ -165,6 +173,12 @@ function Product() {
     });
   }
 
+  const ListSleeves = ["Full Sleeves", "Half / Short Sleeves"];
+  const handleSleevesChange = (e) => {
+    console.log(e);
+    Setsleeves(e.target.value);
+};
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -175,13 +189,26 @@ function Product() {
 
 
  
-
+console.log('meta', window.location.href);
 
   return (
     <div>
       {isLoading ? <Loding /> : Product}
       <ToastContainer />
       <Header />
+      { List.name ? 
+        <Helmet>
+          <title> {List.name}| kingoodie</title>
+          <meta name="title" content={List.meta_title} />
+          <meta property="og:title" content={List.meta_title} />
+          <meta property="og:url" content={window.location.href} />
+          <meta property="og:image" content={multipleimageList[mainImage]} /> 
+          <meta name="description" content={List.meta_description} />
+          <meta name="keywords" content={List.tags} />
+        </Helmet>
+      : null 
+      }
+
       <main className="main">
         <div className="page-header breadcrumb-wrap">
           <div className="container">
@@ -201,7 +228,7 @@ function Product() {
                     <div className="row mb-50 mt-30">
                       <div className="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                         <div className="detail-gallery">
-                          <span className="zoom-icon"><i className="fi-rs-search" /></span>
+                          
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10 img-size">
@@ -307,6 +334,27 @@ function Product() {
                               </ul>
                             </div>
                           </div>
+                          {
+                                List.sleeves_option == 1 ? 
+                              <div>
+                                <div className="attr-detail attr-size mb-20">
+                                  <strong className="mr-10">SLEEVES<span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
+                                </div>
+                                <div className="attr-detail attr-size mb-20">
+                                  <ul className="list-filter size-filter font-small" style={{width: "100%"}}>
+                                    <li style={{width: "100%"}}>
+                                    <div className="form-group col-lg-12">
+                                      <div className="custom_select">
+                                          {
+                                              <Select2 className="form-control select-active" defaultValue = {Sleeves} data = {ListSleeves} onChange={handleSleevesChange}/>
+                                          }
+                                      </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div> : null
+                          }
 
                           <div className="detail-extralink mb-20">
                             <div className="detail-qty border radius">
@@ -319,7 +367,7 @@ function Product() {
                               {
                                 List.InStock == 0 ? <button className="button button-add-to-cart" style={{ backgroundColor: "#bbb5b5" }} title="Hello World!" disabled><i className="fi-rs-shopping-cart" />Add to cart</button> :
 
-                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(List.id, List.variant[0].variant, increment, colors, size) }} >
+                                  <button type="submit" className="button button-add-to-cart" onClick={() => { CartPost(List.id, List.variant[0].variant, increment, colors, size, Customizations, Sleeves) }} >
                                     <i className="fi-rs-shopping-cart" />Add to cart
                                   </button>
 
@@ -376,6 +424,12 @@ function Product() {
                           <li className="nav-item">
                             <a className="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews</a>
                           </li>
+                          {
+                              List.video_link || List.pdf ? 
+                              <li className="nav-item">
+                                <a className="nav-link" id="video-pdf-tab" data-bs-toggle="tab" href="#video-pdf">Video & Pdf</a>
+                              </li> : null
+                          }
                         </ul>
                         <div className="tab-content shop_info_tab entry-main-content">
                           <div className="tab-pane fade show active" id="Description">
@@ -555,6 +609,39 @@ function Product() {
                               : null
                           }
                          </div>  
+                          <div className="tab-pane fade" id="video-pdf">
+                            <div className="comments-area">
+                            {
+                              List.video_link ? 
+                                <div className="row">
+                                    <div className="col-lg-8">
+                                        <h4 className="mb-30">Video</h4>
+                                        <div className="comment-list">
+                                          <iframe style={{width:"100%", height:"325px"}}
+                                            src={List.video_link}>
+                                          </iframe>
+                                        </div>
+                                    </div>
+                                </div>: null
+                            }
+                            {
+                              List.pdf ? 
+                                <div className="row">
+                                    <hr></hr>
+                                    <div className="col-lg-8">
+                                        <h4 className="mb-30">PDF File</h4>
+                                        <div className="comment-list">
+                                          <a target="_blank" href={List.pdf} class="btn mb-20 w-30">View PDF <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22ZM11.7 17.7L16 14C16.4 13.6 16.4 12.9 16 12.5C15.6 12.1 15.4 12.6 15 13L11 16L9 15C8.6 14.6 8.4 14.1 8 14.5C7.6 14.9 8.1 15.6 8.5 16L10.3 17.7C10.5 17.9 10.8 18 11 18C11.2 18 11.5 17.9 11.7 17.7Z" fill="currentColor"/>
+<path d="M10.4343 15.4343L9.25 14.25C8.83579 13.8358 8.16421 13.8358 7.75 14.25C7.33579 14.6642 7.33579 15.3358 7.75 15.75L10.2929 18.2929C10.6834 18.6834 11.3166 18.6834 11.7071 18.2929L16.25 13.75C16.6642 13.3358 16.6642 12.6642 16.25 12.25C15.8358 11.8358 15.1642 11.8358 14.75 12.25L11.5657 15.4343C11.2533 15.7467 10.7467 15.7467 10.4343 15.4343Z" fill="currentColor"/>
+<path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="currentColor"/>
+</svg></a>
+                                        </div>
+                                    </div>
+                                </div> : null
+                            }
+                            </div>
+                          </div>  
                         </div>
                       </div>
                     </div>
@@ -562,6 +649,38 @@ function Product() {
                 </div>
                 <div className="col-xl-4 primary-sidebar sticky-sidebar mt-30 sub-total-box">
                   <div className="border p-md-4 cart-totals ml-30">
+                    <div className="table-responsive">
+                      <table className="table no-border">
+                        <tbody>
+                          <tr>
+                            <td className="cart_total_label">
+                              <h6 className="text-muted">Customizations</h6>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="col" colSpan={2}>
+                            <form method="post">
+                              <textarea rows={3} placeholder="Customizations" defaultValue={""} onChange={(e) => { SetCustomizations(e.target.value) }}  />
+                              </form>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="cart_total_label">
+                              <ul class="product-more-infor mt-30">
+                                  <li><span style={{flex: "initial"}}>Customization is possible in this item. Go through following instructions for customisation.</span></li>
+                                  <li><span style={{flex: "initial"}}>Customization is possible for Prepaid Orders Only. Customization is not Possible for COD orders.</span></li>
+                                  <li><span style={{flex: "initial"}}>You can ask for any type of Size as well as Pattern customisations.</span></li>
+                                  <li><span style={{flex: "initial"}}>If you want to give any Reference image then mention in note that "you will provide reference image in email within 24 hrs". then drop us an email on <a href="mailto:kingoodie@gmail.com">kingoodie@gmail.com.</a></span></li>
+                                  <li><span style={{flex: "initial"}}>There is no extra cost of customization.</span></li>
+                                  <li><span style={{flex: "initial"}}>Customized Products will be shipped within 3 to 4 working days of placing the order.</span></li>
+                              </ul>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div className="border p-md-4 cart-totals ml-30 mt-10">
                     <div className="table-responsive">
                       <table className="table no-border">
                         <tbody>
@@ -611,8 +730,8 @@ function Product() {
             <BestSellers />
           </div>
         </div>
-        <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }}>
-          <div className="modal-dialog" role="document">
+        <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }} aria-hidden="true">
+          <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Size Chart</h5>
@@ -626,9 +745,11 @@ function Product() {
                         <thead>
                             <tr className="main-heading">
                                 <th className="text-center" scope="col">Size</th>
-                                <th className="text-center" scope="col">Title</th>
-                                <th className="text-center" scope="col">Value in inches</th>
-                                <th className="text-center" scope="col">Value in CM</th>
+                                <th className="text-center" scope="col">Brand Size<br/><span style={{fontSize:"14px"}}>(CM/Inch)</span></th>
+                                <th className="text-center" scope="col">Chest<br/><span style={{fontSize:"14px"}}>(CM/Inch)</span></th>
+                                <th className="text-center" scope="col">Shoulder<br/><span style={{fontSize:"14px"}}>(CM/Inch)</span></th>
+                                <th className="text-center" scope="col">Length<br/><span style={{fontSize:"14px"}}>(CM/Inch)</span></th>
+                                <th className="text-center" scope="col">Sleeve<br/><span style={{fontSize:"14px"}}>(CM/Inch)</span></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -647,9 +768,11 @@ function Product() {
                                             <>
                                                 <tr className="pt-30" key={i}>
                                                     <td className="text-center detail-info">{item.size}</td>
-                                                    <td className="text-center detail-info">{item.title}</td>
-                                                    <td className="text-center detail-info">{item.inches_value}</td>
-                                                    <td className="text-center detail-info">{item.cm_value}</td>
+                                                    <td className="text-center detail-info">{item.brand_size_cm} / {item.brand_size_inches}</td>
+                                                    <td className="text-center detail-info">{item.chest_cm} / {item.chest_inches}</td>
+                                                    <td className="text-center detail-info">{item.shoulder_cm} / {item.shoulder_inches}</td>
+                                                    <td className="text-center detail-info">{item.length_cm} / {item.length_inches}</td>
+                                                    <td className="text-center detail-info">{item.sleeve_cm} / {item.sleeve_inches}</td>
                                                 </tr>
                                             </>
                                         )
@@ -661,7 +784,7 @@ function Product() {
                         </tbody>
                     </table>
                 </div>
-                <img src={List.sizeImg} alt={List.sizeImg} />
+                <img style={{width:"100%"}} src={List.sizeImg} alt={List.sizeImg} />
               </div>
             </div>
           </div>

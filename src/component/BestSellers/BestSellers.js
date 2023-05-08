@@ -70,7 +70,7 @@ function BestSellers() {
                     return (
 
                       <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
-                        <div className="product-cart-wrap mb-30" style={{ height: "636px" }}>
+                        <div className="product-cart-wrap mb-30" style={{ height: "560px" }}>
                           <div className="product-img-action-wrap" style={{ height: "320px" }}>
                             <div className="product-img product-img-zoom">
                               <Link to={`/${item.slug}`}>
@@ -111,12 +111,12 @@ function BestSellers() {
                               <span>{item.main_price}</span>
                               <span className="old-price">{item.stroked_price}</span>
                             </div>
-                            <div className="sold mt-18 mb-25">
+                            {/* <div className="sold mt-18 mb-25">
                               <div className="progress mb-5">
                                 <div className="progress-bar" role="progressbar" style={{ width: '60%' }} aria-valuemin={0} aria-valuemax={100} />
                               </div>
                               <span className="font-xs text-heading"> Sold: {item.sales}/120</span>
-                            </div>
+                            </div> */}
                             <div className="product-card-bottom">
 
 
