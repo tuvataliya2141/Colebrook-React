@@ -349,11 +349,6 @@ console.log(HomeCard[0]?.title);
                                         item.designer_piece == 0 ? null :
                                         <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
                                       }
-                                      
-                                      
-                                      
-                                      
-                                      
                                     </div>
                                   </div>
                                   <div className="product-content-wrap">

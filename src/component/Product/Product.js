@@ -141,10 +141,12 @@ function Product() {
 
   const settings = {
     // dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3
+    loop: true,
+    slidesToScroll: 3,
+    arrows: true,
   };
 
   function GetPinCode(PinCode) {
@@ -208,7 +210,6 @@ console.log('meta', window.location.href);
         </Helmet>
       : null 
       }
-
       <main className="main">
         <div className="page-header breadcrumb-wrap">
           <div className="container">
@@ -276,8 +277,14 @@ console.log('meta', window.location.href);
                             <div className="product-price primary-color float-left">
                               <span className="current-price text-brand">₹{List.price}</span>
                               <span>
+                              {
+                              List.offer == 0 ? null :
                                 <span className="save-price font-md color3 ml-15">{List.offer ? List.offer : 0} % Off</span>
+                              }
+                              {
+                              List.oldPrice == List.price ? null :
                                 <span className="old-price font-md ml-15">₹{List.oldPrice}</span>
+                              }
                               </span>
                             </div>
                           </div>
@@ -300,7 +307,7 @@ console.log('meta', window.location.href);
                                   return (
                                     <>
                                       <li>
-                                        <button key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                        <button className="size-btn-product" key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
                                           {item}
                                         </button>
                                       </li>
@@ -317,14 +324,14 @@ console.log('meta', window.location.href);
                             </div>
 
                             <div className="attr-detail attr-size mb-20">
-                              <ul className="list-filter size-filter font-small">
+                              <ul className="list-filter size-filter font-small d-flex flex-row">
                                 {
                                   colorsList.map((item, i) => {
                                     return (
 
                                       <>
-                                        <li>
-                                          <button key={i} className="color_button" style={{ backgroundColor: `${item}`, border: colors == item ? "3px solid black" : "" }} value={item} onClick={(e) => { colorFun(e) }} >
+                                        <li className="d-flex align-items-center color-btn-product" style={{border: colors == item ? "2px solid black" : "2px solid #c9c9c9", borderRadius: '50%', padding: '2px'}}>
+                                          <button key={i} className="color_button" style={{backgroundColor: `${item}` }} value={item} onClick={(e) => { colorFun(e) }} >
                                           </button>
                                         </li>
                                       </>
@@ -434,7 +441,9 @@ console.log('meta', window.location.href);
                         <div className="tab-content shop_info_tab entry-main-content">
                           <div className="tab-pane fade show active" id="Description">
                             <div className>
-                              <p>{List.description}</p>
+                              <p className="bullet_points" dangerouslySetInnerHTML={{ __html: List.bullet_points_description }}></p>
+                              {/* <p >{List.bullet_points_description}</p> */}
+                              <p dangerouslySetInnerHTML={{ __html: List.description }}></p>
                               {/* <p>Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.</p> */}
                             </div>
                           </div>

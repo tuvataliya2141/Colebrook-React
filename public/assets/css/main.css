@@ -76,6 +76,10 @@ ol, ul {
   list-style: none;
 }
 
+.bullet_points ul {
+  list-style: disc !important;
+}
+
 blockquote, q {
   quotes: none;
 }
@@ -4143,6 +4147,23 @@ table .product-thumbnail img {
   left: 0;
   top: 10px;
   z-index: 9;
+}
+
+.product-cart-wrap .discount-set {
+  position: absolute;
+  right: 0 !important;
+  top: 55px;
+  z-index: 9;
+}
+
+.product-cart-wrap .discount-set span {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 20px 0px 0px 20px !important;
+  color: #fff;
+  width: auto !important;
+  padding: 8px !important;
 }
 
 .product-cart-wrap .product-badges span {
@@ -13864,4 +13885,26 @@ footer .hotline img {
 }
 .modal .close:hover {
   opacity: 1;
+}
+
+.slick-prev:before, .slick-next:before{
+  content: "" !important;
+  background-image: url('../../assets/imgs/banner/right-arrow-dark.svg');
+  position: absolute;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+.slick-prev:before{
+  transform: rotate(180deg);                                        
+  left: -10px;
+}
+
+.size-btn-product:hover{
+  background-color: black !important;
+  color: white !important;
+}
+.color-btn-product:hover{
+  border: 2px solid black !important;
 }

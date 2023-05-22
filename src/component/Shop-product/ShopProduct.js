@@ -386,11 +386,32 @@ function ShopProduct() {
                                                             {/* <a  className="action-btn" onClick={() => { wishlistPost(item.id) }}><i className="fi-rs-heart" /></a> */}
                                                             {/* <a aria-label="Compare" className="action-btn" href="#"><i className="fi-rs-shuffle" /></a> */}
                                                         </div>
-
+                                                        <div className="product-badges product-badges-position product-badges-mrg flex-column">
+                                                            {
+                                                                item.on_sale == 0 ? null :
+                                                                <span className="hot mb-5" style={{padding: "5px 5px 5px 5px"}}>On sale</span>
+                                                            }
+                                                            {
+                                                                item.best_selling == 0 ? null :
+                                                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#DEFFB4", color: "rgb(61 132 64)"}}>Best Selling</span>
+                                                            }
+                                                            {
+                                                                item.selling_fast == 0 ? null :
+                                                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#ffe1b4", color: "#84633d"}}>Selling Fast</span>
+                                                            }
+                                                            {
+                                                                item.limited_stock == 0 ? null :
+                                                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "rgb(251 248 151)", color: "rgb(116 92 2)"}}>Limited Stock</span>
+                                                            }
+                                                            {
+                                                                item.designer_piece == 0 ? null :
+                                                                <span className="hot mb-5" style={{padding: "5px 12px 5px 5px", width: "auto", background: "#FE5D17", color: "#fff"}}>Designer Piece</span>
+                                                            }
+                                                        </div>
                                                         {
                                                             item.discount == 0 ? "" :
-                                                                <div className="product-badges product-badges-position product-badges-mrg">
-                                                                    <span className="hot">-{item.discount}%</span>
+                                                                <div className="product-badges product-badges-position-mrg product-badges discount-set" style={{right: '0' }}>
+                                                                    <span className="hot">{item.discount}% OFF</span>
                                                                 </div>
                                                         }
                                                     </div>

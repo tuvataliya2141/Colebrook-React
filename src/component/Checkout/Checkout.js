@@ -497,6 +497,15 @@ function Checkout() {
             top: 0,
             behavior: "smooth",
         });
+         // Check to see if this is a redirect back from Checkout
+        const query = new URLSearchParams(window.location.search);
+
+        if (query.get("success")) {
+            alert("Order placed! You will receive an email confirmation.");
+        }
+        if (query.get("canceled")) {
+            alert("Order canceled -- continue to shop around and checkout when you're ready.");
+        }
     }, [Country, state])
 
     return (
@@ -864,12 +873,12 @@ function Checkout() {
                                         billingAddress
                                         shippingAddress
                                         image={Logo}
-                                        description={`Your total is  ₹${Sub_Total_price - CouponResult}`}
+                                        description={'Your total is $'+`${priceForStripe}`}
                                         amount={priceForStripe}
-                                        currency='INR'
+                                        currency='USD'
                                         panelLabel='stripe'
                                         token={onToken}
-                                        stripeKey={publishableKey}
+                                        stripeKey={publishableKey}  
                                     />
                                 ) : null}
 
