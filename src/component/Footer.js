@@ -26,6 +26,10 @@ function Footer() {
     let common = new CommonService();
     const [email, SetEmail] = useState();
     const [isLoading, setIsLoading] = useState(false);
+
+    function OpenPage(path) {
+        console.log("HELLO:- ", path);
+    }
     
     const submit = (e) => {
         e.preventDefault();
