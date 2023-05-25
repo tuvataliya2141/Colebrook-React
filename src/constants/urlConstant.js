@@ -19,6 +19,7 @@ const urlConstant = {
   },
   Products: {
     GetProducts: `${apiURL}products/home`,
+    GetCategoryWiseProducts: `${apiURL}products/categoryProducts`,
     PostSingelProducts: `${apiURL}products/details`,
     Reviews:`${apiURL}reviews/submit`
   },

@@ -10,6 +10,7 @@ import PrivacyPolicy from "./component/Privacy-policy/PrivacyPolicy";
 import Product from "./component/Product/Product";
 import Register from "./component/Register";
 import ShopProduct from "./component/Shop-product/ShopProduct";
+import ShopProductCategory from "./component/Shop-product/ShopProductCategory";
 import Terms_Service from "./component/Terms-Service/Terms_Service";
 import RefundPolicy from "./component/RefundPolicy/RefundPolicy";
 import ReturnExchangePolicy from "./component/ReturnExchangePolicy/ReturnExchangePolicy";
@@ -32,7 +33,7 @@ export default  [
   },
   {
     path:'/ShopProduct/:name',
-    element:() => <ShopProduct/>,
+    element:() => <ShopProductCategory/>,
     exact:true,
   },
   {

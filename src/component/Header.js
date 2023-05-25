@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppContext } from '../context/index'
 import axios from 'axios';
+import Headphone from '../assets/imgs/theme/icons/icon-headphone.svg';
 
 function Header({ Crat }) {
   const { UserName, AllCategory, Logo, GetCart, GetAllSearch, searchData, user_id } = useAppContext();
@@ -240,7 +241,7 @@ function Header({ Crat }) {
                   </div>
                 </div>
                 <div className="hotline d-none d-lg-flex">
-                  <img src="assets/imgs/theme/icons/icon-headphone.svg" alt="hotline" />
+                  <img src={Headphone} alt="hotline" />
                   <p className='d-flex flex-column align-items-center' style={{ rowGap: '5px' }}>79905-80921<span>24/7 Support Center</span></p>
                 </div>
                 <div className="header-action-right d-block d-lg-none">
@@ -360,11 +361,11 @@ function Header({ Crat }) {
             </div>
             <div className="mobile-social-icon mb-50">
               <h6 className="mb-15">Follow Us</h6>
-              <a href="#"><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="/" /></a>
-              <a href="#"><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="/" /></a>
-              <a href="#"><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="/" /></a>
-              <a href="#"><img src="assets/imgs/theme/icons/icon-pinterest-white.svg" alt="/" /></a>
-              <a href="#"><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="/" /></a>
+              <a href="#"><img src="../assets/imgs/theme/icons/icon-facebook-white.svg" alt="/" /></a>
+              <a href="#"><img src="../assets/imgs/theme/icons/icon-twitter-white.svg" alt="/" /></a>
+              <a href="#"><img src="../assets/imgs/theme/icons/icon-instagram-white.svg" alt="/" /></a>
+              <a href="#"><img src="../assets/imgs/theme/icons/icon-pinterest-white.svg" alt="/" /></a>
+              <a href="#"><img src="../assets/imgs/theme/icons/icon-youtube-white.svg" alt="/" /></a>
             </div>
             <div className="site-copyright">Copyright 2021 © /. All rights reserved. Powered by ColeBrook.</div>
           </div>

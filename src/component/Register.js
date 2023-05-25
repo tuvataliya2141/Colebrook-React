@@ -132,8 +132,8 @@ function Register() {
                                     <div className="col-lg-6 col-md-8 mt-20">
                                         <div className="form-group mb-30" style={{ display: "flex", justifyContent: "space-between" }}>
                                             <div style={{ display: "flex" }}>
-                                                <a className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
-                                                <a className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
+                                                <a className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="../assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
+                                                <a className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="../assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                             </div>
                                             {/* <ReactGoogleLogin
                                                 clientId={config.clientId}

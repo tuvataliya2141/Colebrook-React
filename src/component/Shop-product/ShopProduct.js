@@ -11,9 +11,7 @@ import axios from 'axios'
 import { useAppContext } from '../../context/index';
 import RangeSlider from './RangeSlider';
 
-function ShopProduct() {
-    const name = useParams();
-    console.log("category:- ", name.name);  
+function ShopProduct() { 
     const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
     let common = new CommonService();
 

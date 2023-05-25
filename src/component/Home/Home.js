@@ -76,7 +76,7 @@ console.log(HomeCard[0]?.title);
   }
 
   var settings = {
-      infinite: true,
+      infinite: false,
       slidesToShow: 7,
       slidesToScroll: 1,
       autoplay: false,
@@ -159,8 +159,7 @@ console.log(HomeCard[0]?.title);
                                     <Link to="/ShopProduct">
                                       <button className="slider-main-button">
                                         <span className="img-span">
-                                          <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
-                                          {/* <img style={{ marginRight: "10px" }} src="assets/imgs/banner/slider-btn.svg" alt="/" /> */}
+                                          <img style={{ width: "100%" }} src="../assets/imgs/banner/right-arrow.svg" alt="/" />
                                         </span>
                                         <span className="text-span">
                                           SHOP NOW !
@@ -174,14 +173,6 @@ console.log(HomeCard[0]?.title);
                           )
                         })
                       }
-                      {/* <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                      </button>
-                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -230,7 +221,7 @@ console.log(HomeCard[0]?.title);
             <div class="row">
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
-                  <img src="assets/imgs/banner/banner-1-full.png" alt="" />
+                  <img src="../assets/imgs/banner/banner-1-full.png" alt="" />
                   <div class="banner-text">
                     <h4>
                     {HomeCard[0]?.title}
@@ -242,16 +233,15 @@ console.log(HomeCard[0]?.title);
                         </span>
                       </Link>
                       <span className="img-span">
-                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        <img style={{ width: "100%" }} src="../assets/imgs/banner/right-arrow.svg" alt="/" />
                       </span>
-                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
                     </a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
-                  <img src="assets/imgs/banner/banner-2 - Copy.png" alt="" />
+                  <img src="../assets/imgs/banner/banner-2 - Copy.png" alt="" />
                   <div class="banner-text">
                     <h4>
                     {HomeCard[1]?.title}
@@ -263,16 +253,15 @@ console.log(HomeCard[0]?.title);
                         </span>
                       </Link>
                       <span className="img-span">
-                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        <img style={{ width: "100%" }} src="../assets/imgs/banner/right-arrow.svg" alt="/" />
                       </span>
-                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
                     </a>
                   </div>
                 </div>
               </div>
               <div class="col-lg-4 col-md-6">
                 <div class="banner-img mb-sm-0 wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                  <img src="assets/imgs/banner/banner-3 - Copy.png" alt="" />
+                  <img src="../assets/imgs/banner/banner-3 - Copy.png" alt="" />
                   <div class="banner-text">
                     <h4> {HomeCard[2]?.title}</h4>
                     <a href="#" className="btn btn-xs small-slider-button" style={{ backgroundColor: "#84633D" }}>
@@ -282,9 +271,8 @@ console.log(HomeCard[0]?.title);
                         </span>
                       </Link>
                       <span className="img-span">
-                        <img style={{ width: "100%" }} src="assets/imgs/banner/right-arrow.svg" alt="/" />
+                        <img style={{ width: "100%" }} src="../assets/imgs/banner/right-arrow.svg" alt="/" />
                       </span>
-                      {/* Shop Now <i className="fi-rs-arrow-small-right" /> */}
                     </a>
                   </div>
                 </div>
@@ -298,16 +286,11 @@ console.log(HomeCard[0]?.title);
             <div className="section-title style-2 wow animate__animated animate__fadeIn">
               <h3>Popular Products</h3>
             </div>
-            {/*End nav-tabs*/}
             <div className="tab-content" id="myTabContent">
               <div className="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                 <div className="row product-grid-4">
-
                   {
                     List.map((item, i) => {
-                    // List.slice(0, 10).map((item, i) => {
-
-
                       const image = item.thumbnail_image == '' ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu9zuWJ0xU19Mgk0dNFnl2KIc8E9Ch0zhfCg&usqp=CAU' : item.thumbnail_image
                       const Name = item.name.substring(0, 15);
                       return (
@@ -374,7 +357,6 @@ console.log(HomeCard[0]?.title);
                                         }
                                       </div>
                                       <div className="add-cart">
-                                        {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}
                                         <Link to={`/${item.slug}`} className="add">Shop Now </Link>
                                       </div>
                                     </div>
@@ -394,8 +376,6 @@ console.log(HomeCard[0]?.title);
             {/*End tab-content*/}
           </div>
         </section>
-
-        {/* old */}
         <BestSellers />
         <Footer />
       </main>

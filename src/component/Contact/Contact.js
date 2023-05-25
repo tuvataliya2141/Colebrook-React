@@ -100,7 +100,7 @@ function Contact() {
                                             </div>
                                         </div>
                                         <div className="col-lg-4 pl-50 d-lg-block d-none">
-                                            <img className="border-radius-15 mt-50" src="assets/imgs/page/login-1.png" alt="/" />
+                                            <img className="border-radius-15 mt-50" src="../assets/imgs/page/login-1.png" alt="/" />
                                         </div>
                                     </div><br /><br />
 
@@ -113,8 +113,8 @@ function Contact() {
                                             </div>
                                             <div className="col-md-4" style={{ paddingLeft: "0px" }}>
                                                 <div className="contact-div">
-                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="tel:+917990580921">+91 79905 80921</a></span></div><br />
-                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="mailto:support@kingoodie.com">support@kingoodie.com</a></span></div>
+                                                    <div className='d-flex'><img src="../assets/imgs/theme/icons/icon-contact.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="tel:+917990580921">+91 79905 80921</a></span></div><br />
+                                                    <div className='d-flex'><img src="../assets/imgs/theme/icons/icon-email-2.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="mailto:support@kingoodie.com">support@kingoodie.com</a></span></div>
                                                 </div>
                                             </div>
                                         </div>

@@ -560,7 +560,7 @@ console.log('meta', window.location.href);
                                                   <div className="single-comment justify-content-between d-flex mb-30">
                                                     <div className="user justify-content-between d-flex">
                                                         <div className="thumb text-center">
-                                                            <img src="assets/imgs/blog/author-2.png" alt="" />
+                                                            <img src="../assets/imgs/blog/author-2.png" alt="" />
                                                             <a href="#" className="font-heading text-brand">{item.name}</a>
                                                         </div>
                                                         <div className="desc">

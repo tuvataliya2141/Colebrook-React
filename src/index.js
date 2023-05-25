@@ -5,6 +5,7 @@ import App from './App';
 import { AppProvider } from './context/index'
 import { ShippingProvider } from './context/shippingContext'
 import reportWebVitals from './reportWebVitals';
+import './assets/css/main.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

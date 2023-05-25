@@ -136,7 +136,7 @@ function Login() {
                             <div className="col-xl-8 col-lg-10 col-md-12 m-auto">
                                 <div className="row">
                                     <div className="col-lg-6 pr-30 d-none d-lg-block">
-                                        <img className="border-radius-15" src="assets/imgs/page/login-1.png" alt="/" />
+                                        <img className="border-radius-15" src="../assets/imgs/page/login-1.png" alt="/" />
                                     </div>
                                     <div className="col-lg-6 col-md-8">
                                         <div className="login_wrap widget-taber-content background-white">
@@ -165,8 +165,8 @@ function Login() {
                                                     <div className="form-group">
                                                         <button type="submit" style={{ borderRadius: "30px",backgroundColor:"#222325" }} className="btn btn-heading btn-block hover-up" name="login" onClick={SubmitHandler}>Log in</button>
                                                         <span style={{ float: "right", display: "flex" }}>
-                                                            <a href='login/facebook' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
-                                                            <a href='#' onClick={handleGoogleLogin} className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
+                                                            <a href='login/facebook' className="btn btn-heading btn-block fb-btn" name="fb" style={{ backgroundColor: "#1877f2" }}><img src="../assets/imgs/theme/icons/logo-facebook.svg" alt="/" /></a>
+                                                            <a href='#' onClick={handleGoogleLogin} className="btn btn-heading btn-block google-btn" name="google" style={{ backgroundColor: "#fff" }}><img src="../assets/imgs/theme/icons/logo-google.svg" alt="/" /></a>
                                                         </span>
                                                     </div>
                                                 </form>

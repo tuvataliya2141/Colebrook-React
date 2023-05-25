@@ -109,11 +109,11 @@ function Footer() {
                             </div>
                             <div className="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                                 <h4 className="widget-title">Popular</h4>
-                                <ul className="footer-list mb-sm-5 mb-md-0">
+                                <ul className="footer-list popular mb-sm-5 mb-md-0">
                                     {
                                     AllCategory.map((item, i) => {
                                         return (
-                                            <> <li> <Link to="/ShopProduct">{item.name}</Link> </li> </>
+                                            <> <li> <Link to={"/ShopProduct/"+item.name}>{item.name}</Link> </li> </>
                                         )
                                     })
                                     }
@@ -121,13 +121,13 @@ function Footer() {
                             </div>
                             <div className="footer-link-widget widget-install-app col wow animate__animated animate__fadeInUp mt-15" data-wow-delay=".5s">
                                 <ul className="contact-infor">
-                                    <li><img src="assets/imgs/theme/icons/icon-location.svg" alt="/" /><strong>Address: </strong> <span>{FooterAddress}</span></li>
-                                    <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" /><strong>Call Us:</strong><span>{FooterPhone}</span></li>
-                                    <li><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" /><strong>Email:</strong><span>{FooterEmail}</span></li>
+                                    <li><img src="../assets/imgs/theme/icons/icon-location.svg" alt="/" /><strong>Address: </strong> <span>{FooterAddress}</span></li>
+                                    <li><img src="../assets/imgs/theme/icons/icon-contact.svg" alt="/" /><strong>Call Us:</strong><span>{FooterPhone}</span></li>
+                                    <li><img src="../assets/imgs/theme/icons/icon-email-2.svg" alt="/" /><strong>Email:</strong><span>{FooterEmail}</span></li>
                                 </ul>
                                 <hr />
                                 <h4 className="widget-title">Payment</h4>
-                                <img className src="assets/imgs/theme/payment-method.png" alt="/" />
+                                <img className src="../assets/imgs/theme/payment-method.png" alt="/" />
                             </div>
                         </div>
                     </div>
@@ -152,11 +152,11 @@ function Footer() {
                         <div className="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                         <div class="mobile-social-icon">
                             <h6>Follow Us</h6>
-                            {FacebookLink && <a href={FacebookLink}><img src="assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>}
-                            {TwitterLink && <a href={TwitterLink}><img src="assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>}
-                            {InstagramLink && <a href={InstagramLink}><img src="assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>}
-                            {LinkedinLink && <a href={LinkedinLink}><img src="assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>}
-                            {YoutubeLink && <a href={YoutubeLink}><img src="assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>}
+                            {FacebookLink && <a href={FacebookLink}><img src="../assets/imgs/theme/icons/icon-facebook-white.svg" alt="" /></a>}
+                            {TwitterLink && <a href={TwitterLink}><img src="../assets/imgs/theme/icons/icon-twitter-white.svg" alt="" /></a>}
+                            {InstagramLink && <a href={InstagramLink}><img src="../assets/imgs/theme/icons/icon-instagram-white.svg" alt="" /></a>}
+                            {LinkedinLink && <a href={LinkedinLink}><img src="../assets/imgs/theme/icons/icon-linkedin.svg" alt="" /></a>}
+                            {YoutubeLink && <a href={YoutubeLink}><img src="../assets/imgs/theme/icons/icon-youtube-white.svg" alt="" /></a>}
                         </div>
                             <p className="font-sm">Designed by <a href="https://anant-solutions.com" target='_blank'>Anant Solutions </a>. All rights reserved </p>
                         </div>
