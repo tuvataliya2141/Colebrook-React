@@ -275,7 +275,7 @@ console.log('meta', window.location.href);
                           <hr style={{ margin: "0px", color: "rgb(69 96 147)" }} />
                           <div className="clearfix product-price-cover">
                             <div className="product-price primary-color float-left">
-                              <span className="current-price text-brand">₹{List.price}</span>
+                              <span className="current-price text-brand">₹{Math.round(List.price)}</span>
                               <span>
                               {
                               List.offer == 0 ? null :
@@ -283,7 +283,7 @@ console.log('meta', window.location.href);
                               }
                               {
                               List.oldPrice == List.price ? null :
-                                <span className="old-price font-md ml-15">₹{List.oldPrice}</span>
+                                <span className="old-price font-md ml-15">₹{Math.round(List.oldPrice)}</span>
                               }
                               </span>
                             </div>
@@ -291,33 +291,40 @@ console.log('meta', window.location.href);
                           <div className="short-desc mb-20">
                             <p className="font-lg">Incluslve of all taxes</p>
                           </div>
-                          <div className="attr-detail attr-size mb-20">
-                            <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
-                            {
-                              sizechartList == '' ? null :
-                                <strong className="mr-10"><a style={{ color: "#FE5D17", textDecoration: "underline" }} onClick={() => openModel(true)}>Size Chart</a></strong> 
-                                
+                          {
+                            sizeList.length <= 0 ? null :
+                              <>
+                              <div className="attr-detail attr-size mb-20">
+                                <strong className="mr-10">SELECT SIZE <span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
+                                {
+                                  sizechartList == '' ? null :
+                                    <strong className="mr-10"><a style={{ color: "#FE5D17", textDecoration: "underline" }} onClick={() => openModel(true)}>Size Chart</a></strong> 
+                                    
+                                }
+                              </div>
+                              <div className="attr-detail attr-size mb-20">
+                                <ul className="list-filter size-filter font-small">
+                                  {
+                                    sizeList.map((item, i) => {
+
+                                      return (
+                                        <>
+                                          <li>
+                                            <button className="size-btn-product" key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                              {item}
+                                            </button>
+                                          </li>
+                                        </>
+                                      )
+                                    })
+                                  }
+                                </ul>
+                              </div>
+                              </>
                             }
-                          </div>
-                          <div className="attr-detail attr-size mb-20">
-                            <ul className="list-filter size-filter font-small">
-                              {
-                                sizeList.map((item, i) => {
-
-                                  return (
-                                    <>
-                                      <li>
-                                        <button className="size-btn-product" key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
-                                          {item}
-                                        </button>
-                                      </li>
-                                    </>
-                                  )
-                                })
-                              }
-                            </ul>
-                          </div>
-
+                            {
+                              colorsList.length <= 0 ? null :
+                                <>
                           <div>
                             <div className="attr-detail attr-size mb-20">
                               <strong className="mr-10">COLORS<span style={{ paddingLeft: "14px", fontSize: "13px", color: "black" }}></span> </strong>
@@ -341,6 +348,8 @@ console.log('meta', window.location.href);
                               </ul>
                             </div>
                           </div>
+                        </>
+                        }
                           {
                                 List.sleeves_option == 1 ? 
                               <div>
@@ -351,7 +360,7 @@ console.log('meta', window.location.href);
                                   <ul className="list-filter size-filter font-small" style={{width: "100%"}}>
                                     <li style={{width: "100%"}}>
                                     <div className="form-group col-lg-12">
-                                      <div className="custom_select">
+                                      <div className="custom_select sleeve-options">
                                           {
                                               <Select2 className="form-control select-active" defaultValue = {Sleeves} data = {ListSleeves} onChange={handleSleevesChange}/>
                                           }

@@ -21,7 +21,8 @@ function Footer() {
     const { FooterAddress } = useAppContext();
     const { FooterPhone } = useAppContext();
     const { FooterEmail } = useAppContext();
-    const { FooterDesc } = useAppContext();
+    const { FooterDesc } = useAppContext(); 
+    const { AllCategory } = useAppContext(); 
     let common = new CommonService();
     const [email, SetEmail] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -95,6 +96,7 @@ function Footer() {
                                     <li><Link to={"/Terms-Service"}>Terms &amp; Conditions</Link></li>
                                     <li><Link to={"/Refund-Policy"}>Refund Policy</Link></li>
                                     <li><Link to={"/Return-Exchange-Policy"}>Return & Exchange Policy</Link></li>
+                                    <li><Link to={"/Shipping-Delivery"}>Shipping & Delivery</Link></li>
                                 </ul>
                             </div>
                             <div className="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
@@ -108,12 +110,13 @@ function Footer() {
                             <div className="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
                                 <h4 className="widget-title">Popular</h4>
                                 <ul className="footer-list mb-sm-5 mb-md-0">
-                                    <li><Link to="/ShopProduct">Shirts</Link></li>
-                                    <li><Link to="/ShopProduct">T-shirts</Link></li>
-                                    <li><Link to="/ShopProduct">kruti</Link></li>
-                                    <li><Link to="/ShopProduct">kurta shirt</Link></li>
-                                    <li><Link to="/ShopProduct">Dresses</Link></li>
-                                    <li><Link to="/ShopProduct">View All Order</Link></li>
+                                    {
+                                    AllCategory.map((item, i) => {
+                                        return (
+                                            <> <li> <Link to="/ShopProduct">{item.name}</Link> </li> </>
+                                        )
+                                    })
+                                    }
                                 </ul>
                             </div>
                             <div className="footer-link-widget widget-install-app col wow animate__animated animate__fadeInUp mt-15" data-wow-delay=".5s">

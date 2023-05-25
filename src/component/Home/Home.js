@@ -39,6 +39,7 @@ console.log(HomeCard[0]?.title);
     const GetAllProducts = `${urlConstant.Products.GetProducts}`;
     common.httpGet(GetAllProducts).then(function (res) {
       setIsLoading(false);
+      console.log(res.data.data);
       setList(res.data.data);
     })
       .catch(function (error) {
@@ -312,7 +313,7 @@ console.log(HomeCard[0]?.title);
                       return (
                         <>
                           {
-                            item.category == "popular" ?
+                            item.category == "Shirts" ?
 
                               <div className="col-lg-1-5 col-md-4 col-12 col-sm-6">
                                 <div className="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
@@ -366,8 +367,11 @@ console.log(HomeCard[0]?.title);
                                     </div>
                                     <div className="product-card-bottom">
                                       <div className="product-price">
-                                        <span>${item.base_price}</span>
-                                        <span className="old-price">${item.base_discounted_price}</span>
+                                        <span>₹{Math.round(item.base_price)}</span>
+                                        {
+                                          item.base_discounted_price == item.base_price ? null :                                          
+                                          <span className="old-price">₹{Math.round(item.base_discounted_price)}</span>
+                                        }
                                       </div>
                                       <div className="add-cart">
                                         {/* <a className="add" onClick={() => { CartPost(item.id,item.variants.variant) }}><i className="fi-rs-shopping-cart mr-5" />Shop Now </a> */}

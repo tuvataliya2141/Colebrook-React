@@ -113,8 +113,8 @@ function Contact() {
                                             </div>
                                             <div className="col-md-4" style={{ paddingLeft: "0px" }}>
                                                 <div className="contact-div">
-                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="tel:7990580921">7990580921</a></span></div><br />
-                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="mailto:kingoodie2023@gmail.com">kingoodie2023@gmail.com</a></span></div>
+                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-contact.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="tel:+917990580921">+91 79905 80921</a></span></div><br />
+                                                    <div className='d-flex'><img src="assets/imgs/theme/icons/icon-email-2.svg" alt="/" style={{marginRight: '10px'}}/><span><a href="mailto:support@kingoodie.com">support@kingoodie.com</a></span></div>
                                                 </div>
                                             </div>
                                         </div>

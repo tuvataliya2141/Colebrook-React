@@ -130,7 +130,10 @@ function BestSellers() {
                             </div>
                             <div className="product-price mt-10">
                               <span>{item.main_price}</span>
-                              <span className="old-price">{item.stroked_price}</span>
+                              {
+                                item.main_price == item.stroked_price ? null :
+                                <span className="old-price">{item.stroked_price}</span>
+                              }
                             </div>
                             {/* <div className="sold mt-18 mb-25">
                               <div className="progress mb-5">

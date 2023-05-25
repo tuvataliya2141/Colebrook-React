@@ -13,6 +13,7 @@ import ShopProduct from "./component/Shop-product/ShopProduct";
 import Terms_Service from "./component/Terms-Service/Terms_Service";
 import RefundPolicy from "./component/RefundPolicy/RefundPolicy";
 import ReturnExchangePolicy from "./component/ReturnExchangePolicy/ReturnExchangePolicy";
+import ShippingDelivery from "./component/ShippingDelivery/ShippingDelivery";
 import Wishlist from "./component/Wishlist/wishlist";
 import OrderDetail from "./component/OrderDetail/OrderDetail";
 import TicketsDetail from "./component/TicketsDetail/TicketsDetail";
@@ -26,6 +27,11 @@ export default  [
   },
   {
     path:'/ShopProduct',
+    element:() => <ShopProduct/>,
+    exact:true,
+  },
+  {
+    path:'/ShopProduct/:name',
     element:() => <ShopProduct/>,
     exact:true,
   },
@@ -82,6 +88,11 @@ export default  [
   {
     path:'/Return-Exchange-Policy',
     element:() => <ReturnExchangePolicy/>,
+    exact:true,
+  },
+  {
+    path:'/Shipping-Delivery',
+    element:() => <ShippingDelivery/>,
     exact:true,
   },
   {

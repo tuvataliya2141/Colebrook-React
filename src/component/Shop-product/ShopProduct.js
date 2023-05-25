@@ -12,7 +12,8 @@ import { useAppContext } from '../../context/index';
 import RangeSlider from './RangeSlider';
 
 function ShopProduct() {
-    const id = useParams();
+    const name = useParams();
+    console.log("category:- ", name.name);  
     const { user_id, wishlistPost, Loding, CartPost } = useAppContext();
     let common = new CommonService();
 
@@ -433,8 +434,11 @@ function ShopProduct() {
                                                         </div>
                                                         <div className="product-card-bottom">
                                                             <div className="product-price">
-                                                                <span>₹{item.base_discounted_price}</span>
-                                                                <span className="old-price">₹{item.base_price}</span>
+                                                                <span>₹{Math.round(item.base_discounted_price)}</span>
+                                                                {
+                                                                    item.base_discounted_price == item.base_price ? null :
+                                                                    <span className="old-price">₹{Math.round(item.base_price)}</span>
+                                                                }
                                                             </div>
                                                             <div className="add-cart">
                                                                 {/* <a className="add" onClick={() => { CartPost(item.id, item.variants.variant) }} ><i className="fi-rs-shopping-cart mr-5" />Add </a> */}
@@ -527,10 +531,10 @@ function ShopProduct() {
                                             </div>
                                             <div className="clearfix product-price-cover">
                                                 <div className="product-price primary-color float-left">
-                                                    <span className="current-price text-brand">$38</span>
+                                                    <span className="current-price text-brand">₹38</span>
                                                     <span>
                                                         <span className="save-price font-md color3 ml-15">26% Off</span>
-                                                        <span className="old-price font-md ml-15">$52</span>
+                                                        <span className="old-price font-md ml-15">₹52</span>
                                                     </span>
                                                 </div>
                                             </div>

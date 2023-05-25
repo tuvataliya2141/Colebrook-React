@@ -13908,3 +13908,6 @@ footer .hotline img {
 .color-btn-product:hover{
   border: 2px solid black !important;
 }
+.sleeve-options .select2-container--default .select2-selection--single .select2-selection__arrow b {
+  top: 0 !important;
+}
