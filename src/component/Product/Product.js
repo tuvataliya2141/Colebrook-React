@@ -18,6 +18,7 @@ import './Product.css'
 import { Rating } from 'react-simple-star-rating'
 import Select2 from "react-select2-wrapper";
 import { Helmet } from 'react-helmet';
+import { Zoom } from 'reactjs-image-zoom';
 
 
 function Product() {
@@ -233,8 +234,20 @@ console.log('meta', window.location.href);
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
                             <figure className="border-radius-10 img-size">
+                            <Zoom
+                                height={600} // height of the box
+                                maxwidth={500} // width of the box
+                                repeat="repeat" // default is no-repeat
+                                position="center" // cover
+                                imagesrc={multipleimageList[mainImage]} // Image component | URL
+                                size={200} // it is in percent
+                                bgsize="cover" // background-size
+                                cursor="zoom-in" // pointer
+                                style={{ width: "100%", maxwidth:"100%" }} // add custom style
+                                className="img-box" // classname for box
+                            />
                               {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
-                              <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} />
+                              {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} /> */}
                             </figure>
                           </div>
                           <div>
