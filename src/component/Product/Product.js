@@ -64,6 +64,12 @@ function Product() {
       if(res.data.data.sleeves_option) {
         Setsleeves("Full Sleeves");
       }
+      if(res.data.data.colors.length <= 0){
+        setcolors(null);
+      }
+      if(res.data.data.multipleSize.length <= 0){
+        setsize(null);
+      }
     })
       .catch(function (error) {
         setIsLoading(false);
@@ -129,7 +135,9 @@ function Product() {
   }
   const colorFun = (e) => {
     setcolors(e.target.value);
-  }
+  } 
+  
+  
 
   // const settings = {
   //   className: "center",
@@ -237,7 +245,6 @@ console.log('meta', window.location.href);
                             <Zoom
                                 height={600} // height of the box
                                 maxwidth={500} // width of the box
-                                repeat="repeat" // default is no-repeat
                                 position="center" // cover
                                 imagesrc={multipleimageList[mainImage]} // Image component | URL
                                 size={200} // it is in percent
@@ -720,7 +727,11 @@ console.log('meta', window.location.href);
                               <h6 className="text-muted">Subtotal</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">₹{List.price * increment}</h4>
+                              {
+                                List.oldPrice == List.price ? <h4 className="text-brand text-end">₹{List.price * increment}</h4> :
+                                  <h4 className="text-brand text-end">₹{Math.round(List.oldPrice) * increment}</h4>
+                              }
+                              
                             </td>
                           </tr>
                           <tr>
@@ -730,10 +741,14 @@ console.log('meta', window.location.href);
                           </tr>
                           <tr>
                             <td className="cart_total_label">
-                              <h6 className="text-muted">Offer Price</h6>
+                              <h6 className="text-muted">Offer Price ({List.offer ? List.offer : 0}%)</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h5 className="text-heading text-end">- {List.offer ? List.offer : 0} %</h5></td></tr> <tr>
+                              {
+                                List.offer == 0 ? <h5 className="text-heading text-end">- {List.offer ? List.offer : 0}%</h5> :
+                                <h5 className="text-heading text-end">- ₹{(List.offer / 100) * (List.oldPrice * increment)} Off</h5>
+                              }
+                              </td></tr> <tr>
                             <td className="cart_total_label">
                               <h6 className="text-muted">Delivery Charge</h6>
                             </td>
@@ -748,7 +763,7 @@ console.log('meta', window.location.href);
                               <h6 className="text-muted">Total</h6>
                             </td>
                             <td className="cart_total_amount">
-                              <h4 className="text-brand text-end">₹{List.price * increment}</h4>
+                              <h4 className="text-brand text-end">₹{Math.round(List.price) * increment}</h4>
                             </td>
                           </tr>
                         </tbody>

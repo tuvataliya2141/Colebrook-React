@@ -72,21 +72,6 @@ function Checkout() {
             }
         }
         
-        if(payment_method != 'cod'){
-            
-            const onlineDescount = (Sub_Total_price * 5 / 100);
-            const SubTotalPrice = Sub_Total_price - onlineDescount;
-            setonlineDescount(onlineDescount);
-            // setIsLoading(true)
-            // setTimeout(() => {
-                setonlineSubTotalPrice(SubTotalPrice);
-                // setIsLoading(false)
-            // }, 1700);
-            console.log('main check pay:', onlineSubTotalPrice); 
-        }
-        console.log('main check pay:', onlineSubTotalPrice - CouponResult);
-        
-        
         if(!city){
             ToasterWarning('Please select another address')
             return
@@ -96,6 +81,15 @@ function Checkout() {
             ToasterWarning('Please select or add the address')
             return
         }
+
+        if(payment_method != 'cod'){
+            const onlineDescount = (Sub_Total_price * 5 / 100);
+            const SubTotalPrice = Sub_Total_price - onlineDescount;
+            setonlineDescount(onlineDescount);
+            setonlineSubTotalPrice(SubTotalPrice);
+        } 
+        
+        
         
         if (PaymentTypes == "Razorpay") {
             openPayModal()
@@ -119,7 +113,7 @@ function Checkout() {
             }
         try {
             setIsLoading(true)
-            const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes};
+            const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: login_type, total_amount: Math.round(Sub_Total_price), address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes};
 
             const ContactData = `${urlConstant.Checkout.PostCheckout}`;
             axios.post(ContactData, Data, {
@@ -300,7 +294,7 @@ function Checkout() {
     //RazorPay
     const options = {
         key: config.RazorPayKey,
-        amount: (main_Sub_Total_price - CouponResult) * 100,
+        amount: (Math.round(main_Sub_Total_price) - CouponResult) * 100,
         // amount: (Sub_Total_price - CouponResult) * 100,
         name: 'colebrook',
         description: 'some description',
@@ -412,7 +406,7 @@ function Checkout() {
 
     function placeOrder(payment_id = null) {
         setIsLoading(true)
-        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: main_Sub_Total_price, address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
+        const Data = { CouponCode, name: Name, address: Address, state_id: state, country_id: Country, city_id: city, postal_code: PostCode, phone: PhoneNumber, email: Email, AdditionalInfomation, user_id, payment_method: PaymentTypes, total_amount: Math.round(main_Sub_Total_price), address_same_type: 1, payment_status: PaymentStatus, payment_type: PaymentTypes, payment_id};
         const PlaceOrderUrl = `${urlConstant.Checkout.PlaceOrder}`;
         axios.post(PlaceOrderUrl, Data, {
             headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
@@ -771,13 +765,13 @@ function Checkout() {
                                                 </td>
                                             </tr>
                                             {
-                                                onlineDescount == 0 ? null :
+                                                onlineDescount == 0 || payment_method === 'cod'? null :
                                                 <tr>
                                                     <td className="cart_total_label">
                                                         <h6 className="text-muted">Discount on MRP (5%)</h6>
                                                     </td>
                                                     <td className="cart_total_amount">
-                                                        <h5 className="text-heading text-end">- ₹{onlineDescount}</h5>
+                                                        <h5 className="text-heading text-end">- ₹{Math.round(onlineDescount)}</h5>
                                                     </td>
                                                 </tr>
                                             }
@@ -795,26 +789,19 @@ function Checkout() {
                                                     <div className="divider-2 mt-10 mb-10" />
                                                 </td>
                                             </tr>
-                                            {
-                                                onlineDescount == 0 ? 
-                                                <tr>
-                                                    <td className="cart_total_label">
-                                                        <h6 className="text-muted">Total</h6>
-                                                    </td>
-                                                    <td className="cart_total_amount">
-                                                        <h4 className="text-brand text-end">₹{Sub_Total_price - CouponResult}</h4>
-                                                    </td>
-                                                </tr> :
-                                                <tr>
-                                                    <td className="cart_total_label">
-                                                        <h6 className="text-muted">Total</h6>
-                                                    </td>
-                                                    <td className="cart_total_amount">
-                                                        <h5 className="text-heading text-end">₹{onlineSubTotalPrice - CouponResult}</h5>
-                                                    </td>
-                                                </tr>
-                                            }
                                             
+                                            <tr>
+                                                <td className="cart_total_label">
+                                                    <h6 className="text-muted">Total</h6>
+                                                </td>
+                                                <td className="cart_total_amount">
+                                                    {
+                                                        onlineDescount == 0 || payment_method == "cod"? 
+                                                        <h4 className="text-brand text-end">₹{Math.round(Sub_Total_price) - CouponResult}</h4>:
+                                                        <h4 className="text-heading text-end">₹{Math.round(onlineSubTotalPrice) - CouponResult}</h4>
+                                                    }
+                                                </td>
+                                            </tr> 
                                         </tbody>
                                     </table>
                                 </div>

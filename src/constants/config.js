@@ -12,7 +12,7 @@ export const config = {
    PayPal_client_Id: 'AQ--tCY2U0vaYX5l4J5ugzv-bH1COHRa7t6ajPd9YCkyQE0wpbnBGeB9IrjFQd0oZ2kPdUkLCEin0ly_',
 
    //RazorPay key
-   RazorPayKey: 'rzp_test_AYZxM72P7McpLH',
+   RazorPayKey: 'rzp_test_c1DB2lrwC60uZq',
 
    //Stripe key
    StripeKey: 'pk_test_51McFL8SCjJTE2JxUqfahfv5phYnyHAgscvNwftrvzjNZ90OcPDeWgoZPfUpUxe0i2iMfKx2jy14I7jDAUrqUuSNW00FckS1oP6',

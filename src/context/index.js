@@ -55,11 +55,11 @@ const AppProvider = ({ children }) => {
   function CartPost(id, variant, increment, colors, size, Customizations='', Sleeves) {
     try {
 
-      if (!size) {
+      if (!size && size != null) {
         ToasterWarning('Please Select Size')
         return
       } else
-      if (!colors) {
+      if (!colors && colors != null) {
           ToasterWarning('Please Select Color')
           return
       }

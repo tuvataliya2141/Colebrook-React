@@ -210,9 +210,9 @@ function Header({ Crat }) {
                         <li className="nav-item">
                           <Link className="nav-link" to="/ShopProduct">Man’s Wear </Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                           <Link className="nav-link" to="/ShopProduct">Women's Wear </Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                           <Link className="nav-link" to="/Contact">Contact</Link>
                         </li>
