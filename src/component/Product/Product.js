@@ -241,9 +241,9 @@ console.log('meta', window.location.href);
                           
                           {/* MAIN SLIDES */}
                           <div className="product-image-slider">
-                            <figure className="border-radius-10 img-size">
+                            <figure className="border-radius-10">
                             <Zoom
-                                height={600} // height of the box
+                                height={800} // height of the box
                                 maxwidth={500} // width of the box
                                 position="center" // cover
                                 imagesrc={multipleimageList[mainImage]} // Image component | URL
