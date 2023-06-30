@@ -70,8 +70,8 @@ function BestSellers() {
                     return (
 
                       <div className="col-lg-1-4 col-md-3 col-12 col-sm-6" key={i}>
-                        <div className="product-cart-wrap mb-30" style={{ height: "560px" }}>
-                          <div className="product-img-action-wrap" style={{ height: "320px" }}>
+                        <div className="product-cart-wrap mb-30">
+                          <div className="product-img-action-wrap">
                             <div className="product-img product-img-zoom">
                               <Link to={`/${item.slug}`}>
                                 <img className="default-img" src={image} alt="/" />

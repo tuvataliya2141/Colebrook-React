@@ -44,12 +44,28 @@
 .img-size {
   height: 500px;
 }
+.product-image-slider .img-box{
+  background-size: contain !important;
+}
+.detail-gallery .slick-slide img{
+  object-fit: contain;
+}
+.detail-block{
+  position: sticky;
+  top: 10px;
+}
 /* .apply-coupon button{
   height: 51px !important;
   border-radius: 0 30px 30px 0 !important;
   color: #fff !important;
 } */
-
+@media only screen and (min-width: 768px) {
+  .product-image .slick-slider .slick-track, .slick-slider .slick-list{
+    transform: unset !important;
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media only screen and (max-width: 600px) {
   .img-size {
     height: 300px;

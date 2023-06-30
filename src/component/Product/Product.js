@@ -19,9 +19,11 @@ import { Rating } from 'react-simple-star-rating'
 import Select2 from "react-select2-wrapper";
 import { Helmet } from 'react-helmet';
 import { Zoom } from 'reactjs-image-zoom';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import 'photoswipe/style.css';
 
 
-function Product() {
+function Product(props) {
   const id = useParams();
   let common = new CommonService();
   const { user_id, wishlistPost, Loding, CartPost, ApplyCoupon } = useAppContext();
@@ -54,6 +56,7 @@ function Product() {
     axios.post(GetAllProducts, Data, {
       headers: { "Authorization": `Bearer ${localStorage.getItem('access_token')}` }
     }).then(function (res) {
+      console.log(res.data.data.multipleimage);
       setIsLoading(false);
       setList(res.data.data);
       setsizeList(res.data.data.multipleSize);
@@ -149,13 +152,32 @@ function Product() {
   // };
 
   const settings = {
-    // dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 3,
-    loop: true,
-    slidesToScroll: 3,
-    arrows: true,
+  //   // dots: true,
+  //   mobileFirst: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   loop: true,
+  //   arrows: false,
+  //   responsive: [
+    //     {
+      //         breakpoint: 769,
+      //         settings: 'unslick'
+      //     }
+      // ]
+  infinite: false,
+  slidesToShow: 1,
+		slidesToScroll: 1,
+        mobileFirst: true,
+        arrows: false,
+        dots: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                  dots: true,
+                }
+            }
+        ]
   };
 
   function GetPinCode(PinCode) {
@@ -197,7 +219,19 @@ function Product() {
     });
     GetSingelProducts();
   }, []);
+  useEffect(() => {
+    let lightbox = new PhotoSwipeLightbox({
+      gallery: '#Gallary',
+      children: 'a',
+      pswpModule: () => import('photoswipe'),
+    });
+    lightbox.init();
 
+    return () => {
+      lightbox.destroy();
+      lightbox = null;
+    };
+  }, []);
 
  
 console.log('meta', window.location.href);
@@ -235,49 +269,30 @@ console.log('meta', window.location.href);
               <div className="row">
                 <div className="col-xl-8">
                   <div className="product-detail accordion-detail">
-                    <div className="row mb-50 mt-30">
+                    <div className="row mb-50 mt-30 align-items-start">
                       <div className="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                         <div className="detail-gallery">
                           
                           {/* MAIN SLIDES */}
-                          <div className="product-image-slider">
-                            <figure className="border-radius-10">
-                            <Zoom
-                                height={800} // height of the box
-                                maxwidth={500} // width of the box
-                                position="center" // cover
-                                imagesrc={multipleimageList[mainImage]} // Image component | URL
-                                size={200} // it is in percent
-                                bgsize="cover" // background-size
-                                cursor="zoom-in" // pointer
-                                style={{ width: "100%", maxwidth:"100%" }} // add custom style
-                                className="img-box" // classname for box
-                            />
-                              {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" ,height:"600px"}} /> */}
-                              {/* <img src={multipleimageList[mainImage]} alt={image} style={{ width: "100%" }} /> */}
-                            </figure>
-                          </div>
-                          <div>
-                            <div>
-                              <Slider {...settings}>
-                                {
-                                  multipleimageList.map((item, i) => {
-                                    return (
-                                      <>
-                                        <div>
-                                          <img src={item} alt="product image" width="100%" height="160px" style={{ borderRadius: "10px", padding: "3px" }} key={i} onClick={() => setMainImage(i)} />
-                                        </div>
-                                      </>
-                                    )
-                                  })
-                                }
-                              </Slider>
-                            </div>
+                          <div className="pswp-gallery product-image" id='Gallary'>
+                          <Slider {...settings}>
+                            {multipleimageList.map((image, index) => (
+                              <a
+                                href={image}
+                                data-pswp-width='1875'
+                                data-pswp-height='2500'
+                                key={'Gallary'+index}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                <img src={image} alt="" />
+                              </a>
+                            ))}
+                            </Slider>
                           </div>
                         </div>
-                        {/* End Gallery */}
                       </div>
-                      <div className="col-md-6 col-sm-12 col-xs-12">
+                      <div className="col-md-6 col-sm-12 col-xs-12 detail-block">
                         <div className="detail-info pr-30 pl-30">
                           {
                             List.InStock == 0 ? <span className="stock-status out-stock">Out of stock</span> :
@@ -330,7 +345,7 @@ console.log('meta', window.location.href);
                                       return (
                                         <>
                                           <li>
-                                            <button className="size-btn-product" key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "40px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
+                                            <button className="size-btn-product" key={i} style={{ backgroundColor: size == item ? "black" : "white", color: size == item ? "white" : "black", borderRadius: "50px", width: "80px", height: "40px", margin: "2px" }} onClick={(e) => { sizeFun(e) }} value={item} >
                                               {item}
                                             </button>
                                           </li>
@@ -776,7 +791,7 @@ console.log('meta', window.location.href);
             <BestSellers />
           </div>
         </div>
-        <div className="modal" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }} aria-hidden="true">
+        <div className="modal size-chart" tabIndex="-1" role="dialog" style={{ display: showModal ? 'block' : 'none' }} aria-hidden="true">
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
