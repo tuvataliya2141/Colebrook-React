@@ -139,7 +139,10 @@ console.log(HomeCard[0]?.title);
               <div className="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
                 <div className="single-hero-slider single-animation-wrap">
                   <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
+<<<<<<< HEAD
                   {/* <div id="carouselExampleAutoplaying" className="carousel slide"> */}
+=======
+>>>>>>> 92718cb655b3c3524caabe545109ee3756a5815f
                     <div className="carousel-inner d-none">
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -148,6 +151,7 @@ console.log(HomeCard[0]?.title);
                     <div className="carousel-inner" >
                       {
                         BannersList.map((item, i) => {
+                          console.log(item);
                           return (
                             <>
                               <div key={i} className={`carousel-item ${i == 1 ? "active" : ""}`}>
